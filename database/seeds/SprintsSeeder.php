@@ -11,7 +11,7 @@ class SprintsSeeder extends Seeder
      */
     public function run() {
         // Borramos los datos de la tabla
-        DB::table('sprints')->delete();
+        //DB::table('sprints')->delete();
         // Añadimos una entrada a esta tabla
         DB::table('sprints')->insert([
         'idProyecto'=>'1',

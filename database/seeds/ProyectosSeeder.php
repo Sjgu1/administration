@@ -11,7 +11,10 @@ class ProyectosSeeder extends Seeder
      */
     public function run() {
         // Borramos los datos de la tabla
-        DB::table('proyectos')->delete();
+        //DB::table('requisitos')->delete();
+        //DB::table('sprints')->delete();
+        //DB::table('proyectos')->delete();
+
         // Añadimos una entrada a esta tabla
        DB::table('proyectos')->insert([
         'fechaInicio' => time(),
