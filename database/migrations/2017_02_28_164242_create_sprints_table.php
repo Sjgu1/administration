@@ -13,18 +13,14 @@ class CreateSprintsTable extends Migration
      */
     public function up()
     {
-        //Schema::enableForeignKeyConstraints();
-
         Schema::create('sprints', function (Blueprint $table) {
-           
-            $table->integer('idProyecto');
-            $table->integer('id');
-            $table->foreign('idProyecto')->references('id')->on('proyectos');
-            $table->primary(['id','idProyecto']);
-            $table->timestamp('fechaInicio');
-            $table->timestamp('fechaFin');
-            $table->string('nombre');
-            $table->string('descripcion');
+            $table->increments('id');
+            $table->integer('proyecto_id');
+            $table->string('descripcion')->nullable();
+            $table->timestamp('fecha_inicio')->nullable();
+            $table->timestamp('fecha_fin_estimada')->nullable();
+            $table->timestamp('fecha_fin')->nullable();
+            $table->foreign('proyecto_id')->references('id')->on('proyectos')->onDelete('cascade');
             $table->timestamps();
         });
     }

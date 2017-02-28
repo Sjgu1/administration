@@ -15,10 +15,11 @@ class CreateProyectosTable extends Migration
     {
         Schema::create('proyectos', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamp('fechaInicio')->nulleable();
-            $table->timestamp('fechaFin')->nulleable();
-            $table->string('nombre')->default('');
-            $table->string('descripcion')->default('');
+            $table->string('nombre')->nullable();
+            $table->string('descripcion')->nullable();
+            $table->timestamp('fecha_inicio')->nullable();
+            $table->timestamp('fecha_fin_estimada')->nullable();
+            $table->timestamp('fecha_fin')->nullable();
             $table->timestamps();
         });
     }
