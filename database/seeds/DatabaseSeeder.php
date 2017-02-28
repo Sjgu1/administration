@@ -11,8 +11,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         $this->call(ProyectosSeeder::class);
-         $this->call(SprintsSeeder::class);
-         $this->call(RequisitosSeeder::class);
+        // Proyectos seed
+        $this->call(ProyectosTableSeeder::class);
+
+        // Sprints seed
+        $this->call(SprintsTableSeeder::class);
+
+        // Requisitos seed
+        $this->call(RequisitosTableSeeder::class);
     }
 }
