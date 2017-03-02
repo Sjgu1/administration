@@ -25,7 +25,7 @@ class RequisitosTableSeeder extends Seeder
         $requisito->save();
 
         // A ver si borra
-        DB::table('proyectos')->where('nombre', 'Proyecto número 1')->delete();
+       // DB::table('proyectos')->where('nombre', 'Proyecto número 1')->delete();
 
 
     }
