@@ -9,6 +9,15 @@ use App\Requisito;
 class Sprint extends Model
 {
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'nombre'
+    ];
+
     public function proyecto(){
 
         return $this->belongsTo('App\Proyecto');

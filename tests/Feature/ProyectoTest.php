@@ -57,7 +57,7 @@ class ProyectoTest extends TestCase
 
     }
 
-    // Test de inserción de sprint vacío. De acuerdo al diagrama UML, debería fallar
+    // Test de inserción de sprint sin estar asociado a un proyecto. De acuerdo al diagrama UML, debería fallar
     public function testInsertarSprintC1(){
 
         try {
@@ -76,7 +76,29 @@ class ProyectoTest extends TestCase
 
     }
 
-    // Test de inserción de requisito vacío. De acuerdo al diagrama UML, debería fallar
+    // Test de inserción y asociación de múltiples sprints a un mismo proyecto
+    public function testAsociarMultiplesSprintsAProyecto(){
+
+        $proyecto = new Proyecto(['nombre' => 'Proyecto de prueba 96']);
+        $proyecto->save();
+
+        $proyecto = Proyecto::where('nombre', 'Proyecto de prueba 96')->first();
+
+        $proyecto->sprints()->saveMany([
+            new Sprint(['nombre' => 'Sprint de prueba 1']),
+            new Sprint(['nombre' => 'Sprint de prueba 2']),
+            new Sprint(['nombre' => 'Sprint de prueba 3'])
+        ]);
+
+        $counts = Sprint::where('proyecto_id', $proyecto->id)->get()->count();
+
+        $this->assertEquals($counts, 3);
+
+        $proyecto->delete();
+
+    }
+
+    // Test de inserción de requisito sin estar asociado a un sprint. De acuerdo al diagrama UML, debería fallar
     public function testInsertarRequisitoC1(){
 
         try {
@@ -92,6 +114,33 @@ class ProyectoTest extends TestCase
             $this->assertTrue(true);
 
         }
+        
+    }
+
+    // Test de inserción y asociación de múltiples requisitos a un mismo sprint
+    public function testAsociarMultiplesRequisitosASprint(){
+
+        $proyecto = new Proyecto(['nombre' => 'Proyecto de prueba 256']);
+        $proyecto->save();
+
+        $sprint = new Sprint();
+        $sprint->proyecto()->associate($proyecto);
+        $sprint->save();
+
+        $proyecto = Proyecto::where('nombre', 'Proyecto de prueba 256')->first();
+        $sprint = Sprint::where('proyecto_id', $proyecto->id)->first();
+
+        $sprint->requisitos()->saveMany([
+            new Requisito(['nombre' => 'Sprint de prueba 1']),
+            new Requisito(['nombre' => 'Sprint de prueba 2']),
+            new Requisito(['nombre' => 'Sprint de prueba 3'])
+        ]);
+
+        $counts = Requisito::where('sprint_id', $sprint->id)->get()->count();
+
+        $this->assertEquals($counts, 3);
+
+        $proyecto->delete();
         
     }
 

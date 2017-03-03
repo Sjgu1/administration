@@ -7,6 +7,14 @@ use App\Sprint;
 
 class Proyecto extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'nombre'
+    ];
 
     public function sprints(){
 
