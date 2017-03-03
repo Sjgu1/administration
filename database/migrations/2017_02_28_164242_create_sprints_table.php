@@ -15,11 +15,12 @@ class CreateSprintsTable extends Migration
     {
         Schema::create('sprints', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('proyecto_id');
+            $table->string('nombre')->nullable();
             $table->string('descripcion')->nullable();
             $table->timestamp('fecha_inicio')->nullable();
-            $table->timestamp('fecha_fin_estimada')->nullable();
             $table->timestamp('fecha_fin')->nullable();
+            $table->timestamp('fecha_fin_estimada')->nullable();
+            $table->integer('proyecto_id');
             $table->foreign('proyecto_id')->references('id')->on('proyectos')->onDelete('cascade');
             $table->timestamps();
         });

@@ -25,9 +25,9 @@ class ProyectoTest extends TestCase
         $this->assertEquals($resultado, 'Proyecto número 1');
     }
 
-     public function testConsultarID()
+    public function testConsultarID()
     {
-        $proyecto = Proyecto::where('id','=','3')->first();
+        $proyecto = Proyecto::where('id', '=', '3')->first();
         $resultado = $proyecto->nombre;
         $this->assertEquals($resultado, 'Proyecto número 3');
     }
@@ -38,27 +38,79 @@ class ProyectoTest extends TestCase
         $proyecto->nombre = 'Proyecto Insertado';
         $proyecto->save();
 
-        $proyecto = Proyecto::where('nombre','=','Proyecto Insertado')->first();
+        $proyecto = Proyecto::where('nombre', '=', 'Proyecto Insertado')->first();
         $resultado = $proyecto->nombre;
         $this->assertEquals($resultado, 'Proyecto Insertado');
     }
 
+    // Test de inserción de proyecto vacío. De acuerdo al diagrama UML, debería insertarse
+    public function testInsertarProyectoC1(){
+
+        $proyecto = new Proyecto();
+        $proyecto->save();
+
+        $count = Proyecto::where('nombre', null)->get()->count();
+
+        $proyecto->delete();
+
+        $this->assertGreaterThanOrEqual('0', $count);
+
+    }
+
+    // Test de inserción de sprint vacío. De acuerdo al diagrama UML, debería fallar
+    public function testInsertarSprintC1(){
+
+        try {
+
+            $sprint = new Sprint();
+            $sprint->save();
+
+            $this->fail();
+
+        }
+        catch (\PDOException $exception){
+
+            $this->assertTrue(true);
+
+        }
+
+    }
+
+    // Test de inserción de requisito vacío. De acuerdo al diagrama UML, debería fallar
+    public function testInsertarRequisitoC1(){
+
+        try {
+
+            $requisito = new Requisito();
+            $requisito->save();
+
+            $this->fail();
+
+        }
+        catch (\PDOException $exception){
+
+            $this->assertTrue(true);
+
+        }
+        
+    }
+
     //Se borra un proyecto y se comprueba que los sprints asociado también se borran.
-    public function testBorrarProyecto()
+    public function testBorrarProyectoC1()
     {
 
         $proyecto = Proyecto::where('nombre', 'Proyecto Insertado')->first();
         $idInsertado = $proyecto->id;
-        $proyecto -> delete();
+        $proyecto->delete();
 
        //$sprint= new Sprint();
         $sprints = Sprint::where('proyecto_id', $idInsertado)->get();
-        $sprintsCount = $sprints-> count();
+        $sprintsCount = $sprints->count();
         $this->assertEquals($sprintsCount, '0');
     }
     //Se crea un proyecto con un sprint asociado y un requisito asociado a este sprint. 
     //Se borra un proyecto y se comprueba el borrado en cascada.
-    public function testBorrarProyecto2()
+    public function testBorrarProyectoC2()
     {
 
         //Creacion de Proyecto, sprint y requisitos asociados entre si
@@ -92,7 +144,7 @@ class ProyectoTest extends TestCase
         
         //Borrado de proyecto
         $proyecto = Proyecto::find($idProyecto);
-        $proyecto -> delete();
+        $proyecto->delete();
 
        //Comprobación de borrado en cascada.
         $sprints = Sprint::where('proyecto_id', $idProyecto)->get();

@@ -14,6 +14,8 @@ class RequisitosTableSeeder extends Seeder
     public function run()
     {
 
+        DB::table('requisitos')->delete();
+
         $requisito = new Requisito(['descripcion' => 'Requisito 2']);
         $sprint = Sprint::where('descripcion', 'Hola')->first();
         $requisito->sprint()->associate($sprint);
