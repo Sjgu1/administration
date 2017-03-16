@@ -15,11 +15,12 @@ class CreateRequisitosTable extends Migration
     {
         Schema::create('requisitos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('sprint_id');
+            $table->string('nombre')->nullable();
             $table->string('descripcion')->nullable();
             $table->timestamp('fecha_inicio')->nullable();
-            $table->timestamp('fecha_fin_estimada')->nullable();
             $table->timestamp('fecha_fin')->nullable();
+            $table->timestamp('fecha_fin_estimada')->nullable();
+            $table->integer('sprint_id');
             $table->foreign('sprint_id')->references('id')->on('sprints')->onDelete('cascade');
             $table->timestamps();
         });

@@ -18,8 +18,8 @@ class CreateProyectosTable extends Migration
             $table->string('nombre')->nullable();
             $table->string('descripcion')->nullable();
             $table->timestamp('fecha_inicio')->nullable();
-            $table->timestamp('fecha_fin_estimada')->nullable();
             $table->timestamp('fecha_fin')->nullable();
+            $table->timestamp('fecha_fin_estimada')->nullable();
             $table->timestamps();
         });
     }
