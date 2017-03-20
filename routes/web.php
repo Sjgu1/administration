@@ -14,4 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/index', 'RequisitosController@pagination');
+
+//Route::get('index', 'RequisitosController@pagination');
+
+Route::get('index/{field?}', 'RequisitosController@search');

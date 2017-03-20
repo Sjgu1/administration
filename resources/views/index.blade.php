@@ -25,6 +25,9 @@
 
     <body>
 
+        <a href="/index/{{ 'nombre' }}">Ordenar por Nombre</a>
+        <a href="/index/{{ 'descripcion' }}">Ordenar por Descripción</a>
+
         <div class="panel panel-default">
             <div class="panel-heading">Usuarios</div>
             <div class="panel-body">
@@ -36,9 +39,9 @@
                     </tr>
                     @foreach ($requisitos as $requisito)
                     <tr>
-                        <td>{{ $requisito->id}}</td>
-                        <td>{{ $requisito->nombre}}</td>
-                        <td>{{ $requisito->descripcion}}</td>
+                        <td>{{ $requisito->id }}</td>
+                        <td>{{ $requisito->nombre }}</td>
+                        <td>{{ $requisito->descripcion }}</td>
                     </tr>  
                     @endforeach
                 </table>
