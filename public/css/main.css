@@ -1,0 +1,19 @@
+
+#holii {
+    background-color: blue;
+    border-width: medium;
+    border-radius: 10px;
+    border-color: black;
+    width: 500px;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.color-amarillo {
+    color: yellow;
+    text-align: center;
+}
+
+.cuadro-rojo {
+    background-color: red;
+}

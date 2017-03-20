@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Sprint;
+use App\Usuario;
 
 class Proyecto extends Model
 {
@@ -15,6 +16,11 @@ class Proyecto extends Model
     protected $fillable = [
         'nombre'
     ];
+
+    public function usuarios(){
+
+        return $this->belongsToMany('App\Usuario');
+    }
 
     public function sprints(){
 
