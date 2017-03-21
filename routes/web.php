@@ -22,3 +22,4 @@ Route::get('index/{field?}', 'RequisitosController@search');
 Route::get('requisito/{id}', 'RequisitosController@details');
 
 Route::post('requisito/modificar', 'RequisitosController@modify');
+Route::get('proyectos', 'ProyectosController@search');
