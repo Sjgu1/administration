@@ -30,4 +30,21 @@ class RequisitosController extends Controller
             return view('index', compact('requisitos'));
         }
     }
+
+    public function details($id){
+
+        $requisito = Requisito::where('id', $id)->first();
+        return view('requisito', ['requisito' => $requisito]);
+    }
+
+    public function modify(Request $request){
+
+        $requisito = Requisito::where('id', $request->input('id'))->first();
+        $requisito->nombre = $request->input('nombre');
+        $requisito->descripcion = $request->input('descripcion');
+
+        $requisito->save();
+
+    }
+
 }

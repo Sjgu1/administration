@@ -18,3 +18,7 @@ Route::get('/', function () {
 //Route::get('index', 'RequisitosController@pagination');
 
 Route::get('index/{field?}', 'RequisitosController@search');
+
+Route::get('requisito/{id}', 'RequisitosController@details');
+
+Route::post('requisito/modificar', 'RequisitosController@modify');
