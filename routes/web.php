@@ -18,3 +18,4 @@ Route::get('/', function () {
 //Route::get('index', 'RequisitosController@pagination');
 
 Route::get('index/{field?}', 'RequisitosController@search');
+Route::get('proyectos', 'ProyectosController@search');
