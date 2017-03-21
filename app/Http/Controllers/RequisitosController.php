@@ -45,6 +45,7 @@ class RequisitosController extends Controller
         $requisito->descripcion = $request->input('descripcion');
 
         $requisito->save();
+        return back();
 
     }
 
@@ -52,6 +53,8 @@ class RequisitosController extends Controller
 
         $requisito = Requisito::where('id', $id)->first();
         $requisito->delete();
+
+        return redirect('index');
 
     }
 
