@@ -48,4 +48,11 @@ class RequisitosController extends Controller
 
     }
 
+    public function delete($id){
+
+        $requisito = Requisito::where('id', $id)->first();
+        $requisito->delete();
+
+    }
+
 }

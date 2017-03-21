@@ -38,6 +38,7 @@
             <br>
             <button type="submit">Modificar</button>
         </form>
+        <a href="/requisito/borrar/{{ $requisito->id }}">Borrar</a>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
