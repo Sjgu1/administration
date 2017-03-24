@@ -23,42 +23,33 @@
 
 	<script type="text/javascript" class="init">	
         $(document).ready(function() {
-            $('#users').DataTable();
+            $('#permisos').DataTable();
         } );
     </script>
 </head>
 <body>
 	@include('navbar')
-	<table id="users" class="table table-striped table-bordered" cellspacing="0" width="100%">
+	<table id="permisos" class="table table-striped table-bordered" cellspacing="0" width="100%">
     	<thead>
 			<tr>
     			<th>ID</th>
         		<th>Nombre</th>
-				<th>Apellidos</th>
-				<th>Email</th>
-				<th>Username</th>
-                <th>Fecha registro</th>
+				<th>Descripción</th>
 			</tr>
 		</thead>
 		<tfoot>
     		<tr>
     			<th>ID</th>
         		<th>Nombre</th>
-				<th>Apellidos</th>
-				<th>Email</th>
-				<th>Username</th>
-                <th>Fecha registro</th>
+				<th>Descripción</th>
 			</tr>
         </tfoot>
 		<tbody>
-            @foreach ($users as $user)
+            @foreach ($permisos as $permiso)
 			<tr>
-				<td>{{ $user->id }}</td>
-				<td>{{ $user->nombre }}</td>
-                <td>{{ $user->apellidos }}</td>
-    			<td>{{ $user->email }}</td>
-				<td>{{ $user->username }}</td>
-				<td>{{ $user->fecha_registro }}</td>
+				<td>{{ $permiso->id }}</td>
+				<td>{{ $permiso->nombre }}</td>
+    			<td>{{ $permiso->descripcion }}</td>
 			</tr>
             @endforeach
 		</tbody>

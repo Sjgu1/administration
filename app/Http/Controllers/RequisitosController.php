@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Sprint;
 use App\Requisito;
 
 class RequisitosController extends Controller
@@ -56,6 +57,26 @@ class RequisitosController extends Controller
 
         return redirect('index');
 
+    }
+
+    public function create(Request $request){
+
+        $requisito = new Requisito();
+        $requisito->nombre = $request->input('nombre');
+        $requisito->descripcion = $request->input('descripcion');
+        $requisito->fecha_inicio = $request->input('fecha_inicio');
+        $requisito->fecha_fin_estimada = $request->input('fecha_fin_estimada');
+        $requisito->sprint_id = $request->input('sprint_id');
+
+        $requisito->save();
+
+        return redirect('index');
+    }
+
+    public function getSprints(){
+
+        $sprints = Sprint::get();
+        return view('requisito_new', ['sprints' => $sprints]);
     }
 
 }

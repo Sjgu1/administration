@@ -28,6 +28,7 @@
     </script>
 </head>
 <body>
+	@include('navbar')
 	<table id="proyectos" class="table table-striped table-bordered" cellspacing="0" width="100%">
     	<thead>
 			<tr>

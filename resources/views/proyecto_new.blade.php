@@ -20,26 +20,35 @@
     </head>
     <body>
         @include('navbar')
-        <form action="{{ url('requisito/modificar') }}" method="POST">
+        <form action="{{ url('proyecto/create') }}" method="POST">
             {{ csrf_field() }}
-            <label for="id">ID:</label>
+            <label for="id">Nombre:</label>
             <br>
-            <input type="text" name="id" id="id" value="{{ $requisito->id }}">
-            <br>
-            <br>
-            <label for="nombre">Nombre:</label>
-            <br>
-            <input type="text" name="nombre" id="nombre" value="{{ $requisito->nombre }}">
+            <input type="text" name="nombre" id="nombre">
             <br>
             <br>
             <label for="descripcion">Descripción:</label>
             <br>
-            <input type="text" name="descripcion" id="descripcion" value="{{ $requisito->descripcion }}">
+            <input type="text" name="descripcion" id="descripcion">
             <br>
             <br>
-            <button type="submit">Modificar</button>
+            <label for="repositorio">Repositorio:</label>
+            <br>
+            <input type="text" name="repositorio" id="repositorio">
+            <br>
+            <br>
+            <label for="fecha_inicio">Fecha inicio:</label>
+            <br>
+            <input type="text" name="fecha_inicio" id="fecha_inicio">
+            <br>
+            <br>
+            <label for="fecha_fin_estimada">Fecha fin estimada:</label>
+            <br>
+            <input type="text" name="fecha_fin_estimada" id="fecha_fin_estimada">
+            <br>
+            <br>
+            <button type="submit">Crear</button>
         </form>
-        <a href="{{ url('requisito/borrar', $requisito->id) }}">Borrar</a>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

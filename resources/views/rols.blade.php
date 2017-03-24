@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-
     <!-- Versión compilada y comprimida del CSS de Bootstrap -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
  
@@ -23,42 +21,33 @@
 
 	<script type="text/javascript" class="init">	
         $(document).ready(function() {
-            $('#users').DataTable();
+            $('#rols').DataTable();
         } );
     </script>
 </head>
 <body>
 	@include('navbar')
-	<table id="users" class="table table-striped table-bordered" cellspacing="0" width="100%">
+	<table id="rols" class="table table-striped table-bordered" cellspacing="0" width="100%">
     	<thead>
 			<tr>
-    			<th>ID</th>
+    			<th>Id</th>
         		<th>Nombre</th>
-				<th>Apellidos</th>
-				<th>Email</th>
-				<th>Username</th>
-                <th>Fecha registro</th>
+				<th>Descripción</th>
 			</tr>
 		</thead>
 		<tfoot>
     		<tr>
     			<th>ID</th>
         		<th>Nombre</th>
-				<th>Apellidos</th>
-				<th>Email</th>
-				<th>Username</th>
-                <th>Fecha registro</th>
+				<th>Descripción</th>
 			</tr>
         </tfoot>
 		<tbody>
-            @foreach ($users as $user)
+            @foreach ($rols as $rol)
 			<tr>
-				<td>{{ $user->id }}</td>
-				<td>{{ $user->nombre }}</td>
-                <td>{{ $user->apellidos }}</td>
-    			<td>{{ $user->email }}</td>
-				<td>{{ $user->username }}</td>
-				<td>{{ $user->fecha_registro }}</td>
+				<td>{{ $rol->id }}</td>
+				<td>{{ $rol->nombre }}</td>
+    			<td>{{ $rol->descripcion }}</td>
 			</tr>
             @endforeach
 		</tbody>
