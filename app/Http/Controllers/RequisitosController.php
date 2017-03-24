@@ -38,7 +38,7 @@ class RequisitosController extends Controller
         return view('requisito', ['requisito' => $requisito]);
     }
 
-    public function modify(Request $request){
+    public function edit(Request $request){
 
         $requisito = Requisito::where('id', $request->input('id'))->first();
         $requisito->nombre = $request->input('nombre');
