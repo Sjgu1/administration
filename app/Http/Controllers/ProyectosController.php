@@ -9,11 +9,34 @@ use App\Proyecto;
 
 class ProyectosController extends Controller
 {
+    public function details($id){
+        $proyecto = Proyecto::where('id', $id)->first();
+        return view('proyecto', ['proyecto' => $proyecto]);
+    }
+
+    public function modify(Request $request){
+
+        $proyecto = Proyecto::where('id', $request->input('id'))->first();
+        $proyecto->nombre = $request->input('nombre');
+        $proyecto->descripcion = $request->input('descripcion');
+
+        $proyecto->save();
+
+    }
+
+    public function delete($id){
+
+        $proyecto = Proyecto::where('id', $id)->first();
+        $proyecto->delete();
+
+    }
     public function search($field = null){
         $proyectos = Proyecto::paginate(3);
-        return view('proyectos', compact('proyectos'));
+        $valorID = "";
+        $valorNombre="";
+        return view('proyectos', compact(['proyectos', 'valorID', 'valorNombre']));
     }
-    public function filtrar(Request $request){
+    public function filtrar(Request $request ){
         $id = $request->input('id');
         $name = $request->input('nombre');
         $nombre = Proyecto::firstOrNew(array('id' => $id));
@@ -21,22 +44,39 @@ class ProyectosController extends Controller
         $page_no = isset($_GET['page']) ? $_GET['page'] : 1;
         $i = ($paginate * $page_no) - ($paginate - 1);
         $appends = array();
+        
+
+        $valorID = "";
+        $valorNombre="";
 
 
     if ($id!=null) {
-        $proyectosID = Proyecto::where('id',$id)->get();
+        $proyectosID = Proyecto::get();
         foreach($proyectosID as $proyecto){
-            $appends[]= $proyecto->id;
+            $idLeido = $proyecto->id;
+            $idLeido = (string)$idLeido;
+            $id = (string)$id;
+            if(strpos($idLeido, $id ) !== false){
+                $appends[]= $proyecto->id;
+            }           
         }
+        $valorID = $id;
         
     } else {
         $nuevosProyectos = Proyecto::limit(-1);
     }
     if ($name!=null) {
-        $proyectosNombre = Proyecto::where('nombre',$name)->get();
-        foreach($proyectosNombre as $proyecto){
-            $appends[]= $proyecto->id;
+        $proyectos = Proyecto::get();
+        foreach($proyectos as $proyecto){
+            $nombreLeido = $proyecto->nombre;
+            $nombreLeido = strtolower($nombreLeido);
+            $name = strtolower($name);
+            if(strpos($nombreLeido, $name ) !== false){
+                $appends[]= $proyecto->id;
+            }
+                
         }
+        $valorNombre=$name;
     }
     if ($name==null && $id==null) {
        $proyectos = Proyecto::get();
@@ -44,35 +84,25 @@ class ProyectosController extends Controller
             $appends[]= $proyecto->id;
         }
     }
-
-   /* if (Input::has('order_by') || Input::has('order')) {
-        if (Input::has('order_by')) {
-            $order_by = Input::get('order_by');
-            $appends['order_by'] = Input::get('order_by');
-        } else {
-            $order_by = 'name';
-        }
-        if (Input::has('order')) {
-            $order = Input::get('order');
-            $appends['order'] = Input::get('order');
-        } else {
-            $order = 'asc';
-        }
-        $order = Input::get('order') ? Input::get('order') : 'asc';
-        $newBrands->orderBy($order_by, $order);
-    }else{
-        $newBrands->orderBy('name', 'asc');
+    
+   
+    $orden = $request->input('tipoOrdenacion');
+    $ordenad = $request->input('campoOrdenado');
+    if($ordenad == "id"){
+        if($orden == "asc")
+            $proyectosDevolver = Proyecto::whereIn('id', $appends)->orderBy('id','asc')->paginate(3);
+        else
+            $proyectosDevolver = Proyecto::whereIn('id', $appends)->orderBy('id','desc')->paginate(3);
+    } else{
+        if($orden == "asc")
+            $proyectosDevolver = Proyecto::whereIn('id', $appends)->orderBy('nombre','asc')->paginate(3);
+        else
+            $proyectosDevolver = Proyecto::whereIn('id', $appends)->orderBy('nombre','desc')->paginate(3);
     }
-*/
-   // $proyectosDevolver= Proyectos::whereIn('id', $my_ids)
-   // $proyectosDevolver= $nuevosProyectos->paginate(1);
-    /* $queries = DB::getQueryLog();
-      $last_query = end($queries);
-      dd($last_query); */
-      $proyectosDevolver = Proyecto::whereIn('id', $appends)->paginate(3);
-      $proyectos = $proyectosDevolver;
+    
+    $proyectos = $proyectosDevolver;
 
-    return view('proyectos', compact('proyectos'));
+    return view('proyectos', compact(['proyectos','valorID','valorNombre']));
     
     }
 }

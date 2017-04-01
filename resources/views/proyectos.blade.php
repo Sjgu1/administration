@@ -18,11 +18,29 @@
 	<form action="{{ url('proyectos') }}" method="POST">
 	 {{ csrf_field() }}
 		<button type="submit">Filtrar</button>
+	 	<select name="campoOrdenado">
+  			<option value="id">ID</option>
+  			<option value="nombre">NOMBRE</option>
+		</select>
+		<select name="tipoOrdenacion">
+  			<option value="asc">Asc</option>
+  			<option value="desc">Desc</option>
+		</select>
 		<table id="proyectos" class="table table-striped table-bordered" cellspacing="0" width="100%">
 			<thead>
-				<tr>
-					<th>ID <input type="text" name="id" id="id" ></th>
-					<th>Nombre <input type="text" name="nombre" id="nombre"></th>
+				<tr>					
+					<th>ID 
+					@if($valorID == "")
+						<input type="text" name="id" id="id" value=""></th>
+					@else
+						<input type="text" name="id" id="id" value={{$valorID}}></th>
+					@endif
+					<th>Nombre 
+					@if($valorNombre == "")
+					<input type="text" name="nombre" id="nombre" value=""></th>
+					@else
+					<input type="text" name="nombre" id="nombre" value={{$valorNombre}}></th>
+					@endif
 					<th>Descripcion </th>
 					<th>Repositorio </th>
 					<th>Fecha de inicio </th>
@@ -44,7 +62,7 @@
 					<td>{{ $proyecto->nombre }}</td>
 					<td>{{ $proyecto->descripcion }}</td>
 					<td>{{ $proyecto->repositorio }}</td>
-					<td>2011/04/25</td>
+					<td>{{ $proyecto->fecha_inicio }}</td>
 				</tr>
 				@endforeach
 			</tbody>

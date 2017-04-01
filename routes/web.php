@@ -24,5 +24,8 @@ Route::get('requisito/{id}', 'RequisitosController@details');
 Route::get('requisito/borrar/{id}', 'RequisitosController@delete');
 Route::post('requisito/modificar', 'RequisitosController@modify');
 
-Route::get('proyectos', 'ProyectosController@search');
+Route::get('proyectos/', 'ProyectosController@search');
+Route::get('proyecto/{id}', 'ProyectosController@details');
+Route::post('proyecto/modificar', 'ProyectosController@modify');
+Route::get('proyecto/borrar/{id}', 'ProyectosController@delete');
 Route::post('proyectos', 'ProyectosController@filtrar');
