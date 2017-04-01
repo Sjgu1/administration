@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Sprint;
-use App\Usuario;
+use App\User;
 
 class Requisito extends Model
 {
@@ -18,9 +18,9 @@ class Requisito extends Model
         'nombre'
     ];
 
-    public function usuarios(){
+    public function users(){
 
-        return $this->belongsToMany('App\Usuario');
+        return $this->belongsToMany('App\User');
     }
 
     public function sprint(){

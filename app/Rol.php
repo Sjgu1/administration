@@ -5,16 +5,15 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Usuario;
 use App\Permiso;
+use App\ProyectoUser;
 
 class Rol extends Model
 {
 
-    // Provisional
-    public function usuarios(){
+    public function proyectosusers(){
 
-        return $this->hasMany('App\Usuario');
+        return $this->hasMany('App\ProyectoUser');
     }
-    // Fin provisional
 
     public function permisos(){
 

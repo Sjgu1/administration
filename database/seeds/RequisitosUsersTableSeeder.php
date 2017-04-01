@@ -1,11 +1,11 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Usuario;
+use App\User;
 use App\Sprint;
 use App\Requisito;
 
-class RequisitosUsuariosTableSeeder extends Seeder
+class RequisitosUsersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -20,10 +20,10 @@ class RequisitosUsuariosTableSeeder extends Seeder
         $requisito->sprint()->associate($sprint);
         $requisito->save();
 
-        $usuario = new Usuario(['nombre' => 'Usuario prueba con requisito']);
-        $usuario->save();
+        $user = new User(['nombre' => 'Usuario prueba con requisito']);
+        $user->save();
 
-        $usuario->requisitos()->attach($requisito->id);
+        $user->requisitos()->attach($requisito->id);
 
     }
 }

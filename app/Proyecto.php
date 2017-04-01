@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Sprint;
-use App\Usuario;
+use App\ProyectoUser;
 
 class Proyecto extends Model
 {
@@ -17,9 +17,9 @@ class Proyecto extends Model
         'nombre'
     ];
 
-    public function usuarios(){
+    public function proyectosusers(){
 
-        return $this->belongsToMany('App\Usuario');
+        return $this->hasMany('App\ProyectoUser');
     }
 
     public function sprints(){

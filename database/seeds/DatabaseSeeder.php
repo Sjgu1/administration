@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RequisitosTableSeeder::class);
 
         // Usuarios seed
-        $this->call(UsuariosTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
 
         // Rols seed
         $this->call(RolsTableSeeder::class);
@@ -32,20 +32,20 @@ class DatabaseSeeder extends Seeder
 
 
         // Proyectos usuarios seed
-        $this->call(ProyectosUsuariosTableSeeder::class);
+        $this->call(ProyectosUsersTableSeeder::class);
 
         // Requisitos dependencias con otros requisitos seed
         $this->call(RequisitosRequisitosTableSeeder::class);
 
         // Requisitos usuarios seed
-        $this->call(RequisitosUsuariosTableSeeder::class);
+        $this->call(RequisitosUsersTableSeeder::class);
 
         // Permisos rols seed
         $this->call(PermisosRolsTableSeeder::class);
 
         // PROVISIONAL
         // Rols usuarios seed
-        $this->call(RolsUsuariosTableSeeder::class);
+        //$this->call(RolsUsuariosTableSeeder::class);
 
     }
 }
