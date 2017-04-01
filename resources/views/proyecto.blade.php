@@ -19,6 +19,7 @@
         
     </head>
     <body>
+        @include('navbar')
         <form action="{{ url('proyecto/modificar') }}" method="POST">
             {{ csrf_field() }}
             <label for="id">ID:</label>

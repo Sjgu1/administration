@@ -15,6 +15,7 @@
 	
 </head>
 <body>
+	@include('navbar')
 	<form action="{{ url('proyectos') }}" method="POST">
 	 {{ csrf_field() }}
 		<button type="submit">Filtrar</button>

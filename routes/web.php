@@ -43,13 +43,15 @@ Route::get('proyecto/{id}', 'ProyectosController@details');
 Route::get('sprint/{id}', 'SprintController@details');
 Route::get('requisito/{id}', 'RequisitosController@details');
 
+// Borrado de objetos relacionales
 Route::get('requisito/borrar/{id}', 'RequisitosController@delete');
+Route::get('proyecto/borrar/{id}', 'ProyectosController@delete');
 
+// Modificado de objetos relacionales
 Route::post('requisito/modificar', 'RequisitosController@modify');
 Route::post('proyecto/modificar', 'ProyectosController@modify');
 
-Route::get('proyecto/borrar/{id}', 'ProyectosController@delete');
+//Filtrado de listado
 Route::post('proyectos', 'ProyectosController@filtrar');
 
-Route::post('requisito/modificar', 'RequisitosController@edit');
 
