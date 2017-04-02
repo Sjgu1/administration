@@ -4,7 +4,7 @@
         {{ csrf_field() }}
         <label for="id">ID:</label>
         <br>
-        <input type="text" name="id" id="id" value="{{ $proyecto->id }}">
+        <input readonly="readonly" type="text" name="id" id="id" value="{{ $proyecto->id }}">
         <br>
         <br>
         <label for="nombre">Nombre:</label>

@@ -58,59 +58,59 @@ class ProyectosController extends Controller
         $valorNombre="";
 
 
-    if ($id!=null) {
-        $proyectosID = Proyecto::get();
-        foreach($proyectosID as $proyecto){
-            $idLeido = $proyecto->id;
-            $idLeido = (string)$idLeido;
-            $id = (string)$id;
-            if(strpos($idLeido, $id ) !== false){
-                $appends[]= $proyecto->id;
-            }           
+        if ($id!=null) {
+            $proyectosID = Proyecto::get();
+            foreach($proyectosID as $proyecto){
+                $idLeido = $proyecto->id;
+                $idLeido = (string)$idLeido;
+                $id = (string)$id;
+                if(strpos($idLeido, $id ) !== false){
+                    $appends[]= $proyecto->id;
+                }           
+            }
+            $valorID = $id;
+            
+        } else {
+            $nuevosProyectos = Proyecto::limit(-1);
         }
-        $valorID = $id;
-        
-    } else {
-        $nuevosProyectos = Proyecto::limit(-1);
-    }
-    if ($name!=null) {
+        if ($name!=null) {
+            $proyectos = Proyecto::get();
+            foreach($proyectos as $proyecto){
+                $nombreLeido = $proyecto->nombre;
+                $nombreLeido = strtolower($nombreLeido);
+                $name = strtolower($name);
+                if(strpos($nombreLeido, $name ) !== false){
+                    $appends[]= $proyecto->id;
+                }
+                    
+            }
+            $valorNombre=$name;
+        }
+        if ($name==null && $id==null) {
         $proyectos = Proyecto::get();
         foreach($proyectos as $proyecto){
-            $nombreLeido = $proyecto->nombre;
-            $nombreLeido = strtolower($nombreLeido);
-            $name = strtolower($name);
-            if(strpos($nombreLeido, $name ) !== false){
                 $appends[]= $proyecto->id;
             }
-                
         }
-        $valorNombre=$name;
-    }
-    if ($name==null && $id==null) {
-       $proyectos = Proyecto::get();
-       foreach($proyectos as $proyecto){
-            $appends[]= $proyecto->id;
+        
+    
+        $orden = $request->input('tipoOrdenacion');
+        $ordenad = $request->input('campoOrdenado');
+        if($ordenad == "id"){
+            if($orden == "asc")
+                $proyectosDevolver = Proyecto::whereIn('id', $appends)->orderBy('id','asc')->paginate(3);
+            else
+                $proyectosDevolver = Proyecto::whereIn('id', $appends)->orderBy('id','desc')->paginate(3);
+        } else{
+            if($orden == "asc")
+                $proyectosDevolver = Proyecto::whereIn('id', $appends)->orderBy('nombre','asc')->paginate(3);
+            else
+                $proyectosDevolver = Proyecto::whereIn('id', $appends)->orderBy('nombre','desc')->paginate(3);
         }
-    }
-    
-   
-    $orden = $request->input('tipoOrdenacion');
-    $ordenad = $request->input('campoOrdenado');
-    if($ordenad == "id"){
-        if($orden == "asc")
-            $proyectosDevolver = Proyecto::whereIn('id', $appends)->orderBy('id','asc')->paginate(3);
-        else
-            $proyectosDevolver = Proyecto::whereIn('id', $appends)->orderBy('id','desc')->paginate(3);
-    } else{
-        if($orden == "asc")
-            $proyectosDevolver = Proyecto::whereIn('id', $appends)->orderBy('nombre','asc')->paginate(3);
-        else
-            $proyectosDevolver = Proyecto::whereIn('id', $appends)->orderBy('nombre','desc')->paginate(3);
-    }
-    
-    $proyectos = $proyectosDevolver;
+        
+        $proyectos = $proyectosDevolver;
 
-    return view('proyectos', compact(['proyectos','valorID','valorNombre']));
+        return view('proyectos', compact(['proyectos','valorID','valorNombre']));
     
     }
 
