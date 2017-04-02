@@ -12,7 +12,12 @@ class ProyectosController extends Controller
 
     public function details($id){
         $proyecto = Proyecto::where('id', $id)->first();
-        return view('proyecto', ['proyecto' => $proyecto]);
+        if($proyecto==null){
+            return view('alerta_elemento',['slot'=> "No existe el elemento Proyecto: " .$id  ] );
+        }else{
+            return view('proyecto', ['proyecto' => $proyecto]);
+        }
+        
     }
 
     public function modify(Request $request){
@@ -22,6 +27,7 @@ class ProyectosController extends Controller
         $proyecto->descripcion = $request->input('descripcion');
 
         $proyecto->save();
+        return view('exito_elemento',['slot'=> "Se ha modificado el Proyecto: " .$proyecto->id  ] );
 
     }
 
@@ -29,6 +35,7 @@ class ProyectosController extends Controller
 
         $proyecto = Proyecto::where('id', $id)->first();
         $proyecto->delete();
+        return view('exito_elemento',['slot'=> "Se ha eliminado el Proyecto: " .$proyecto->id  ] );
 
     }
     public function search($field = null){

@@ -1,19 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
+<script type="text/javascript">
+$(document).ready(function() {
 
+    $('#proyectos tr').click(function() {
+        var href = $(this).find("a").attr("href");
+        if(href) {
+            window.location = href;
+        }
+    });
 
-    <!-- Versión compilada y comprimida del CSS de Bootstrap -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
- 
-    <!-- Tema opcional -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
- 
-    <!-- Versión compilada y comprimida del JavaScript de Bootstrap -->
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-	
-	
-</head>
+});
+</script>
 <body>
 	@include('navbar')
 	<form action="{{ url('proyectos') }}" method="POST">
@@ -29,7 +25,7 @@
 		</select>
 		<table id="proyectos" class="table table-striped table-bordered" cellspacing="0" width="100%">
 			<thead>
-				<tr>					
+				<tr>				
 					<th>ID 
 					@if($valorID == "")
 						<input type="text" name="id" id="id" value=""></th>
@@ -59,7 +55,7 @@
 			<tbody>
 				@foreach ($proyectos as $proyecto)
 				<tr>
-					<td>{{ $proyecto->id }}</td>
+					<td><a href="proyecto/{{ $proyecto->id }}">{{ $proyecto->id }}</a></td>
 					<td>{{ $proyecto->nombre }}</td>
 					<td>{{ $proyecto->descripcion }}</td>
 					<td>{{ $proyecto->repositorio }}</td>
@@ -69,6 +65,9 @@
 			</tbody>
 		</table>
 	{{ $proyectos->links() }}
-	</form>			
+	</form>		
+	<form action="{{ url('proyecto/new') }}" method="GET">
+	<button type="submit">Crear</button>	
+	</button>
 </body>
 </html>

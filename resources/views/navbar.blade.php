@@ -1,3 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+    <!-- Versión compilada y comprimida del CSS de Bootstrap -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+ 
+    <!-- Tema opcional -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
+ 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+    <!-- Versión compilada y comprimida del JavaScript de Bootstrap -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+		
+</head>
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
