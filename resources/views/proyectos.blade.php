@@ -26,48 +26,50 @@ $(document).ready(function() {
 		<table id="proyectos" class="table table-striped table-bordered" cellspacing="0" width="100%">
 			<thead>
 				<tr>				
-					<th>ID 
+					<!--<th>ID 
 					@if($valorID == "")
-						<input type="text" name="id" id="id" value=""></th>
+						<!--<input type="text" name="id" id="id" value=""></th>-->
 					@else
-						<input type="text" name="id" id="id" value={{$valorID}}></th>
+						<!--<input type="text" name="id" id="id" value={{$valorID}}></th>-->
 					@endif
 					<th>Nombre 
 					@if($valorNombre == "")
-					<input type="text" name="nombre" id="nombre" value=""></th>
+					<!--<input type="text" name="nombre" id="nombre" value=""></th>-->
 					@else
 					<input type="text" name="nombre" id="nombre" value={{$valorNombre}}></th>
 					@endif
 					<th>Descripcion </th>
 					<th>Repositorio </th>
-					<th>Fecha de inicio </th>
+					<th>Fecha inicio </th>
 				</tr>	
 			</thead>
-			<tfoot>
+			<!--<tfoot>
 				<tr>
 					<th>ID</th>
 					<th>Nombre</th>
 					<th>Descripcion</th>
 					<th>Repositorio</th>
-					<th>Fecha de inicio</th>
+					<th>Fecha inicio</th>
 				</tr>				
-			</tfoot>
+			</tfoot>-->
 			<tbody>
 				@foreach ($proyectos as $proyecto)
 				<tr>
-					<td><a href="proyecto/{{ $proyecto->id }}">{{ $proyecto->id }}</a></td>
-					<td>{{ $proyecto->nombre }}</td>
+					<!--<td><a href="proyecto/{{ $proyecto->id }}">{{ $proyecto->id }}</a></td>-->
+					<td><a href="proyecto/{{ $proyecto->id }}">{{ $proyecto->nombre }}</a></td>
 					<td>{{ $proyecto->descripcion }}</td>
-					<td>{{ $proyecto->repositorio }}</td>
+					<td><a href="{{ $proyecto->repositorio }}">{{ $proyecto->repositorio }}</a></td>
 					<td>{{ $proyecto->fecha_inicio }}</td>
 				</tr>
 				@endforeach
 			</tbody>
 		</table>
 	{{ $proyectos->links() }}
-	</form>		
-	<form action="{{ url('proyecto/new') }}" method="GET">
+	</form>
+	<hr>
+	<p>Búsqueda avanzada</p>
+	<!--<form action="{{ url('proyecto/new') }}" method="GET">
 	<button type="submit">Crear</button>	
-	</button>
+	</button>-->
 </body>
 </html>

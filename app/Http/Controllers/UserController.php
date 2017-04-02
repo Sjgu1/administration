@@ -9,7 +9,7 @@ class UserController extends Controller
 {
 
    public function search($field = null){
-        $users = User::paginate(3);
+        $users = User::paginate(8);
         $valorNombre="";
         return view('users', compact(['users', 'valorNombre']));
     }

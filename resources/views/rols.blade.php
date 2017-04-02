@@ -30,22 +30,22 @@
 	<table id="rols" class="table table-striped table-bordered" cellspacing="0" width="100%">
     	<thead>
 			<tr>
-    			<th>Id</th>
+    			<!--<th>Id</th>-->
         		<th>Nombre</th>
 				<th>Descripción</th>
 			</tr>
 		</thead>
-		<tfoot>
+		<!--<tfoot>
     		<tr>
     			<th>ID</th>
         		<th>Nombre</th>
 				<th>Descripción</th>
 			</tr>
-        </tfoot>
+        </tfoot>-->
 		<tbody>
             @foreach ($rols as $rol)
 			<tr>
-				<td>{{ $rol->id }}</td>
+				<!--<td>{{ $rol->id }}</td>-->
 				<td>{{ $rol->nombre }}</td>
     			<td>{{ $rol->descripcion }}</td>
 			</tr>

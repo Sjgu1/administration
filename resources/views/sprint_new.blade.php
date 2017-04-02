@@ -2,35 +2,30 @@
         @include('navbar')
         <form action="{{ url('sprint/create') }}" method="POST">
             {{ csrf_field() }}
-            <label for="id">Nombre:</label>
-            <br>
-            <input type="text" name="nombre" id="nombre">
-            <br>
-            <br>
-            <label for="descripcion">Descripción:</label>
-            <br>
-            <input type="text" name="descripcion" id="descripcion">
-            <br>
-            <br>
-            <label for="proyecto_id">Proyecto:</label>
-            <br>
-            <select id="proyecto_id" name="proyecto_id">
-                @foreach ($proyectos as $proyecto)
-                    <option value="{{ $proyecto->id }}">{{ $proyecto->nombre }}</option>
-                @endforeach
-            </select>
-            <br>
-            <br>
-            <label for="fecha_inicio">Fecha inicio:</label>
-            <br>
-            <input type="text" name="fecha_inicio" id="fecha_inicio">
-            <br>
-            <br>
-            <label for="fecha_fin_estimada">Fecha fin estimada:</label>
-            <br>
-            <input type="text" name="fecha_fin_estimada" id="fecha_fin_estimada">
-            <br>
-            <br>
-            <button type="submit">Crear</button>
+            <div class="form-group">
+                <label for="id">Nombre:</label>
+                <input type="text" name="nombre" id="nombre" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" name="descripcion" class="form-control" rows="5"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="proyecto_id">Proyecto:</label>
+                <select id="proyecto_id" name="proyecto_id" class="form-control">
+                    @foreach ($proyectos as $proyecto)
+                        <option value="{{ $proyecto->id }}">{{ $proyecto->nombre }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="fecha_inicio">Fecha inicio:</label>
+                <input type="text" id="fecha_inicio" name="fecha_inicio" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="fecha_fin_estimada">Fecha fin estimada:</label>
+                <input type="text" id="fecha_fin_estimada" name="fecha_fin_estimada" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Crear</button>
         </form>
 </body>

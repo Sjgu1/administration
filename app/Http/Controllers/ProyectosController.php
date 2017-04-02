@@ -39,7 +39,7 @@ class ProyectosController extends Controller
 
     }
     public function search($field = null){
-        $proyectos = Proyecto::paginate(3);
+        $proyectos = Proyecto::paginate(8);
         $valorID = "";
         $valorNombre="";
         return view('proyectos', compact(['proyectos', 'valorID', 'valorNombre']));

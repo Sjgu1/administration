@@ -49,7 +49,7 @@ $(document).ready(function() {
 					<th>Fecha de inicio </th>
 				</tr>	
 			</thead>
-			<tfoot>
+			<!--<tfoot>
 				<tr>
 					<th>ID</th>
 					<th>Nombre</th>
@@ -57,7 +57,7 @@ $(document).ready(function() {
 					<th>Descripcion </th>					
 					<th>Fecha de inicio </th>
 				</tr>				
-			</tfoot>
+			</tfoot>-->
 			<tbody>
 				@foreach ($sprints as $sprint)
 				<tr>

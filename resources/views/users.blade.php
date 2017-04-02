@@ -26,10 +26,10 @@ $(document).ready(function() {
 		<table id="users" class="table table-striped table-bordered" cellspacing="0" width="100%">
 			<thead>
 				<tr>
-					<th>ID</th>
+					<!--<th>ID</th>-->
 					<th>Nombre 
 					@if($valorNombre == "")
-					<input type="text" name="nombre" id="nombre" value=""></th>
+					<!--<input type="text" name="nombre" id="nombre" value=""></th>-->
 					@else
 					<input type="text" name="nombre" id="nombre" value={{$valorNombre}}></th>
 					@endif
@@ -39,7 +39,7 @@ $(document).ready(function() {
 					<th>Fecha registro</th>
 				</tr>
 			</thead>
-			<tfoot>
+			<!--<tfoot>
 				<tr>
 					<th>ID</th>
 					<th>Nombre</th>
@@ -48,12 +48,12 @@ $(document).ready(function() {
 					<th>Username</th>
 					<th>Fecha registro</th>
 				</tr>
-			</tfoot>
+			</tfoot>-->
 			<tbody>
 				@foreach ($users as $user)
 				<tr>
-					<td><a href="user/{{ $user->id }}">{{ $user->id }}</a></td>
-					<td>{{ $user->nombre }}</td>
+					<!--<td><a href="user/{{ $user->id }}">{{ $user->id }}</a></td>-->
+					<td><a href="user/{{ $user->id }}">{{ $user->nombre }}</a></td>
 					<td>{{ $user->apellidos }}</td>
 					<td>{{ $user->email }}</td>
 					<td>{{ $user->username }}</td>
@@ -63,9 +63,5 @@ $(document).ready(function() {
 			</tbody>
 		</table>
 		{{ $users->links() }}
-	</form>	
-	<form action="{{ url('user/new') }}" method="GET">
-	<button type="submit">Crear</button>	
-	</button>					
-	</script>
+	</form>
 </body>

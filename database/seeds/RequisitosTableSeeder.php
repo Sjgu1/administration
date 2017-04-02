@@ -17,12 +17,12 @@ class RequisitosTableSeeder extends Seeder
         DB::table('requisitos')->delete();
 
         $requisito = new Requisito(['nombre' => 'Requisito 1', 'descripcion' => 'Descripción requisito 1']);
-        $sprint = Sprint::where('descripcion', 'Hola')->first();
+        $sprint = Sprint::where('nombre', 'Sprint iteración 1')->first();
         $requisito->sprint()->associate($sprint);
         $requisito->save();
 
         $requisito = new Requisito(['nombre' => 'Requisito 2', 'descripcion' => 'Descripción requisito 2']);
-        $sprint = Sprint::where('descripcion', 'Hola')->first();
+        $sprint = Sprint::where('nombre', 'Sprint iteración 1')->first();
         $requisito->sprint()->associate($sprint);
         $requisito->save();
 

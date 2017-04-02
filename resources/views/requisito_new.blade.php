@@ -21,12 +21,11 @@
     <body>
         @include('navbar')
         <form action="{{ url('requisito/create') }}" method="POST">
-            {{ csrf_field() }}
-            <label for="id">Nombre:</label>
-            <br>
-            <input type="text" name="nombre" id="nombre">
-            <br>
-            <br>
+            {{ csrf_field() }
+            <div class="form-group">
+                <label for="id">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" class="form-control">
+            </div>
             <label for="descripcion">Descripción:</label>
             <br>
             <input type="text" name="descripcion" id="descripcion">

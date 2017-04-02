@@ -16,7 +16,7 @@ class RequisitosUsersTableSeeder extends Seeder
     {
 
         $requisito = new Requisito(['descripcion' => 'Requisito prueba con usuario']);
-        $sprint = Sprint::where('descripcion', 'Hola')->first();
+        $sprint = Sprint::where('nombre', 'Sprint iteración 1')->first();
         $requisito->sprint()->associate($sprint);
         $requisito->save();
 

@@ -1,4 +1,3 @@
-
 <body>
     @include('navbar')
     <form action="{{ url('requisito/modificar') }}" method="POST">
