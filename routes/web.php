@@ -30,31 +30,38 @@ Route::get('permisos', 'PermisoController@search');
 // Formularios de creación de objetos relacionales
 Route::get('proyecto/new', function(){ return view('proyecto_new'); });
 Route::get('sprint/new', 'SprintController@getProyectos');
+Route::get('user/new', function(){ return view('user_new'); });
 Route::get('requisito/new', 'RequisitosController@getSprints');
+
 
 // Inserción de nuevos objetos relacionales
 Route::post('proyecto/create', 'ProyectosController@create');
 Route::post('sprint/create', 'SprintController@create');
 Route::post('requisito/create', 'RequisitosController@create');
 Route::post('rol/create', 'RolController@create');
+Route::post('user/create', 'UserController@create');
 
 // Detallado de objetos relacionales
 Route::get('proyecto/{id}', 'ProyectosController@details');
 Route::get('sprint/{id}', 'SprintController@details');
 Route::get('requisito/{id}', 'RequisitosController@details');
+Route::get('user/{id}', 'UserController@details');
 
 // Borrado de objetos relacionales
 Route::get('requisito/borrar/{id}', 'RequisitosController@delete');
 Route::get('proyecto/borrar/{id}', 'ProyectosController@delete');
 Route::get('sprint/borrar/{id}', 'SprintController@delete');
+Route::get('user/borrar/{id}', 'UserController@delete');
 
 // Modificado de objetos relacionales
 Route::post('requisito/modificar', 'RequisitosController@modify');
 Route::post('proyecto/modificar', 'ProyectosController@modify');
 Route::post('sprint/modificar', 'SprintController@modify');
+Route::post('user/modificar', 'UserController@modify');
 
 //Filtrado de listado
 Route::post('proyectos', 'ProyectosController@filtrar');
 Route::post('sprints', 'SprintController@filtrar');
+Route::post('users', 'UserController@filtrar');
 
 
