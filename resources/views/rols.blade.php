@@ -1,57 +1,64 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <!-- Versión compilada y comprimida del CSS de Bootstrap -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
- 
-    <!-- Tema opcional -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
- 
-    <!-- Versión compilada y comprimida del JavaScript de Bootstrap -->
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-	
-	
+<script type="text/javascript">
+$(document).ready(function() {
 
-	<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.4.js">
-	</script>
-	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js">
-	</script>
-	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js">
-	</script>
+    $('#rols tr').click(function() {
+        var href = $(this).find("a").attr("href");
+        if(href) {
+            window.location = href;
+        }
+    });
 
-	<script type="text/javascript" class="init">	
-        $(document).ready(function() {
-            $('#rols').DataTable();
-        } );
-    </script>
-</head>
+});
+</script>
 <body>
 	@include('navbar')
-	<table id="rols" class="table table-striped table-bordered" cellspacing="0" width="100%">
-    	<thead>
-			<tr>
-    			<!--<th>Id</th>-->
-        		<th>Nombre</th>
-				<th>Descripción</th>
-			</tr>
-		</thead>
-		<!--<tfoot>
-    		<tr>
-    			<th>ID</th>
-        		<th>Nombre</th>
-				<th>Descripción</th>
-			</tr>
-        </tfoot>-->
-		<tbody>
-            @foreach ($rols as $rol)
-			<tr>
-				<!--<td>{{ $rol->id }}</td>-->
-				<td>{{ $rol->nombre }}</td>
-    			<td>{{ $rol->descripcion }}</td>
-			</tr>
-            @endforeach
-		</tbody>
-    </table>					
-	</script>
+	<form action="{{ url('rols') }}" method="POST">
+	 {{ csrf_field() }}
+		<button type="submit">Filtrar</button>
+	 	<select name="campoOrdenado">
+  			<option value="id">ID</option>
+  			<option value="nombre">NOMBRE</option>
+		</select>qu
+		<select name="tipoOrdenacion">
+  			<option value="asc">Asc</option>
+  			<option value="desc">Desc</option>
+		</select>
+		<table id="rols" class="table table-striped table-bordered" cellspacing="0" width="100%">
+			<thead>
+				<tr>				
+					<!--<th>ID 
+					@if($valorID == "")
+						<!--<input type="text" name="id" id="id" value=""></th>-->
+					@else
+						<!--<input type="text" name="id" id="id" value={{$valorID}}></th>-->
+					@endif
+					<th>Nombre 
+					@if($valorNombre == "")
+					<!--<input type="text" name="nombre" id="nombre" value=""></th>-->
+					@else
+					<input type="text" name="nombre" id="nombre" value={{$valorNombre}}></th>
+					@endif
+					<th>Descripcion </th>
+				</tr>	
+			</thead>
+			<!--<tfoot>
+
+			<tbody>
+				@foreach ($rols as $rols)
+				<tr>
+					<!--<td><a href="rol/{{ $rol->id }}">{{ $rol->id }}</a></td>-->
+					<td><a href="rol/{{ $rol->id }}">{{ $rol->nombre }}</a></td>
+					<td>{{ $rol->descripcion }}</td>
+				</tr>
+				@endforeach
+			</tbody>
+		</table>
+	{{ $rols->links() }}
+	</form>
+	<hr>
+	<p>Búsqueda avanzada</p>
+	<!--<form action="{{ url('rol/new') }}" method="GET">
+	<button type="submit">Crear</button>	
+	</button>-->
 </body>
 </html>
