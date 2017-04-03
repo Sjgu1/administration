@@ -44,7 +44,7 @@ class RolController extends Controller
         $valorNombre="";
         return view('rols', compact(['rols', 'valorID', 'valorNombre']));
     }
-    public function filtrar(Request $request ){
+    /*public function filtrar(Request $request ){
         $id = $request->input('id');
         $name = $request->input('nombre');
         $nombre = Rol::firstOrNew(array('id' => $id));
@@ -112,7 +112,7 @@ class RolController extends Controller
 
         return view('rols', compact(['rols','valorID','valorNombre']));
     
-    }
+    }*/
 
     public function create(Request $request){
 
