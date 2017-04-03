@@ -14,7 +14,7 @@ $(document).ready(function() {
 	@include('navbar')
 	<form action="{{ url('rols') }}" method="POST">
 	 {{ csrf_field() }}
-		<button type="submit">Filtrar</button>
+		<!--button type="submit">Filtrar</button>
 	 	<select name="campoOrdenado">
   			<option value="id">ID</option>
   			<option value="nombre">NOMBRE</option>
@@ -22,7 +22,7 @@ $(document).ready(function() {
 		<select name="tipoOrdenacion">
   			<option value="asc">Asc</option>
   			<option value="desc">Desc</option>
-		</select>
+		</select-->
 		<table id="rols" class="table table-striped table-bordered" cellspacing="0" width="100%">
 			<thead>
 				<tr>				
@@ -55,9 +55,5 @@ $(document).ready(function() {
 	{{ $rols->links() }}
 	</form>
 	<hr>
-	<p>Búsqueda avanzada</p>
-	<!--<form action="{{ url('rols/new') }}" method="GET">
-	<button type="submit">Crear</button>	
-	</button>-->
 </body>
 </html>

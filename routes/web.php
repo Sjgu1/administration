@@ -32,6 +32,7 @@ Route::get('proyecto/new', function(){ return view('proyecto_new'); });
 Route::get('sprint/new', 'SprintController@getProyectos');
 Route::get('user/new', function(){ return view('user_new'); });
 Route::get('requisito/new', 'RequisitosController@getSprints');
+Route::get('rol/new', function(){ return view('rol_new'); });
 
 
 // Inserción de nuevos objetos relacionales
@@ -66,6 +67,6 @@ Route::post('rol/modificar', 'RolController@modify');
 Route::post('proyectos', 'ProyectosController@filtrar');
 Route::post('sprints', 'SprintController@filtrar');
 Route::post('users', 'UserController@filtrar');
-Route::post('rols', 'RolController@filtrat');
+Route::post('rols', 'RolController@filtrar');
 
 
