@@ -17,11 +17,11 @@ class RequisitosRequisitosTableSeeder extends Seeder
 
         $sprint = Sprint::where('nombre', 'Sprint iteración 2')->first();
 
-        $requisito1 = new Requisito(['descripcion' => 'Requisito prueba dependencia 1']);
+        $requisito1 = new Requisito(['nombre' => 'Requisito 1 asociado 2', 'descripcion' => 'Requisito prueba dependencia 1']);
         $requisito1->sprint()->associate($sprint);
         $requisito1->save();
 
-        $requisito2 = new Requisito(['descripcion' => 'Requisito prueba dependencia 2']);
+        $requisito2 = new Requisito(['nombre' => 'Requisito 2 asociado 1', 'descripcion' => 'Requisito prueba dependencia 2']);
         $requisito2->sprint()->associate($sprint);
         $requisito2->save();
 
