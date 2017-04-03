@@ -46,22 +46,26 @@ Route::get('proyecto/{id}', 'ProyectosController@details');
 Route::get('sprint/{id}', 'SprintController@details');
 Route::get('requisito/{id}', 'RequisitosController@details');
 Route::get('user/{id}', 'UserController@details');
+Route::get('rol/{id}', 'RolController@details');
 
 // Borrado de objetos relacionales
 Route::get('requisito/borrar/{id}', 'RequisitosController@delete');
 Route::get('proyecto/borrar/{id}', 'ProyectosController@delete');
 Route::get('sprint/borrar/{id}', 'SprintController@delete');
 Route::get('user/borrar/{id}', 'UserController@delete');
+Route::get('rol/boorar/{id}', 'RolController@delete');
 
 // Modificado de objetos relacionales
 Route::post('requisito/modificar', 'RequisitosController@modify');
 Route::post('proyecto/modificar', 'ProyectosController@modify');
 Route::post('sprint/modificar', 'SprintController@modify');
 Route::post('user/modificar', 'UserController@modify');
+Route::post('rol/modificar', 'RolController@modify');
 
 //Filtrado de listado
 Route::post('proyectos', 'ProyectosController@filtrar');
 Route::post('sprints', 'SprintController@filtrar');
 Route::post('users', 'UserController@filtrar');
+Route::post('rols', 'RolController@filtrat');
 
 
