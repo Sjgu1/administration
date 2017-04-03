@@ -8,7 +8,7 @@
         </div>
         <div class="form-group">
             <lavel for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" value="{{ $rol->id }}" class="form-control">
+            <input type="text" id="nombre" name="nombre" value="{{ $rol->nombre }}" class="form-control">
         </div>
         <div class="form-group">
             <label for="descripcion">Descripción:</label>

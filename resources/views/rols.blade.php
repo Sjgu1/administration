@@ -18,7 +18,7 @@ $(document).ready(function() {
 	 	<select name="campoOrdenado">
   			<option value="id">ID</option>
   			<option value="nombre">NOMBRE</option>
-		</select>qu
+		</select>
 		<select name="tipoOrdenacion">
   			<option value="asc">Asc</option>
   			<option value="desc">Desc</option>
@@ -41,12 +41,11 @@ $(document).ready(function() {
 					<th>Descripcion </th>
 				</tr>	
 			</thead>
-			<!--<tfoot>
 
 			<tbody>
-				@foreach ($rols as $rols)
+				@foreach ($rols as $rol)
 				<tr>
-					<!--<td><a href="rol/{{ $rol->id }}">{{ $rol->id }}</a></td>-->
+					<!--<td><a href="rols/{{ $rol->id }}">{{ $rol->id }}</a></td>-->
 					<td><a href="rol/{{ $rol->id }}">{{ $rol->nombre }}</a></td>
 					<td>{{ $rol->descripcion }}</td>
 				</tr>
@@ -57,7 +56,7 @@ $(document).ready(function() {
 	</form>
 	<hr>
 	<p>Búsqueda avanzada</p>
-	<!--<form action="{{ url('rol/new') }}" method="GET">
+	<!--<form action="{{ url('rols/new') }}" method="GET">
 	<button type="submit">Crear</button>	
 	</button>-->
 </body>

@@ -7,7 +7,7 @@ use App\Http\Controllers\Input;
 use App\Rol;
 
 
-class RolsController extends Controller
+class RolController extends Controller
 {
 
     public function details($id){
