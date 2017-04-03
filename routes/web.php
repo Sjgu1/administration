@@ -53,7 +53,7 @@ Route::get('requisito/borrar/{id}', 'RequisitosController@delete');
 Route::get('proyecto/borrar/{id}', 'ProyectosController@delete');
 Route::get('sprint/borrar/{id}', 'SprintController@delete');
 Route::get('user/borrar/{id}', 'UserController@delete');
-Route::get('rol/boorar/{id}', 'RolController@delete');
+Route::get('rol/borrar/{id}', 'RolController@delete');
 
 // Modificado de objetos relacionales
 Route::post('requisito/modificar', 'RequisitosController@modify');

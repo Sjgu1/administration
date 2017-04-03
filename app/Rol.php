@@ -12,7 +12,7 @@ class Rol extends Model
 
     public function proyectosusers(){
 
-        return $this->hasMany('App\RolPermio');
+        return $this->hasMany('App\RolPermiso');
     }
 
     public function permisos(){
