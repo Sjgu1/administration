@@ -11,7 +11,7 @@ class RolController extends Controller
 {
 
     public function details($id){
-        $rol = Rol::where('id', $id)->first();
+        $rol = Rol::where('id', $id)->with('permisos')->first();
         if($rol==null){
             return view('alerta_elemento',['slot'=> "No existe el elemento Rol: " .$id  ] );
         }else{
