@@ -1,21 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
+@include('navbar')
+<script type="text/javascript">
+$(document).ready(function() {
 
+    $('#permisos tr').click(function() {
+        var href = $(this).find("a").attr("href");
+        if(href) {
+            window.location = href;
+        }
+    });
 
-    <!-- Versión compilada y comprimida del CSS de Bootstrap -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
- 
-    <!-- Tema opcional -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
- 
-    <!-- Versión compilada y comprimida del JavaScript de Bootstrap -->
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-	
-	
-
-	<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.4.js">
-	</script>
+});
+</script>
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js">
 	</script>
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js">
@@ -28,27 +23,18 @@
     </script>
 </head>
 <body>
-	@include('navbar')
-	<table id="permisos" class="table table-striped table-bordered" cellspacing="0" width="100%">
+
+	<table id="permisos" class="table table-striped table-bordered display" cellspacing="0" width="100%">
     	<thead>
 			<tr>
-    			<th>ID</th>
         		<th>Nombre</th>
 				<th>Descripción</th>
 			</tr>
 		</thead>
-		<tfoot>
-    		<tr>
-    			<th>ID</th>
-        		<th>Nombre</th>
-				<th>Descripción</th>
-			</tr>
-        </tfoot>
 		<tbody>
             @foreach ($permisos as $permiso)
 			<tr>
-				<td>{{ $permiso->id }}</td>
-				<td>{{ $permiso->nombre }}</td>
+				<td><a href="permiso/{{ $permiso->id }}">{{ $permiso->nombre }}</a></td>
     			<td>{{ $permiso->descripcion }}</td>
 			</tr>
             @endforeach
@@ -56,4 +42,3 @@
     </table>					
 	</script>
 </body>
-</html>

@@ -29,7 +29,7 @@ class UsersTableSeeder extends Seeder
             'nombre' => 'Mario',
             'apellidos' => 'Martínez Alfonso',
             'email' => 'mcnb@gmail.com',
-            'username' => 'mma45',
+            'username' => 'mma63',
             'password' => '123456',
             'fecha_registro' => '12/06/2016'
         ]);

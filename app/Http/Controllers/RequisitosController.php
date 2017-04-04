@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Proyecto;
 use App\Sprint;
 use App\Requisito;
 
@@ -36,13 +37,20 @@ class RequisitosController extends Controller
 
     }
 
+/*
+
+
      public function search($field = null){
         $requisitos = Requisito::paginate(8);
         $valorID = "";
         $valorNombre="";
         return view('requisitos', compact(['requisitos', 'valorID', 'valorNombre']));
     }
-
+*/
+    public function search(){
+         $requisitos = requisito::with('sprint')->get();
+         return view('requisitos', compact('requisitos'));
+     }
 
    public function filtrar(Request $request ){
         $id = $request->input('id');
@@ -119,6 +127,7 @@ class RequisitosController extends Controller
         $requisito = new Requisito();
         $requisito->nombre = $request->input('nombre');
         $requisito->descripcion = $request->input('descripcion');
+        $requisito->sprint_id = $request->input('sprint_id');
         
 
         $requisito->save();
@@ -127,8 +136,8 @@ class RequisitosController extends Controller
 
     public function getSprints(){
 
-        $sprints = Sprint::get();
-        return view('requisito_new', ['sprints' => $sprints]);
+        $proyectos = Proyecto::with('sprints')->get();
+        return view('requisito_new', ['proyectos' => $proyectos]);
     }
 
 }

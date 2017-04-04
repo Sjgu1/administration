@@ -15,14 +15,44 @@ class RequisitosUsersTableSeeder extends Seeder
     public function run()
     {
 
-        $requisito = new Requisito(['descripcion' => 'Requisito prueba con usuario']);
-        $sprint = Sprint::where('nombre', 'Sprint iteración 1')->first();
-        $requisito->sprint()->associate($sprint);
-        $requisito->save();
+        $requisito = Requisito::where('id', '1')->first();
+        $user = User::where('id', '2')->first();
+        $user->requisitos()->attach($requisito->id);
 
-        $user = new User(['nombre' => 'Usuario prueba con requisito']);
-        $user->save();
+        $requisito = Requisito::where('id', '2')->first();
+        $user = User::where('id', '1')->first();
+        $user->requisitos()->attach($requisito->id);
 
+        $requisito = Requisito::where('id', '3')->first();
+        $user = User::where('id', '3')->first();
+        $user->requisitos()->attach($requisito->id);
+
+        $requisito = Requisito::where('id', '4')->first();
+        $user = User::where('id', '3')->first();
+        $user->requisitos()->attach($requisito->id);
+
+        $requisito = Requisito::where('id', '5')->first();
+        $user = User::where('id', '2')->first();
+        $user->requisitos()->attach($requisito->id);
+
+        $requisito = Requisito::where('id', '6')->first();
+        $user = User::where('id', '1')->first();
+        $user->requisitos()->attach($requisito->id);
+
+        $requisito = Requisito::where('id', '7')->first();
+        $user = User::where('id', '5')->first();
+        $user->requisitos()->attach($requisito->id);
+
+        $requisito = Requisito::where('id', '8')->first();
+        $user = User::where('id', '6')->first();
+        $user->requisitos()->attach($requisito->id);
+
+        $requisito = Requisito::where('id', '9')->first();
+        $user = User::where('id', '6')->first();
+        $user->requisitos()->attach($requisito->id);
+
+        $requisito = Requisito::where('id', '10')->first();
+        $user = User::where('id', '6')->first();
         $user->requisitos()->attach($requisito->id);
 
     }

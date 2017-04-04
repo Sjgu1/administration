@@ -1,3 +1,4 @@
+@include('navbar')
 <script type="text/javascript">
 $(document).ready(function() {
 
@@ -10,7 +11,19 @@ $(document).ready(function() {
 
 });
 </script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js">
+	</script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js">
+	</script>
+
+	<script type="text/javascript" class="init">	
+        $(document).ready(function() {
+            $('#rols').DataTable();
+        } );
+    </script>
+</head>
 <body>
+<<<<<<< HEAD
 	@include('navbar')
 	<form action="{{ url('rols') }}" method="POST">
 	 {{ csrf_field() }}
@@ -33,19 +46,30 @@ $(document).ready(function() {
 					<th>Descripcion </th>
 				</tr>	
 			</thead>
+=======
+>>>>>>> 638f49781399502aaf06136640ebc13a2dc35f54
 
-			<tbody>
-				@foreach ($rols as $rol)
-				<tr>
-					<!--<td><a href="rols/{{ $rol->id }}">{{ $rol->id }}</a></td>-->
-					<td><a href="rol/{{ $rol->id }}">{{ $rol->nombre }}</a></td>
-					<td>{{ $rol->descripcion }}</td>
-				</tr>
-				@endforeach
-			</tbody>
-		</table>
-	{{ $rols->links() }}
-	</form>
-	<hr>
+	<table id="rols" class="table table-striped table-bordered display" cellspacing="0" width="100%">
+    	<thead>
+			<tr>
+        		<th>Nombre</th>
+				<th>Descripción</th>
+                <th>Permiso</th>
+			</tr>
+		</thead>
+		<tbody>
+            @foreach ($rols as $rol)
+			<tr>
+				<td><a href="rol/{{ $rol->id }}">{{ $rol->nombre }}</a></td>
+    			<td>{{ $rol->apellidos }}</td>
+                <td>
+                @foreach ($rol->permisos as $permiso)
+				    <a href="permiso/{{ $permiso->id }}">{{ $permiso->nombre }}</a>
+                @endforeach
+                </td>
+			</tr>
+            @endforeach
+		</tbody>
+    </table>					
+	</script>
 </body>
-</html>

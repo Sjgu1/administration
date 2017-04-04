@@ -38,12 +38,22 @@ class ProyectosController extends Controller
         return view('exito_elemento',['slot'=> "Se ha eliminado el Proyecto: " .$proyecto->id  ] );
 
     }
+
+    //Funcion para la vista alternativa
+    /*
     public function search($field = null){
         $proyectos = Proyecto::paginate(8);
         $valorID = "";
         $valorNombre="";
         return view('proyectos', compact(['proyectos', 'valorID', 'valorNombre']));
-    }
+    }*/
+
+    public function search(){
+         $proyectos = Proyecto::get();
+         return view('proyectos', compact('proyectos'));
+     }
+
+     //Solo se usa en la vista alternativa
     public function filtrar(Request $request ){
         $id = $request->input('id');
         $name = $request->input('nombre');
