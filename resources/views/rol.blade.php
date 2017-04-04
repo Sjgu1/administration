@@ -1,6 +1,8 @@
 <body>
     @include('navbar')
     <form action="{{ url('rol/modificar') }}" method="POST">
+    <input type="button" onClick="location.href='/rols';" value="Volver" class="btn btn-primary" >
+
         {{ csrf_field() }}
         <div class="form-group">
             <label for="id">ID:</label>
@@ -19,5 +21,6 @@
     @foreach ($rol->permisos as $permiso)
         {{ $permiso->nombre }}
 	@endforeach
-    <input type="button" onClick="location.href='/rol/borrar/{{ $rol->id }}';" value="borrar" class="btn btn-primary" >
+    <input type="button" onClick="location.href='/rol/borrar/{{ $rol->id }}';" value="Borrar" class="btn btn-primary" >
+
 </body>
