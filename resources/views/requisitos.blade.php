@@ -14,7 +14,7 @@ $(document).ready(function() {
 	@include('navbar')
 	<form action="{{ url('requisitos') }}" method="POST">
 	 {{ csrf_field() }}
-		<table id="rols" class="table table-striped table-bordered" cellspacing="0" width="100%">
+		<table id="requisitos" class="table table-striped table-bordered" cellspacing="0" width="100%">
 			<thead>
 				<tr>				
 					<!--<th>ID 
@@ -29,7 +29,9 @@ $(document).ready(function() {
 					@else
 					<input type="text" name="nombre" id="nombre" value={{$valorNombre}}></th>
 					@endif
-					<th>Descripcion </th>
+					<th>Descripcion</th>
+					<th>Sprint</th>
+					<th>Fecha Inicio</th>
 				</tr>	
 			</thead>
 
@@ -39,6 +41,8 @@ $(document).ready(function() {
 					<!--<td><a href="requisitos/{{ $requisito->id }}">{{ $requisito->id }}</a></td>-->
 					<td><a href="requisito/{{ $requisito->id }}">{{ $requisito->nombre }}</a></td>
 					<td>{{ $requisito->descripcion }}</td>
+					<td><a href="sprint/{{$requisito->sprint_id}}">{{$requisito->sprint_id}} </a></td>
+					<td>{{ $requisito->fecha_inicio }}</td>
 				</tr>
 				@endforeach
 			</tbody>
