@@ -9,6 +9,7 @@ use App\Requisito;
 
 class RequisitosController extends Controller
 {
+
     public function details($id){
         $requisito = Requisito::where('id', $id)->first();
         if($requisito==null){
@@ -33,11 +34,6 @@ class RequisitosController extends Controller
         $requisito->delete();
         return view('exito_elemento',['slot'=> "Se ha eliminado el Requisito: " .$requisito->id  ] );
 
-    }
-
-    public function pagination(){
-        $requisitos = Requisito::paginate(3);
-        return view('index', compact('requisitos'));
     }
 
      public function search($field = null){

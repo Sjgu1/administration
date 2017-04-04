@@ -12,7 +12,7 @@
         </div>
         <div class="form-group">
             <label for="descripcion">Descripción:</label>
-            <textaera id="descripcion" name="descripcion" class="form-control" rows="5">{{ $rol->descripcion }} </textarea>
+            <input type="text" id="descripcion" name="descripcion" class="form-control" value="{{ $rol->descripcion }}" class="form-control">
        </div>
        <button type="submit" class="btn btn-primary">Modificar</button>
     </form>

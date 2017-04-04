@@ -17,10 +17,15 @@ $(document).ready(function() {
 		<table id="rols" class="table table-striped table-bordered" cellspacing="0" width="100%">
 			<thead>
 				<tr>				
+					<!--<th>ID 
+					@if($valorID == "")
+						<!--<input type="text" name="id" id="id" value=""></th>-->
 					@else
+						<!--<input type="text" name="id" id="id" value={{$valorID}}></th>-->
 					@endif
 					<th>Nombre 
 					@if($valorNombre == "")
+					<!--<input type="text" name="nombre" id="nombre" value=""></th>-->
 					@else
 					<input type="text" name="nombre" id="nombre" value={{$valorNombre}}></th>
 					@endif
@@ -31,6 +36,7 @@ $(document).ready(function() {
 			<tbody>
 				@foreach ($rols as $rol)
 				<tr>
+					<!--<td><a href="rols/{{ $rol->id }}">{{ $rol->id }}</a></td>-->
 					<td><a href="rol/{{ $rol->id }}">{{ $rol->nombre }}</a></td>
 					<td>{{ $rol->descripcion }}</td>
 				</tr>
