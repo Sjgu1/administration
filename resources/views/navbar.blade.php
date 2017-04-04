@@ -24,7 +24,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuarios<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ url('users') }}">Listar usuarios</a></li>
-                        <!-- <li><a href="{{ url('proyecto/new') }}">Crear usuario</a></li> -->
+                        <!-- <li><a href="{{ url('usuario/new') }}">Crear usuario</a></li> -->
                         <!-- <li><a href="{{ url('proyectosusers') }}">Listar roles de usuarios en proyectos</a></li>-->
                     </ul>
                 </li>

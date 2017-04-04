@@ -25,4 +25,34 @@ class PermisoController extends Controller
         $proyecto->save();
         return redirect('permisos');
     }
+
+    public function details($id){
+
+        $permiso = Permiso::where('id', $id)->first();
+        if($permiso==null){
+            return view('alerta_elemento',['slot'=> "No existe el elemento Permiso: " .$id  ] );
+        }else{
+            return view('permiso', ['permiso' => $permiso]);
+        }
+        
+    }
+
+    public function modify(Request $request){
+
+        $permiso = Permiso::where('id', $request->input('id'))->first();
+        $permiso->nombre = $request->input('nombre');
+        $permiso->descripcion = $request->input('descripcion');
+
+        $permiso->save();
+        return view('exito_elemento',['slot'=> "Se ha modificado el Permiso: " . $permiso->id ]);
+
+    }
+
+    public function delete($id){
+
+        $permiso = Permiso::where('id', $id)->first();
+        $permiso->delete();
+        return view('exito_elemento',['slot'=> "Se ha eliminado el Permiso: " .$permiso->id  ] );
+
+    }
 }
