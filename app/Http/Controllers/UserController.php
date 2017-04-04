@@ -8,11 +8,18 @@ use App\User;
 class UserController extends Controller
 {
 
+    /*
    public function search($field = null){
         $users = User::paginate(8);
         $valorNombre="";
         return view('users', compact(['users', 'valorNombre']));
     }
+    */
+
+    public function search(){
+         $users = User::get();
+         return view('users', compact('users'));
+     }
 
     public function filtrar(Request $request ){
         $name = $request->input('nombre');

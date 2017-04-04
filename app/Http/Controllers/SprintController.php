@@ -57,7 +57,7 @@ class SprintController extends Controller
         $proyectos = Proyecto::get();
         return view('sprint_new', ['proyectos' => $proyectos]);
     }
-
+/*
     public function search($field = null){
         $sprints = Sprint::paginate(3);
         $valorID = "";
@@ -65,7 +65,11 @@ class SprintController extends Controller
         $valorProyecto="";
         return view('sprints', compact(['sprints', 'valorID', 'valorNombre', 'valorProyecto']));
     }
-
+*/
+    public function search(){
+         $sprints = Sprint::with('proyecto')->get();
+         return view('sprints', compact('sprints'));
+     }
     public function filtrar(Request $request ){
         $id = $request->input('id');
         $name = $request->input('nombre');

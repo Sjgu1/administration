@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Input;
 use App\Rol;
-
+use App\Permiso;
 
 class RolController extends Controller
 {
@@ -38,13 +38,20 @@ class RolController extends Controller
         return view('exito_elemento',['slot'=> "Se ha eliminado el Rol: " .$rol->id  ] );
 
     }
+
+     public function search(){
+         $rols = Rol::with('permisos')->get();
+         return view('rols', compact('rols'));
+     }
+    /*
     public function search($field = null){
         $rols = Rol::paginate(8);
         $valorID = "";
         $valorNombre="";
         return view('rols', compact(['rols', 'valorID', 'valorNombre']));
     }
-    /*public function filtrar(Request $request ){
+    */
+    public function filtrar(Request $request ){
         $id = $request->input('id');
         $name = $request->input('nombre');
         $nombre = Rol::firstOrNew(array('id' => $id));
@@ -112,7 +119,7 @@ class RolController extends Controller
 
         return view('rols', compact(['rols','valorID','valorNombre']));
     
-    }*/
+    }
 
     public function create(Request $request){
 

@@ -1,3 +1,4 @@
+@include('navbar')
 <script type="text/javascript">
 $(document).ready(function() {
 
@@ -10,66 +11,38 @@ $(document).ready(function() {
 
 });
 </script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js">
+	</script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js">
+	</script>
+
+	<script type="text/javascript" class="init">	
+        $(document).ready(function() {
+            $('#proyectos').DataTable();
+        } );
+    </script>
+</head>
 <body>
-	@include('navbar')
-	<form action="{{ url('proyectos') }}" method="POST">
-	 {{ csrf_field() }}
-		<button type="submit">Filtrar</button>
-	 	<select name="campoOrdenado">
-  			<option value="id">ID</option>
-  			<option value="nombre">NOMBRE</option>
-		</select>
-		<select name="tipoOrdenacion">
-  			<option value="asc">Asc</option>
-  			<option value="desc">Desc</option>
-		</select>
-		<table id="proyectos" class="table table-striped table-bordered" cellspacing="0" width="100%">
-			<thead>
-				<tr>				
-					<!--<th>ID 
-					@if($valorID == "")
-						<!--<input type="text" name="id" id="id" value=""></th>-->
-					@else
-						<!--<input type="text" name="id" id="id" value={{$valorID}}></th>-->
-					@endif
-					<th>Nombre 
-					@if($valorNombre == "")
-					<!--<input type="text" name="nombre" id="nombre" value=""></th>-->
-					@else
-					<input type="text" name="nombre" id="nombre" value={{$valorNombre}}></th>
-					@endif
-					<th>Descripcion </th>
-					<th>Repositorio </th>
-					<th>Fecha inicio </th>
-				</tr>	
-			</thead>
-			<!--<tfoot>
-				<tr>
-					<th>ID</th>
-					<th>Nombre</th>
-					<th>Descripcion</th>
-					<th>Repositorio</th>
-					<th>Fecha inicio</th>
-				</tr>				
-			</tfoot>-->
-			<tbody>
-				@foreach ($proyectos as $proyecto)
-				<tr>
-					<!--<td><a href="proyecto/{{ $proyecto->id }}">{{ $proyecto->id }}</a></td>-->
-					<td><a href="proyecto/{{ $proyecto->id }}">{{ $proyecto->nombre }}</a></td>
-					<td>{{ $proyecto->descripcion }}</td>
-					<td><a href="{{ $proyecto->repositorio }}">{{ $proyecto->repositorio }}</a></td>
-					<td>{{ $proyecto->fecha_inicio }}</td>
-				</tr>
-				@endforeach
-			</tbody>
-		</table>
-	{{ $proyectos->links() }}
-	</form>
-	<hr>
-	<p>Búsqueda avanzada</p>
-	<!--<form action="{{ url('proyecto/new') }}" method="GET">
-	<button type="submit">Crear</button>	
-	</button>-->
+
+	<table id="proyectos" class="table table-striped table-bordered display" cellspacing="0" width="100%">
+    	<thead>
+			<tr>
+        		<th>Nombre</th>
+				<th>Descripción</th>
+				<th>Repositorio</th>
+				<th>Fecha de inicio</th>
+			</tr>
+		</thead>
+		<tbody>
+            @foreach ($proyectos as $proyecto)
+			<tr>
+				<td><a href="proyecto/{{ $proyecto->id }}">{{ $proyecto->nombre }}</a></td>
+    			<td>{{ $proyecto->descripcion }}</td>
+				<td>{{ $proyecto->repositorio }}</td>
+				<td>{{ $proyecto->fecha_inicio }}</td>
+			</tr>
+            @endforeach
+		</tbody>
+    </table>					
+	</script>
 </body>
-</html>

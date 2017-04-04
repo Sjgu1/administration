@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Sprint;
 use App\Requisito;
+use App\Proyecto;
 
 class RequisitosController extends Controller
 {
@@ -40,13 +41,18 @@ class RequisitosController extends Controller
         return view('index', compact('requisitos'));
     }
 
+    /*
      public function search($field = null){
         $requisitos = Requisito::paginate(8);
         $valorID = "";
         $valorNombre="";
         return view('requisitos', compact(['requisitos', 'valorID', 'valorNombre']));
     }
-
+*/
+    public function search(){
+         $requisitos = requisito::with('sprint')->get();
+         return view('requisitos', compact('requisitos'));
+     }
 
    public function filtrar(Request $request ){
         $id = $request->input('id');

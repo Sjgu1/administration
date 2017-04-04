@@ -1,3 +1,4 @@
+@include('navbar')
 <script type="text/javascript">
 $(document).ready(function() {
 
@@ -10,58 +11,40 @@ $(document).ready(function() {
 
 });
 </script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js">
+	</script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js">
+	</script>
+
+	<script type="text/javascript" class="init">	
+        $(document).ready(function() {
+            $('#users').DataTable();
+        } );
+    </script>
+</head>
 <body>
-	@include('navbar')
-	<form action="{{ url('users') }}" method="POST">
-	 {{ csrf_field() }}
-		<button type="submit">Filtrar</button>
-	 	<select name="campoOrdenado">
-  			<option value="id">ID</option>
-  			<option value="nombre">NOMBRE</option>
-		</select>
-		<select name="tipoOrdenacion">
-  			<option value="asc">Asc</option>
-  			<option value="desc">Desc</option>
-		</select>
-		<table id="users" class="table table-striped table-bordered" cellspacing="0" width="100%">
-			<thead>
-				<tr>
-					<!--<th>ID</th>-->
-					<th>Nombre 
-					@if($valorNombre == "")
-					<!--<input type="text" name="nombre" id="nombre" value=""></th>-->
-					@else
-					<input type="text" name="nombre" id="nombre" value={{$valorNombre}}></th>
-					@endif
-					<th>Apellidos</th>
-					<th>Email</th>
-					<th>Username</th>
-					<th>Fecha registro</th>
-				</tr>
-			</thead>
-			<!--<tfoot>
-				<tr>
-					<th>ID</th>
-					<th>Nombre</th>
-					<th>Apellidos</th>
-					<th>Email</th>
-					<th>Username</th>
-					<th>Fecha registro</th>
-				</tr>
-			</tfoot>-->
-			<tbody>
-				@foreach ($users as $user)
-				<tr>
-					<!--<td><a href="user/{{ $user->id }}">{{ $user->id }}</a></td>-->
-					<td><a href="user/{{ $user->id }}">{{ $user->nombre }}</a></td>
-					<td>{{ $user->apellidos }}</td>
-					<td>{{ $user->email }}</td>
-					<td>{{ $user->username }}</td>
-					<td>{{ $user->fecha_registro }}</td>
-				</tr>
-				@endforeach
-			</tbody>
-		</table>
-		{{ $users->links() }}
-	</form>
+
+	<table id="users" class="table table-striped table-bordered display" cellspacing="0" width="100%">
+    	<thead>
+			<tr>
+        		<th>Nombre</th>
+				<th>Apellidos</th>
+                <th>Email</th>
+				<th>Username</th>
+				<th>Fecha de registro</th>
+			</tr>
+		</thead>
+		<tbody>
+            @foreach ($users as $user)
+			<tr>
+				<td><a href="user/{{ $user->id }}">{{ $user->nombre }}</a></td>
+    			<td>{{ $user->apellidos }}</td>
+				<td>{{ $user->email }}</td>
+				<td>{{ $user->username }}</td>
+				<td>{{ $user->fecha_registro }}</td>
+			</tr>
+            @endforeach
+		</tbody>
+    </table>					
+	</script>
 </body>

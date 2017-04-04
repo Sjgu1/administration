@@ -1,7 +1,8 @@
+@include('navbar')
 <script type="text/javascript">
 $(document).ready(function() {
 
-    $('#requisitos tr').click(function() {
+    $('#requistos tr').click(function() {
         var href = $(this).find("a").attr("href");
         if(href) {
             window.location = href;
@@ -10,42 +11,38 @@ $(document).ready(function() {
 
 });
 </script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js">
+	</script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js">
+	</script>
+
+	<script type="text/javascript" class="init">	
+        $(document).ready(function() {
+            $('#requisitos').DataTable();
+        } );
+    </script>
+</head>
 <body>
-    @include('navbar')
-    <form action="{{url('requisitos')}}" method="POST">
-    {{ csrf_field() }}
-        <button type="submit">Filtrar</button>
-        <select name="campoOrdenado">
-            <option value="id">ID</option>
-            <option value="nombre">NOMBRE</option>
-        </select>
-       <select name="tipoOrdenado">
-            <option value="asc">Asc</option>
-            <option value="desc">Desc</option>
-        </select>
-        <table id="requisitos" class="table table-striped table-bordered" cellspacing="0" width="100%">"
-            <thead>
-                <tr>
-                    <th>Nombre
-                    @if($valorNombre == "")
-                    @else
-                    <input type="text" name="nombre" id="nombre" value={{$valorNombre}}></th>
-                    @endif
-                    <th>Descripcion </th>
-                </th>
-            </thead>
-            
-            <tbody>
-                @foreach ($requisitos as $requisito)
-                <tr>
-                    <td><a href="requisito/{{ $requisito->id }}"> {{ $requisito->nombre }}</a></td>
-                    <td>{{ $requisito->descripcion }}</td>
-                </tr>  
-                @endforeach
-            </tbody>
-        </table>
-    {{ $requisitos->links() }}
-    </form>
-    <p>mierda</p>
+
+	<table id="requisitos" class="table table-striped table-bordered display" cellspacing="0" width="100%">
+    	<thead>
+			<tr>
+        		<th>Nombre</th>
+				<th>Descripción</th>
+                <th>Sprint</th>
+				<th>Fecha de inicio</th>
+			</tr>
+		</thead>
+		<tbody>
+            @foreach ($requisitos as $requisito)
+			<tr>
+				<td><a href="requisito/{{ $requisito->id }}">{{ $requisito->nombre }}</a></td>
+    			<td>{{ $requisito->requisito }}</td>
+				<td><a href="sprint/{{ $requisito->sprint->id }}">{{ $requisito->sprint->nombre }}</a></td>
+				<td>{{ $requisito->fecha_inicio }}</td>
+			</tr>
+            @endforeach
+		</tbody>
+    </table>					
+	</script>
 </body>
-</html>
