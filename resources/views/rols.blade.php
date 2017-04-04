@@ -23,31 +23,6 @@ $(document).ready(function() {
     </script>
 </head>
 <body>
-<<<<<<< HEAD
-	@include('navbar')
-	<form action="{{ url('rols') }}" method="POST">
-	 {{ csrf_field() }}
-	 <button type="submit">Filtrar</button>
-		<table id="rols" class="table table-striped table-bordered" cellspacing="0" width="100%">
-			<thead>
-				<tr>				
-					<!--<th>ID 
-					@if($valorID == "")
-						<!--<input type="text" name="id" id="id" value=""></th>-->
-					@else
-						<!--<input type="text" name="id" id="id" value={{$valorID}}></th>-->
-					@endif
-					<th>Nombre 
-					@if($valorNombre == "")
-					<!--<input type="text" name="nombre" id="nombre" value=""></th>-->
-					@else
-					<input type="text" name="nombre" id="nombre" value={{$valorNombre}}></th>
-					@endif
-					<th>Descripcion </th>
-				</tr>	
-			</thead>
-=======
->>>>>>> 638f49781399502aaf06136640ebc13a2dc35f54
 
 	<table id="rols" class="table table-striped table-bordered display" cellspacing="0" width="100%">
     	<thead>
