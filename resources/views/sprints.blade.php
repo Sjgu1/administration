@@ -63,7 +63,7 @@ $(document).ready(function() {
 				<tr>
 					<td><a href="sprint/{{ $sprint->id }}">{{ $sprint->id }}</a></td>
 					<td>{{ $sprint->nombre }}</td>
-                    <td>{{ $sprint->proyecto_id }}</td>
+                    <td>{{ $sprint->proyecto->nombre }}</td>
 					<td>{{ $sprint->descripcion }}</td>					
 					<td>{{ $sprint->fecha_inicio }}</td>
 				</tr>

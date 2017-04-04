@@ -59,7 +59,7 @@ class SprintController extends Controller
     }
 
     public function search($field = null){
-        $sprints = Sprint::paginate(3);
+        $sprints = Sprint::with('proyecto')->paginate(3);
         $valorID = "";
         $valorNombre="";
         $valorProyecto="";
