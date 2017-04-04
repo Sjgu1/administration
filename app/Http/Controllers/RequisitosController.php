@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Proyecto;
 use App\Sprint;
 use App\Requisito;
-use App\Proyecto;
 
 class RequisitosController extends Controller
 {
+
     public function details($id){
         $requisito = Requisito::where('id', $id)->first();
         if($requisito==null){
@@ -36,12 +37,9 @@ class RequisitosController extends Controller
 
     }
 
-    public function pagination(){
-        $requisitos = Requisito::paginate(3);
-        return view('index', compact('requisitos'));
-    }
+/*
 
-    /*
+
      public function search($field = null){
         $requisitos = Requisito::paginate(8);
         $valorID = "";
@@ -129,6 +127,7 @@ class RequisitosController extends Controller
         $requisito = new Requisito();
         $requisito->nombre = $request->input('nombre');
         $requisito->descripcion = $request->input('descripcion');
+        $requisito->sprint_id = $request->input('sprint_id');
         
 
         $requisito->save();
@@ -137,8 +136,8 @@ class RequisitosController extends Controller
 
     public function getSprints(){
 
-        $sprints = Sprint::get();
-        return view('requisito_new', ['sprints' => $sprints]);
+        $proyectos = Proyecto::with('sprints')->get();
+        return view('requisito_new', ['proyectos' => $proyectos]);
     }
 
 }

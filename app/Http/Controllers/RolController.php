@@ -11,7 +11,7 @@ class RolController extends Controller
 {
 
     public function details($id){
-        $rol = Rol::where('id', $id)->first();
+        $rol = Rol::where('id', $id)->with('permisos')->first();
         if($rol==null){
             return view('alerta_elemento',['slot'=> "No existe el elemento Rol: " .$id  ] );
         }else{
@@ -50,7 +50,9 @@ class RolController extends Controller
         $valorNombre="";
         return view('rols', compact(['rols', 'valorID', 'valorNombre']));
     }
+
     */
+
     public function filtrar(Request $request ){
         $id = $request->input('id');
         $name = $request->input('nombre');

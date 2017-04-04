@@ -25,7 +25,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="{{ url('users') }}">Listar usuarios</a></li>
                         <!-- <li><a href="{{ url('proyecto/new') }}">Crear usuario</a></li> -->
-                        <li><a href="{{ url('users') }}">Listar roles de usuarios en proyectos</a></li>
+                        <!-- <li><a href="{{ url('proyectosusers') }}">Listar roles de usuarios en proyectos</a></li>-->
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -47,7 +47,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="{{ url('requisitos') }}">Listar requisitos</a></li>
                         <li><a href="{{ url('requisito/new') }}">Crear requisito</a></li>
-                        <li><a href="{{ url('requisito/new') }}">Listar dependencias entre requisitos</a></li>
+                        <!-- <li><a href="{{ url('requisito/new') }}">Listar dependencias entre requisitos</a></li> -->
                     </ul>
                 </li>
                 <li class="dropdown">

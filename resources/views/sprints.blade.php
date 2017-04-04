@@ -23,7 +23,6 @@ $(document).ready(function() {
     </script>
 </head>
 <body>
-
 	<table id="sprints" class="table table-striped table-bordered display" cellspacing="0" width="100%">
     	<thead>
 			<tr>
