@@ -14,6 +14,7 @@ $(document).ready(function() {
 	@include('navbar')
 	<form action="{{ url('rols') }}" method="POST">
 	 {{ csrf_field() }}
+	 <button type="submit">Filtrar</button>
 		<table id="rols" class="table table-striped table-bordered" cellspacing="0" width="100%">
 			<thead>
 				<tr>				
