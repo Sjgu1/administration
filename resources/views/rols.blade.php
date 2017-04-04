@@ -36,7 +36,7 @@ $(document).ready(function() {
             @foreach ($rols as $rol)
 			<tr>
 				<td><a href="rol/{{ $rol->id }}">{{ $rol->nombre }}</a></td>
-    			<td>{{ $rol->permiso }}</td>
+    			<td>{{ $rol->descripcion }}</td>
                 <td>
                 @foreach ($rol->permisos as $permiso)
 				    <a href="permiso/{{ $permiso->id }}">{{ $permiso->nombre }}</a>
