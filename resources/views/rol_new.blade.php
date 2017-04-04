@@ -1,6 +1,6 @@
 <body>
     @include('navbar')
-    <form action="{{ url('rols/create') }}" method="POST">
+    <form action="{{ url('rol/create') }}" method="POST">
         {{ csrf_field() }}
         <div class="form-group">
             <label for="id">Nombre:</label>

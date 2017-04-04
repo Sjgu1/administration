@@ -10,7 +10,7 @@ use App\ProyectoUser;
 class Rol extends Model
 {
 
-    public function proyectosusers(){
+    public function rolsusers(){
 
         return $this->hasMany('App\RolPermiso');
     }

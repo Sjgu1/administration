@@ -68,5 +68,6 @@ Route::post('proyectos', 'ProyectosController@filtrar');
 Route::post('sprints', 'SprintController@filtrar');
 Route::post('users', 'UserController@filtrar');
 Route::post('rols', 'RolController@filtrar');
+Route::post('requisitos', 'RequisitosController@filtrar');
 
 

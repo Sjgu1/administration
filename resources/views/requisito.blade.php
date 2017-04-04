@@ -2,22 +2,19 @@
     @include('navbar')
     <form action="{{ url('requisito/modificar') }}" method="POST">
         {{ csrf_field() }}
-        <label for="id">ID:</label>
-        <br>
-        <input type="text" name="id" id="id" value="{{ $requisito->id }}">
-        <br>
-        <br>
-        <label for="nombre">Nombre:</label>
-        <br>
-        <input type="text" name="nombre" id="nombre" value="{{ $requisito->nombre }}">
-        <br>
-        <br>
-        <label for="descripcion">Descripción:</label>
-        <br>
-        <input type="text" name="descripcion" id="descripcion" value="{{ $requisito->descripcion }}">
-        <br>
-        <br>
-        <button type="submit">Modificar</button>
+        <div class="form-group">
+            <label for="id">ID:</label>
+            <input type="text" id="id" name="id" readonly="readonly" value="{{ $requisito->id }}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" value="{{ $requisito->nombre }}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" name="descripcion" class="form-control" rows="5">{{ $requisito->descripcion }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Modificar</button>
     </form>
-    <a href="{{ url('requisito/borrar', $requisito->id) }}">Borrar</a>
+    <input type="button" onClick="location.href='/requisito/borrar/{{ $requisito->id }}';" value="borrar" class="btn btn-primary" >
 </body>
