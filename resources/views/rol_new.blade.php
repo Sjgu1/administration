@@ -1,7 +1,7 @@
 <body>
     @include('navbar')
     <form action="{{ url('rol/create') }}" method="POST">
-    <input type="button" onClick="location.href='/rols';" value="Volver" class="btn btn-primary" >
+    <!--input type="button" onClick="location.href='/rols';" value="Volver" class="btn btn-primary" -->
 
         {{ csrf_field() }}
         <div class="form-group">
