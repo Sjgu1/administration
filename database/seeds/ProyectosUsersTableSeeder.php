@@ -7,6 +7,7 @@ use App\Rol;
 use App\ProyectoUser;
 
 class ProyectosUsersTableSeeder extends Seeder
+
 {
     /**
      * Run the database seeds.
@@ -17,21 +18,64 @@ class ProyectosUsersTableSeeder extends Seeder
     {
         DB::table('proyecto_user')->delete();
 
-        $user = new User(['nombre' => 'Usuario de prueba con tabla intermedia']);
-        $user->save();
-
-        $proyecto = new Proyecto(['nombre' => 'Proyecto de prueba con tabla intermedia']);
-        $proyecto->save();
-
-        $rol = new Rol(['nombre' => 'Rol de prueba con tabla intermedia']);
-        $rol->save();
+        $user = User::where('id', '1')->first();
+        $proyecto = Proyecto::where('id', '1')->first();
+        $rol = Rol::where('id', '1')->first();
 
         $proyectouser = new ProyectoUser();
-        
         $proyectouser->user()->associate($user->id);
         $proyectouser->proyecto()->associate($proyecto->id);
         $proyectouser->rol()->associate($rol->id);
+        $proyectouser->save();
 
+        $user = User::where('id', '2')->first();
+        $proyecto = Proyecto::where('id', '1')->first();
+        $rol = Rol::where('id', '4')->first();
+
+        $proyectouser = new ProyectoUser();
+        $proyectouser->user()->associate($user->id);
+        $proyectouser->proyecto()->associate($proyecto->id);
+        $proyectouser->rol()->associate($rol->id);
+        $proyectouser->save();
+
+        $user = User::where('id', '3')->first();
+        $proyecto = Proyecto::where('id', '1')->first();
+        $rol = Rol::where('id', '2')->first();
+
+        $proyectouser = new ProyectoUser();
+        $proyectouser->user()->associate($user->id);
+        $proyectouser->proyecto()->associate($proyecto->id);
+        $proyectouser->rol()->associate($rol->id);
+        $proyectouser->save();
+
+        $user = User::where('id', '1')->first();
+        $proyecto = Proyecto::where('id', '3')->first();
+        $rol = Rol::where('id', '4')->first();
+
+        $proyectouser = new ProyectoUser();
+        $proyectouser->user()->associate($user->id);
+        $proyectouser->proyecto()->associate($proyecto->id);
+        $proyectouser->rol()->associate($rol->id);
+        $proyectouser->save();
+
+        $user = User::where('id', '3')->first();
+        $proyecto = Proyecto::where('id', '2')->first();
+        $rol = Rol::where('id', '3')->first();
+
+        $proyectouser = new ProyectoUser();
+        $proyectouser->user()->associate($user->id);
+        $proyectouser->proyecto()->associate($proyecto->id);
+        $proyectouser->rol()->associate($rol->id);
+        $proyectouser->save();
+
+        $user = User::where('id', '1')->first();
+        $proyecto = Proyecto::where('id', '4')->first();
+        $rol = Rol::where('id', '1')->first();
+
+        $proyectouser = new ProyectoUser();
+        $proyectouser->user()->associate($user->id);
+        $proyectouser->proyecto()->associate($proyecto->id);
+        $proyectouser->rol()->associate($rol->id);
         $proyectouser->save();
     }
 }
