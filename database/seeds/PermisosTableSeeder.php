@@ -62,8 +62,5 @@ class PermisosTableSeeder extends Seeder
             'descripcion' => 'Permiso que habilita el borrado de requisitos en un determinado proyecto'
         ]);
         $permiso->save();
-
-        $permiso = new Permiso(['nombre' => 'Permiso número 3']);
-        $permiso->save();
     }
 }
