@@ -1,17 +1,13 @@
 <body>
     @include('navbar')
-    <form action="{{ url('requisito/create') }}" method="POST">
+    <form id="requisito_form" action="{{ url('requisito/create') }}" method="POST" role="form" data-toggle="validator">
         {{ csrf_field() }}
-        <div class="form-group">
-            <label for="id">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" class="form-control">
+        <div class="form-group has-feedback">
+            <label for="id" class="control-label">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" class="form-control" data-minlength="3" maxlength="20" required>
         </div>
-        <div class="form-group">
-            <label for="descripcion">Descripción:</label>
-            <textarea id="descripcion" name="descripcion" class="form-control" rows="5"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="sprint_id">Sprint:</label>
+        <div class="form-group has-feedback">
+            <label for="sprint_id" class="control-label">Sprint:</label>
             <select id="sprint_id" name="sprint_id" class="form-control">
                 <option value="" disabled>Proyecto - Sprint</option>
                 @foreach ($proyectos as $proyecto)
@@ -21,6 +17,11 @@
                 @endforeach
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Crear</button>
+        <div class="form-group has-feedback">
+            <label for="descripcion" class="control-label">Descripción:</label>
+            <textarea id="descripcion" name="descripcion" class="form-control" rows="5" data-minlength="3" maxlength="65535" required></textarea>
+        </div>
+        <br>
+        <input type="submit" class="btn btn-block btn-lg btn-primary" value="Crear">
      </form>
 </body>

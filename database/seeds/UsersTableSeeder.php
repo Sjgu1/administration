@@ -74,5 +74,55 @@ class UsersTableSeeder extends Seeder
             'fecha_registro' => '03/02/2015'
         ]);
         $user->save();
+
+        $user = new User([
+            'nombre' => 'Asunción',
+            'apellidos' => 'Martínez Pérez',
+            'email' => 'amp@alu.ua.es',
+            'username' => 'amp66',
+            'password' => '123456',
+            'fecha_registro' => '03/02/2015'
+        ]);
+        $user->save();
+
+        $user = new User([
+            'nombre' => 'Eustaquio Jesús',
+            'apellidos' => 'García Rocamora',
+            'email' => 'ppl44@yahoo.es',
+            'username' => 'ppl66',
+            'password' => '123456',
+            'fecha_registro' => '03/02/2015'
+        ]);
+        $user->save();
+
+        $user = new User([
+            'nombre' => 'Manuel',
+            'apellidos' => 'Campillo Duréndez',
+            'email' => 'zocato@yahoo.es',
+            'username' => 'ttr4',
+            'password' => '123456',
+            'fecha_registro' => '23/12/2000'
+        ]);
+        $user->save();
+
+        $user = new User([
+            'nombre' => 'Alejandro',
+            'apellidos' => 'Rodríguez Portugués',
+            'email' => 'arp@hotmail.com',
+            'username' => 'arp23',
+            'password' => '123456',
+            'fecha_registro' => '14/12/199'
+        ]);
+        $user->save();
+
+        $user = new User([
+            'nombre' => 'Jimeno',
+            'apellidos' => 'Escudero Albaladejo',
+            'email' => 'jea@gcloud.ua.es',
+            'username' => 'jea3',
+            'password' => '123456',
+            'fecha_registro' => '05/08/2017'
+        ]);
+        $user->save();
     }
 }

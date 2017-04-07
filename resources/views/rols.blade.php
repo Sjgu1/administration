@@ -29,7 +29,7 @@ $(document).ready(function() {
 			<tr>
         		<th>Nombre</th>
 				<th>Descripción</th>
-                <th>Permiso</th>
+                <th>Permisos</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -39,7 +39,7 @@ $(document).ready(function() {
     			<td>{{ $rol->descripcion }}</td>
                 <td>
                 @foreach ($rol->permisos as $permiso)
-				    <a href="permiso/{{ $permiso->id }}">{{ $permiso->nombre }}</a>
+					<span class="label label-default">{{ $permiso->nombre }}</span>
                 @endforeach
                 </td>
 			</tr>

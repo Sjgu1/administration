@@ -37,7 +37,7 @@ $(document).ready(function() {
             @foreach ($requisitos as $requisito)
 			<tr>
 				<td><a href="requisito/{{ $requisito->id }}">{{ $requisito->nombre }}</a></td>
-    			<td>{{ $requisito->requisito }}</td>
+    			<td>{{ $requisito->descripcion }}</td>
 				<td><a href="sprint/{{ $requisito->sprint->id }}">{{ $requisito->sprint->nombre }}</a></td>
 				<td>{{ $requisito->fecha_inicio }}</td>
 			</tr>

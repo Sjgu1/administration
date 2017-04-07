@@ -13,17 +13,27 @@ class RequisitosController extends Controller
 
     public function details($id){
         $requisito = Requisito::where('id', $id)->first();
+        $requisito_sprint = Sprint::where('id', $requisito->sprint_id)->first();
+        $proyectos = Proyecto::with('sprints')->get();
+
         if($requisito==null){
             return view('alerta_elemento', ['slot'=> "No existe el elemento Requisito: " .$id ] );
         }else{
-        return view('requisito', ['requisito' => $requisito]);
+            return view('requisito', ['requisito' => $requisito, 'requisito_sprint' => $requisito_sprint, 'proyectos' => $proyectos]);
         }
     }
 
     public function modify(Request $request){
+
+        $this->validate($request, [
+            'nombre' => ['string', 'min:3', 'max:20'],
+            'descripcion' => ['string', 'min:3', 'max:65535'],
+        ]);
+        
         $requisito = Requisito::where('id', $request->input('id'))->first();
         $requisito->nombre = $request->input('nombre');
         $requisito->descripcion = $request->input('descripcion');
+        $requisito->sprint_id = $request->input('sprint_id');
 
         $requisito->save();
         return view('exito_elemento',['slot'=> "Se ha modificado el Requisito: " .$requisito->id  ] );
@@ -123,6 +133,11 @@ class RequisitosController extends Controller
     }
 
     public function create(Request $request){
+
+        $this->validate($request, [
+            'nombre' => ['string', 'min:3', 'max:20'],
+            'descripcion' => ['string', 'min:3', 'max:65535'],
+        ]);
 
         $requisito = new Requisito();
         $requisito->nombre = $request->input('nombre');

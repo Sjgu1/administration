@@ -12,10 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('users');
+    //return view('welcome');
 });
 
 //Route::get('index', 'RequisitosController@pagination');
+
+Route::get('hola', function(){ return view('prueba'); });
 
 Route::get('index/{field?}', 'RequisitosController@search');
 

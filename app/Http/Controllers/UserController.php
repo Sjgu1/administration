@@ -95,6 +95,13 @@ class UserController extends Controller
 
     public function modify(Request $request){
 
+        $this->validate($request, [
+            'nombre' => ['string', 'min:3', 'max:20'],
+            'apellidos' => ['string', 'min:3', 'max:50'],
+            'email' => ['email'],
+            'username' => ['string', 'min:3', 'max:20']
+        ]);
+
         $user = User::where('id', $request->input('id'))->first();
         $user->nombre = $request->input('nombre');
         $user->apellidos = $request->input('apellidos');

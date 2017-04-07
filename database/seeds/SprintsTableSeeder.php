@@ -19,7 +19,8 @@ class SprintsTableSeeder extends Seeder
         $sprint = new Sprint([
             'nombre' => 'Planificacion del proyecto',
             'descripcion' => 'Diseño de diagramas de casos de uso. Diagrama de arquitectura y análisis UML. Planificación de las pruebas',
-            'fecha_inicio' => '29/07/2017'
+            'fecha_inicio' => '29/07/2017',
+            'fecha_fin_estimada' => '20/20/2017'
         ]);
         $proyecto = Proyecto::where('nombre', 'GIMP')->first();
         $sprint->proyecto()->associate($proyecto);
@@ -28,7 +29,8 @@ class SprintsTableSeeder extends Seeder
         $sprint = new Sprint([
             'nombre' => 'Diseño del proyecto',
             'descripcion' => 'Diseño de diagramas de flujo, diagramas de actividad, secuencia y colaboración',
-            'fecha_inicio' => '29/07/2017'
+            'fecha_inicio' => '29/07/2017',
+            'fecha_fin_estimada' => '20/20/2017'
         ]);
         $proyecto = Proyecto::where('nombre', 'GIMP')->first();
         $sprint->proyecto()->associate($proyecto);
@@ -37,7 +39,8 @@ class SprintsTableSeeder extends Seeder
         $sprint = new Sprint([
             'nombre' => 'Implementacion del proyecto',
             'descripcion' => 'Desarrollo de la aplicación. Desarrollo de los test unitarios.',
-            'fecha_inicio' => '29/07/2017'
+            'fecha_inicio' => '29/07/2017',
+            'fecha_fin_estimada' => '20/20/2017'
         ]);
         $proyecto = Proyecto::where('nombre', 'GIMP')->first();
         $sprint->proyecto()->associate($proyecto);
@@ -46,7 +49,8 @@ class SprintsTableSeeder extends Seeder
         $sprint = new Sprint([
             'nombre' => 'Fase de testeo',
             'descripcion' => 'Ejecución y puesta en marcha de la aplicación. Ejecución de los test.',
-            'fecha_inicio' => '29/07/2017'
+            'fecha_inicio' => '29/07/2017',
+            'fecha_fin_estimada' => '20/20/2017'
         ]);
         $proyecto = Proyecto::where('nombre', 'JIRA')->first();
         $sprint->proyecto()->associate($proyecto);
@@ -55,7 +59,8 @@ class SprintsTableSeeder extends Seeder
         $sprint = new Sprint([
             'nombre' => 'Planificacion del proyecto',
             'descripcion' => 'Diseño de diagramas de casos de uso. Diagrama de arquitectura y análisis UML. Planificación de las pruebas',
-            'fecha_inicio' => '29/07/2017'
+            'fecha_inicio' => '29/07/2017',
+            'fecha_fin_estimada' => '20/20/2017'
         ]);
         $proyecto = Proyecto::where('nombre', 'JIRA')->first();
         $sprint->proyecto()->associate($proyecto);
@@ -64,7 +69,8 @@ class SprintsTableSeeder extends Seeder
         $sprint = new Sprint([
             'nombre' => 'Diseño del proyecto',
             'descripcion' => 'Diseño de diagramas de flujo, diagramas de actividad, secuencia y colaboración',
-            'fecha_inicio' => '29/07/2017'
+            'fecha_inicio' => '29/07/2017',
+            'fecha_fin_estimada' => '20/20/2017'
         ]);
         $proyecto = Proyecto::where('nombre', 'JIRA')->first();
         $sprint->proyecto()->associate($proyecto);
@@ -73,7 +79,8 @@ class SprintsTableSeeder extends Seeder
         $sprint = new Sprint([
             'nombre' => 'Implementacion',
             'descripcion' => 'Desarrollo de la aplicación. Desarrollo de los test unitarios.',
-            'fecha_inicio' => '29/07/2017'
+            'fecha_inicio' => '29/07/2017',
+            'fecha_fin_estimada' => '20/20/2017'
         ]);
         $proyecto = Proyecto::where('nombre', 'JIRA')->first();
         $sprint->proyecto()->associate($proyecto);
@@ -82,7 +89,8 @@ class SprintsTableSeeder extends Seeder
         $sprint = new Sprint([
             'nombre' => 'Fase de testeo',
             'descripcion' => 'Ejecución y puesta en marcha de la aplicación. Ejecución de los test.',
-            'fecha_inicio' => '29/07/2017'
+            'fecha_inicio' => '29/07/2017',
+            'fecha_fin_estimada' => '20/20/2017'
         ]);
         $proyecto = Proyecto::where('nombre', 'Bootstrap')->first();
         $sprint->proyecto()->associate($proyecto);
@@ -91,7 +99,8 @@ class SprintsTableSeeder extends Seeder
         $sprint = new Sprint([
             'nombre' => 'Planificacion del proyecto',
             'descripcion' => 'Diseño de diagramas de casos de uso. Diagrama de arquitectura y análisis UML. Planificación de las pruebas',
-            'fecha_inicio' => '29/07/2017'
+            'fecha_inicio' => '29/07/2017',
+            'fecha_fin_estimada' => '20/20/2017'
         ]);
         $proyecto = Proyecto::where('nombre', 'Bootstrap')->first();
         $sprint->proyecto()->associate($proyecto);
@@ -100,7 +109,8 @@ class SprintsTableSeeder extends Seeder
         $sprint = new Sprint([
             'nombre' => 'Diseño del proyecto',
             'descripcion' => 'Diseño de diagramas de flujo, diagramas de actividad, secuencia y colaboración',
-            'fecha_inicio' => '29/07/2017'
+            'fecha_inicio' => '29/07/2017',
+            'fecha_fin_estimada' => '20/20/2017'
         ]);
         $proyecto = Proyecto::where('nombre', 'Bootstrap')->first();
         $sprint->proyecto()->associate($proyecto);
@@ -109,7 +119,8 @@ class SprintsTableSeeder extends Seeder
         $sprint = new Sprint([
             'nombre' => 'Implementacion',
             'descripcion' => 'Desarrollo de la aplicación. Desarrollo de los test unitarios.',
-            'fecha_inicio' => '29/07/2017'
+            'fecha_inicio' => '29/07/2017',
+            'fecha_fin_estimada' => '20/20/2017'
         ]);
         $proyecto = Proyecto::where('nombre', 'Bootstrap')->first();
         $sprint->proyecto()->associate($proyecto);
@@ -118,7 +129,8 @@ class SprintsTableSeeder extends Seeder
         $sprint = new Sprint([
             'nombre' => 'Fase de testeo',
             'descripcion' => 'Ejecución y puesta en marcha de la aplicación. Ejecución de los test.',
-            'fecha_inicio' => '29/07/2017'
+            'fecha_inicio' => '29/07/2017',
+            'fecha_fin_estimada' => '20/20/2017'
         ]);
         $proyecto = Proyecto::where('nombre', 'Bootstrap')->first();
         $sprint->proyecto()->associate($proyecto);

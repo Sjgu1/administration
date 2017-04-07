@@ -22,6 +22,11 @@ class RolController extends Controller
 
     public function modify(Request $request){
 
+        $this->validate($request, [
+            'nombre' => ['string', 'min:3', 'max:20'],
+            'descripcion' => ['string', 'min:3', 'max:65535'],
+        ]);
+
         $rol = Rol::where('id', $request->input('id'))->first();
         $rol->nombre = $request->input('nombre');
         $rol->descripcion = $request->input('descripcion');
@@ -124,6 +129,11 @@ class RolController extends Controller
     }
 
     public function create(Request $request){
+
+        $this->validate($request, [
+            'nombre' => ['string', 'min:3', 'max:20'],
+            'descripcion' => ['string', 'min:3', 'max:65535'],
+        ]);
 
         $rol = new Rol();
         $rol->nombre = $request->input('nombre');

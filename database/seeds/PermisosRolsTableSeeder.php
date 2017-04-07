@@ -53,5 +53,12 @@ class PermisosRolsTableSeeder extends Seeder
         $rol->permisos()->attach($permiso5->id);
         $rol->permisos()->attach($permiso6->id);
         $rol->permisos()->attach($permiso7->id);
+
+        $rol = Rol::where('id', '4')->first();
+        $rol->permisos()->attach($permiso2->id);
+        $rol->permisos()->attach($permiso4->id);
+        $rol->permisos()->attach($permiso5->id);
+        $rol->permisos()->attach($permiso6->id);
+        $rol->permisos()->attach($permiso7->id);
     }
 }

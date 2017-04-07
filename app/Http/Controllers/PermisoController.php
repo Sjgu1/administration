@@ -18,6 +18,11 @@ class PermisoController extends Controller
 
     public function create(Request $request){
 
+        $this->validate($request, [
+            'nombre' => ['string', 'min:3', 'max:20'],
+            'descripcion' => ['string', 'min:3', 'max:65535'],
+        ]);
+
         $proyecto = new Permiso();
         $proyecto->nombre = $request->input('nombre');
         $proyecto->descripcion = $request->input('descripcion');
@@ -38,6 +43,11 @@ class PermisoController extends Controller
     }
 
     public function modify(Request $request){
+
+        $this->validate($request, [
+            'nombre' => ['string', 'min:3', 'max:20'],
+            'descripcion' => ['string', 'min:3', 'max:65535'],
+        ]);
 
         $permiso = Permiso::where('id', $request->input('id'))->first();
         $permiso->nombre = $request->input('nombre');
