@@ -29,7 +29,7 @@ class RequisitosController extends Controller
             'nombre' => ['string', 'min:3', 'max:20'],
             'descripcion' => ['string', 'min:3', 'max:65535'],
         ]);
-        
+
         $requisito = Requisito::where('id', $request->input('id'))->first();
         $requisito->nombre = $request->input('nombre');
         $requisito->descripcion = $request->input('descripcion');
@@ -143,6 +143,7 @@ class RequisitosController extends Controller
         $requisito->nombre = $request->input('nombre');
         $requisito->descripcion = $request->input('descripcion');
         $requisito->sprint_id = $request->input('sprint_id');
+        $requisito->fecha_inicio = '20/06/2017';
         
 
         $requisito->save();
