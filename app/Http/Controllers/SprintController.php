@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Input;
+use Validator;
 use App\Proyecto;
 use App\Sprint;
 
@@ -26,11 +27,8 @@ class SprintController extends Controller
     public function modify(Request $request){
 
         $this->validate($request, [
-            'nombre' => ['string', 'min:3', 'max:20'],
-            'proyecto_id' => 'required',
-            'descripcion' => ['string', 'min:3', 'max:65535'],
-            'fecha_inicio' => 'date_format:d/m/Y',
-            'fecha_fin_estimada' => 'date_format:d/m/Y'
+            'nombre' => ['string', 'min:3', 'max:50'],
+            'descripcion' => ['string', 'min:3', 'max:65535']
         ]);
 
         $sprint = Sprint::where('id', $request->input('id'))->first();
@@ -55,10 +53,8 @@ class SprintController extends Controller
     public function create(Request $request){
 
         $this->validate($request, [
-            'nombre' => ['string', 'min:3', 'max:20'],
-            'descripcion' => ['string', 'min:3', 'max:65535'],
-            'fecha_inicio' => 'date_format:d/m/Y',
-            'fecha_fin_estimada' => 'date_format:d/m/Y'
+            'nombre' => ['string', 'min:3', 'max:50'],
+            'descripcion' => ['string', 'min:3', 'max:65535']
         ]);
 
         $sprint = new Sprint();

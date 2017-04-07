@@ -8,24 +8,24 @@
         </div>
         <div class="form-group has-feedback">
             <label for="nombre" class="control-label">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" value="{{ $sprint->nombre }}" class="form-control">
+            <input type="text" id="nombre" name="nombre" value="{{ $sprint->nombre }}" class="form-control" data-minlength="3" maxlength="50" required>
             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
         </div>
         <div class="form-group has-feedback">
             <label for="proyecto_id" class="control-label">Proyecto:</label>
                 <select id="proyecto_id" name="proyecto_id" class="form-control">
-
-                    <option value="{{ $sprint->proyecto_id }}" selected disabled>{{ $sprint->proyecto->nombre }}</option>
-
                     @foreach ($proyectos as $proyecto)
-                        <option value="{{ $proyecto->id }}">{{ $proyecto->nombre }}</option>
+                        @if ($sprint->proyecto_id != $proyecto->id)
+                            <option value="{{ $proyecto->id }}">{{ $proyecto->nombre }}</option>
+                        @else
+                            <option value="{{ $proyecto->id }}" selected>{{ $proyecto->nombre }}</option>
+                        @endif
                     @endforeach
-
                 </select>
         </div>
         <div class="form-group has-feedback">
             <label for="descripcion" class="control-label">Descripción:</label>
-            <textarea id="descripcion" name="descripcion" class="form-control" rows="5">{{ $sprint->descripcion }}</textarea>
+            <textarea id="descripcion" name="descripcion" class="form-control" rows="5" data-minlength="3" maxlength="65535" required>{{ $sprint->descripcion }}</textarea>
             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
         </div>
         <div class="form-group has-feedback">

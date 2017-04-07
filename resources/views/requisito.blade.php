@@ -14,11 +14,15 @@
             <label for="sprint_id" class="control-label">Sprint:</label>
             <select id="sprint_id" name="sprint_id" class="form-control">
 
-                <option value="{{ $requisito_sprint->id }}" selected disabled>{{ $requisito_sprint->proyecto->nombre . ' - ' . $requisito_sprint->nombre }}</option>
+                <!--<option value="{{ $requisito_sprint->id }}" selected disabled>{{ $requisito_sprint->proyecto->nombre . ' - ' . $requisito_sprint->nombre }}</option>-->
 
                 @foreach ($proyectos as $proyecto)
                     @foreach ($proyecto->sprints as $sprint)
-                        <option value="{{ $sprint->id }}">{{ $proyecto->nombre . ' - ' . $sprint->nombre }}</option>
+                        @if ($sprint->id != $requisito->sprint_id)
+                            <option value="{{ $sprint->id }}">{{ $proyecto->nombre . ' - ' . $sprint->nombre }}</option>
+                        @else
+                            <option value="{{ $sprint->id }}" selected>{{ $proyecto->nombre . ' - ' . $sprint->nombre }}</option>
+                        @endif
                     @endforeach
                 @endforeach
             </select>

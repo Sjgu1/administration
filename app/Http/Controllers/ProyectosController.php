@@ -25,9 +25,7 @@ class ProyectosController extends Controller
         $this->validate($request, [
             'nombre' => ['string', 'min:3', 'max:20'],
             'descripcion' => ['string', 'min:3', 'max:65535'],
-            'repositorio' => 'url | nullable',
-            'fecha_inicio' => 'date_format:d/m/Y',
-            'fecha_fin_estimada' => 'date_format:d/m/Y'
+            'repositorio' => 'url | nullable'
         ]);
 
         $proyecto = Proyecto::where('id', $request->input('id'))->first();
@@ -140,9 +138,7 @@ class ProyectosController extends Controller
         $this->validate($request, [
             'nombre' => ['string', 'min:3', 'max:20'],
             'descripcion' => ['string', 'min:3', 'max:65535'],
-            'repositorio' => 'url | nullable',
-            'fecha_inicio' => 'date_format:d/m/Y',
-            'fecha_fin_estimada' => 'date_format:d/m/Y'
+            'repositorio' => 'url | nullable'
         ]);
 
         $proyecto = new Proyecto();
