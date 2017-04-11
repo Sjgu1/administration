@@ -20,6 +20,12 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
+
+
+    <!-- Librerías ChartJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js" type="text/javascript"></script>
+    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"><script>-->
+
 		
 </head>
 <nav class="navbar navbar-default">
