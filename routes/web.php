@@ -50,6 +50,8 @@ Route::get('rol/new', function(){ return view('rol_new'); });
 Route::get('permiso/new', function(){ return view('permiso_new'); });
 
 
+
+
 // Inserción de nuevos objetos relacionales
 Route::post('proyecto/create', 'ProyectosController@create');
 Route::post('sprint/create', 'SprintController@create');
