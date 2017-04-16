@@ -16,6 +16,15 @@ Route::get('/', function () {
     //return view('welcome');
 });
 
+Route::get('/home', function () {
+    return view('public/home');
+});
+Route::get('/proyecto', function () {
+    return view('public/proyecto');
+});
+Route::get('/contacto', function () {
+    return view('public/contacto');
+});
 //Route::get('index', 'RequisitosController@pagination');
 
 Route::get('hola', function(){ return view('prueba'); });
@@ -78,3 +87,6 @@ Route::post('sprints', 'SprintController@filtrar');
 Route::post('users', 'UserController@filtrar');
 Route::post('rols', 'RolController@filtrar');
 Route::post('requisitos', 'RequisitosController@filtrar');*/
+Auth::routes();
+
+//Route::get('/home', 'HomeController@index');

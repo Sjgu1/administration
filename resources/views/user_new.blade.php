@@ -3,8 +3,8 @@
     <form action="{{ url('user/create') }}" method="POST">
         {{ csrf_field() }}
         <div class="form-group">
-            <label for="nombre" class="control-label">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" class="form-control">
+            <label for="name" class="control-label">Nombre:</label>
+            <input type="text" id="name" name="name" class="form-control">
         </div>
         <div class="form-group">
             <label for="apellidos" class="control-label">Apellidos:</label>

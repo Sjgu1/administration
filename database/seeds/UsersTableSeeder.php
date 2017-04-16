@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->delete();
 
         $user = new User([
-            'nombre' => 'Jesús',
+            'name' => 'Jesús',
             'apellidos' => 'Perales Hernández',
             'email' => 'jesusperalesh@gmail.com',
             'username' => 'jph11',
@@ -26,7 +26,7 @@ class UsersTableSeeder extends Seeder
         $user->save();
 
         $user = new User([
-            'nombre' => 'Mario',
+            'name' => 'Mario',
             'apellidos' => 'Martínez Alfonso',
             'email' => 'mcnb@gmail.com',
             'username' => 'mma63',
@@ -36,7 +36,7 @@ class UsersTableSeeder extends Seeder
         $user->save();
 
         $user = new User([
-            'nombre' => 'Sergio Julio',
+            'name' => 'Sergio Julio',
             'apellidos' => 'García Urdiales',
             'email' => 'sjgu@alu.ua.es',
             'username' => 'sjgu12',
@@ -46,7 +46,7 @@ class UsersTableSeeder extends Seeder
         $user->save();
 
        $user = new User([
-            'nombre' => 'Alfonso',
+            'name' => 'Alfonso',
             'apellidos' => 'Martínez López',
             'email' => 'aml12@alu.ua.es',
             'username' => 'aml',
@@ -56,7 +56,7 @@ class UsersTableSeeder extends Seeder
         $user->save();
 
         $user = new User([
-            'nombre' => 'Lorena',
+            'name' => 'Lorena',
             'apellidos' => 'García Roca',
             'email' => 'lgr11@alu.ua.es',
             'username' => 'lgr',
@@ -66,7 +66,7 @@ class UsersTableSeeder extends Seeder
         $user->save();
 
         $user = new User([
-            'nombre' => 'Ana',
+            'name' => 'Ana',
             'apellidos' => 'Más Murcia',
             'email' => 'amm139@alu.ua.es',
             'username' => 'amm139',
@@ -76,7 +76,7 @@ class UsersTableSeeder extends Seeder
         $user->save();
 
         $user = new User([
-            'nombre' => 'Asunción',
+            'name' => 'Asunción',
             'apellidos' => 'Martínez Pérez',
             'email' => 'amp@alu.ua.es',
             'username' => 'amp66',
@@ -86,7 +86,7 @@ class UsersTableSeeder extends Seeder
         $user->save();
 
         $user = new User([
-            'nombre' => 'Eustaquio Jesús',
+            'name' => 'Eustaquio Jesús',
             'apellidos' => 'García Rocamora',
             'email' => 'ppl44@yahoo.es',
             'username' => 'ppl66',
@@ -96,7 +96,7 @@ class UsersTableSeeder extends Seeder
         $user->save();
 
         $user = new User([
-            'nombre' => 'Manuel',
+            'name' => 'Manuel',
             'apellidos' => 'Campillo Duréndez',
             'email' => 'zocato@yahoo.es',
             'username' => 'ttr4',
@@ -106,7 +106,7 @@ class UsersTableSeeder extends Seeder
         $user->save();
 
         $user = new User([
-            'nombre' => 'Alejandro',
+            'name' => 'Alejandro',
             'apellidos' => 'Rodríguez Portugués',
             'email' => 'arp@hotmail.com',
             'username' => 'arp23',
@@ -116,7 +116,7 @@ class UsersTableSeeder extends Seeder
         $user->save();
 
         $user = new User([
-            'nombre' => 'Jimeno',
+            'name' => 'Jimeno',
             'apellidos' => 'Escudero Albaladejo',
             'email' => 'jea@gcloud.ua.es',
             'username' => 'jea3',
