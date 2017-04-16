@@ -19,6 +19,7 @@ Route::get('/', function () {
 //Route::get('index', 'RequisitosController@pagination');
 
 Route::get('hola', function(){ return view('prueba'); });
+Route::get('hola2', 'UserController@gith');
 
 Route::get('index/{field?}', 'RequisitosController@search');
 

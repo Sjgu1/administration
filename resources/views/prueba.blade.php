@@ -8,7 +8,7 @@
     <!--<canvas id="myChart" width="400" height="400"></canvas>-->
         <div class="container">
             <div class="hero-unit">
-                <input type="text" placeholder="click to show datepicker"  id="example1">
+                <input type="text" placeholder="click to show datepicker" id="example1">
             </div>
         </div>
         <!-- Load jQuery and bootstrap datepicker scripts -->
@@ -20,10 +20,18 @@
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                    labels: [
+                        @foreach ($contributors as $key => $value)
+                                {!! '"' !!} {{ $key }} {!! '"' !!} {{ ',' }}
+                        @endforeach
+                    ],
                     datasets: [{
-                        label: '#ASDASD of Votes',
-                        data: [12, 19, 3, 5, 2, 3],
+                        label: 'Contribuciones',
+                        data: [
+                            @foreach ($contributors as $contributor)
+                                {{ $contributor . ',' }}
+                            @endforeach
+                        ],
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',
                             'rgba(54, 162, 235, 0.2)',
@@ -44,6 +52,7 @@
                     }]
                 },
                 options: {
+                    responsive: false,
                     scales: {
                         yAxes: [{
                             ticks: {

@@ -16,6 +16,56 @@ class UserController extends Controller
     }
     */
 
+    public function gith(){
+
+        /*$client = new \Github\Client();
+        $client->authenticate('jph11', 'Passwordprueba123', \Github\Client::AUTH_HTTP_PASSWORD);
+        $commits = $client->api('repo')->commits()->all('jph11', 'crisantemo', array('sha' => 'master'));
+
+        //var_dump($commits);
+
+        $contributors = array();
+
+        foreach ($commits as $commit){
+
+            //var_dump($commit['author']['login']);
+
+            if (array_key_exists($commit['committer']['login'], $contributors)){
+
+                $contributors[$commit['committer']['login']] += 1;
+
+            }
+            else {
+
+                $contributors[$commit['committer']['login']] = 1;
+
+            }
+        }
+
+        var_dump($contributors);*/
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'https://api.github.com/repos/jph11/crisantemo/stats/contributors');
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_USERPWD, 'jph11:Passwordprueba123');
+
+        $output = json_decode(curl_exec($ch), true);
+        $contributors = array();
+
+        foreach ($output as $contributor){
+
+            $contributors[$contributor['author']['login']] = $contributor['total'];
+        }
+
+        //var_dump($contributors);
+        //var_dump(json_decode($output, true));
+
+        curl_close($ch);
+        
+        return view('prueba', ['contributors' => $contributors]);
+    }
+
     public function search(){
          $users = User::get();
          return view('users', compact('users'));
