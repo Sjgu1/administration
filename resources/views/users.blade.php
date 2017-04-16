@@ -37,7 +37,7 @@ $(document).ready(function() {
 		<tbody>
             @foreach ($users as $user)
 			<tr>
-				<td><a href="user/{{ $user->id }}">{{ $user->nombre }}</a></td>
+				<td><a href="user/{{ $user->id }}">{{ $user->name }}</a></td>
     			<td>{{ $user->apellidos }}</td>
 				<td>{{ $user->email }}</td>
 				<td>{{ $user->username }}</td>

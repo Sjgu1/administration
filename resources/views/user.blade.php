@@ -7,8 +7,8 @@
             <input readonly="readonly" type="text" id="id" name="id" value="{{ $user->id }}" class="form-control">
         </div>
         <div class="form-group has-feedback">
-            <label for="nombre" class="control-label">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" value="{{ $user->nombre }}" class="form-control" data-minlength="3" maxlength="20" required>
+            <label for="name" class="control-label">Nombre:</label>
+            <input type="text" id="name" name="name" value="{{ $user->name }}" class="form-control" data-minlength="3" maxlength="20" required>
         </div>
         <div class="form-group has-feedback">
             <label for="apellidos" class="control-label">Apellidos:</label>
@@ -37,7 +37,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="myModalLabel">Borrar usuario</h4>
         </div>
-        <div class="modal-body">¿Estás seguro de que quieres borrar el usuario <b>{{ $user->nombre . ' ' . $user->apellidos}}</b>?</div>
+        <div class="modal-body">¿Estás seguro de que quieres borrar el usuario <b>{{ $user->name . ' ' . $user->apellidos}}</b>?</div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
             <button type="button" id="confirmacion" class="btn btn-primary">Borrar</button>
