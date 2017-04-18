@@ -51,7 +51,7 @@
 <div id="band" class="container text-center">
   <h3>El equipo</h3>
   <p><em>DSS</em></p>
-  <p>Somos un equipo de trabajo y no me apetece escribir mas.</p>
+  <p>Somos un equipo de trabajo.</p>
   <br>
   <div class="row">
     <div class="col-sm-3">
