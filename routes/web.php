@@ -25,6 +25,8 @@ Route::get('/proyecto', function () {
 Route::get('/contacto', function () {
     return view('public/contacto');
 });
+
+Route::post('/contacto', 'ContactoController@contacto');
 //Route::get('index', 'RequisitosController@pagination');
 
 Route::get('hola', function(){ return view('prueba'); });
@@ -82,8 +84,7 @@ Route::post('user/modificar', 'UserController@modify');
 Route::post('rol/modificar', 'RolController@modify');
 Route::post('permiso/modificar', 'PermisoController@modify');
 
-//Formulario de contacto
-Route::post('/contacto', 'ContactoController@contactar');
+
 
 // Filtrado de listado
 /*Route::post('proyectos', 'ProyectosController@filtrar');
