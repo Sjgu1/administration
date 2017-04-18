@@ -28,7 +28,7 @@
 
         <!-- First Featurette -->
         <div class="featurette" id="about">
-            <img class="featurette-image img-circle img-responsive pull-right" src="http://placehold.it/500x500">
+            <img class="featurette-image img-circle img-responsive pull-right" src="images/grupoTrabajo.jpg">
             <h2 class="featurette-heading">Crea un proyecto.
                 <span class="text-muted">Agrega a tus compañeros de equipo</span>
             </h2>
@@ -39,22 +39,22 @@
 
         <!-- Second Featurette -->
         <div class="featurette" id="services">
-            <img class="featurette-image img-circle img-responsive pull-left" src="http://placehold.it/500x500">
-            <h2 class="featurette-heading">The Second Heading
-                <span class="text-muted">Is Pretty Cool Too.</span>
+            <img class="featurette-image img-circle img-responsive pull-left" src="images/estadisticas2.png">
+            <h2 class="featurette-heading">Gráficas.
+                <span class="text-muted">Todo lo que quieres saber.</span>
             </h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <p class="lead">Realiza un seguimiento de tus proyectos. Analiza la colaboración de cada participante, observa el progreso y lo que falta para terminar, obtén feedback para mejorar futuros proyetos.</p>
         </div>
 
         <hr class="featurette-divider">
 
         <!-- Third Featurette -->
         <div class="featurette" id="contact">
-            <img class="featurette-image img-circle img-responsive pull-right" src="http://placehold.it/500x500">
-            <h2 class="featurette-heading">The Third Heading
-                <span class="text-muted">Will Seal the Deal.</span>
+            <img class="featurette-image img-circle img-responsive pull-right" src="images/easybutton.jpg">
+            <h2 class="featurette-heading">Sencillez.
+                <span class="text-muted">Fácil manejo.</span>
             </h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <p class="lead">Entra en las metodologías ágiles de una forma sencilla, aprende a manejar tus incidencias y a trabajar en grupo sin necesidad de horas de aprendizaje.</p>
         </div>
 
         <hr class="featurette-divider">
@@ -63,7 +63,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; Crisantemo 2017</p>
                 </div>
             </div>
         </footer>
