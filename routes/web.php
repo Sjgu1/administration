@@ -19,6 +19,7 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('public/home');
 });
+
 Route::get('/proyecto', function () {
     return view('public/proyecto');
 });
@@ -93,5 +94,3 @@ Route::post('users', 'UserController@filtrar');
 Route::post('rols', 'RolController@filtrar');
 Route::post('requisitos', 'RequisitosController@filtrar');*/
 Auth::routes();
-
-//Route::get('/home', 'HomeController@index');
