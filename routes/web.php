@@ -16,6 +16,11 @@ Route::get('/', function () {
     //return view('welcome');
 });
 
+Route::get('/admin', function () {
+    return view('public/pruebaAdmin');
+    //return view('welcome');
+});
+
 Route::get('/home', function () {
     return view('public/home');
 });
