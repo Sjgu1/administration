@@ -41,9 +41,17 @@ Route::get('hola2', 'UserController@gith');
 
 Route::get('index/{field?}', 'RequisitosController@search');
 
+
+
+
+
 Route::group(['middleware'=>'auth'], function(){
     Route::get('user/{id}', 'UserController@details');
+    //Route::get('logout', '\Auth\LoginController@logout');
 });
+
+
+
 
 // Listados de objetos relacionales
 Route::get('users', 'UserController@search');

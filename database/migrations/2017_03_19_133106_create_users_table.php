@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration
             $table->timestamp('username')->nullable();
             $table->timestamp('password')->nullable();
             $table->timestamp('fecha_registro')->nullable();
+            //requerido logout laravel
+            $table->string('remember_token')->nullable();
             // provisional
             $table->integer('rol_id')->nullable();
             $table->foreign('rol_id')->references('id')->on('rols')->onDelete('cascade');
