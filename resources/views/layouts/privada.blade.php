@@ -264,8 +264,41 @@ desired effect
       <ul class="sidebar-menu">
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>Proyectos</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/user/{id}/proyectosusers">Listar Proyectos</a></li>
+            <li><a href="#">Crear Proyecto</a></li>
+          </ul>
+        </li>         <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>Sprints</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#">Listar Sprints</a></li>
+            <li><a href="#">Crear Sprint</a></li>
+            <li><a href="#">bibidi babidi bu</a></li>
+          </ul>
+        </li>
+         <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>Requisitos</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/user/{id}/requisitosusers">Listar Requisitos</a></li>
+            <li><a href="#">Crear Requisito</a></li>
+            <li><a href="#">bibidi babidi bu</a></li>
+          </ul>
+        </li>
+
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
             <span class="pull-right-container">
