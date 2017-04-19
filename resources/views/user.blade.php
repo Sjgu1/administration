@@ -1,5 +1,7 @@
+@extends('layouts.privada')
+
 <body>
-    @include('navbar')
+@section('content')
     <form id="user_form" action="{{ url('user/modificar') }}" method="POST" role="form" data-toggle="validator">
         {{ csrf_field() }}
         <div class="form-group has-feedback">
@@ -51,4 +53,5 @@
             window.location.href="/user/borrar/{{ $user->id }}";
         })
     </script>
+@endsection
 </body>

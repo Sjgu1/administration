@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return redirect('users');
+    return redirect('home');
     //return view('welcome');
 });
 
@@ -40,6 +40,10 @@ Route::get('hola', function(){ return view('prueba'); });
 Route::get('hola2', 'UserController@gith');
 
 Route::get('index/{field?}', 'RequisitosController@search');
+
+Route::group(['middleware'=>'auth'], function(){
+    Route::get('user/{id}', 'UserController@details');
+});
 
 // Listados de objetos relacionales
 Route::get('users', 'UserController@search');
@@ -71,7 +75,7 @@ Route::post('permiso/create', 'PermisoController@create');
 Route::get('proyecto/{id}', 'ProyectosController@details');
 Route::get('sprint/{id}', 'SprintController@details');
 Route::get('requisito/{id}', 'RequisitosController@details');
-Route::get('user/{id}', 'UserController@details');
+
 Route::get('rol/{id}', 'RolController@details');
 Route::get('permiso/{id}', 'PermisoController@details');
 
@@ -90,8 +94,6 @@ Route::post('sprint/modificar', 'SprintController@modify');
 Route::post('user/modificar', 'UserController@modify');
 Route::post('rol/modificar', 'RolController@modify');
 Route::post('permiso/modificar', 'PermisoController@modify');
-
-
 
 // Filtrado de listado
 /*Route::post('proyectos', 'ProyectosController@filtrar');
