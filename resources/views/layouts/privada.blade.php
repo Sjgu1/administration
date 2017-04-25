@@ -272,7 +272,7 @@ desired effect
           </a>
           <ul class="treeview-menu">
             <li><a href="/user/{id}/proyectosusers">Listar Proyectos</a></li>
-            <li><a href="#">Crear Proyecto</a></li>
+            <li><a href="/user/{id}/proyectonew">Crear Proyecto</a></li>
           </ul>
         </li>         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Sprints</span>
