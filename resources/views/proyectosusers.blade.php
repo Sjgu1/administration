@@ -30,7 +30,6 @@ $(document).ready(function() {
 				@endforeach
 			</tbody>
 		</table>
-	{{ $proyectosusers->links() }}
 	</form>
 	<hr>
 	<!--<form action="{{ url('proyecto/new') }}" method="GET">

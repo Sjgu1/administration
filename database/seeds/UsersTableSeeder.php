@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
             'apellidos' => 'Perales Hernández',
             'email' => 'jesusperalesh@gmail.com',
             'username' => 'jph11',
-            'password' => '123456',
+            'password' => bcrypt('123456'),
             'fecha_registro' => '20/05/2016'
         ]);
         $user->save();
@@ -30,7 +30,7 @@ class UsersTableSeeder extends Seeder
             'apellidos' => 'Martínez Alfonso',
             'email' => 'mcnb@gmail.com',
             'username' => 'mma63',
-            'password' => '123456',
+            'password' => bcrypt('123456'),
             'fecha_registro' => '12/06/2016'
         ]);
         $user->save();
@@ -40,7 +40,7 @@ class UsersTableSeeder extends Seeder
             'apellidos' => 'García Urdiales',
             'email' => 'sjgu@alu.ua.es',
             'username' => 'sjgu12',
-            'password' => '123456',
+            'password' => bcrypt('123456'),
             'fecha_registro' => '11/06/2017'
         ]);
         $user->save();
@@ -50,7 +50,7 @@ class UsersTableSeeder extends Seeder
             'apellidos' => 'Martínez López',
             'email' => 'aml12@alu.ua.es',
             'username' => 'aml',
-            'password' => '123456',
+            'password' => bcrypt('123456'),
             'fecha_registro' => '04/03/2014'
         ]);
         $user->save();
@@ -60,7 +60,7 @@ class UsersTableSeeder extends Seeder
             'apellidos' => 'García Roca',
             'email' => 'lgr11@alu.ua.es',
             'username' => 'lgr',
-            'password' => '123456',
+            'password' => bcrypt('123456'),
             'fecha_registro' => '03/02/2012'
         ]);
         $user->save();
@@ -70,7 +70,7 @@ class UsersTableSeeder extends Seeder
             'apellidos' => 'Más Murcia',
             'email' => 'amm139@alu.ua.es',
             'username' => 'amm139',
-            'password' => '123456',
+            'password' => bcrypt('123456'),
             'fecha_registro' => '03/02/2015'
         ]);
         $user->save();
@@ -80,7 +80,7 @@ class UsersTableSeeder extends Seeder
             'apellidos' => 'Martínez Pérez',
             'email' => 'amp@alu.ua.es',
             'username' => 'amp66',
-            'password' => '123456',
+            'password' => bcrypt('123456'),
             'fecha_registro' => '03/02/2015'
         ]);
         $user->save();
@@ -90,7 +90,7 @@ class UsersTableSeeder extends Seeder
             'apellidos' => 'García Rocamora',
             'email' => 'ppl44@yahoo.es',
             'username' => 'ppl66',
-            'password' => '123456',
+            'password' => bcrypt('123456'),
             'fecha_registro' => '03/02/2015'
         ]);
         $user->save();
@@ -100,7 +100,7 @@ class UsersTableSeeder extends Seeder
             'apellidos' => 'Campillo Duréndez',
             'email' => 'zocato@yahoo.es',
             'username' => 'ttr4',
-            'password' => '123456',
+            'password' => bcrypt('123456'),
             'fecha_registro' => '23/12/2000'
         ]);
         $user->save();
@@ -110,7 +110,7 @@ class UsersTableSeeder extends Seeder
             'apellidos' => 'Rodríguez Portugués',
             'email' => 'arp@hotmail.com',
             'username' => 'arp23',
-            'password' => '123456',
+            'password' => bcrypt('123456'),
             'fecha_registro' => '14/12/199'
         ]);
         $user->save();
@@ -120,7 +120,7 @@ class UsersTableSeeder extends Seeder
             'apellidos' => 'Escudero Albaladejo',
             'email' => 'jea@gcloud.ua.es',
             'username' => 'jea3',
-            'password' => '123456',
+            'password' => bcrypt('123456'),
             'fecha_registro' => '05/08/2017'
         ]);
         $user->save();

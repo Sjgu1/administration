@@ -26,8 +26,10 @@ class AddPasswordToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+
+        Schema::drop('users');
+        //Schema::table('users', function (Blueprint $table) {
             //
-        });
+        //});
     }
 }
