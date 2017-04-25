@@ -33,6 +33,11 @@ Route::get('/contacto', function () {
     return view('public/contacto');
 });
 
+
+Route::get('/pizarra', function () {
+    return view('private/pizarra');
+});
+
 Route::post('/contacto', 'ContactoController@contacto');
 //Route::get('index', 'RequisitosController@pagination');
 
