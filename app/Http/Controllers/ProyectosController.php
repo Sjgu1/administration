@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Input;
 use App\Proyecto;
+use App\ProyectoUser;
+use Auth;
+use Log;
 
 
 class ProyectosController extends Controller
@@ -151,4 +154,5 @@ class ProyectosController extends Controller
         $proyecto->save();
         return redirect('proyectos');
     }
+
 }

@@ -18,6 +18,9 @@ $(document).ready(function() {
 		<h1> Proyectos </h1>
 			<tr>
         		<th>Nombre</th>
+				<th>Descripción</th>
+				<th>Repositorio</th>
+				<th>Fecha de inicio</th>
 			</tr>
 		</thead>
 			<tbody>

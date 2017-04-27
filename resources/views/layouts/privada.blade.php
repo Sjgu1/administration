@@ -281,8 +281,8 @@ desired effect
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">Listar Sprints</a></li>
-            <li><a href="#">Crear Sprint</a></li>
+            <li><a href="/user/{id}/sprintsusers">Listar Sprints</a></li>
+            <li><a href="/user/{id}/sprintnew">Crear Sprint</a></li>
             <li><a href="#">bibidi babidi bu</a></li>
           </ul>
         </li>
@@ -294,7 +294,7 @@ desired effect
           </a>
           <ul class="treeview-menu">
             <li><a href="/user/{id}/requisitosusers">Listar Requisitos</a></li>
-            <li><a href="#">Crear Requisito</a></li>
+            <li><a href="/user/{id}/requisitonew">Crear Requisito</a></li>
             <li><a href="#">bibidi babidi bu</a></li>
           </ul>
         </li>
