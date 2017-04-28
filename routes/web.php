@@ -34,9 +34,8 @@ Route::get('/contacto', function () {
 });
 
 
-Route::get('/pizarra', function () {
-    return view('private/pizarra');
-});
+Route::get('/pizarra', 'SprintController@pizarra');
+Route::post('/pizarra', 'RequisitosController@hola');
 
 Route::post('/contacto', 'ContactoController@contacto');
 //Route::get('index', 'RequisitosController@pagination');
@@ -53,7 +52,7 @@ Route::get('user/{id}/proyectosusers', 'InsideController@searchProyecto');
 Route::get('user/{id}/requisitosusers', 'InsideController@searchRequisito');
 Route::get('user/{id}/sprintsusers', 'InsideController@searchSprint');
 Route::group(['middleware'=>'auth'], function(){
-    Route::get('user/{id}', 'UserController@details');
+Route::get('user/{id}', 'UserController@details');
     //Route::get('logout', '\Auth\LoginController@logout');
 });
 
