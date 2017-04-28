@@ -22,6 +22,7 @@ class CreateRequisitosTable extends Migration
             $table->timestamp('fecha_fin_estimada')->nullable();
             $table->integer('sprint_id');
             $table->foreign('sprint_id')->references('id')->on('sprints')->onDelete('cascade');
+            $table->enum('estado', ['Por hacer', 'En trámite' , 'Hecho']);
             $table->timestamps();
         });
     }
