@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Input;
 use App\RequisitoUser;
 use App\ProyectoUser;
-use App\SprintUser;
+use App\Sprint;
 use Auth;
 use Log;
 

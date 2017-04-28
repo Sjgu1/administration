@@ -18,6 +18,10 @@ class Sprint extends Model
         'nombre'
     ];
 
+    public function Sprint(){
+        return $this->belongsTo('App\Sprint');
+    }
+
     public function proyecto(){
 
         return $this->belongsTo('App\Proyecto');

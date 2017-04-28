@@ -80,7 +80,7 @@ desired effect
             <!-- Menu toggle button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">4</span>
+              <span class="label label-success">X</span>
             </a>
             <ul class="dropdown-menu">
               <li class="header">You have 4 messages</li>
