@@ -47,12 +47,9 @@ class InsideController extends Controller
     }
 
     public function searchSprint(){
-         $user = Auth::id();
-         Log::info($user);
-         $sprintsusers = Sprint::with('sprint')->get()->where('user_id', $user);
+         $sprintsusers = Sprint::with('proyecto')->get();
          return view('user.sprintsusers', compact('sprintsusers'));
     }
-
 }
 
 
