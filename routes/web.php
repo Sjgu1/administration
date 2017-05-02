@@ -52,6 +52,11 @@ Route::get('user/{id}/proyectosusers', 'InsideController@searchProyecto');
 Route::get('user/{id}/proyecto/new', function(){ return view('user.proyectonew'); });
 Route::post('user/{id}/proyecto/create', 'InsideController@createProyecto');
 
+Route::get('user/{id}/requisito/new', function(){ return view('user.requisitonew'); });
+Route::post('user/{id}/requisito/create', 'InsideController@createRequisito');
+
+
+
 Route::get('user/{id}/requisitosusers', 'InsideController@searchRequisito');
 Route::get('user/{id}/sprintsusers', 'InsideController@searchSprint');
 

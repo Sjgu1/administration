@@ -2,7 +2,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 
-    $('#requuisitosusers tr').click(function() {
+    $('#requisitosusers tr').click(function() {
         var href = $(this).find("a").attr("href");
         if(href) {
             window.location = href;
@@ -28,12 +28,15 @@ $(document).ready(function() {
 				<tr>
 					<td><a href="user/{{$user->id}}/requisitosusers" >{{ $requisitouser->proyecto->nombre }}</a></td>
 					<td>{{ $requisitouser->nombre }}</td>
-					<td></td>
+					<td></d>
 				</tr>
 				@endforeach
 			</tbody>
 		</table>
 	</form>
 	<hr>
+		<!--<form action="{{ url('proyecto/new') }}" method="GET">
+	<button type="submit">Crear</button>	
+	</button>-->
 @endsection
 </body>
