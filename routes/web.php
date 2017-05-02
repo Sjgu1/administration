@@ -47,8 +47,8 @@ Route::get('user/{id}/proyectosusers', 'ProyectoUserController@search');
 Route::get('user/{id}/requisitosusers', 'RequisitoUserController@search');
 
 Route::group(['middleware'=>'auth'], function(){
-    Route::get('user/{id}', 'UserController@details');
-    //Route::get('logout', '\Auth\LoginController@logout');
+    Route::get('user/{id}', 'UserController@sayHello');
+    Route::get('profile/{id}', 'UserController@details');
 });
 
 

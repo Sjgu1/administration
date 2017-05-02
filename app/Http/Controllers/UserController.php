@@ -138,10 +138,9 @@ class UserController extends Controller
         if($user==null){
             return view('alerta_elemento',['slot'=> "No existe el elemento Usuario: " .$id  ] );
         }else{
-            return view('user', ['user' => $user]);
+            return view('profile', ['user' => $user]);
         }
-        
-    }
+     }
 
     public function modify(Request $request){
 
@@ -170,5 +169,14 @@ class UserController extends Controller
         $user->delete();
         return view('exito_elemento',['slot'=> "Se ha eliminado el Usuario: " .$user->id  ] );
 
+    }
+
+    public function sayHello($id){
+        $user = User::where('id', $id)->first();
+        if($user==null){
+            return view('alerta_elemento',['slot'=> "No existe el elemento Usuario: " .$id  ] );
+        }else{
+            return view('user', ['user' => $user]);
+        }
     }
 }

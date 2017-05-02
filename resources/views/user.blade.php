@@ -2,6 +2,7 @@
 
 <body>
 @section('content')
+    <h1>ESTO ES LA VISTA DE USUARIO!</h1>
     <form id="user_form" action="{{ url('user/modificar') }}" method="POST" role="form" data-toggle="validator">
         {{ csrf_field() }}
         <div class="form-group has-feedback">

@@ -49,7 +49,7 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="user/{{ $user->id }}">Perfil</a>
+                                        <a href="user/{{ $user->id }}">Tablon</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('logout') }}"
