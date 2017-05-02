@@ -26,7 +26,7 @@ $(document).ready(function() {
 			<tbody>
 				@foreach($requisitosusers as $requisitouser)
 				<tr>
-					<td><a href="user/{{$user->id}}/requisitosusers" >{{ $requisitouser->proyecto->nombre }}</a></td>
+					<td><a href="user/{{$user->id}}/requisitosusers" >{{ $requisitouser->requisito->nombre }}</a></td>
 					<td>{{ $requisitouser->nombre }}</td>
 					<td></d>
 				</tr>
