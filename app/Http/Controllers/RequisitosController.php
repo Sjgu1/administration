@@ -7,10 +7,16 @@ use Illuminate\Http\Request;
 use App\Proyecto;
 use App\Sprint;
 use App\Requisito;
+use Log;
 
 class RequisitosController extends Controller
 {
 
+    public function hola(Request $request){
+        $requisito = Requisito::where('id', $request->id)->first();
+        $requisito->estado= $request->estado;
+        $requisito->save();
+    }
     public function details($id){
         $requisito = Requisito::where('id', $id)->first();
         $requisito_sprint = Sprint::where('id', $requisito->sprint_id)->first();

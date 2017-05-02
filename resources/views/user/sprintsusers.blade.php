@@ -1,8 +1,8 @@
-@include('navbar')
+@extends('layouts.privada')
 <script type="text/javascript">
 $(document).ready(function() {
 
-    $('#sprints tr').click(function() {
+    $('#sprintsusers tr').click(function() {
         var href = $(this).find("a").attr("href");
         if(href) {
             window.location = href;
@@ -11,19 +11,9 @@ $(document).ready(function() {
 
 });
 </script>
-	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js">
-	</script>
-	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js">
-	</script>
-
-	<script type="text/javascript" class="init">	
-        $(document).ready(function() {
-            $('#sprints').DataTable();
-        } );
-    </script>
-</head>
 <body>
-	<table id="sprints" class="table table-striped table-bordered display" cellspacing="0" width="100%">
+	@section('content')
+	<table id="sprintsusers" class="table table-striped table-bordered display" cellspacing="0" width="100%">
     	<thead>
 			<tr>
         		<th>Nombre</th>
@@ -33,7 +23,7 @@ $(document).ready(function() {
 			</tr>
 		</thead>
 		<tbody>
-            @foreach ($sprints as $sprint)
+            @foreach ($sprintsusers as $sprint)
 			<tr>
 				<td><a href="sprint/{{ $sprint->id }}">{{ $sprint->nombre }}</a></td>
     			<td>{{ $sprint->descripcion }}</td>
@@ -42,6 +32,11 @@ $(document).ready(function() {
 			</tr>
             @endforeach
 		</tbody>
-    </table>					
-	</script>
+    </table>		
+	</form>
+	<hr>
+	<!--<form action="{{ url('proyecto/new') }}" method="GET">
+	<button type="submit">Crear</button>	
+	</button>-->
+@endsection
 </body>

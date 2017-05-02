@@ -8,6 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>{{$user->name}} | Profile</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -80,7 +81,7 @@ desired effect
             <!-- Menu toggle button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">4</span>
+              <span class="label label-success">X</span>
             </a>
             <ul class="dropdown-menu">
               <li class="header">You have 4 messages</li>
@@ -272,7 +273,7 @@ desired effect
           </a>
           <ul class="treeview-menu">
             <li><a href="/user/{id}/proyectosusers">Listar Proyectos</a></li>
-            <li><a href="#">Crear Proyecto</a></li>
+            <li><a href="/user/{id}/proyectonew">Crear Proyecto</a></li>
           </ul>
         </li>         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Sprints</span>
@@ -281,8 +282,8 @@ desired effect
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">Listar Sprints</a></li>
-            <li><a href="#">Crear Sprint</a></li>
+            <li><a href="/user/{id}/sprintsusers">Listar Sprints</a></li>
+            <li><a href="/user/{id}/sprintnew">Crear Sprint</a></li>
             <li><a href="#">bibidi babidi bu</a></li>
           </ul>
         </li>
@@ -294,7 +295,7 @@ desired effect
           </a>
           <ul class="treeview-menu">
             <li><a href="/user/{id}/requisitosusers">Listar Requisitos</a></li>
-            <li><a href="#">Crear Requisito</a></li>
+            <li><a href="/user/{id}/requisitonew">Crear Requisito</a></li>
             <li><a href="#">bibidi babidi bu</a></li>
           </ul>
         </li>

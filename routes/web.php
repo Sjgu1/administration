@@ -33,6 +33,10 @@ Route::get('/contacto', function () {
     return view('public/contacto');
 });
 
+
+Route::get('/pizarra', 'SprintController@pizarra');
+Route::post('/pizarra', 'RequisitosController@hola');
+
 Route::post('/contacto', 'ContactoController@contacto');
 //Route::get('index', 'RequisitosController@pagination');
 
@@ -43,10 +47,13 @@ Route::get('index/{field?}', 'RequisitosController@search');
 
 
 //Usuario
-Route::get('user/{id}/proyectosusers', 'ProyectoUserController@search');
-Route::get('user/{id}/requisitosusers', 'RequisitoUserController@search');
-
+Route::get('user/{id}/proyectosusers', 'InsideController@searchProyecto');
+Route::get('user/{id}/proyecto/new', function(){ return view('user.proyectonew'); });
+Route::post('user/{id}/proyecto/create', 'InsideController@createProyecto');
+Route::get('user/{id}/requisitosusers', 'InsideController@searchRequisito');
+Route::get('user/{id}/sprintsusers', 'InsideController@searchSprint');
 Route::group(['middleware'=>'auth'], function(){
+
     Route::get('user/{id}', 'UserController@sayHello');
     Route::get('profile/{id}', 'UserController@details');
 });
