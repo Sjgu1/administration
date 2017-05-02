@@ -48,10 +48,13 @@ Route::get('index/{field?}', 'RequisitosController@search');
 
 //Usuario
 Route::get('user/{id}/proyectosusers', 'InsideController@searchProyecto');
+
 Route::get('user/{id}/proyecto/new', function(){ return view('user.proyectonew'); });
 Route::post('user/{id}/proyecto/create', 'InsideController@createProyecto');
+
 Route::get('user/{id}/requisitosusers', 'InsideController@searchRequisito');
 Route::get('user/{id}/sprintsusers', 'InsideController@searchSprint');
+
 Route::group(['middleware'=>'auth'], function(){
 Route::get('user/{id}', 'UserController@details');
     //Route::get('logout', '\Auth\LoginController@logout');

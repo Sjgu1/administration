@@ -1,6 +1,8 @@
+@extends('layouts.privada')
+    
 <body>
-    @include('navbar')
-    <form id="proyecto_form" action="{{ url('proyecto/create') }}" method="POST" role="form" data-toggle="validator">
+@section('content')
+        <form id="proyecto_form" action="{{ url('proyecto/create') }}" method="POST" role="form" data-toggle="validator">
         {{ csrf_field() }}
         <!--<div class="form-group has-feedback">
             <label for="date" class="control-label">Date:</label>
@@ -57,4 +59,5 @@
 
     });
     </script>
+@endsection
 </body>

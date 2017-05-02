@@ -273,20 +273,9 @@ desired effect
           </a>
           <ul class="treeview-menu">
             <li><a href="/user/{id}/proyectosusers">Listar Proyectos</a></li>
-            <li><a href="/user/{id}/proyectonew">Crear Proyecto</a></li>
+            <li><a href="/user/{id}/proyecto/new">Crear Proyecto</a></li>
           </ul>
-        </li>         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Sprints</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="/user/{id}/sprintsusers">Listar Sprints</a></li>
-            <li><a href="/user/{id}/sprintnew">Crear Sprint</a></li>
-            <li><a href="#">bibidi babidi bu</a></li>
-          </ul>
-        </li>
+        </li>         
          <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Requisitos</span>
             <span class="pull-right-container">
