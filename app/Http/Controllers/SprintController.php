@@ -7,10 +7,23 @@ use App\Http\Controllers\Input;
 use Validator;
 use App\Proyecto;
 use App\Sprint;
+use App\Requisito;
+use Auth;
+use Log;
 
 class SprintController extends Controller
 {
 
+    public function pizarra(){
+         $proyecto = 1;
+         $sprint = 1;
+         $user = Auth::id();
+         Log::info($user);
+         $requisitos = Requisito::get()
+                    ->where('sprint_id', $sprint);
+        Log::info($requisitos);
+         return view('private.pizarra', compact('requisitos'));
+    }
     public function details($id){
 
         $sprint = Sprint::where('id', $id)->first();
