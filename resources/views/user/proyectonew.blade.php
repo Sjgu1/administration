@@ -1,6 +1,8 @@
+@extends('layouts.privada')
+    
 <body>
-    @include('navbar')
-    <form id="proyecto_form" action="{{ url('proyecto/create') }}" method="POST" role="form" data-toggle="validator">
+@section('content')
+        <form id="proyecto_form" action="{{ url('proyecto/create') }}" method="POST" role="form" data-toggle="validator">
         {{ csrf_field() }}
         <!--<div class="form-group has-feedback">
             <label for="date" class="control-label">Date:</label>
@@ -27,14 +29,14 @@
         <div class="form-group has-feedback">
             <label for="fecha_inicio" class="control-label">Fecha inicio:</label>
             <div class="input-group">
-                <input type="text" id="fecha_inicio" name="fecha_inicio" class="form-control" value="{{ old('fecha_inicio') }}" placeholder="dd/MM/YY" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" required>
+                <input type="text" id="fecha_inicio" name="fecha_inicio" class="form-control" value="{{ old('fecha_inicio') }}" placeholder="dd/MM/YYYY" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" required>
                 <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
             </div>
         </div>
         <div class="form-group has-feedback">
             <label for="fecha_fin_estimada" class="control-label">Fecha fin estimada:</label>
             <div class="input-group">
-                <input type="text" id="fecha_fin_estimada" name="fecha_fin_estimada" class="form-control" value="{{ old('fecha_fin_estimada') }}" placeholder="dd/MM/YY" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" required>
+                <input type="text" id="fecha_fin_estimada" name="fecha_fin_estimada" class="form-control" value="{{ old('fecha_fin_estimada') }}" placeholder="dd/MM/YYYY" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" required>
                 <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
             </div>
         </div>
@@ -57,4 +59,5 @@
 
     });
     </script>
+@endsection
 </body>

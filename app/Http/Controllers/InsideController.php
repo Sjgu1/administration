@@ -46,6 +46,23 @@ class InsideController extends Controller
          return view('user.requisitosusers', compact('requisitosusers'));
     }
 
+    public function createRequisito(Request $request){
+
+        $this->validate($request, [
+            'nombre' => ['string', 'min:3', 'max:20'],
+            'descripcion' => ['string', 'min:3', 'max:65535'],
+        ]);
+
+        $requisito = new Requisito();
+        $requisito->nombre = $request->input('nombre');
+        $requisito->descripcion = $request->input('descripcion');
+        $requisito->sprint_id = $request->input('sprint_id');
+        $requisito->fecha_inicio = '20/06/2017';
+        
+        $requisito->save();
+        return redirect('user.requisitosusers');
+    }
+
     public function searchSprint(){
          $user = Auth::id();
          Log::info($user);
