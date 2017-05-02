@@ -60,7 +60,7 @@ desired effect
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="{{ url('user/' . $user->id) }}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>Crs</b></span>
       <!-- logo for regular state and mobile devices -->
@@ -208,17 +208,14 @@ desired effect
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="profile/{{$user->id}}" class="btn btn-default btn-flat">Profile</a>
+                  <a href="{{ url('profile/' . $user->id) }}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
+                  <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                           document.getElementById('logout-form').submit();" class="btn btn-default btn-flat"> Logout </a>
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      {{ csrf_field() }}
+                  </form>
                 </div>
               </li>
             </ul>

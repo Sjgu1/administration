@@ -55,7 +55,7 @@ Route::get('user/{id}/sprintsusers', 'InsideController@searchSprint');
 Route::group(['middleware'=>'auth'], function(){
 
     Route::get('user/{id}', 'UserController@sayHello');
-    Route::get('profile/{id}', 'UserController@details');
+    Route::get('/profile/{id}', 'UserController@details');
 });
 
 
