@@ -55,6 +55,11 @@ Route::post('user/{id}/proyecto/create', 'InsideController@createProyecto');
 Route::get('user/{id}/requisito/new', function(){ return view('user.requisitonew'); });
 Route::post('user/{id}/requisito/create', 'InsideController@createRequisito');
 
+Route::get('actividad', function(){ return view('user.actividad'); });
+Route::get('graficos/burndown', 'ProyectosController@burndown_sprints');
+Route::get('graficos/burndown/sprints', 'ProyectosController@burndown_sprints');
+Route::get('graficos/commits', 'ProyectosController@burndown_sprints');
+
 
 
 Route::get('user/{id}/requisitosusers', 'InsideController@searchRequisito');

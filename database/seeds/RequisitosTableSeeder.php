@@ -120,6 +120,39 @@ class RequisitosTableSeeder extends Seeder
         $sprint = Sprint::where('id', '4')->first();
         $requisito->sprint()->associate($sprint);
         $requisito->save();
+
+
+        // Requisitos de prueba para burndown
+        $requisito = new Requisito(['nombre' => 'Configurar base de datos', 
+        'descripcion' => 'Requisito utilizado para la puesta a punto de la base de datos', 
+        'fecha_inicio' => '05/05/2017',
+        'fecha_fin_estimada' => '05/05/2017',
+        'fecha_fin' => '05/05/2017',
+        'estado' => 'Por hacer']);
+        $sprint = Sprint::where('id', '13')->first();
+        $requisito->sprint()->associate($sprint);
+        $requisito->save();
+
+        $requisito = new Requisito(['nombre' => 'Configurar plantilla', 
+        'descripcion' => 'Requisito utilizado para la configuración de la plantilla', 
+        'fecha_inicio' => '05/05/2017',
+        'fecha_fin_estimada' => '07/05/2017',
+        'fecha_fin' => '07/05/2017',
+        'estado' => 'Por hacer']);
+        $sprint = Sprint::where('id', '13')->first();
+        $requisito->sprint()->associate($sprint);
+        $requisito->save();
+
+        $requisito = new Requisito(['nombre' => 'Crear controladores', 
+        'descripcion' => 'Requisito utilizado para la creación de los controladores', 
+        'fecha_inicio' => '07/05/2017',
+        'fecha_fin_estimada' => '20/05/2017',
+        'fecha_fin' => '19/05/2017',
+        'estado' => 'Por hacer']);
+        $sprint = Sprint::where('id', '13')->first();
+        $requisito->sprint()->associate($sprint);
+        $requisito->save();
+
         // A ver si borra
        // DB::table('proyectos')->where('nombre', 'Proyecto número 1')->delete();
 

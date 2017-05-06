@@ -135,5 +135,15 @@ class SprintsTableSeeder extends Seeder
         $proyecto = Proyecto::where('nombre', 'Bootstrap')->first();
         $sprint->proyecto()->associate($proyecto);
         $sprint->save();
+
+        $sprint = new Sprint([
+            'nombre' => 'Sprint de prueba para Burndown',
+            'descripcion' => 'Este es un sprint de prueba diseñado exclusivamente para burndown',
+            'fecha_inicio' => '05/05/2017',
+            'fecha_fin_estimada' => '20/05/2017'
+        ]);
+        $proyecto = Proyecto::where('nombre', 'Bootstrap')->first();
+        $sprint->proyecto()->associate($proyecto);
+        $sprint->save();
     }
 }
