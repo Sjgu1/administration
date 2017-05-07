@@ -25,11 +25,13 @@
   <![endif]-->
 
   <!-- jQuery 2.2.3 -->
-  <script src="/adminlte/plugins/jQuery/jquery-2.2.3.min.js"></script>
+  <!--<script src="/adminlte/plugins/jQuery/jquery-2.2.3.min.js"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
   <!-- Bootstrap 3.3.6 -->
   <script src="/adminlte/bootstrap/js/bootstrap.min.js"></script>
   <!-- ChartJS 1.0.1 -->
-  <script src="/adminlte/plugins/chartjs/Chart.min.js"></script>
+  <!--<script src="/adminlte/plugins/chartjs/Chart.min.js"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.js"></script>
   <!-- FastClick -->
   <script src="/adminlte/plugins/fastclick/fastclick.js"></script>
   <!-- AdminLTE App -->
@@ -361,26 +363,28 @@
         </li>
         <li>
           <a href="../widgets.html">
-            <i class="fa fa-th"></i> <span>Pizarra</span>
+            <i class="fa fa-th"></i>
+            <span>Pizarra</span>
             <span class="pull-right-container">
               <small class="label pull-right bg-green">new</small>
             </span>
           </a>
         </li>
-        <li class="treeview">
-          <a href="#">
+        <li>
+          <a href="/actividad">
             <i class="fa fa-pie-chart"></i>
             <span>Actividad</span>
             <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
+              <small class="label pull-right bg-green">new</small>
+              <!--<i class="fa fa-angle-left pull-right"></i>-->
             </span>
           </a>
-          <ul class="treeview-menu">
+          <!--<ul class="treeview-menu">
             <li><a href="../charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
             <li><a href="../charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
             <li><a href="../charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
             <li><a href="../charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
-          </ul>
+          </ul>-->
         </li>
         <li class="treeview active">
           <a href="#">
@@ -394,7 +398,7 @@
             <li><a href="/graficos/burndown"><i class="fa fa-circle-o"></i>Burndown</a></li>
             <li><a href="/graficos/burndown/sprints"><i class="fa fa-circle-o"></i>Burndown sprints</a></li>
             <li><a href="icons.html"><i class="fa fa-circle-o"></i>GIT</a></li>
-            <li><a href="buttons.html"><i class="fa fa-circle-o"></i>Requisitos</a></li>
+            <li><a href="/graficos/requisitos"><i class="fa fa-circle-o"></i>Requisitos</a></li>
             <li><a href="/graficos/commits"><i class="fa fa-circle-o"></i>Commits</a></li>
             <li class="active"><a href="timeline.html"><i class="fa fa-circle-o"></i>Timeline</a></li>
             <li><a href="modals.html"><i class="fa fa-circle-o"></i>Modals</a></li>

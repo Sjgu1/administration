@@ -79,9 +79,9 @@
     //--------------
 
     // Get context with jQuery - using jQuery's .get() method.
-    var areaChartCanvas = $("#lineChart").get(0).getContext("2d");
+    //var areaChartCanvas = $("#lineChart").get(0).getContext("2d");
     // This will get the first returned node in the jQuery collection.
-    var areaChart = new Chart(areaChartCanvas);
+    //var areaChart = new Chart(areaChartCanvas);
 
     var areaChartData = {
       labels: [
@@ -93,35 +93,47 @@
       ],
       datasets: [
         {
-          label: "Burndown estimado",
-          fillColor: "rgba(210, 214, 222, 1)",
-          strokeColor: "rgba(210, 214, 222, 1)",
-          pointColor: "rgba(210, 214, 222, 1)",
-          pointStrokeColor: "#c1c7d1",
-          pointHighlightFill: "#fff",
-          pointHighlightStroke: "rgba(220,220,220,1)",
-          data: [
-
-            @foreach ($burndown_estimado as $hora)
-              {{ $hora . ',' }}
-            @endforeach
-          
-          ]
-        },
-        {
           label: "Burndown horas reales",
-          fillColor: "rgba(60,141,188,0.9)",
-          strokeColor: "rgba(60,141,188,0.8)",
-          pointColor: "#3b8bba",
-          pointStrokeColor: "rgba(60,141,188,1)",
-          pointHighlightFill: "#fff",
-          pointHighlightStroke: "rgba(60,141,188,1)",
+          backgroundColor: "rgba(60,141,188,0.9)",
+          fill: false,
+          lineTension: 0,
+          borderColor: "rgba(60,141,188,0.8)",
+          pointBackgroundColor: "#3b8bba",
+          pointHoverBackgroundColor: "#fff",
+          //fillColor: "rgba(60,141,188,0.9)",
+          //strokeColor: "rgba(60,141,188,0.8)",
+          //pointColor: "#3b8bba",
+          //pointStrokeColor: "rgba(60,141,188,1)",
+          //pointHighlightFill: "#fff",
+          //pointHighlightStroke: "rgba(60,141,188,1)",
           data: [
 
             @foreach ($burndown_reales as $hora)
               {{ $hora . ',' }}
             @endforeach
 
+          ]
+        },
+        {
+          label: "Burndown estimado",
+          backgroundColor: "rgba(210, 214, 222, 1)",
+          fill: false,
+          lineTension: 0,
+          borderColor: "rgba(210, 214, 222, 1)",
+          pointBackgroundColor: "rgba(210, 214, 222, 1)",
+          pointHoverBackgroundColor: "#fff",
+          //fillColor: "rgba(210, 214, 222, 1)",
+          //strokeColor: "rgba(210, 214, 222, 1)",
+          //pointColor: "rgba(210, 214, 222, 1)",
+          //pointStrokeColor: "#c1c7d1",
+          //pointHighlightFill: "#fff",
+          //pointHighlightStroke: "rgba(220,220,220,1)",
+          data: [
+
+            @foreach ($burndown_estimado as $hora)
+              {{ $hora . ',' }}
+            @endforeach
+          
           ]
         }
       ]
@@ -141,9 +153,9 @@
       //Boolean - Whether to show vertical lines (except Y axis)
       scaleShowVerticalLines: true,
       //Boolean - Whether the line is curved between points
-      bezierCurve: false,
+      steppedLine: true,
       //Number - Tension of the bezier curve between points
-      bezierCurveTension: 0.3,
+      lineTension: 0,
       //Boolean - Whether to show a dot for each point
       pointDot: true,
       //Number - Radius of each point dot in pixels
@@ -167,16 +179,22 @@
     };
 
     //Create the line chart
-    areaChart.Line(areaChartData, areaChartOptions);
+    //areaChart.Line(areaChartData, areaChartOptions);
 
     //-------------
     //- LINE CHART -
     //--------------
     var lineChartCanvas = $("#lineChart").get(0).getContext("2d");
-    var lineChart = new Chart(lineChartCanvas);
+    //var lineChart = new Chart(lineChartCanvas);
     var lineChartOptions = areaChartOptions;
-    lineChartOptions.datasetFill = false;
-    lineChart.Line(areaChartData, lineChartOptions);
+    lineChartOptions.fill = false;
+    //lineChart.Line(areaChartData, lineChartOptions);
+
+    var lineChart = new Chart(lineChartCanvas, {
+        type: 'line',
+        data: areaChartData,
+        options: lineChartOptions
+    });
 
     //-------------
     //- PIE CHART -

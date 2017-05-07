@@ -9,6 +9,7 @@ use App\Sprint;
 use DateTime;
 use DateInterval;
 use App\ProyectoUser;
+use App\Requisito;
 use Auth;
 use Log;
 
@@ -156,6 +157,151 @@ class ProyectosController extends Controller
 
         $proyecto->save();
         return redirect('proyectos');
+    }
+
+    public function actividad($id = null){
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'https://api.github.com/repos/jph11/crisantemo/commits');
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_USERPWD, 'jph11:Passwordprueba123');
+
+        $output = json_decode(curl_exec($ch), true);
+
+        //print_r($output);
+
+        $commits = array();
+
+        foreach ($output as $commit){
+
+            //$key = DateTime::createFromFormat('Y-m-d H:i:s', $commit['commit']['author']['date']);
+            $date = new DateTime($commit['commit']['author']['date']);
+            $key = $date->format('d M Y');
+
+            // Diferencia de tiempo
+            $fecha_actual = new DateTime('NOW');
+            $diff = $date->diff($fecha_actual);
+            //$diff = abs($date->getTimeStamp() - $fecha_actual->getTimeStamp());
+
+            // Años
+            if ($diff->y > 0){
+
+                $diferencia = 'hace ' . $diff->y . ' años';
+            }
+            // Meses
+            else if ($diff->m > 0){
+
+                $diferencia = 'hace ' . $diff->m . ' meses';
+            }
+            // Días
+            else if ($diff->d > 0){
+
+                $diferencia = 'hace ' . $diff->d . ' días';
+            }
+            // Horas
+            else if ($diff->h > 0){
+
+                $diferencia = 'hace ' . $diff->h . ' horas';
+            }
+            // Minutos
+            else if ($diff->i > 0){
+
+                $diferencia = 'hace ' . $diff->i . ' minutos';
+            }
+            // Segundos
+            else {
+
+                $diferencia = 'hace ' . $diff->s . ' segundos';
+            }
+
+            $datos = array();
+            array_push($datos, $commit['committer']['login']);
+            array_push($datos, 'ha realizado un commit');
+            array_push($datos, $commit['commit']['message']);
+            array_push($datos, $diferencia);
+            array_push($datos, $commit['html_url']);
+            
+            if (array_key_exists($key, $commits)){
+
+                array_push($commits[$key], $datos);
+            }
+            else {
+
+                $commits[$key] = array();
+                array_push($commits[$key], $datos);
+            }
+
+            //$mensaje = $commit['committer']['login'] . " ha realizado un commit: " . $commit['commit']['message'];
+            //echo $mensaje;
+            //array_push($commits[$commit['commit']['author']['date']], $mensaje);
+
+            //$contributors[$contributor['author']['login']] = $contributor['total'];
+        }
+
+        //var_dump($commits);
+        //var_dump(json_decode($output, true));
+
+        curl_close($ch);
+
+        //var_dump($contributors);
+        
+        return view('user.actividad', ['commits' => $commits]);
+    }
+
+    public function graficos_requisitos($id = null){
+
+        $requisitos = Requisito::with('users')->get();
+
+        //var_dump($requisitos);
+
+        $usuarios = array();
+
+        foreach ($requisitos as $requisito){
+
+            foreach ($requisito->users as $user){
+
+                if (array_key_exists($user->username, $usuarios)){
+
+                    $usuarios[$user->username] += 1;
+                }
+                else {
+
+                    $usuarios[$user->username] = 1;
+                }
+
+            }
+        }
+
+        //var_dump($usuarios);
+        
+        return view('user.graficos_requisitos', ['usuarios' => $usuarios]);
+    }
+
+    public function graficos_commits($id = null){
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'https://api.github.com/repos/jph11/crisantemo/stats/contributors');
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_USERPWD, 'jph11:Passwordprueba123');
+
+        $output = json_decode(curl_exec($ch), true);
+        $contributors = array();
+
+        foreach ($output as $contributor){
+
+            $contributors[$contributor['author']['login']] = $contributor['total'];
+        }
+
+        //var_dump($contributors);
+        //var_dump(json_decode($output, true));
+
+        curl_close($ch);
+
+        //var_dump($contributors);
+        
+        return view('user.graficos_commits', ['contributors' => $contributors]);
     }
 
     public function burndown_sprints($id = null){
