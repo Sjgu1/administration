@@ -15,6 +15,7 @@ class RequisitosController extends Controller
 {
 
     public function cambiarEstado(Request $request){
+        
         $requisito = Requisito::where('id', $request->id)->first();
         $requisito->estado= $request->estado;
         $requisito->save();
@@ -44,7 +45,7 @@ class RequisitosController extends Controller
         $requisito->fecha_fin_estimada = $request->input('fecha_estimada_fin');
         $requisito->sprint_id = $request->input('sprint_id');
         $requisito->save();
-         return redirect()->action('SprintController@pizarra');
+        return redirect()->action('SprintController@pizarra');
     }
 
     public function delete($id){

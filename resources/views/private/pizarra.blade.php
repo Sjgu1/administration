@@ -22,6 +22,30 @@ function drop(ev, nuevoEstado) {
 <div class="row">
 	<h2 class="col-sm-3">Titulo </h1>
 </div>
+<div class="well">
+	 Choose the main city you love:
+	<select name="basic" id="ex-data-multiple" multiple="" style="display: none;">
+		 @foreach($usuarios as $user)
+		<option value="{{$user->user->id}}">{{$user->user->name}}</option>
+		 @endforeach
+	</select>
+	<div class="picker" style="width: 465px;">
+		<span class="pc-list" style="display: none;">
+		<ul>
+			 @foreach($usuarios as $user)
+			<li data-id="{{$user->user->id}}" data-order="{{$user->user->id}}">{{$user->user->name}}</li>
+			 @endforeach
+		</ul>
+		</span></span>
+	</div>
+	<br>
+	<script type="text/javascript">
+                $('#ex-data-multiple').picker({containerWidth: 465});
+                $('#ex-data-trigger').click(function () {
+                    $('#ex-data-multiple').picker('set', 12);
+                })
+            </script>
+</div>
 <div class="modal fade" id="crearRequisito" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -89,7 +113,7 @@ function drop(ev, nuevoEstado) {
 						<label for="message-text" class="control-label">Fecha estimada de finalizacion:</label>
 						<div class="form-group">
 							<div class='input-group date' id='fecha_fin_{{$requisito->
-								id}}'> <input type='text' class="form-control" name="fecha_estimada_fin" value="{{$requisito->fecha_fin_estimada}}"/> <span class="input-group-addon">
+								 id}}'> <input type='text' class="form-control" name="fecha_estimada_fin" value="{{$requisito->fecha_fin_estimada}}"/> <span class="input-group-addon">
 								<span class="glyphicon glyphicon-calendar"></span>
 								</span>
 							</div>
