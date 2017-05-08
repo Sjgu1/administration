@@ -3,16 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 use App\Proyecto;
 use App\Sprint;
 use App\Requisito;
 use Log;
 
+
 class RequisitosController extends Controller
 {
 
-    public function hola(Request $request){
+    public function cambiarEstado(Request $request){
         $requisito = Requisito::where('id', $request->id)->first();
         $requisito->estado= $request->estado;
         $requisito->save();
@@ -39,10 +41,10 @@ class RequisitosController extends Controller
         $requisito = Requisito::where('id', $request->input('id'))->first();
         $requisito->nombre = $request->input('nombre');
         $requisito->descripcion = $request->input('descripcion');
+        $requisito->fecha_fin_estimada = $request->input('fecha_estimada_fin');
         $requisito->sprint_id = $request->input('sprint_id');
-
         $requisito->save();
-        return view('exito_elemento',['slot'=> "Se ha modificado el Requisito: " .$requisito->id  ] );
+         return redirect()->action('SprintController@pizarra');
     }
 
     public function delete($id){
@@ -149,11 +151,14 @@ class RequisitosController extends Controller
         $requisito->nombre = $request->input('nombre');
         $requisito->descripcion = $request->input('descripcion');
         $requisito->sprint_id = $request->input('sprint_id');
-        $requisito->fecha_inicio = '20/06/2017';
+        $requisito->estado="Por hacer";
+        //$requisito->fecha_fin_estimada = $request->input('fecha_fin_estimada');
+        $requisito->fecha_inicio = date('d/m/Y');
         
 
         $requisito->save();
-        return redirect('requisitos');
+        return back()->withInput();
+
     }
 
     public function getSprints(){

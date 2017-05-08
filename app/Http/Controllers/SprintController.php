@@ -15,14 +15,18 @@ class SprintController extends Controller
 {
 
     public function pizarra(){
-         $proyecto = 1;
-         $sprint = 1;
+         $proyecto = Proyecto::get()
+                    ->where('id', 1)
+                    ->first();
+         $sprint = Sprint::get()
+                    ->where('id', 1)
+                    ->first();
          $user = Auth::id();
          Log::info($user);
          $requisitos = Requisito::get()
-                    ->where('sprint_id', $sprint);
+                    ->where('sprint_id', $sprint->id);
         Log::info($requisitos);
-         return view('private.pizarra', compact('requisitos'));
+         return view('private.pizarra', compact('requisitos', 'proyecto', 'sprint'));
     }
     public function details($id){
 
