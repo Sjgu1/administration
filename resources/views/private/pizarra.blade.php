@@ -169,7 +169,7 @@ function hola(){
 							array.push($('#ex-data-multiple-{{$requisito->id}}')["0"].selectedOptions[i].value);
 							
 						}
-						$('#ex-data-multiple-{{$requisito->id}}').picker('destroy');
+		
 							$.post("/requisitoUsuario", {
 								opciones: array,
 								id_requisito: "{{$requisito->id}}"
