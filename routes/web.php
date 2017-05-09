@@ -48,13 +48,11 @@ Route::get('index/{field?}', 'RequisitosController@search');
 
 
 //Usuario
-Route::get('user/{id}/proyectosusers', 'InsideController@searchProyecto');
-
-Route::get('user/{id}/proyecto/new', function(){ return view('user.proyectonew'); });
-Route::post('user/{id}/proyecto/create', 'InsideController@createProyecto');
-
-Route::get('user/{id}/requisito/new', function(){ return view('user.requisitonew'); });
-Route::post('user/{id}/requisito/create', 'InsideController@createRequisito');
+Route::get('user/proyectosusers', 'InsideController@searchProyecto');
+Route::get('user/proyecto/new', function(){ return view('user.proyectonew'); });
+Route::post('user/proyecto/create', 'InsideController@createProyecto');
+Route::get('user/requisito/new', function(){ return view('user.requisitonew'); });
+Route::post('user/requisito/create', 'InsideController@createRequisito');
 
 Route::get('actividad', 'ProyectosController@actividad');
 Route::get('graficos/burndown', 'ProyectosController@burndown_sprints');
