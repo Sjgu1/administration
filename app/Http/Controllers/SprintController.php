@@ -11,6 +11,7 @@ use App\Requisito;
 use Auth;
 use Log;
 use App\ProyectoUser;
+use App\RequisitoUser;
 
 class SprintController extends Controller
 {
@@ -26,9 +27,11 @@ class SprintController extends Controller
          $usuarios = ProyectoUser::with('user')
                     ->where('proyecto_id',$proyecto->id)
                     ->get();
+        $requisitosAsignados = RequisitoUser::with('user', 'requisito')
+                    ->get();
          $requisitos = Requisito::get()
                     ->where('sprint_id', $sprint->id);
-         return view('private.pizarra', compact('requisitos', 'proyecto', 'sprint', 'usuarios'));
+         return view('private.pizarra', compact('requisitos', 'proyecto', 'sprint', 'usuarios', 'requisitosAsignados'));
     }
     public function details($id){
 

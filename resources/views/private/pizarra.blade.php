@@ -15,36 +15,17 @@ function drop(ev, nuevoEstado) {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+		
     $.post("/pizarra", { id: data, estado: nuevoEstado });
+}
+function hola(){
+	console.log("hola");
 }
 </script>
  @section('content')
 <div class="row">
-	<h2 class="col-sm-3">Titulo </h1>
-</div>
-<div class="well">
-	 Choose the main city you love:
-	<select name="basic" id="ex-data-multiple" multiple="" style="display: none;">
-		 @foreach($usuarios as $user)
-		<option value="{{$user->user->id}}">{{$user->user->name}}</option>
-		 @endforeach
-	</select>
-	<div class="picker" style="width: 465px;">
-		<span class="pc-list" style="display: none;">
-		<ul>
-			 @foreach($usuarios as $user)
-			<li data-id="{{$user->user->id}}" data-order="{{$user->user->id}}">{{$user->user->name}}</li>
-			 @endforeach
-		</ul>
-		</span></span>
-	</div>
-	<br>
-	<script type="text/javascript">
-                $('#ex-data-multiple').picker({containerWidth: 465});
-                $('#ex-data-trigger').click(function () {
-                    $('#ex-data-multiple').picker('set', 12);
-                })
-            </script>
+	<h1 style="text-align: center;">{{$proyecto->nombre}} </h1>
+	<h3 style="text-align: center;"> {{$sprint->nombre}} </h3>
 </div>
 <div class="modal fade" id="crearRequisito" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
 	<div class="modal-dialog" role="document">
@@ -76,8 +57,29 @@ function drop(ev, nuevoEstado) {
 							</div>
 						</div>
 						<script>
-            $('#datetimepicker6').datetimepicker({format: "DD/MM/YYYY"});                
-            </script>
+           					$('#datetimepicker6').datetimepicker({format: "DD/MM/YYYY"});                
+            			</script>
+					</div>
+					<div class="well">
+						 Usuarios Asignados:
+						<select name="basic" id="ex-data-multiple" multiple="" style="display: none;">
+							 @foreach($usuarios as $user)
+							<option value="{{$user->user->id}}">{{$user->user->name}}</option>
+							 @endforeach
+						</select>
+						<div class="picker" style="width: 465px;">
+							<span class="pc-list" style="display: none;">
+							<ul>
+								 @foreach($usuarios as $user)
+								<li data-id="user-{{$user->user->id}}" name="user_{{$user->user->id}}" value="{{$user->user->id}}" >{{$user->user->name}}</li>
+								 @endforeach
+							</ul>
+							</span></span>
+						</div>
+						<br>
+						<script type="text/javascript">
+                			$('#ex-data-multiple').picker({containerWidth: 465});
+          			    </script>
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -119,9 +121,64 @@ function drop(ev, nuevoEstado) {
 							</div>
 						</div>
 						<script>
-            $('#fecha_fin_{{$requisito->id}}').datetimepicker({format: "DD/MM/YYYY"});                
-            </script>
+            				$('#fecha_fin_{{$requisito->id}}').datetimepicker({format: "DD/MM/YYYY"});                
+           				 </script>
 					</div>
+				</div>
+				<div class="well">
+					 Usuarios Asignados:
+					<select name="basic" id="ex-data-multiple-{{$requisito->id}}" multiple="" style="display: none;" > 					
+						@foreach($usuarios as $user) 
+							@foreach($requisitosAsignados as $reqAsig ) 
+								@if($user->user->id == $reqAsig->user->id ) 
+									@if($requisito->id == $reqAsig->requisito->id)
+										<option selected="true" value="{{$user->user->id}}">{{$user->user->name}}</option>
+									@endif 
+								@endif 
+								@if($user->user->id != $reqAsig->user->id ) 
+									@if($requisito->id == $reqAsig->requisito->id)
+										<option value="{{$user->user->id}}">{{$user->user->name}}</option>
+						 			@endif 
+								@endif 
+							@endforeach 
+						@endforeach
+					</select>
+					<div class="picker" >
+						<span class="pc-list" style="display: none;">
+						<ul>
+							<li data-id="{{$user->user->id}}" data-order="{{$user->user->id}}">{{$user->user->name}}</li>
+						</ul>
+						</span></span>
+					</div>
+					<br>
+					<script type="text/javascript">
+						$('#ex-data-multiple-{{$requisito->id}}').picker();
+						$('#ex-data-multiple-{{$requisito->id}}').on('sp-change', function(){
+    						console.log($('#ex-data-multiple-{{$requisito->id}}')["0"].selectedOptions);
+							console.log("{{$requisito->id}}");
+
+
+						$.ajaxSetup({
+   							 headers: {
+        						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        					}
+    					});
+						var array = [];
+						for(var i=0; i<$('#ex-data-multiple-{{$requisito->id}}')["0"].selectedOptions.length; i++)
+						{
+							array.push($('#ex-data-multiple-{{$requisito->id}}')["0"].selectedOptions[i].value);
+							
+						}
+						$('#ex-data-multiple-{{$requisito->id}}').picker('destroy');
+							$.post("/requisitoUsuario", {
+								opciones: array,
+								id_requisito: "{{$requisito->id}}"
+							});
+						
+							
+							
+});
+           			 </script>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -133,35 +190,39 @@ function drop(ev, nuevoEstado) {
 </div>
  @endforeach
 <div class="row">
-	<div class="col-sm-3 container" ondrop="drop(event,'Por hacer')" ondragover="allowDrop(event)" style="background-color: lightyellow;margin-top: 40px; margin-right: 40px; margin-left: 40px;">
-		<!-- /.box-header -->
-		<div class="box-body">
-			<div class="box-group" id="accordion1">
-				<h4>Por hacer</h4>
-				<!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-				 @foreach ($requisitos as $requisito ) @if ($requisito->estado == 'Por hacer')
-				<div draggable="true" ondragstart="drag(event)" id="{{$requisito->
-					 id}}">
-					<div class="panel box box-primary" id="{{$requisito->
-						 id}}" draggable="true" ondragstart="drag(event)" >
-						<div class="box-header with-border">
-							<h4 class="box-title">
-							<a data-toggle="collapse" data-parent="#accordion1" href="#desplegar{{$requisito->id}}" aria-expanded="false" class="collapsed"> {{$requisito->nombre}} </a>
-							<i class="fa fa-fw fa-edit btn " class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$requisito->id}}" ></i>
-							</h4>
-						</div>
-						<div id="desplegar{{$requisito->
-							 id}}" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
-							<div class="box-body">
-								 {{$requisito->descripcion}}
+	<div class="col-sm-3 container" style="background-color: lightyellow;margin-top: 40px; margin-right: 40px; margin-left: 40px;">
+		<div ondrop="drop(event,'Por hacer')" ondragover="allowDrop(event)">
+			<!-- /.box-header -->
+			<div class="box-body">
+				<div class="box-group" id="accordion1">
+					<h4>Por hacer</h4>
+					<!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+					 @foreach ($requisitos as $requisito ) 
+					 @if ($requisito->estado == 'Por hacer')
+					<div draggable="true" ondragstart="drag(event)" id="{{$requisito->
+						 id}}">
+						<div class="panel box box-primary" id="{{$requisito->
+							 id}}" draggable="true" ondragstart="drag(event)" >
+							<div class="box-header with-border">
+								<h4 class="box-title">
+								<a data-toggle="collapse" data-parent="#accordion1" href="#desplegar{{$requisito->id}}" aria-expanded="false" class="collapsed"> {{$requisito->nombre}} </a>
+								<i class="fa fa-fw fa-edit btn " class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$requisito->id}}" ></i>
+								</h4>
+							</div>
+							<div id="desplegar{{$requisito->
+								 id}}" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+								<div class="box-body">
+									 {{$requisito->descripcion}}
+								</div>
 							</div>
 						</div>
 					</div>
+					 @endif 
+					 @endforeach
 				</div>
-				 @endif @endforeach
 			</div>
+			<span class="glyphicon glyphicon-plus btn pull-right" data-toggle="modal" data-target="#crearRequisito"></span>
 		</div>
-		<span class="glyphicon glyphicon-plus btn pull-right" data-toggle="modal" data-target="#crearRequisito"></span>
 		<!-- /.box-body -->
 	</div>
 	<div class="col-sm-3 container " ondrop="drop(event,'En trámite')" ondragover="allowDrop(event)" style="background-color: lightgreen; margin-top: 40px; margin-right: 40px; margin-left: 40px;">
@@ -170,7 +231,8 @@ function drop(ev, nuevoEstado) {
 			<div class="box-group" id="accordion2">
 				<h4>En trámite</h4>
 				<!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-				 @foreach ($requisitos as $requisito ) @if ($requisito->estado == 'En trámite')
+				 @foreach ($requisitos as $requisito ) 
+				 @if ($requisito->estado == 'En trámite')
 				<div draggable="true" ondragstart="drag(event)" id="{{$requisito->
 					 id}}">
 					<div class="panel box box-primary" id="{{$requisito->
@@ -189,7 +251,8 @@ function drop(ev, nuevoEstado) {
 						</div>
 					</div>
 				</div>
-				 @endif @endforeach
+				 @endif 
+				 @endforeach
 			</div>
 		</div>
 		<!-- /.box-body -->
@@ -200,7 +263,8 @@ function drop(ev, nuevoEstado) {
 			<div class="box-group" id="accordion3">
 				<h4>Hecho</h4>
 				<!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-				 @foreach ($requisitos as $requisito ) @if ($requisito->estado == 'Hecho')
+				 @foreach ($requisitos as $requisito ) 
+				 @if ($requisito->estado == 'Hecho')
 				<div draggable="true" ondragstart="drag(event)" id="{{$requisito->
 					 id}}">
 					<div class="panel box box-primary" id="{{$requisito->
@@ -219,7 +283,8 @@ function drop(ev, nuevoEstado) {
 						</div>
 					</div>
 				</div>
-				 @endif @endforeach
+				 @endif 
+				 @endforeach
 			</div>
 		</div>
 		<!-- /.box-body -->
