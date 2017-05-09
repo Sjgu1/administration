@@ -7,9 +7,9 @@ $(document).ready(function() {
         if(href) {
             window.location = href;
         }
-    });
+    })
 
-});
+})
 </script>
 <body>
 	@section('content')
@@ -26,7 +26,7 @@ $(document).ready(function() {
 			<tbody>
 				@foreach($proyectosusers as $proyectouser)
 				<tr>
-					<td><a href="user/{{$user->id}}/proyectosusers" >{{ $proyectouser->proyecto->nombre }}</a></td>
+					<td><a href="user/proyectosusers" >{{ $proyectouser->proyecto->nombre }}</a></td>
 					<td>{{ $proyectouser->nombre }}</td>
 					<td></td>
 				</tr>
@@ -35,8 +35,5 @@ $(document).ready(function() {
 		</table>
 	</form>
 	<hr>
-	<!--<form action="{{ url('proyecto/new') }}" method="GET">
-	<button type="submit">Crear</button>	
-	</button>-->
 @endsection
 </body>

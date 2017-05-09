@@ -26,17 +26,12 @@ $(document).ready(function() {
 			<tbody>
 				@foreach($requisitosusers as $requisitouser)
 				<tr>
-					<td><a href="user/{{$user->id}}/requisitosusers" >{{ $requisitouser->requisito->nombre }}</a></td>
+					<td><a href="user/requisitosusers" >{{ $requisitouser->requisito->nombre }}</a></td>
 					<td>{{ $requisitouser->nombre }}</td>
 					<td></d>
 				</tr>
 				@endforeach
 			</tbody>
 		</table>
-	</form>
-	<hr>
-		<!--<form action="{{ url('proyecto/new') }}" method="GET">
-	<button type="submit">Crear</button>	
-	</button>-->
 @endsection
 </body>

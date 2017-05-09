@@ -53,6 +53,8 @@ Route::get('user/proyecto/new', function(){ return view('user.proyectonew'); });
 Route::post('user/proyecto/create', 'InsideController@createProyecto');
 Route::get('user/requisito/new', function(){ return view('user.requisitonew'); });
 Route::post('user/requisito/create', 'InsideController@createRequisito');
+Route::get('user/requisitosusers', 'InsideController@searchRequisito');
+Route::get('user/sprintsusers', 'InsideController@searchSprint');
 
 Route::get('actividad', 'ProyectosController@actividad');
 Route::get('graficos/burndown', 'ProyectosController@burndown_sprints');
@@ -61,9 +63,6 @@ Route::get('graficos/commits', 'ProyectosController@graficos_commits');
 Route::get('graficos/requisitos', 'ProyectosController@graficos_requisitos');
 
 
-
-Route::get('user/{id}/requisitosusers', 'InsideController@searchRequisito');
-Route::get('user/{id}/sprintsusers', 'InsideController@searchSprint');
 
 Route::group(['middleware'=>'auth'], function(){
 

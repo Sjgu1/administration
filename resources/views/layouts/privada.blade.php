@@ -371,7 +371,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
+            <li><a href="user/sprintsusers"><i class="fa fa-circle-o"></i> Listar Sptrints</a></li>
             <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
           </ul>
         </li>
@@ -384,10 +384,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="user/requisitosusers"><i class="fa fa-circle-o"></i> Listar Requisitos</a></li>
-            <li><a href="/user/requisitosusers"><i class="fa fa-circle-o"></i> Crear Requisito</a></li>
-            <li><a href="../layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
-            <li><a href="../layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
+            <li><a href="/user/requisitosusers"><i class="fa fa-circle-o"></i> Listar Requisitos</a></li>
+            <!--li><a href="/user/requisitosusers"><i class="fa fa-circle-o"></i> Crear Requisito</a></li-->
           </ul>
         </li>
         <li>
