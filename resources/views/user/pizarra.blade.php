@@ -1,4 +1,5 @@
 @extends('layouts.privada')
+
 <script>
 function allowDrop(ev) {
     ev.preventDefault();
@@ -22,7 +23,21 @@ function hola(){
 	console.log("hola");
 }
 </script>
+
+<script>
+$('#exampleModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var recipient = button.data('whatever') // Extract info from data-* attributes
+  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  var modal = $(this)
+  modal.find('.modal-title').text('New message to ' + recipient)
+  modal.find('.modal-body input').val(recipient)
+})
+</script>
+
  @section('content')
+
 <div class="row">
 	<h1 style="text-align: center;">{{$proyecto->nombre}} </h1>
 	<h3 style="text-align: center;"> {{$sprint->nombre}} </h3>
@@ -50,7 +65,7 @@ function hola(){
 						<label for="message-text" class="control-label">Fecha estimada de finalización:</label>
 						<div class="form-group">
 							<div class='input-group date' id='datetimepicker6'>
-								<input type='text' class="form-control" id="fecha_estimada_fin"/>
+								<input type='text' class="form-control" name="fecha_estimada_fin" id="fecha_estimada_fin"/>
 								<span class="input-group-addon">
 								<span class="glyphicon glyphicon-calendar"></span>
 								</span>
@@ -60,27 +75,7 @@ function hola(){
            					$('#datetimepicker6').datetimepicker({format: "DD/MM/YYYY"});                
             			</script>
 					</div>
-					<div class="well">
-						 Usuarios Asignados:
-						<select name="basic" id="ex-data-multiple" multiple="" style="display: none;">
-							 @foreach($usuarios as $user)
-							<option value="{{$user->user->id}}">{{$user->user->name}}</option>
-							 @endforeach
-						</select>
-						<div class="picker" style="width: 465px;">
-							<span class="pc-list" style="display: none;">
-							<ul>
-								 @foreach($usuarios as $user)
-								<li data-id="user-{{$user->user->id}}" name="user_{{$user->user->id}}" value="{{$user->user->id}}" >{{$user->user->name}}</li>
-								 @endforeach
-							</ul>
-							</span></span>
-						</div>
-						<br>
-						<script type="text/javascript">
-                			$('#ex-data-multiple').picker({containerWidth: 465});
-          			    </script>
-					</div>
+					
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -125,37 +120,35 @@ function hola(){
            				 </script>
 					</div>
 				</div>
+				
 				<div class="well">
-					 Usuarios Asignados:
-					<select name="basic" id="ex-data-multiple-{{$requisito->id}}" multiple="" style="display: none;" > 					
-						@foreach($usuarios as $user) 
+				Usuarios Asignados Actualmente:
+				<br>
+					@foreach($usuarios as $usuario) 
 							@foreach($requisitosAsignados as $reqAsig ) 
-								@if($user->user->id == $reqAsig->user->id ) 
-									@if($requisito->id == $reqAsig->requisito->id)
-										<option selected="true" value="{{$user->user->id}}">{{$user->user->name}}</option>
-									@endif 
+							@if($requisito->id == $reqAsig->requisito->id)
+								@if($usuario->user->id == $reqAsig->user->id ) 
+										<!--<option selected="selected" value="{{$usuario->user->id}}">{{$usuario->user->name}}</option>-->
+										<label value="{{$usuario->user->name}}">{{$usuario->user->name}}</label>	
+										<br>
 								@endif 
-								@if($user->user->id != $reqAsig->user->id ) 
-									@if($requisito->id == $reqAsig->requisito->id)
-										<option value="{{$user->user->id}}">{{$user->user->name}}</option>
-						 			@endif 
-								@endif 
+							@endif 
 							@endforeach 
 						@endforeach
+						<br>
+				Selecciona nuevos usuarios:<br/>
+					<select name="basic" id="ex-data-multiple-{{$requisito->id}}" multiple style="display: none;" > 					
+						
+						@foreach($usuarios as $usuario) 
+							<option  value="{{$usuario->user->id}}">{{$usuario->user->name}}</option>
+						@endforeach
 					</select>
-					<div class="picker" >
-						<span class="pc-list" style="display: none;">
-						<ul>
-							<li data-id="{{$user->user->id}}" data-order="{{$user->user->id}}">{{$user->user->name}}</li>
-						</ul>
-						</span></span>
-					</div>
-					<br>
+
 					<script type="text/javascript">
 						$('#ex-data-multiple-{{$requisito->id}}').picker();
+						
 						$('#ex-data-multiple-{{$requisito->id}}').on('sp-change', function(){
-    						console.log($('#ex-data-multiple-{{$requisito->id}}')["0"].selectedOptions);
-							console.log("{{$requisito->id}}");
+    						console.log($('#ex-data-multiple-{{$requisito->id}}'));
 
 
 						$.ajaxSetup({
@@ -166,18 +159,15 @@ function hola(){
 						var array = [];
 						for(var i=0; i<$('#ex-data-multiple-{{$requisito->id}}')["0"].selectedOptions.length; i++)
 						{
-							array.push($('#ex-data-multiple-{{$requisito->id}}')["0"].selectedOptions[i].value);
 							
+							array.push($('#ex-data-multiple-{{$requisito->id}}')["0"].selectedOptions[i].value);
 						}
-		
+			
 							$.post("/requisitoUsuario", {
 								opciones: array,
 								id_requisito: "{{$requisito->id}}"
 							});
-						
-							
-							
-});
+						});
            			 </script>
 				</div>
 				<div class="modal-footer">
@@ -191,11 +181,12 @@ function hola(){
  @endforeach
 <div class="row">
 	<div class="col-sm-3 container" style="background-color: lightyellow;margin-top: 40px; margin-right: 40px; margin-left: 40px;">
+	<h4>Por hacer</h4>
 		<div ondrop="drop(event,'Por hacer')" ondragover="allowDrop(event)">
 			<!-- /.box-header -->
-			<div class="box-body">
+			<div class="box-body">		
 				<div class="box-group" id="accordion1">
-					<h4>Por hacer</h4>
+					
 					<!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
 					 @foreach ($requisitos as $requisito ) 
 					 @if ($requisito->estado == 'Por hacer')
@@ -225,11 +216,14 @@ function hola(){
 		</div>
 		<!-- /.box-body -->
 	</div>
-	<div class="col-sm-3 container " ondrop="drop(event,'En trámite')" ondragover="allowDrop(event)" style="background-color: lightgreen; margin-top: 40px; margin-right: 40px; margin-left: 40px;">
+	<div class="col-sm-3 container " style="background-color: lightgreen; margin-top: 40px; margin-right: 40px; margin-left: 40px;">
 		<!-- /.box-header -->
+
+		<h4>En trámite</h4>
+		<div ondrop="drop(event,'En trámite')" ondragover="allowDrop(event)" >
 		<div class="box-body">
 			<div class="box-group" id="accordion2">
-				<h4>En trámite</h4>
+				
 				<!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
 				 @foreach ($requisitos as $requisito ) 
 				 @if ($requisito->estado == 'En trámite')
@@ -254,14 +248,17 @@ function hola(){
 				 @endif 
 				 @endforeach
 			</div>
+			</div>
 		</div>
 		<!-- /.box-body -->
 	</div>
-	<div class="col-sm-3 container " ondrop="drop(event, 'Hecho')" ondragover="allowDrop(event)" style="background-color: lightblue; margin-top: 40px; margin-right: 40px; margin-left: 40px;">
+	<div class="col-sm-3 container "  style="background-color: lightblue; margin-top: 40px; margin-right: 40px; margin-left: 40px;">
 		<!-- /.box-header -->
+		<h4>Hecho</h4>
+		<div ondrop="drop(event, 'Hecho')" ondragover="allowDrop(event)">
 		<div class="box-body">
 			<div class="box-group" id="accordion3">
-				<h4>Hecho</h4>
+				
 				<!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
 				 @foreach ($requisitos as $requisito ) 
 				 @if ($requisito->estado == 'Hecho')
@@ -286,6 +283,7 @@ function hola(){
 				 @endif 
 				 @endforeach
 			</div>
+			</div>
 		</div>
 		<!-- /.box-body -->
 	</div>
@@ -294,14 +292,3 @@ function hola(){
 </div>
 </div>
  @endsection
-<script>
-$('#exampleModal').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) // Button that triggered the modal
-  var recipient = button.data('whatever') // Extract info from data-* attributes
-  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-  var modal = $(this)
-  modal.find('.modal-title').text('New message to ' + recipient)
-  modal.find('.modal-body input').val(recipient)
-})
-</script>

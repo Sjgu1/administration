@@ -34,8 +34,8 @@ Route::get('/contacto', function () {
 });
 
 
-Route::get('/pizarra', 'SprintController@pizarra');
-Route::post('/pizarra', 'RequisitosController@cambiarEstado');
+Route::get('pizarra', 'SprintController@pizarra');
+Route::post('pizarra', 'RequisitosController@cambiarEstado');
 Route::post('/requisitoUsuario', 'RequisitoUserController@modificarAsignaciones');
 
 Route::post('/contacto', 'ContactoController@contacto');

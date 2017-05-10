@@ -153,7 +153,7 @@ class RequisitosController extends Controller
         $requisito->descripcion = $request->input('descripcion');
         $requisito->sprint_id = $request->input('sprint_id');
         $requisito->estado="Por hacer";
-        //$requisito->fecha_fin_estimada = $request->input('fecha_fin_estimada');
+        $requisito->fecha_fin_estimada = $request->input('fecha_estimada_fin');
         $requisito->fecha_inicio = date('d/m/Y');
         
 

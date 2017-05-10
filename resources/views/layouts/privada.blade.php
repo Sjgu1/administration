@@ -389,7 +389,7 @@
           </ul>
         </li>
         <li>
-          <a href="../widgets.html">
+          <a href="/pizarra">
             <i class="fa fa-th"></i>
             <span>Pizarra</span>
             <span class="pull-right-container">

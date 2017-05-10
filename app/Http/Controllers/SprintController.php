@@ -23,7 +23,7 @@ class SprintController extends Controller
          $sprint = Sprint::get()
                     ->where('id', 1)
                     ->first();
-         $user = Auth::id();
+         
          $usuarios = ProyectoUser::with('user')
                     ->where('proyecto_id',$proyecto->id)
                     ->get();
@@ -31,7 +31,7 @@ class SprintController extends Controller
                     ->get();
          $requisitos = Requisito::get()
                     ->where('sprint_id', $sprint->id);
-         return view('private.pizarra', compact('requisitos', 'proyecto', 'sprint', 'usuarios', 'requisitosAsignados'));
+         return view('user.pizarra', compact('requisitos', 'proyecto', 'sprint', 'usuarios', 'requisitosAsignados'));
     }
     public function details($id){
 
