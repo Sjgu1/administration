@@ -28,8 +28,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>                       
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.45/js/bootstrap-datetimepicker.min.js"></script>
 
-
-
+<!-- Flags -->
+<link rel="stylesheet" href="/css/famfamfam-flags.css">
 
 <link rel="stylesheet" href="/adminlte/picker.min.css">
 <link rel="stylesheet" href="/adminlte/picker.css">
@@ -80,14 +80,27 @@
 
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-          <!-- Messages: style can be found in dropdown.less-->
+          <!-- Bandera -->
+          <li>
+            <a href="{{ url('lang', ['es']) }}">
+              <i class="famfamfam-flag-es"></i>
+            </a>
+          </li>
+          <!-- Fin bandera -->
+          <!-- Bandera -->
+          <li>
+            <a href="{{ url('lang', ['en']) }}">
+              <i class="famfamfam-flag-gb"></i>
+            </a>
+          </li>
+          <!-- Fin bandera -->
           <li class="dropdown messages-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-envelope-o"></i>
               <span class="label label-success">4</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 4 messages</li>
+              <li class="header">You have 4 messages @lang('messages.welcome')</li>
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
@@ -413,7 +426,7 @@
             <li><a href="../charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
           </ul>-->
         </li>
-        <li class="treeview active">
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-laptop"></i>
             <span>Gráficos</span>
@@ -428,21 +441,31 @@
             <li><a href="/graficos/requisitos"><i class="fa fa-circle-o"></i>Requisitos</a></li>
             <li><a href="/graficos/commits"><i class="fa fa-circle-o"></i>Commits</a></li>
             <li class="active"><a href="timeline.html"><i class="fa fa-circle-o"></i>Timeline</a></li>
-            <li><a href="modals.html"><i class="fa fa-circle-o"></i>Modals</a></li>
           </ul>
         </li>
-        <li class="treeview">
-          <a href="#">
+        <li>
+          <a href="/calendario">
             <i class="fa fa-edit"></i><span>Calendario</span>
             <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
+              <small class="label pull-right bg-green">new</small>
             </span>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="../forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
-            <li><a href="../forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
-            <li><a href="../forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
-          </ul>
+        </li>
+        <li>
+          <a href="/userspublic">
+            <i class="fa fa-pie-chart"></i>
+            <span>Usuarios</span>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-green">new</small>
+              <!--<i class="fa fa-angle-left pull-right"></i>-->
+            </span>
+          </a>
+          <!--<ul class="treeview-menu">
+            <li><a href="../charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
+            <li><a href="../charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
+            <li><a href="../charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
+            <li><a href="../charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
+          </ul>-->
         </li>
 
         <!-- A PARTIR DE AQUÍ ESTÁ COMENTADO PORQUE PARECE QUE NO NECESITAMOS MÁS OPCIONES EN EL MENÚ

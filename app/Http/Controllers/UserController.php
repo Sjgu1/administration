@@ -179,4 +179,9 @@ class UserController extends Controller
             return view('user', ['user' => $user]);
         }
     }
+
+    public function userspublic($id = null){
+
+        return view('user.users');
+    }
 }

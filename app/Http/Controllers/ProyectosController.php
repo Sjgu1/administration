@@ -182,44 +182,70 @@ class ProyectosController extends Controller
             // Diferencia de tiempo
             $fecha_actual = new DateTime('NOW');
             $diff = $date->diff($fecha_actual);
+            $diferencia = 0;
+            $unidad = '';
             //$diff = abs($date->getTimeStamp() - $fecha_actual->getTimeStamp());
 
             // Años
             if ($diff->y > 0){
 
-                $diferencia = 'hace ' . $diff->y . ' años';
+                $diferencia = $diff->y;
+                $unidad = 'año';
             }
             // Meses
             else if ($diff->m > 0){
 
-                $diferencia = 'hace ' . $diff->m . ' meses';
+                $diferencia = $diff->m;
+                $unidad = 'mes';
+            }
+            // Semanas
+            else if (floor($diff->d / 7) > 0){
+
+                $diferencia = floor($diff->d / 7);
+                $unidad = 'semana';
             }
             // Días
             else if ($diff->d > 0){
 
-                $diferencia = 'hace ' . $diff->d . ' días';
+                $diferencia = $diff->d;
+                $unidad = 'día';
             }
             // Horas
             else if ($diff->h > 0){
 
-                $diferencia = 'hace ' . $diff->h . ' horas';
+                $diferencia = $diff->h;
+                $unidad = 'hora';
             }
             // Minutos
             else if ($diff->i > 0){
 
-                $diferencia = 'hace ' . $diff->i . ' minutos';
+                $diferencia = $diff->i;
+                $unidad = 'minuto';
             }
             // Segundos
             else {
 
-                $diferencia = 'hace ' . $diff->s . ' segundos';
+                $diferencia = $diff->s;
+                $unidad = 'segundo';
+            }
+
+            if ($diferencia > 1){
+
+                if ($unidad == 'mes'){
+
+                    $unidad = $unidad . 'es';
+                }
+                else {
+
+                    $unidad = $unidad . 's';
+                }
             }
 
             $datos = array();
             array_push($datos, $commit['committer']['login']);
             array_push($datos, 'ha realizado un commit');
             array_push($datos, $commit['commit']['message']);
-            array_push($datos, $diferencia);
+            array_push($datos, 'hace ' . $diferencia . ' ' . $unidad);
             array_push($datos, $commit['html_url']);
             
             if (array_key_exists($key, $commits)){
@@ -385,6 +411,31 @@ class ProyectosController extends Controller
         //$fecha_inicio = new DateTime($sprint->fecha_inicio);
 
         return view('user.burndown_sprints', ['fechas' => $fechas, 'burndown_estimado' => $burndown_estimado, 'burndown_reales' => $burndown_reales]);
+    }
+
+    public function calendario($id = null){
+
+        // Hay que sacar todos los requisitos del proyecto, no solo los de un determinado sprint
+        $requisitos = Requisito::where('sprint_id', 13)->get();
+
+        $colores = array();
+        array_push($colores, "#f56954");
+        array_push($colores, "#f39c12");
+        array_push($colores, "#0073b7");
+        array_push($colores, "#00c0ef");
+        array_push($colores, "#00a65a");
+        array_push($colores, "#3c8dbc");
+
+        foreach ($requisitos as $requisito){
+
+            $requisito->fecha_inicio_split = explode('/', $requisito->fecha_inicio);
+
+            $requisito->fecha_fin_estimada_split = explode('/', $requisito->fecha_fin_estimada);
+
+            $requisito->color = $colores[rand(0, 5)];
+        }
+
+        return view('user.calendario', ['requisitos' => $requisitos]);
     }
 
 }
