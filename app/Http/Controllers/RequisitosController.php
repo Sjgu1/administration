@@ -45,14 +45,16 @@ class RequisitosController extends Controller
         $requisito->fecha_fin_estimada = $request->input('fecha_estimada_fin');
         $requisito->sprint_id = $request->input('sprint_id');
         $requisito->save();
-        return redirect()->action('SprintController@pizarra');
+       
     }
 
     public function delete($id){
+        
 
         $requisito = Requisito::where('id', $id)->first();
         $requisito->delete();
-        return view('exito_elemento',['slot'=> "Se ha eliminado el Requisito: " .$requisito->id  ] );
+         return redirect()->action('SprintController@pizarra');
+       // return view('exito_elemento',['slot'=> "Se ha eliminado el Requisito: " .$requisito->id  ] );
 
     }
 

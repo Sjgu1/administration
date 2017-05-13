@@ -29,7 +29,7 @@ class RequisitosTableSeeder extends Seeder
         'descripcion' => 'Testear la integridad referencial de la base de datos', 
         'fecha_inicio' => '04/03/2014',
         'fecha_fin_estimada' => '03/03/2018',
-        'estado' => 'Por hacer']);
+        'estado' => 'Hecho']);
         $sprint = Sprint::where('id', '1')->first();
         $requisito->sprint()->associate($sprint);
         $requisito->save();
