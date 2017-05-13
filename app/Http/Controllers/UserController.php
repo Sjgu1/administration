@@ -129,6 +129,8 @@ class UserController extends Controller
         $user->email = $request->input('email');
         $user->username = $request->input('username');
 
+        copy('perfiles/cara.jpg', 'perfiles/' . $user->id . '.jpg');
+
         $user->save();
         return redirect('users');
     }
@@ -151,12 +153,12 @@ class UserController extends Controller
 
     public function modify(Request $request){
 
-        $this->validate($request, [
+        /*$this->validate($request, [
             'name' => ['string', 'min:3', 'max:20'],
             'apellidos' => ['string', 'min:3', 'max:50'],
             'email' => ['email'],
             'username' => ['string', 'min:3', 'max:20']
-        ]);
+        ]);*/
 
         $user = User::where('id', $request->input('id'))->first();
         $user->name = $request->input('name');
@@ -164,6 +166,23 @@ class UserController extends Controller
         $user->username = $request->input('username');
         $user->email = $request->input('email');
         $user->password = $request->input('password');
+
+        if ($request->hasFile('imagen')){
+
+            if ($request->file('imagen')->isValid()){
+
+                /*if ( ! file_exists(base_path('perfiles'))){
+
+                    mkdir(base_path('perfiles'));
+                }*/
+
+                $request->file('imagen')->move('perfiles/', $user->id . '.' . $request->file('imagen')->getClientOriginalExtension());
+            }
+        }
+        /*else {
+
+            copy('perfiles/cara.jpg', 'perfiles/' . $user->id);
+        }*/
 
         $user->save();
         return view('exito_elemento',['slot'=> "Se ha modificado el Usuario: " .$user->id  ] );
