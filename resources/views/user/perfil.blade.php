@@ -19,7 +19,7 @@
           <!-- LINE CHART -->
           <div class="box box-info">
             <div class="box-body">
-                <form id="user_form" action="{{ url('user/modificar') }}" method="POST" role="form" data-toggle="validator">
+                <form id="user_form" action="{{ url('user/modificar') }}" method="POST" enctype="multipart/form-data" role="form" data-toggle="validator">
                     {{ csrf_field() }}
                     <div class="form-group has-feedback">
                         <input readonly="readonly" type="hidden" id="id" name="id" value="{{ $user->id }}" class="form-control">
@@ -40,12 +40,24 @@
                         <label for="username" class="control-label">Username:</label>
                         <input type="text" id="username" name="username" value="{{ $user->username }}" class="form-control" data-minlength="3" maxlength="20" required>
                     </div>
+                    <div class="form-group has-feedback">
+                        <label for="username" class="control-label">Password:</label>
+                        <input type="text" id="password1" name="password1" value="" class="form-control" data-minlength="3" maxlength="20" required>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label for="username" class="control-label">Repetir password:</label>
+                        <input type="text" id="password2" name="password1" value="" class="form-control" data-minlength="3" maxlength="20" required>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label for="username" class="control-label">Imagen de perfil:</label>
+                        <input type="file" id="imagen" name="imagen" value="">
+                    </div>
+                    <div class="box-footer">
+                        <input class="btn btn-primary btn-lg" type="submit" value="Modificar">
+                    </div>
                 </form>
             </div>
             <!-- /.box-body -->
-            <div class="box-footer">
-                <input class="btn btn-primary btn-lg" type="submit" value="Modificar">
-            </div>
           </div>
           <!-- /.box -->
 
