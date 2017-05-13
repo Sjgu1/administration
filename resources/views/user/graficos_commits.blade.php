@@ -102,6 +102,7 @@
       ],
       datasets: [
           {
+            label: 'Commits',
               data: [
 
                   @foreach ($contributors as $contributor)
@@ -158,7 +159,7 @@
     // For a pie chart
 
     var myPieChart = new Chart(ctx,{
-        type: 'pie',
+        type: 'bar',
         data: data,
         options: pieOptions
     });

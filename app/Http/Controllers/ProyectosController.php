@@ -438,4 +438,61 @@ class ProyectosController extends Controller
         return view('user.calendario', ['requisitos' => $requisitos]);
     }
 
+    public function graficos_frecuencia($id = null){
+
+        // Extracción de las horas con sus commits
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'https://api.github.com/repos/jph11/crisantemo/stats/punch_card');
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_USERPWD, 'jph11:Passwordprueba123');
+
+        $output = json_decode(curl_exec($ch), true);
+        $horas = array();
+
+        for ($i = 0; $i < 24; $i++){
+
+            $horas[$i] = 0;
+        }
+
+        foreach ($output as $commit){
+
+            $horas[$commit['1']] += $commit['2'];
+        }
+
+        curl_close($ch);
+
+        // Extracción de los días con sus commits
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'https://api.github.com/repos/jph11/crisantemo/stats/commit_activity');
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_USERPWD, 'jph11:Passwordprueba123');
+
+        $output = json_decode(curl_exec($ch), true);
+        $dias = array();
+
+        for ($i = 0; $i < 7; $i++){
+
+            $dias[$i] = 0;
+        }
+
+        foreach ($output as $commit){
+
+            for ($i = 0; $i < 7; $i++){
+
+                $dias[$i] += $commit['days'][$i];
+            }
+        }
+
+        $aux = $dias[0];
+        unset($dias[0]);
+        array_push($dias, $aux);
+
+        curl_close($ch);
+        
+        return view('user.graficos_frecuencia', ['horas' => $horas, 'dias' => $dias]);
+
+    }
+
 }

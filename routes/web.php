@@ -71,8 +71,12 @@ Route::group(['middleware' => ['web']], function(){
     Route::get('graficos/burndown/sprints', 'ProyectosController@burndown_sprints');
     Route::get('graficos/commits', 'ProyectosController@graficos_commits');
     Route::get('graficos/requisitos', 'ProyectosController@graficos_requisitos');
+    Route::get('graficos/frecuencia', 'ProyectosController@graficos_frecuencia');
     Route::get('userspublic', 'ProyectoUserController@userspublic');
+    Route::get('sprintsrequisitos', 'SprintController@sprintsrequisitos');
     Route::get('calendario', 'ProyectosController@calendario');
+
+    Route::get('perfil', 'UserController@details2');
 
     Route::get('lang/{lang}', function($lang){
 

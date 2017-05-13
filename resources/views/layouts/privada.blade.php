@@ -320,7 +320,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="{{ url('perfil') }}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                   <a href="#" class="btn btn-default btn-flat">Sign out</a>
@@ -397,7 +397,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/user/requisitosusers"><i class="fa fa-circle-o"></i> Listar Requisitos</a></li>
+            <li><a href="/sprintsrequisitos"><i class="fa fa-circle-o"></i> Listar Requisitos</a></li>
             <!--li><a href="/user/requisitosusers"><i class="fa fa-circle-o"></i> Crear Requisito</a></li-->
           </ul>
         </li>
@@ -437,7 +437,7 @@
           <ul class="treeview-menu">
             <li><a href="/graficos/burndown"><i class="fa fa-circle-o"></i>Burndown</a></li>
             <li><a href="/graficos/burndown/sprints"><i class="fa fa-circle-o"></i>Burndown sprints</a></li>
-            <li><a href="icons.html"><i class="fa fa-circle-o"></i>GIT</a></li>
+            <li><a href="/graficos/frecuencia"><i class="fa fa-circle-o"></i>Frecuencia</a></li>
             <li><a href="/graficos/requisitos"><i class="fa fa-circle-o"></i>Requisitos</a></li>
             <li><a href="/graficos/commits"><i class="fa fa-circle-o"></i>Commits</a></li>
             <li class="active"><a href="timeline.html"><i class="fa fa-circle-o"></i>Timeline</a></li>

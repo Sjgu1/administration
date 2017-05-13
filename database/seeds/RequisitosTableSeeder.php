@@ -150,7 +150,7 @@ class RequisitosTableSeeder extends Seeder
         'fecha_inicio' => '05/05/2017',
         'fecha_fin_estimada' => '07/05/2017',
         'fecha_fin' => '07/05/2017',
-        'estado' => 'Por hacer']);
+        'estado' => 'Hecho']);
         $sprint = Sprint::where('id', '13')->first();
         $requisito->sprint()->associate($sprint);
         $requisito->save();

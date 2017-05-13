@@ -12,6 +12,8 @@ use Auth;
 use Log;
 use App\ProyectoUser;
 use App\RequisitoUser;
+use DateTime;
+use DateInterval;
 
 class SprintController extends Controller
 {
@@ -185,6 +187,114 @@ class SprintController extends Controller
 
         return view('sprints', compact(['sprints','valorID','valorNombre', 'valorProyecto']));
     
+    }
+
+    public function sprintsrequisitos($id = null){
+
+        $sprint = Sprint::where('id', 13)->first();
+        $requisitos = Requisito::where('sprint_id', 13)->with('users')->get();
+
+        $requisitos_no_finalizados = array();
+        $requisitos_finalizados = array();
+
+        foreach ($requisitos as $requisito){
+
+            $fecha_inicio = DateTime::createFromFormat('d/m/Y', $requisito->fecha_inicio);
+            $fecha_fin_estimada = DateTime::createFromFormat('d/m/Y', $requisito->fecha_fin_estimada);
+            $fecha_dia_de_hoy = new DateTime('NOW');
+            
+            if ($requisito->estado == 'Por hacer' || $requisito->estado == 'En trámite'){
+
+                $dias_totales = $fecha_inicio->diff($fecha_fin_estimada)->format('%a');
+                $dias_que_llevo = $fecha_dia_de_hoy->diff($fecha_fin_estimada)->format('%a');
+
+                $requisito->progreso = ($dias_totales == 0 ? 100 . '%' : floor($dias_que_llevo / $dias_totales * 100) . '%');
+                $requisito->porcentaje = $requisito->progreso;
+
+                $diferencia = '';
+
+                // Lleva retraso
+                if ($fecha_fin_estimada < $fecha_dia_de_hoy){
+
+                    $diferencia = $fecha_fin_estimada->diff($fecha_dia_de_hoy)->format('%a');
+                    $requisito->finalizacion = "Hace " . $diferencia;
+                    $requisito->color = 'red';
+                    $requisito->stripped = '';
+                    $requisito->porcentaje = '<i class="icon fa fa-warning"></i>';
+
+                }
+                // O se estima que acabe hoy, o que acabe en días posteriores. Va bien.
+                else {
+
+                    $diferencia = $fecha_dia_de_hoy->diff($fecha_fin_estimada)->format('%a');
+                    $requisito->finalizacion = "En " . $diferencia;
+                    $requisito->color = 'green';
+                    $requisito->stripped = 'progress-striped';
+                }
+
+                if ($diferencia == 1){
+
+                    $requisito->finalizacion = $requisito->finalizacion . " día";
+                }
+                else {
+
+                    $requisito->finalizacion = $requisito->finalizacion . " días";
+                }
+
+                array_push($requisitos_no_finalizados, $requisito);
+            }
+            else {
+
+                $fecha_fin = DateTime::createFromFormat('d/m/Y', $requisito->fecha_fin);
+                $diferencia = $fecha_inicio->diff($fecha_fin);
+
+                if ($diferencia->d / 7 > 1){
+
+                    $requisito->duracion = $diferencia->w . " semanas";
+
+                    if ($diferencia->d > 0){
+
+                        if ($diferencia->d > 1){
+
+                            $requisito->duracion = $requisito->duracion . " y " . $diferencia->d . " días";
+                        }
+                        else {
+
+                            $requisito->duracion = $requisito->duracion . " y " . $diferencia->d . " día";
+                        }
+                    }
+                }
+                else if ($diferencia->d / 7 == 1){
+
+                    $requisito->duracion = "1 semana";
+
+                    if ($diferencia->d > 0){
+
+                        if ($diferencia->d > 1){
+
+                            $requisito->duracion = $requisito->duracion . " y " . $diferencia->d . " días";
+                        }
+                        else {
+
+                            $requisito->duracion = $requisito->duracion . " y " . $diferencia->d . " día";
+                        }
+                    }
+
+                }
+                else if ($diferencia->d > 1){
+
+                    $requisito->duracion = $diferencia->d . " días";
+                }
+                else {
+
+                    $requisito->duracion = "1 día";
+                }
+
+                array_push($requisitos_finalizados, $requisito);
+            }
+        }
+
+        return view('user.sprintsrequisitos', ['sprint' => $sprint, 'requisitos' => $requisitos, 'requisitos_no_finalizados' => $requisitos_no_finalizados, 'requisitos_finalizados' => $requisitos_finalizados]);
     }
 
 }

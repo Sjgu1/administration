@@ -142,6 +142,13 @@ class UserController extends Controller
         }
      }
 
+     public function details2($id = null){
+
+        $user = User::where('id', 1)->first();
+
+        return view('user.perfil', ['user' => $user]);
+     }
+
     public function modify(Request $request){
 
         $this->validate($request, [
