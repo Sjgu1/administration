@@ -45,6 +45,7 @@ class RequisitosController extends Controller
         $requisito->fecha_fin_estimada = $request->input('fecha_estimada_fin');
         $requisito->sprint_id = $request->input('sprint_id');
         $requisito->save();
+        return redirect()->back(); 
        
     }
  public function modificarColores(Request $request){

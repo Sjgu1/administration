@@ -98,11 +98,11 @@ document.getElementById(document.getElementById('cambiarColor').getAttribute('va
     <h3 style="text-align: center;"> {{$sprint->nombre}}</h3>
 </div>
 
-<span class="label btn label-primary" data-toggle="collapse" data-target="#selectorColores">Colores</span> 
+<span class="label btn label-warning" data-toggle="collapse" data-target="#selectorColores">Modificar colores de columnas</span> 
 
 			<div class="collapse fade  " id="selectorColores" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
             <div class="form-group">
-                  <label>Seleciona la columna</label>
+                  <label>Selecciona la columna</label>
                   <select class="form-control" onchange="cambiarColor(this.value);">
                     <option value="columna1">Por hacer</option>
                     <option value="columna2">En trámite</option>
@@ -115,8 +115,8 @@ document.getElementById(document.getElementById('cambiarColor').getAttribute('va
 
 
 <div class="row">
-
-    <div class="col-md-4 rounded" id="columna1" style="background-color:{{$sprint->color1}}; color:{{$sprint->colorTexto1}};"> 
+    <div class="col-md-4">
+    <div class="col-md-12 rounded" id="columna1" style="background-color:{{$sprint->color1}}; color:{{$sprint->colorTexto1}};"> 
         <h4>Por hacer 
 		<span class="label btn pull-right label-success" data-toggle="modal" data-target="#crearRequisito">Agregar</span></h4>		
         <!-- /.box-header -->
@@ -126,6 +126,9 @@ document.getElementById(document.getElementById('cambiarColor').getAttribute('va
 
                 <div class="panel box box-primary" >                  
                      <div  class="btn btn-info  pull-bottom" style="background-color:{{$requisito->color}}" id="modal{{$requisito->id}}" onclick="cambiarColor(modal{{$requisito->id}}.id)"data-toggle="collapse" data-target="#modificarColorRequisito{{$requisito->id}}" ></div>    
+                    <div class="fade collapse " id="modificarColorRequisito{{$requisito->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                    <label style="color:#000">Cambiar color: <input class="jscolor btn-xs btn-info" onchange="updateRequisitoColor(this.jscolor,{{$requisito->id}})"></label>
+                    </div>
                     <div class="box-header with-border" id="{{$requisito->id}}">
                         <h4 class="box-title">
 								<a  data-toggle="collapse" data-parent="#accordion1" href="#desplegar{{$requisito->id}}" aria-expanded="false" class="collapsed"> {{$requisito->nombre}} </a>
@@ -133,7 +136,7 @@ document.getElementById(document.getElementById('cambiarColor').getAttribute('va
 								</h4>
                     </div>
                     <div id="desplegar{{$requisito->id}}" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
-                        <div class="box-body">
+                        <div style="color:#000" class="box-body">
                             {{$requisito->descripcion}}
                         </div>
                     </div>               
@@ -149,12 +152,16 @@ document.getElementById(document.getElementById('cambiarColor').getAttribute('va
         </div>
         <script>
             $('#accordion1').on("sortreceive", function(event, ui) {
-                drop(ui.item["0"].firstElementChild.nextElementSibling.id, 'Por hacer');
+                
+               // console.log(ui);
+                drop(ui.item["0"].firstElementChild.nextElementSibling.nextElementSibling.id, 'Por hacer');
 
             });
         </script>
     </div>
-    <div class="col-md-4 rounded" id="columna2" style="background-color:{{$sprint->color2}}; color:{{$sprint->colorTexto2}};"> 
+    </div>
+     <div class="col-md-4">
+    <div class="col-md-12 rounded" id="columna2" style="background-color:{{$sprint->color2}}; color:{{$sprint->colorTexto2}};"> 
         <h4>En trámite </h4> 
         <div  id="accordion2" class="connectedSortable">
             <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
@@ -162,6 +169,9 @@ document.getElementById(document.getElementById('cambiarColor').getAttribute('va
 
                 <div class="panel box box-primary" >                  
                      <div  class="btn btn-info  pull-bottom" style="background-color:{{$requisito->color}}" id="modal{{$requisito->id}}" onclick="cambiarColor(modal{{$requisito->id}}.id)"data-toggle="collapse" data-target="#modificarColorRequisito{{$requisito->id}}" ></div>    
+                    <div class="fade collapse " id="modificarColorRequisito{{$requisito->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                    <label style="color:#000">Cambiar color: <input class="jscolor btn-xs btn-info" onchange="updateRequisitoColor(this.jscolor,{{$requisito->id}})"></label>
+ </div>
                     <div class="box-header with-border" id="{{$requisito->id}}">
                         <h4 class="box-title">
 								<a data-toggle="collapse" data-parent="#accordion2" href="#desplegar{{$requisito->id}}" aria-expanded="false" class="collapsed"> {{$requisito->nombre}} </a>
@@ -169,7 +179,7 @@ document.getElementById(document.getElementById('cambiarColor').getAttribute('va
 								</h4>
                     </div>
                     <div id="desplegar{{$requisito->id}}" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
-                        <div class="box-body">
+                        <div style="color:#000" class="box-body">
                             {{$requisito->descripcion}}
                         </div>
                     </div>               
@@ -186,18 +196,23 @@ document.getElementById(document.getElementById('cambiarColor').getAttribute('va
         <script>
             $('#accordion2').on("sortreceive", function(event, ui) {
 
-                drop(ui.item["0"].firstElementChild.nextElementSibling.id, 'En trámite');
+                drop(ui.item["0"].firstElementChild.nextElementSibling.nextElementSibling.id, 'En trámite');
             });
         </script>
         <!-- /.box-body -->
     </div>
-    <div class="col-md-4 rounded "id="columna3" style="background-color:{{$sprint->color3}}; color:{{$sprint->colorTexto3}};"> 
+    </div>
+     <div class="col-md-4">
+    <div class="col-md-12 rounded "id="columna3" style="background-color:{{$sprint->color3}}; color:{{$sprint->colorTexto3}};"> 
         <h4>Hecho</h4>
         <div  id="accordion3" class="connectedSortable">
             @foreach ($requisitos as $requisito ) @if ($requisito->estado == 'Hecho')
 
                 <div class="panel box box-primary" >                  
                      <div  class="btn btn-info  pull-bottom" style="background-color:{{$requisito->color}}" id="modal{{$requisito->id}}" onclick="cambiarColor(modal{{$requisito->id}}.id)"data-toggle="collapse" data-target="#modificarColorRequisito{{$requisito->id}}" ></div>    
+                    <div class="fade collapse " id="modificarColorRequisito{{$requisito->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                    <label style="color:#000">Cambiar color: <input class="jscolor btn-xs btn-info" onchange="updateRequisitoColor(this.jscolor,{{$requisito->id}})"></input></label>
+                    </div>
                     <div class="box-header with-border" id="{{$requisito->id}}">
                         <h4 class="box-title">
 								<a data-toggle="collapse" data-parent="#accordion3" href="#desplegar{{$requisito->id}}" aria-expanded="false" class="collapsed"> {{$requisito->nombre}} </a>
@@ -205,7 +220,7 @@ document.getElementById(document.getElementById('cambiarColor').getAttribute('va
 								</h4>
                     </div>
                     <div id="desplegar{{$requisito->id}}" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
-                        <div class="box-body">
+                        <div style="color:#000" class="box-body">
                             {{$requisito->descripcion}}
                         </div>
                     </div>               
@@ -221,10 +236,11 @@ document.getElementById(document.getElementById('cambiarColor').getAttribute('va
         </div>
         <script>
             $('#accordion3').on("sortreceive", function(event, ui) {
-                drop(ui.item["0"].firstElementChild.nextElementSibling.id, 'Hecho');
+                drop(ui.item["0"].firstElementChild.nextElementSibling.nextElementSibling.id, 'Hecho');
             });
         </script>
         <!-- /.box-body -->
+    </div>
     </div>
 
 </div>
