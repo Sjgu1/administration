@@ -10,5 +10,12 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-    'welcome'   => 'Hooola',
+    'bienvenido'   => 'Bienvenido',
+    'actividad'    => 'Actividad',
+    'proyecto'     => 'Proyecto',
+    'contacto'     => 'Contacto',
+    'tablon'       => 'Tablón',
+    'requisitos'   => 'Requisitos', 
+
+
 ];
