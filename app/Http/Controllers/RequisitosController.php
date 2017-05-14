@@ -47,14 +47,19 @@ class RequisitosController extends Controller
         $requisito->save();
        
     }
+ public function modificarColores(Request $request){
 
+        $requisito = Requisito::where('id', $request->input('requisito_id'))->first();
+        $requisito->color=$request->input('color');
+
+        $requisito->save();
+    }
     public function delete($id){
         
 
         $requisito = Requisito::where('id', $id)->first();
         $requisito->delete();
-         return redirect()->action('SprintController@pizarra');
-       // return view('exito_elemento',['slot'=> "Se ha eliminado el Requisito: " .$requisito->id  ] );
+        return redirect()->back();       // return view('exito_elemento',['slot'=> "Se ha eliminado el Requisito: " .$requisito->id  ] );
 
     }
 

@@ -15,6 +15,7 @@ class CreateRequisitosTable extends Migration
     {
         Schema::create('requisitos', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('color')->nullable();
             $table->string('nombre')->nullable();
             $table->string('descripcion')->nullable();
             $table->timestamp('fecha_inicio')->nullable();

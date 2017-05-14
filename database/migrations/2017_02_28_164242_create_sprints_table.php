@@ -20,6 +20,12 @@ class CreateSprintsTable extends Migration
             $table->timestamp('fecha_inicio')->nullable();
             $table->timestamp('fecha_fin')->nullable();
             $table->timestamp('fecha_fin_estimada')->nullable();
+            $table->string('color1')->nullable();
+            $table->string('colorTexto1')->nullable();
+            $table->string('color2')->nullable();
+            $table->string('colorTexto2')->nullable();
+            $table->string('color3')->nullable();
+            $table->string('colorTexto3')->nullable();
             $table->integer('proyecto_id');
             $table->foreign('proyecto_id')->references('id')->on('proyectos')->onDelete('cascade');
             $table->timestamps();

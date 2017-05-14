@@ -20,7 +20,8 @@ class SprintsTableSeeder extends Seeder
             'nombre' => 'Planificacion del proyecto',
             'descripcion' => 'Diseño de diagramas de casos de uso. Diagrama de arquitectura y análisis UML. Planificación de las pruebas',
             'fecha_inicio' => '29/07/2017',
-            'fecha_fin_estimada' => '20/20/2017'
+            'fecha_fin_estimada' => '20/20/2017',
+            'color1' => 'rgb(157,171,104)'
         ]);
         $proyecto = Proyecto::where('nombre', 'GIMP')->first();
         $sprint->proyecto()->associate($proyecto);

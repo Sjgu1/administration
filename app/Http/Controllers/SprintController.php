@@ -66,6 +66,25 @@ class SprintController extends Controller
         return view('exito_elemento',['slot'=> "Se ha modificado el Sprint: " .$sprint->id  ] );
 
     }
+    public function modificarColores(Request $request){
+
+        $sprint = Sprint::where('id', $request->input('sprint_id'))->first();
+        if($request->input('columna')=="columna1" && $request->input('cambiar') =="fondo"){
+            $sprint->color1 = $request->input('color');
+        }elseif($request->input('columna')=="columna2" && $request->input('cambiar') =="fondo"){
+            $sprint->color2 = $request->input('color');
+        }elseif($request->input('columna')=="columna3" && $request->input('cambiar') =="fondo"){
+            $sprint->color3 = $request->input('color');
+        } if($request->input('columna')=="columna1" && $request->input('cambiar') =="texto"){
+            $sprint->colorTexto1 = $request->input('color');
+        }elseif($request->input('columna')=="columna2" && $request->input('cambiar') =="texto"){
+            $sprint->colorTexto2 = $request->input('color');
+        }elseif($request->input('columna')=="columna3" && $request->input('cambiar') =="texto"){
+            $sprint->colorTexto3 = $request->input('color');
+        }
+
+        $sprint->save();
+    }
 
     public function delete($id){
 

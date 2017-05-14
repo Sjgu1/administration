@@ -148,6 +148,11 @@ Route::post('user/modificar', 'UserController@modify');
 Route::post('rol/modificar', 'RolController@modify');
 Route::post('permiso/modificar', 'PermisoController@modify');
 
+
+Route::post('requisitoUsuario/colores', 'SprintController@modificarColores');
+Route::post('requisitoUsuario/colorRequisito', 'RequisitosController@modificarColores');
+
+
 // Filtrado de listado
 /*Route::post('proyectos', 'ProyectosController@filtrar');
 Route::post('sprints', 'SprintController@filtrar');

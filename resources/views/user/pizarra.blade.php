@@ -1,5 +1,43 @@
 @extends('layouts.privada')
 <script src="/adminlte/colores.js"></script>
+<script type="text/javascript">
+function update(jscolor, id) {
+    document.getElementById(document.getElementById('cambiarColor').getAttribute('value')).style.backgroundColor = '#' + jscolor;
+     $.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+   console.log("aqui llego");
+    $.post("/requisitoUsuario/colores", {
+        columna: document.getElementById('cambiarColor').getAttribute('value'),
+        color: document.getElementById(document.getElementById('cambiarColor').getAttribute('value')).style.backgroundColor = '#' + jscolor,
+        cambiar: "fondo",
+        sprint_id: id
+    });
+     
+}
+</script>
+<script type="text/javascript">
+function updateTexto(jscolor, id) {
+    document.getElementById(document.getElementById('cambiarColor').getAttribute('value')).style.color = '#' + jscolor;
+     $.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+    $.post("/requisitoUsuario/colores", {
+        columna: document.getElementById('cambiarColor').getAttribute('value'),
+        color: document.getElementById(document.getElementById('cambiarColor').getAttribute('value')).style.color = '#' + jscolor,
+        cambiar: "texto",
+        sprint_id: id
+    });
+     
+}
+</script>
+<script type="text/javascript">
+function updateRequisitoColor(jscolor, id) {
+document.getElementById(document.getElementById('cambiarColor').getAttribute('value')).style.backgroundColor = '#' + jscolor;
+ $.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+    $.post("/requisitoUsuario/colorRequisito", {
+        color: document.getElementById(document.getElementById('cambiarColor').getAttribute('value')).style.color = '#' + jscolor,
+        requisito_id: id
+    });
+}
+</script>
+
 <script>
     function allowDrop(ev) {
         ev.preventDefault();
@@ -25,11 +63,9 @@
     }
 
     function cambiarColor(recibido) {
-        console.log(recibido);
 		var a=document.getElementById('cambiarColor');
 		a.setAttribute('value',recibido);
-		console.log(a.getAttribute('value'));
-		console.log("hasasdasda");
+        console.log(recibido);
     }
 </script>
 
@@ -46,7 +82,7 @@
 </script>
 
 @section('content')
-<input id="cambiarColor" style="display:none;"value="aa">
+<input id="cambiarColor" style="display:none;"value="columna1">
 <!-- jQuery UI 1.11.4 -->
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -59,28 +95,40 @@
 
 <div class="row">
     <h1 style="text-align: center;">{{$proyecto->nombre}} </h1>
-    <h3 style="text-align: center;"> {{$sprint->nombre}} </h3>
+    <h3 style="text-align: center;"> {{$sprint->nombre}}</h3>
 </div>
 
+<span class="label btn label-primary" data-toggle="collapse" data-target="#selectorColores">Colores</span> 
+
 			<div class="collapse fade  " id="selectorColores" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-			Selector de colores
-				<select id="bgcolor-button" style="background-image: none; background-color: rgb(82, 170, 171); color: rgb(0, 0, 0);" class="">fondo 1</select>						
-				<select  id="fgcolor-button"  style="background-image: none; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);">letras 1</select>
+            <div class="form-group">
+                  <label>Seleciona la columna</label>
+                  <select class="form-control" onchange="cambiarColor(this.value);">
+                    <option value="columna1">Por hacer</option>
+                    <option value="columna2">En trámite</option>
+                    <option value="columna3">Hecho</option>
+                  </select>
+                </div>
+             <label>Color de Fondo</label><input class="jscolor" onchange="update(this.jscolor, {{$sprint->id}})">
+             <label>Color de Texto</label><input class="jscolor" onchange="updateTexto(this.jscolor,{{$sprint->id}})">
 </div>
+
 
 <div class="row">
 
-    <div class="col-md-4" id="columna1"> 
-        <h4>Por hacer <span class="label btn pull-right label-primary"  onclick="cambiarColor('columna1')" data-toggle="collapse" data-target="#selectorColores">Colores</span> 
+    <div class="col-md-4 rounded" id="columna1" style="background-color:{{$sprint->color1}}; color:{{$sprint->colorTexto1}};"> 
+        <h4>Por hacer 
 		<span class="label btn pull-right label-success" data-toggle="modal" data-target="#crearRequisito">Agregar</span></h4>		
         <!-- /.box-header -->
         <div  id="accordion1" class="connectedSortable">
             <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
             @foreach ($requisitos as $requisito ) @if ($requisito->estado == 'Por hacer')
-                <div class="panel box box-primary ">
+
+                <div class="panel box box-primary" >                  
+                     <div  class="btn btn-info  pull-bottom" style="background-color:{{$requisito->color}}" id="modal{{$requisito->id}}" onclick="cambiarColor(modal{{$requisito->id}}.id)"data-toggle="collapse" data-target="#modificarColorRequisito{{$requisito->id}}" ></div>    
                     <div class="box-header with-border" id="{{$requisito->id}}">
                         <h4 class="box-title">
-								<a data-toggle="collapse" data-parent="#accordion1" href="#desplegar{{$requisito->id}}" aria-expanded="false" class="collapsed"> {{$requisito->nombre}} </a>
+								<a  data-toggle="collapse" data-parent="#accordion1" href="#desplegar{{$requisito->id}}" aria-expanded="false" class="collapsed"> {{$requisito->nombre}} </a>
 								<i class="fa fa-fw fa-edit btn " class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$requisito->id}}" ></i>
 								</h4>
                     </div>
@@ -101,25 +149,22 @@
         </div>
         <script>
             $('#accordion1').on("sortreceive", function(event, ui) {
-                drop(ui.item["0"].firstElementChild.id, 'Por hacer');
+                drop(ui.item["0"].firstElementChild.nextElementSibling.id, 'Por hacer');
 
             });
         </script>
     </div>
-  
-    <!-- /.box-body -->
-
-    <div class="col-md-4" id="columna2">
-        <!-- /.box-header -->
-
-        <h4>En trámite <span class="label btn pull-right label-primary"  onclick="cambiarColor('columna2')" data-toggle="collapse" data-target="#selectorColores">Colores</span> </h4> 
+    <div class="col-md-4 rounded" id="columna2" style="background-color:{{$sprint->color2}}; color:{{$sprint->colorTexto2}};"> 
+        <h4>En trámite </h4> 
         <div  id="accordion2" class="connectedSortable">
             <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
             @foreach ($requisitos as $requisito ) @if ($requisito->estado == 'En trámite')
-                <div class="panel box box-primary ">
+
+                <div class="panel box box-primary" >                  
+                     <div  class="btn btn-info  pull-bottom" style="background-color:{{$requisito->color}}" id="modal{{$requisito->id}}" onclick="cambiarColor(modal{{$requisito->id}}.id)"data-toggle="collapse" data-target="#modificarColorRequisito{{$requisito->id}}" ></div>    
                     <div class="box-header with-border" id="{{$requisito->id}}">
                         <h4 class="box-title">
-								<a data-toggle="collapse" data-parent="#accordion1" href="#desplegar{{$requisito->id}}" aria-expanded="false" class="collapsed"> {{$requisito->nombre}} </a>
+								<a data-toggle="collapse" data-parent="#accordion2" href="#desplegar{{$requisito->id}}" aria-expanded="false" class="collapsed"> {{$requisito->nombre}} </a>
 								<i class="fa fa-fw fa-edit btn " class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$requisito->id}}" ></i>
 								</h4>
                     </div>
@@ -140,21 +185,22 @@
         </div>
         <script>
             $('#accordion2').on("sortreceive", function(event, ui) {
-                drop(ui.item["0"].firstElementChild.id, 'En trámite');
+
+                drop(ui.item["0"].firstElementChild.nextElementSibling.id, 'En trámite');
             });
         </script>
         <!-- /.box-body -->
     </div>
-    <div class="col-md-4 "id="columna3">
-        <!-- /.box-header -->
-        <h4>Hecho<span class="label btn pull-right label-primary"  onclick="cambiarColor('columna3')" data-toggle="collapse" data-target="#selectorColores">Colores</span> </h4>
+    <div class="col-md-4 rounded "id="columna3" style="background-color:{{$sprint->color3}}; color:{{$sprint->colorTexto3}};"> 
+        <h4>Hecho</h4>
         <div  id="accordion3" class="connectedSortable">
-            <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
             @foreach ($requisitos as $requisito ) @if ($requisito->estado == 'Hecho')
-                <div class="panel box box-primary ">
+
+                <div class="panel box box-primary" >                  
+                     <div  class="btn btn-info  pull-bottom" style="background-color:{{$requisito->color}}" id="modal{{$requisito->id}}" onclick="cambiarColor(modal{{$requisito->id}}.id)"data-toggle="collapse" data-target="#modificarColorRequisito{{$requisito->id}}" ></div>    
                     <div class="box-header with-border" id="{{$requisito->id}}">
                         <h4 class="box-title">
-								<a data-toggle="collapse" data-parent="#accordion1" href="#desplegar{{$requisito->id}}" aria-expanded="false" class="collapsed"> {{$requisito->nombre}} </a>
+								<a data-toggle="collapse" data-parent="#accordion3" href="#desplegar{{$requisito->id}}" aria-expanded="false" class="collapsed"> {{$requisito->nombre}} </a>
 								<i class="fa fa-fw fa-edit btn " class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$requisito->id}}" ></i>
 								</h4>
                     </div>
@@ -175,7 +221,7 @@
         </div>
         <script>
             $('#accordion3').on("sortreceive", function(event, ui) {
-                drop(ui.item["0"].firstElementChild.id, 'Hecho');
+                drop(ui.item["0"].firstElementChild.nextElementSibling.id, 'Hecho');
             });
         </script>
         <!-- /.box-body -->
@@ -229,6 +275,9 @@
     </div>
 </div>
 @foreach ($requisitos as $requisito )
+<div class="fade collapse " id="modificarColorRequisito{{$requisito->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <label>Color de tarjeta {{$requisito->nombre}}:</br> </label><input class="jscolor" onchange="updateRequisitoColor(this.jscolor,{{$requisito->id}})">
+ </div>
 <div class="modal fade" id="exampleModal{{$requisito->
 	 id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
     <div class="modal-dialog" role="document">
@@ -316,6 +365,7 @@
         </div>
     </div>
 </div>
+
     <script>
     // When the document is ready
     $(document).ready(function () {
@@ -335,34 +385,5 @@
 			 opacity: 0.5
         }).disableSelection();
     });
-</script>
-
-						<script>
-						
-			var options = {};
-
-			var pickers = {};
-			console.log(document.getElementById('cambiarColor').getAttribute('value'));
-			pickers.bgcolor = new jscolor('bgcolor-button', options);
-			pickers.bgcolor.onFineChange = "update('bgcolor')";
-			pickers.bgcolor.fromString('AB2567');
-
-			pickers.fgcolor = new jscolor('fgcolor-button', options);
-			pickers.fgcolor.onFineChange = "update('fgcolor')";
-			pickers.fgcolor.fromString('FFFFFF');
-
-			
-			function update (id) {
-				document.getElementById(document.getElementById('cambiarColor').getAttribute('value')).style.backgroundColor =
-					pickers.bgcolor.toHEXString();
-
-				document.getElementById(document.getElementById('cambiarColor').getAttribute('value')).style.color =
-				document.getElementById(document.getElementById('cambiarColor').getAttribute('value')).style.borderColor =
-					pickers.fgcolor.toHEXString();
-
-			}
-			</script>
-
-
-			
+</script>	
 @endsection
