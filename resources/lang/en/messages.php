@@ -16,4 +16,7 @@ return [
     'contacto'     => 'Contact',
     'tablon'       => 'Board',
     'requisitos'   => 'Requirements',
+    'sprints'      => 'Sprints',
+    'pizarra'      => "Board",
+
 ];

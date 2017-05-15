@@ -13,9 +13,19 @@ return [
     'bienvenido'   => 'Bienvenido',
     'actividad'    => 'Actividad',
     'proyecto'     => 'Proyecto',
+    'listar proyectos' => 'Listar Proyectos',
+    'crear proyecto' => 'Crear Proyecto',
     'contacto'     => 'Contacto',
     'tablon'       => 'Tablón',
     'requisitos'   => 'Requisitos', 
-
-
+    'listar requisitos' => 'Listar Requisitos',
+    'sprints'      => 'Sprints',
+    'listar sprints' => 'Listar Sprints',
+    'pizarra'      => 'Pizarra',
+    'agregar'      => 'Agregar',
+    'en tramite'   => 'En trámite',
+    'por hacer'    => 'Por hacer',
+    'hecho'        => 'Hecho',
+    'calendario'   => 'Calendario',
+    'usuarios'     => 'Usuarios',
 ];
