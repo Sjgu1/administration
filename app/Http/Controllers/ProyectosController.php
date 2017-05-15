@@ -29,11 +29,11 @@ class ProyectosController extends Controller
 
     public function modify(Request $request){
 
-        $this->validate($request, [
+        /*$this->validate($request, [
             'nombre' => ['string', 'min:3', 'max:20'],
             'descripcion' => ['string', 'min:3', 'max:65535'],
             'repositorio' => 'url | nullable'
-        ]);
+        ]);*/
 
         $proyecto = Proyecto::where('id', $request->input('id'))->first();
         $proyecto->nombre = $request->input('nombre');
@@ -142,11 +142,11 @@ class ProyectosController extends Controller
 
     public function create(Request $request){
 
-        $this->validate($request, [
+        /*$this->validate($request, [
             'nombre' => ['string', 'min:3', 'max:20'],
             'descripcion' => ['string', 'min:3', 'max:65535'],
             'repositorio' => 'url | nullable'
-        ]);
+        ]);*/
 
         $proyecto = new Proyecto();
         $proyecto->nombre = $request->input('nombre');
@@ -156,7 +156,7 @@ class ProyectosController extends Controller
         $proyecto->fecha_fin_estimada = $request->input('fecha_fin_estimada');
 
         $proyecto->save();
-        return redirect('proyectos');
+        return redirect('user/proyectosusers');
     }
 
     public function actividad($id = null){
