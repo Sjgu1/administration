@@ -370,14 +370,14 @@
         <li class="header">Menú</li>
          <li class="treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Proyectos</span>
+            <i class="fa fa-dashboard"></i> <span>@lang('messages.proyectos')</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/user/proyectosusers"><i class="fa fa-circle-o"></i> Listar Proyectos</a></li>
-            <li><a href="/user/proyecto/new"><i class="fa fa-circle-o"></i> Crear Proyecto</a></li>
+            <li><a href="/user/proyectosusers"><i class="fa fa-circle-o"></i> @lang('messages.listar proyectos')</a></li>
+            <li><a href="/user/proyecto/new"><i class="fa fa-circle-o"></i> @lang('messages.crear proyecto')</a></li>
           </ul>
         </li>
         <li class="treeview">
