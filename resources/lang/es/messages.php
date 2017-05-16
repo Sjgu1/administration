@@ -14,6 +14,7 @@ return [
     'inicio'       => 'Inicio',
     'actividad'    => 'Actividad',
     'proyecto'     => 'Proyecto',
+    'universidad'  => 'Universidad',
     'el equipo'    => 'El equipo',
     'trabaja en equipo' => 'Trabaja en equipo',
     'somos un equipo de trabajo' => 'Somos un equipo de trabajo',

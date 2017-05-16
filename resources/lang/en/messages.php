@@ -14,6 +14,7 @@ return [
     'inicio'       => 'Home',
     'actividad'    => 'Timeline',
     'proyecto'     => 'Project',
+    'universidad'  => 'University',
     'el equipo'    => 'The team',
     'trabaja en equipo' => 'Work in a team',
     'somos un equipo de trabajo' => 'We are a team',
