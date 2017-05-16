@@ -5,8 +5,14 @@
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="/adminlte/dist/js/pages/dashboard.js"></script>
 
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="/js/typeahead-0.11.1.js"></script>
+    <!-- JS file -->
+    <script src="/js/jquery.easy-autocomplete.min.js"></script> 
+
+    <!-- CSS file -->
+    <link rel="stylesheet" href="/css/easy-autocomplete.min.css"> 
+
+    <!-- Additional CSS Themes file - not required-->
+    <link rel="stylesheet" href="/css/easy-autocomplete.themes.min.css">
 
     <style type="text/css">
 
@@ -94,7 +100,7 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <input type="text" class="form-control modal-title" name="nombre" placeholder="Nombre">
+                <input id="autocompleteUser" type="text" class="form-control modal-title" name="nombre" placeholder="Nombre">
               </div>
             </div>
             <!-- /.col -->
@@ -104,7 +110,7 @@
                     <option value="Rol" disabled="disabled" selected>Rol</option>
 
                     @foreach ($rols as $rol)
-                        <option value="{{ $rol->nombre }}">{{ $proyecto_user->rol->nombre }}</option>
+                        <option value="{{ $rol->nombre }}">{{ $rol->nombre }}</option>
                     @endforeach
                 </select>
               </div>
@@ -123,35 +129,6 @@
         <!-- /.box-body -->
       </div>
       <!-- /.box -->
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box box-info">
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <form id="user_form" action="{{ url('user/modificar') }}" method="POST" enctype="multipart/form-data" role="form" data-toggle="validator">
-                            {{ csrf_field() }}
-                            <div class="form-group has-feedback">
-                                <input readonly="readonly" type="hidden" id="id" name="id" value="{{ $user->id }}" class="form-control">
-                            </div>
-                            <div class="form-group has-feedback">
-                                <label for="name" class="control-label">Usuario:</label>
-                                <input type="text" id="name" name="name" value="{{ $user->name }}" class="form-control" data-minlength="3" maxlength="20" required>
-                            </div>
-                            <div class="form-group has-feedback">
-                                <label for="apellidos" class="control-label">Rol:</label>
-                                <input  type="text" id="apellidos" name="apellidos" value="{{ $user->apellidos }}" class="form-control" data-minlength="3" maxlength="50" required>
-                            </div>
-                            <div class="box-footer">
-                                <input class="btn btn-primary btn-lg" type="submit" value="Invitar">
-                            </div>
-                        </form>
-                    </div>
-                    <!-- /.box-body -->
-                </div>
-                <!-- /.box -->
-            </div>
-        </div>
 
 <!-- Formulario modificación rol -->
 @foreach ($proyecto_users as $proyecto_user)
@@ -195,49 +172,28 @@
 
     <script>
 
-        var substringMatcher = function(strs) {
-  return function findMatches(q, cb) {
-    var matches, substringRegex;
+        var options = {
 
-    // an array that will be populated with substring matches
-    matches = [];
+        data: [
 
-    // regex used to determine if a string contains the substring `q`
-    substrRegex = new RegExp(q, 'i');
+            @foreach ($users as $user)
+                {name: {!! '"' !!}{{ $user->name . ' ' . $user->apellidos }}{!! '"' !!}, type: {!! '"' !!}{{ $user->email }}{!! '"' !!}},
+            @endforeach
+        ],
 
-    // iterate through the pool of strings and for any string that
-    // contains the substring `q`, add it to the `matches` array
-    $.each(strs, function(i, str) {
-      if (substrRegex.test(str)) {
-        matches.push(str);
-      }
-    });
+        getValue: "name",
 
-    cb(matches);
-  };
-};
+        template: {
+            type: "description",
+            fields: {
+                description: "type"
+            }
+        }
 
-var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
-  'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
-  'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
-  'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
-  'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-  'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-  'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
-  'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-  'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-];
+        };
 
-$('#the-basics .typeahead').typeahead({
-  hint: true,
-  highlight: true,
-  minLength: 1
-},
-{
-  name: 'states',
-  source: substringMatcher(states)
-});
-    
+        $("#autocompleteUser").easyAutocomplete(options);
+
     </script>
 
     <script>
