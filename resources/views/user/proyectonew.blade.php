@@ -24,22 +24,22 @@
                     
                     <!--Nombre-->
                     <div class="form-group has-feedback">
-                        <label for="nombre" class="control-label">Nombre:</label>
+                        <label for="nombre" class="control-label">@lang('messages.nombre')</label>
                         <input type="text" id="nombre" name="nombre" value="{{ old('nombre') }}" class="form-control" data-minlength="3" maxlength="20" required>
                     </div>
                     <!--Descripcion-->
                     <div class="form-group has-feedback">
-                        <label for="descripcion" class="control-label">Descripción:</label>
+                        <label for="descripcion" class="control-label">@lang('messages.descripcion'):</label>
                         <textarea id="descripcion" name="descripcion" class="form-control" rows="5" value="{{ old('descripcion') }}" data-minlength="3" maxlength="65535" required></textarea>
                     </div>
                     <!--Repositorio-->
                     <div class="form-group has-feedback">
-                        <label for="repositorio" class="control-label">Repositorio:</label>
+                        <label for="repositorio" class="control-label">@lang('messages.repositorio'):</label>
                         <input type="repositorio" name="repositorio" id="repositorio" class="form-control">
                     </div>
                     <!--Fecha inicio-->
                     <div class="form-group has-feedback">
-                        <label for="message-text" class="control-label">Fecha de inicio:</label>
+                        <label for="message-text" class="control-label">@lang('messages.fecha de inicio'):</label>
                         <div class="form-group">
                             <div class='input-group date' id='datetimepicker6'>
                                 <input type='text' class="form-control" name="fecha_inicio" id="fecha_inicio" />
@@ -56,7 +56,7 @@
                     </div>
                     <!--Fecha fin estimada-->
                     <div class="form-group has-feedback">
-                        <label for="message-text" class="control-label">Fecha estimada de finalización:</label>
+                        <label for="message-text" class="control-label">@lang('messages.fecha estimada de fin'):</label>
                         <div class="form-group">
                             <div class='input-group date' id='datetimepicker7'>
                                 <input type='text' class="form-control" name="fecha_fin_estimada" id="fecha_fin_estimada" />
@@ -73,7 +73,7 @@
                     </div>
                     <!--Boton-->
                     <div class="box-footer">
-                        <input class="btn btn-primary btn-lg" type="submit" value="Crear">
+                        <input class="btn btn-primary btn-lg" type="submit" value="@lang('messages.crear')">
                     </div>
                 </form>
             </div>
@@ -87,20 +87,4 @@
       <!-- /.row -->
 
     </section>
- <script>
-    // When the document is ready
-    $(document).ready(function () {
-
-        $('#fecha_inicio').datepicker({
-            autoclose: true,
-            format: "dd/mm/yyyy"
-        });
-
-        $('#fecha_fin_estimada').datepicker({
-            autoclose: true,
-            format: "dd/mm/yyyy"
-        });
-
-    });
-    </script>
 @endsection
