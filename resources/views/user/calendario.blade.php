@@ -14,7 +14,7 @@
 
     <section class="content-header">
       <h1>
-        Calendario
+        @lang('messages.calendario')
         <small>@lang('messages.proyecto')</small>
       </h1>
       <ol class="breadcrumb">
