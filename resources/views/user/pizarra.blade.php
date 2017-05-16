@@ -366,7 +366,7 @@
                <!--<option selected="selected" value="{{$usuario->user->id}}">{{$usuario->user->name}}</option>-->
                <label value="{{$usuario->user->name}}">{{$usuario->user->name}}</label>
                <br> @endif @endif @endforeach @endforeach
-               <br> @lang('messages.selecciona nuevos usuarios'):
+               <br> @lang('messages.selecciona nuevos usuarios' ):
                <br/>
                <select name="basic" id="ex-data-multiple-{{$requisito->id}}" multiple style="display: none;">
                   @foreach($usuarios as $usuario)
