@@ -11,6 +11,8 @@ use DateTimeZone;
 use DateInterval;
 use App\ProyectoUser;
 use App\Requisito;
+use App\User;
+use App\Rol;
 use Auth;
 use Log;
 
@@ -157,6 +159,15 @@ class ProyectosController extends Controller
         $proyecto->fecha_fin_estimada = $request->input('fecha_fin_estimada');
 
         $proyecto->save();
+
+        $proyectoUser = new ProyectoUser();
+        $user = User::where('id', Auth::id())->first();
+        $rol = Rol::where('id', '1')->first();
+
+        $proyectoUser->user()->associate($user->id);
+        $proyectoUser->proyecto()->associate($proyecto->id);
+        $proyectoUser->rol()->associate($rol->id);
+        $proyectoUser->save();
         return redirect('user/proyectosusers');
     }
 
