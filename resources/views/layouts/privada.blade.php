@@ -382,44 +382,43 @@
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Sprints</span>
+            <i class="fa fa-dashboard"></i> <span>@lang('messages.sprints')</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="user/sprintsusers"><i class="fa fa-circle-o"></i> Listar Sptrints</a></li>
-            <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+            <li><a href="user/sprintsusers"><i class="fa fa-circle-o"></i> @lang('messages.listar sprints')</a></li>
           </ul>
         </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-files-o"></i>
-            <span>Requisitos</span>
+            <span>@lang('messages.requisitos')</span>
             <span class="pull-right-container">
               <span class="label label-primary pull-right"></span>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/sprintsrequisitos"><i class="fa fa-circle-o"></i> Listar Requisitos</a></li>
+            <li><a href="/sprintsrequisitos"><i class="fa fa-circle-o"></i> @lang('messages.listar requisitos')</a></li>
             <!--li><a href="/user/requisitosusers"><i class="fa fa-circle-o"></i> Crear Requisito</a></li-->
           </ul>
         </li>
         <li>
           <a href="/pizarra">
             <i class="fa fa-th"></i>
-            <span>Pizarra</span>
+            <span>@lang('messages.pizarra')</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-green">new</small>
+              <small class="label pull-right bg-green">@lang('messages.nuevo')</small>
             </span>
           </a>
         </li>
         <li>
           <a href="/actividad">
             <i class="fa fa-pie-chart"></i>
-            <span>Actividad</span>
+            <span>@lang('messages.actividad')</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-green">new</small>
+              <small class="label pull-right bg-green">@lang('messages.nuevo')</small>
               <!--<i class="fa fa-angle-left pull-right"></i>-->
             </span>
           </a>
@@ -433,7 +432,7 @@
         <li class="treeview">
           <a href="#">
             <i class="fa fa-laptop"></i>
-            <span>Gráficos</span>
+            <span>@lang('messages.graficos')</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -441,17 +440,17 @@
           <ul class="treeview-menu">
             <li><a href="/graficos/burndown"><i class="fa fa-circle-o"></i>Burndown</a></li>
             <li><a href="/graficos/burndown/sprints"><i class="fa fa-circle-o"></i>Burndown sprints</a></li>
-            <li><a href="/graficos/frecuencia"><i class="fa fa-circle-o"></i>Frecuencia</a></li>
-            <li><a href="/graficos/requisitos"><i class="fa fa-circle-o"></i>Requisitos</a></li>
+            <li><a href="/graficos/frecuencia"><i class="fa fa-circle-o"></i>@lang('messages.frecuencia')</a></li>
+            <li><a href="/graficos/requisitos"><i class="fa fa-circle-o"></i>@lang('messages.requisitos')</a></li>
             <li><a href="/graficos/commits"><i class="fa fa-circle-o"></i>Commits</a></li>
-            <li class="active"><a href="timeline.html"><i class="fa fa-circle-o"></i>Timeline</a></li>
+            <li class="active"><a href="timeline.html"><i class="fa fa-circle-o"></i>@lang('messages.actividad')</a></li>
           </ul>
         </li>
         <li>
           <a href="/calendario">
-            <i class="fa fa-edit"></i><span>Calendario</span>
+            <i class="fa fa-edit"></i><span>@lang('messages.calendario')</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-green">new</small>
+              <small class="label pull-right bg-green">@lang('messages.nuevo')</small>
             </span>
           </a>
         </li>
@@ -460,7 +459,7 @@
             <i class="fa fa-pie-chart"></i>
             <span>Usuarios</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-green">new</small>
+              <small class="label pull-right bg-green">@lang('messages.nuevo')</small>
               <!--<i class="fa fa-angle-left pull-right"></i>-->
             </span>
           </a>

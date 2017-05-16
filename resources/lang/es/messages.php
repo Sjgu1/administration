@@ -25,6 +25,7 @@ return [
     'listar proyectos' => 'Listar proyectos',
     'crear proyecto' => 'Crear proyecto',
     'nuevo proyecto' => 'Nuevo proyecto',
+    'nuevo'        => 'nuevo',
     'contacto'     => 'Contacto',
     'tablon'       => 'Tablón',
     'requisitos'   => 'Requisitos', 
