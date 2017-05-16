@@ -177,6 +177,9 @@ return [
         App\Providers\RouteServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,        
 
+
+        Acacha\AdminLTETemplateLaravel\Providers\AdminLTETemplateServiceProvider::class,
+
     ],
 
     /*
@@ -227,7 +230,11 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'AdminLTE' => Acacha\AdminLTETemplateLaravel\Facades\AdminLTE::class,
+<<<<<<< HEAD
                            
+=======
+
+>>>>>>> master
     ],
 
 ];
