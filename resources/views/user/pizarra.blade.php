@@ -94,97 +94,98 @@
 </div>
 <span class="label btn label-warning" data-toggle="collapse" data-target="#selectorColores">Modificar colores de columnas</span> 
 <div class="row">
-<div class="collapse fade  " id="selectorColores" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-    <div class="col-md-4">
-        <div class="form-group">
-            <label>Selecciona la columna</label>
-            <select class="form-control" onchange="cambiarColor(this.value);">
-                <option value="columna1">Por hacer</option>
-                <option value="columna2">En trámite</option>
-                <option value="columna3">Hecho</option>
-            </select>
+    <div class="collapse fade  " id="selectorColores" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Selecciona la columna</label>
+                <select class="form-control" onchange="cambiarColor(this.value);">
+                    <option value="columna1">Por hacer</option>
+                    <option value="columna2">En trámite</option>
+                    <option value="columna3">Hecho</option>
+                </select>
         </div>
         <label>Color de Fondo</label><input class="jscolor" onchange="update(this.jscolor, {{$sprint->id}})">
         <label>Color de Texto</label><input class="jscolor" onchange="updateTexto(this.jscolor,{{$sprint->id}})">
    </div>
 </div>
-</div>
 <div class="row">
-<div class="col-md-4">
-   <div class="col-md-12  well-sm" id="columna1" style="border:2px solid black;background-color:{{$sprint->color1}}; color:{{$sprint->colorTexto1}};">
-      <h4>Por hacer 
-         <span class="label btn pull-right label-success" data-toggle="modal" data-target="#crearRequisito">Agregar</span>
-      </h4>
-      <!-- /.box-header -->
-      <div  id="accordion1" class="connectedSortable">
-         <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-         @foreach ($requisitos as $requisito ) @if ($requisito->estado == 'Por hacer')
-         <div class="panel box box-primary" >
-            <div  class="btn btn-info  pull-bottom" style="background-color:{{$requisito->color}}" id="modal{{$requisito->id}}" onclick="cambiarColor(modal{{$requisito->id}}.id)"data-toggle="collapse" data-target="#modificarColorRequisito{{$requisito->id}}" ></div>
-            <div class="fade collapse " id="modificarColorRequisito{{$requisito->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-               <label style="color:#000">Cambiar color: <input class="jscolor btn-xs btn-info" onchange="updateRequisitoColor(this.jscolor,{{$requisito->id}})"></label>
-            </div>
-            <div class="box-header with-border" id="{{$requisito->id}}">
-               <h4 class="box-title">
-                  <a  data-toggle="collapse" data-parent="#accordion1" href="#desplegar{{$requisito->id}}" aria-expanded="false" class="collapsed"> {{$requisito->nombre}} </a>
-                  <i class="fa fa-fw fa-edit btn " class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$requisito->id}}" ></i>
-               </h4>
-            </div>
-            <div id="desplegar{{$requisito->id}}" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
-               <div style="color:#000" class="box-body">
-                  {{$requisito->descripcion}}
-               </div>
-            </div>
-         </div>
-         <script>
-            $("#{{$requisito->id}}").sortable({
-                connectWith: "connectedSortable",
-            forcePlaceholderSize: true,
-            opacity: 0.5
-            });
-         </script>
-         @endif @endforeach
-      </div>
-      <script>
-         $('#accordion1').on("sortreceive", function(event, ui) {
-             
-            // console.log(ui);
-             drop(ui.item["0"].firstElementChild.nextElementSibling.nextElementSibling.id, 'Por hacer');
-         
-         });
-      </script>
-   </div>
-</div>
-<div class="col-md-4">
-   <div class="col-md-12 well-sm" id="columna2" style="border:2px solid black;background-color:{{$sprint->color2}}; color:{{$sprint->colorTexto2}};">
-      <h4>En trámite </h4>
-      <div  id="accordion2" class="connectedSortable">
-         <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-         @foreach ($requisitos as $requisito ) @if ($requisito->estado == 'En trámite')
-         <div class="panel box box-primary" >
-            <div  class="btn btn-info  pull-bottom" style="background-color:{{$requisito->color}}" id="modal{{$requisito->id}}" onclick="cambiarColor(modal{{$requisito->id}}.id)"data-toggle="collapse" data-target="#modificarColorRequisito{{$requisito->id}}" ></div>
-            <div class="fade collapse " id="modificarColorRequisito{{$requisito->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-               <label style="color:#000">Cambiar color: <input class="jscolor btn-xs btn-info" onchange="updateRequisitoColor(this.jscolor,{{$requisito->id}})"></label>
-               <div class="box-header with-border" id="{{$requisito->id}}">
-                  <h4 class="box-title">
-                     <a data-toggle="collapse" data-parent="#accordion2" href="#desplegar{{$requisito->id}}" aria-expanded="false" class="collapsed"> {{$requisito->nombre}} </a>
-                     <i class="fa fa-fw fa-edit btn " class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$requisito->id}}" ></i>
-                  </h4>
-               </div>
-               <div id="desplegar{{$requisito->id}}" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
-                  <div style="color:#000" class="box-body">
-                     {{$requisito->descripcion}}
-                  </div>
-               </div>
+    <div class="col-md-4">
+        <div class="col-md-12  well-sm" id="columna1" style="border:2px solid black;background-color:{{$sprint->color1}}; color:{{$sprint->colorTexto1}};">
+            <h4>Por hacer 
+                <span class="label btn pull-right label-success" data-toggle="modal" data-target="#crearRequisito">Agregar
+                </span>
+            </h4>
+            <div  id="accordion1" class="connectedSortable">
+                @foreach ($requisitos as $requisito ) 
+                    @if ($requisito->estado == 'Por hacer')
+                        <div class="panel box box-primary" >
+                            <div class="btn btn-info  pull-bottom" style="background-color:{{$requisito->color}}" id="modal{{$requisito->id}}" onclick="cambiarColor(modal{{$requisito->id}}.id)"data-toggle="collapse" data-target="#modificarColorRequisito{{$requisito->id}}" ></div>                     
+                            <div class="fade collapse " id="modificarColorRequisito{{$requisito->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                                <label style="color:#000">Cambiar color: <input class="jscolor btn-xs btn-info" onchange="updateRequisitoColor(this.jscolor,{{$requisito->id}})"></label>
+                            </div>
+                            <div class="box-header with-border" id="{{$requisito->id}}">
+                                <h4 class="box-title">
+                                    <a  data-toggle="collapse" data-parent="#accordion1" href="#desplegar{{$requisito->id}}" aria-expanded="false" class="collapsed"> {{$requisito->nombre}} </a>
+                                <i class="fa fa-fw fa-edit btn " class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$requisito->id}}" ></i>
+                                </h4>
+                            </div>
+                            <div id="desplegar{{$requisito->id}}" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                <div style="color:#000" class="box-body">
+                                    {{$requisito->descripcion}}
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                            $("#{{$requisito->id}}").sortable({
+                                connectWith: "connectedSortable",
+                                forcePlaceholderSize: true,
+                                opacity: 0.5
+                            });
+                        </script>
+                    @endif 
+                @endforeach
             </div>
             <script>
-               $("#{{$requisito->id}}").sortable({
-                   connectWith: "connectedSortable",
-               forcePlaceholderSize: true,
-               opacity: 0.5
-               });
+                $('#accordion1').on("sortreceive", function(event, ui) {                   
+                    // console.log(ui);
+                    drop(ui.item["0"].firstElementChild.nextElementSibling.nextElementSibling.id, 'Por hacer');
+                
+                });
             </script>
-            @endif @endforeach
+        </div>
+    </div>   
+    <div class="col-md-4">
+        <div class="col-md-12 well-sm" id="columna2" style="border:2px solid black;background-color:{{$sprint->color2}}; color:{{$sprint->colorTexto2}};">
+            <h4>En trámite </h4>
+            <div  id="accordion2" class="connectedSortable">
+            @foreach ($requisitos as $requisito ) 
+                @if ($requisito->estado == 'En trámite')
+                    <div class="panel box box-primary" >
+                            <div  class="btn btn-info  pull-bottom" style="background-color:{{$requisito->color}}" id="modal{{$requisito->id}}" onclick="cambiarColor(modal{{$requisito->id}}.id)"data-toggle="collapse" data-target="#modificarColorRequisito{{$requisito->id}}" ></div>
+                        <div class="fade collapse " id="modificarColorRequisito{{$requisito->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                            <label style="color:#000">Cambiar color: <input class="jscolor btn-xs btn-info" onchange="updateRequisitoColor(this.jscolor,{{$requisito->id}})"></label>
+                        </div>        
+                        <div class="box-header with-border" id="{{$requisito->id}}">
+                            <h4 class="box-title">
+                                <a data-toggle="collapse" data-parent="#accordion2" href="#desplegar{{$requisito->id}}" aria-expanded="false" class="collapsed"> {{$requisito->nombre}} </a>
+                                <i class="fa fa-fw fa-edit btn " class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$requisito->id}}" ></i>
+                            </h4>
+                        </div>
+                        <div id="desplegar{{$requisito->id}}" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                            <div style="color:#000" class="box-body">
+                                {{$requisito->descripcion}}
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        $("#{{$requisito->id}}").sortable({
+                            connectWith: "connectedSortable",
+                            forcePlaceholderSize: true,
+                            opacity: 0.5
+                        });
+                    </script>
+                @endif 
+            @endforeach
          </div>
          <script>
             $('#accordion2').on("sortreceive", function(event, ui) {
@@ -192,39 +193,41 @@
                 drop(ui.item["0"].firstElementChild.nextElementSibling.nextElementSibling.id, 'En trámite');
             });
          </script>
-         <!-- /.box-body -->
       </div>
    </div>
    <div class="col-md-4">
       <div class="col-md-12 rounded well-sm "id="columna3" style="border:2px solid black;background-color:{{$sprint->color3}}; color:{{$sprint->colorTexto3}};">
          <h4>Hecho</h4>
          <div  id="accordion3" class="connectedSortable">
-            @foreach ($requisitos as $requisito ) @if ($requisito->estado == 'Hecho')
-            <div class="panel box box-primary" >
-               <div  class="btn btn-info  pull-bottom" style="background-color:{{$requisito->color}}" id="modal{{$requisito->id}}" onclick="cambiarColor(modal{{$requisito->id}}.id)"data-toggle="collapse" data-target="#modificarColorRequisito{{$requisito->id}}" ></div>
-               <div class="fade collapse " id="modificarColorRequisito{{$requisito->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-                  <label style="color:#000">Cambiar color: <input class="jscolor btn-xs btn-info" onchange="updateRequisitoColor(this.jscolor,{{$requisito->id}})"></input></label>
-               </div>
-               <div class="box-header with-border" id="{{$requisito->id}}">
-                  <h4 class="box-title">
-                     <a data-toggle="collapse" data-parent="#accordion3" href="#desplegar{{$requisito->id}}" aria-expanded="false" class="collapsed"> {{$requisito->nombre}} </a>
-                     <i class="fa fa-fw fa-edit btn " class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$requisito->id}}" ></i>
-                  </h4>
-               </div>
-               <div id="desplegar{{$requisito->id}}" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
-                  <div style="color:#000" class="box-body">
-                     {{$requisito->descripcion}}
-                  </div>
-               </div>
-            </div>
-            <script>
-               $("#{{$requisito->id}}").sortable({
-                   connectWith: "connectedSortable",
-               forcePlaceholderSize: true,
-               opacity: 0.5
-               });
-            </script>
-            @endif @endforeach
+            @foreach ($requisitos as $requisito ) 
+                @if ($requisito->estado == 'Hecho')
+                    <div class="panel box box-primary" >
+                        <div  class="btn btn-info  pull-bottom" style="background-color:{{$requisito->color}}" id="modal{{$requisito->id}}" onclick="cambiarColor(modal{{$requisito->id}}.id)"data-toggle="collapse" data-target="#modificarColorRequisito{{$requisito->id}}" ></div>
+
+                        <div class="fade collapse " id="modificarColorRequisito{{$requisito->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                            <label style="color:#000">Cambiar color: <input class="jscolor btn-xs btn-info" onchange="updateRequisitoColor(this.jscolor,{{$requisito->id}})"></input></label>
+                        </div>
+                        <div class="box-header with-border" id="{{$requisito->id}}">
+                            <h4 class="box-title">
+                                <a data-toggle="collapse" data-parent="#accordion3" href="#desplegar{{$requisito->id}}" aria-expanded="false" class="collapsed"> {{$requisito->nombre}} </a>
+                                <i class="fa fa-fw fa-edit btn " class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$requisito->id}}" ></i>
+                            </h4>
+                        </div>
+                        <div id="desplegar{{$requisito->id}}" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                            <div style="color:#000" class="box-body">
+                                {{$requisito->descripcion}}
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        $("#{{$requisito->id}}").sortable({
+                            connectWith: "connectedSortable",
+                            forcePlaceholderSize: true,
+                            opacity: 0.5
+                        });
+                    </script>
+                @endif 
+            @endforeach
          </div>
          <script>
             $('#accordion3').on("sortreceive", function(event, ui) {
