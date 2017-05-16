@@ -56,6 +56,7 @@ return [
     'borrar'       => 'Borrar',
     'cerrar'       => 'Cerrar',
     'guardar'      => 'Guardar',
+    'miembro desde' => 'Miembro desde',
     'por favor introduzca su nombre' => 'Por favor, introduzca su nombre',
     'por favor introduzca sus apellidos' => 'Por favor, introduzca sus apellidos',
     'por favor introduzca su email' => 'Por favor, introduzca su email',
