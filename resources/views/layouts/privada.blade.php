@@ -457,7 +457,7 @@
         <li>
           <a href="/userspublic">
             <i class="fa fa-pie-chart"></i>
-            <span>Usuarios</span>
+            <span>@lang('messages.usuarios')</span>
             <span class="pull-right-container">
               <small class="label pull-right bg-green">@lang('messages.nuevo')</small>
               <!--<i class="fa fa-angle-left pull-right"></i>-->
