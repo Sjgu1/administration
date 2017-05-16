@@ -88,31 +88,65 @@
 </script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/adminlte/dist/js/pages/dashboard.js"></script>
+<section class="content-header">
+        <h1>{{$proyecto->nombre}}
+            <small>{{$sprint->nombre}} 
+                <a href="#" data-toggle="collapse" data-target="#selectorColores"><i class="fa fa-gears"></i></a>
+            </small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">UI</a></li>
+            <li class="active">Timeline</li>
+        </ol>
+</section>
+<div class="content">
+<div class="content">
 <div class="row">
-   <h1 style="text-align: center;">{{$proyecto->nombre}} </h1>
-   <h3 style="text-align: center;"> {{$sprint->nombre}}</h3>
-</div>
-<span class="label btn label-warning" data-toggle="collapse" data-target="#selectorColores">Modificar colores de columnas</span> 
-<div class="row">
-    <div class="collapse fade  " id="selectorColores" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-        <div class="col-md-4">
-            <div class="form-group">
-                <label>Selecciona la columna</label>
-                <select class="form-control" onchange="cambiarColor(this.value);">
-                    <option value="columna1">Por hacer</option>
-                    <option value="columna2">En trámite</option>
-                    <option value="columna3">Hecho</option>
-                </select>
+    <div class="col-md-12">
+        <div class="col-md-12">
+            <div class="col-md-12 container">
+                <div class="collapse fade" id="selectorColores" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                    <div class="content">
+                        <div class="col-md-4 well-sm "style="border:2px solid black;">
+                            <label>Editor de Estilo</label>
+                                <div class="form-group">
+                                    <label>Selecciona la columna</label>
+                                    <select class="form-control" onchange="cambiarColor(this.value);">
+                                        <option value="columna1">Por hacer</option>
+                                        <option value="columna2">En trámite</option>
+                                        <option value="columna3">Hecho</option>
+                                    </select>
+                                </div>
+                            <label>Color de Fondo</label><input class="jscolor" onchange="update(this.jscolor, {{$sprint->id}})"><br/>
+                            <label>Color de Texto</label><input class="jscolor" onchange="updateTexto(this.jscolor,{{$sprint->id}})">
+                        </div>
+                        <div class="col-sm-1"></div>
+                        <div class="col-md-6 well-sm "style="border:2px solid black;">
+                            <label>Editor de Estilo</label>
+                                <div class="form-group">
+                                    <label>Selecciona la columna</label>
+                                    <select class="form-control" onchange="cambiarColor(this.value);">
+                                        <option value="columna1">Por hacer</option>
+                                        <option value="columna2">En trámite</option>
+                                        <option value="columna3">Hecho</option>
+                                    </select>
+                                </div>
+                            <label>Color de Fondo</label><input class="jscolor" onchange="update(this.jscolor, {{$sprint->id}})">
+                            <label>Color de Texto</label><input class="jscolor" onchange="updateTexto(this.jscolor,{{$sprint->id}})">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <label>Color de Fondo</label><input class="jscolor" onchange="update(this.jscolor, {{$sprint->id}})">
-        <label>Color de Texto</label><input class="jscolor" onchange="updateTexto(this.jscolor,{{$sprint->id}})">
-   </div>
+    </div>
 </div>
 <div class="row">
     <div class="col-md-4">
         <div class="col-md-12  well-sm" id="columna1" style="border:2px solid black;background-color:{{$sprint->color1}}; color:{{$sprint->colorTexto1}};">
             <h4>Por hacer 
-                <span class="label btn pull-right label-success" data-toggle="modal" data-target="#crearRequisito">Agregar
+                <span class="  pull-right glyphicon glyphicon-plus" data-toggle="modal" data-target="#crearRequisito">
+
                 </span>
             </h4>
             <div  id="accordion1" class="connectedSortable">
@@ -370,6 +404,8 @@
          </form>
       </div>
    </div>
+</div>
+</div>
 </div>
 <script>
    // When the document is ready
