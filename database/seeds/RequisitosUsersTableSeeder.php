@@ -58,7 +58,10 @@ class RequisitosUsersTableSeeder extends Seeder
 
         // Requisitos de prueba para burndown
         $requisito = Requisito::where('id', '13')->first();
-        $user = User::where('id', '6')->first();
+        $user = User::where('id', '1')->first();
+        $user->requisitos()->attach($requisito->id);
+
+        $user = User::where('id', '2')->first();
         $user->requisitos()->attach($requisito->id);
 
     }

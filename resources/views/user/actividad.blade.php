@@ -23,35 +23,55 @@
           <ul class="timeline">
 
             <!-- ZONA ENSAYO -->
-            @foreach ($commits as $key => $value)
+            @foreach ($eventos as $evento)
 
-              <!-- timeline time label -->
-              <li class="time-label">
-                  <span class="bg-red">{{ $key }}</span>
-              </li>
-              <!-- /.timeline-label -->
+              @if ($evento['show'])
+                <!-- timeline time label -->
+                <li class="time-label">
+                    <span class="bg-red">{{ $evento['dia_concreto'] }}</span>
+                </li>
+                <!-- /.timeline-label -->
+              @endif
+            
 
-              @foreach ($value as $commit)
-              <!-- timeline item -->
-              <li>
-                <i class="fa fa-user bg-aqua"></i>
+              @if ($evento['tipo'] == 'commit')
+                <!-- timeline item -->
+                <li>
+                  <i class="fa fa-git bg-aqua"></i>
 
-                <div class="timeline-item">
-                  <span class="time"><i class="fa fa-clock-o"></i> {{ $commit[3] }}</span>
+                  <div class="timeline-item">
+                    <span class="time"><i class="fa fa-clock-o"></i> {{ $evento['diferencia'] }}</span>
 
-                  <h3 class="timeline-header"><a href="#">{{ $commit[0] }}</a> {{ $commit[1] }}</h3>
+                    <h3 class="timeline-header"><a href="{{ $evento['commiter_url'] }}" target="_blank">{{ $evento['commiter'] }}</a> {{ $evento['commit_header'] }}</h3>
 
-                  <div class="timeline-body">
-                    {{ $commit[2] }}
+                    <div class="timeline-body">
+                      {{ $evento['commit_body'] }}
+                    </div>
+                    <div class="timeline-footer">
+                      <a href="{{ $evento['html_url'] }}" target="_blank" class="btn btn-primary btn-xs">Ir al commit</a>
+                      <!--<a class="btn btn-danger btn-xs">Delete</a>-->
+                    </div>
                   </div>
-                  <div class="timeline-footer">
-                    <a href="{{ $commit[4] }}" class="btn btn-primary btn-xs">Ir al commit</a>
-                    <!--<a class="btn btn-danger btn-xs">Delete</a>-->
+                </li>
+                <!-- END timeline item -->
+              
+              @elseif ($evento['tipo'] == 'modificacion')
+                <!-- timeline item -->
+                <li>
+                  <i class="{{ $evento['icon'] }}"></i>
+
+                  <div class="timeline-item">
+                    <span class="time"><i class="fa fa-clock-o"></i> {{ $evento['diferencia'] }}</span>
+
+                    <h3 class="timeline-header"><a href="/sprintsrequisitos/{{ $evento['id'] }}">{{ $evento['requisito_nombre'] }}</a></h3>
+
+                    <div class="timeline-body">
+                      {{ $evento['mensaje'] }}
+                    </div>
                   </div>
-                </div>
-              </li>
-              <!-- END timeline item -->
-              @endforeach
+                </li>
+                <!-- END timeline item -->
+              @endif
 
             @endforeach
             <!-- FIN ZONA ENSAYO -->
