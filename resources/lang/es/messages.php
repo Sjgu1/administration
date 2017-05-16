@@ -30,6 +30,7 @@ return [
     'tablon'       => 'Tablón',
     'requisitos'   => 'Requisitos', 
     'listar requisitos' => 'Listar Requisitos',
+    'sprint'       => 'Sprint',
     'sprints'      => 'Sprints',
     'listar sprints' => 'Listar Sprints',
     'pizarra'      => 'Pizarra',
