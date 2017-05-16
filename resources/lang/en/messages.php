@@ -50,6 +50,7 @@ return [
     'borrar usuario' => 'Delete user',
     'borrar'       => 'Delete',
     'cerrar'       => 'Close',
+    'guardar'      => 'Save',
     'por favor introduzca su nombre' => 'Please enter your name',
     'por favor introduzca sus apellidos' => 'Please enter your surname',
     'por favor introduzca su email' => 'Please enter your email',
@@ -80,5 +81,18 @@ return [
     'viernes'      => 'Friday',
     'sabado'       => 'Saturday',
     'domingo'      => 'Sunday',
+    'editor del estilo'  => 'Style editor',
+    'selecciona la columna' => 'Select the column',
+    'color del fondo' => 'Background colour',
+    'color del texto' => 'Text colour', 
+    'cambiar color' => 'Change colour',
+    'tarea'        => 'Task',
+    'descripcion'  => 'Description',
+    'fecha de inicio' => 'Start date',
+    'fecha estimada de fin' => 'Finish date stimated',
+    'usuarios asignados ahora' => 'Assigned users now',
+    'selecciona nuevos usuarios' => 'Select new users',
+
+
 
 ];

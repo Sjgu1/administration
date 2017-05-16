@@ -95,9 +95,9 @@
             </small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> @lang('messages.inicio')</a></li>
             <li><a href="#">UI</a></li>
-            <li class="active">Timeline</li>
+            <li class="active">@lang('messages.actividad')</li>
         </ol>
 </section>
 <div class="content">
@@ -109,31 +109,31 @@
                 <div class="collapse fade" id="selectorColores" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                     <div class="content">
                         <div class="col-md-4 well-sm "style="border:2px solid black;">
-                            <label>Editor de Estilo</label>
+                            <label>@lang('messages.editor del estilo')</label>
                                 <div class="form-group">
-                                    <label>Selecciona la columna</label>
+                                    <label>@lang('messages.selecciona la columna')</label>
                                     <select class="form-control" onchange="cambiarColor(this.value);">
-                                        <option value="columna1">Por hacer</option>
-                                        <option value="columna2">En trámite</option>
-                                        <option value="columna3">Hecho</option>
+                                        <option value="columna1">@lang('messages.por hacer')</option>
+                                        <option value="columna2">@lang('messages.en tramite')</option>
+                                        <option value="columna3">@lang('messages.hecho')</option>
                                     </select>
                                 </div>
-                            <label>Color de Fondo</label><input class="jscolor" onchange="update(this.jscolor, {{$sprint->id}})"><br/>
-                            <label>Color de Texto</label><input class="jscolor" onchange="updateTexto(this.jscolor,{{$sprint->id}})">
+                            <label>@lang('messages.color del fondo')</label><input class="jscolor" onchange="update(this.jscolor, {{$sprint->id}})"><br/>
+                            <label>@lang('messages.color del texto')</label><input class="jscolor" onchange="updateTexto(this.jscolor,{{$sprint->id}})">
                         </div>
                         <div class="col-sm-1"></div>
                         <div class="col-md-6 well-sm "style="border:2px solid black;">
-                            <label>Editor de Estilo</label>
+                            <label>@lang('messages.editor del estilo')</label>
                                 <div class="form-group">
-                                    <label>Selecciona la columna</label>
+                                    <label>@lang('messages.editor del estilo')</label>
                                     <select class="form-control" onchange="cambiarColor(this.value);">
-                                        <option value="columna1">Por hacer</option>
-                                        <option value="columna2">En trámite</option>
-                                        <option value="columna3">Hecho</option>
+                                        <option value="columna1">@lang('messages.por hacer')</option>
+                                        <option value="columna2">@lang('messages.en tramite')</option>
+                                        <option value="columna3">@lang('messages.hecho')</option>
                                     </select>
                                 </div>
-                            <label>Color de Fondo</label><input class="jscolor" onchange="update(this.jscolor, {{$sprint->id}})">
-                            <label>Color de Texto</label><input class="jscolor" onchange="updateTexto(this.jscolor,{{$sprint->id}})">
+                            <label>@lang('messages.color del fondo')</label><input class="jscolor" onchange="update(this.jscolor, {{$sprint->id}})">
+                            <label>@lang('messages.color del texto')</label><input class="jscolor" onchange="updateTexto(this.jscolor,{{$sprint->id}})">
                         </div>
                     </div>
                 </div>
@@ -144,7 +144,7 @@
 <div class="row">
     <div class="col-md-4">
         <div class="col-md-12  well-sm" id="columna1" style="border:2px solid black;background-color:{{$sprint->color1}}; color:{{$sprint->colorTexto1}};">
-            <h4>Por hacer 
+            <h4>@lang('messages.por hacer')
                 <span class="  pull-right glyphicon glyphicon-plus" data-toggle="modal" data-target="#crearRequisito">
 
                 </span>
@@ -155,7 +155,7 @@
                         <div class="panel box box-primary" >
                             <div class="btn btn-info  pull-bottom" style="background-color:{{$requisito->color}}" id="modal{{$requisito->id}}" onclick="cambiarColor(modal{{$requisito->id}}.id)"data-toggle="collapse" data-target="#modificarColorRequisito{{$requisito->id}}" ></div>                     
                             <div class="fade collapse " id="modificarColorRequisito{{$requisito->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-                                <label style="color:#000">Cambiar color: <input class="jscolor btn-xs btn-info" onchange="updateRequisitoColor(this.jscolor,{{$requisito->id}})"></label>
+                                <label style="color:#000">@lang('messages.cambiar color'): <input class="jscolor btn-xs btn-info" onchange="updateRequisitoColor(this.jscolor,{{$requisito->id}})"></label>
                             </div>
                             <div class="box-header with-border" id="{{$requisito->id}}">
                                 <h4 class="box-title">
@@ -190,14 +190,14 @@
     </div>   
     <div class="col-md-4">
         <div class="col-md-12 well-sm" id="columna2" style="border:2px solid black;background-color:{{$sprint->color2}}; color:{{$sprint->colorTexto2}};">
-            <h4>En trámite </h4>
+            <h4>@lang('messages.en tramite') </h4>
             <div  id="accordion2" class="connectedSortable">
             @foreach ($requisitos as $requisito ) 
                 @if ($requisito->estado == 'En trámite')
                     <div class="panel box box-primary" >
                             <div  class="btn btn-info  pull-bottom" style="background-color:{{$requisito->color}}" id="modal{{$requisito->id}}" onclick="cambiarColor(modal{{$requisito->id}}.id)"data-toggle="collapse" data-target="#modificarColorRequisito{{$requisito->id}}" ></div>
                         <div class="fade collapse " id="modificarColorRequisito{{$requisito->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-                            <label style="color:#000">Cambiar color: <input class="jscolor btn-xs btn-info" onchange="updateRequisitoColor(this.jscolor,{{$requisito->id}})"></label>
+                            <label style="color:#000">@lang('messages.cambiar color'): <input class="jscolor btn-xs btn-info" onchange="updateRequisitoColor(this.jscolor,{{$requisito->id}})"></label>
                         </div>        
                         <div class="box-header with-border" id="{{$requisito->id}}">
                             <h4 class="box-title">
@@ -231,7 +231,7 @@
    </div>
    <div class="col-md-4">
       <div class="col-md-12 rounded well-sm "id="columna3" style="border:2px solid black;background-color:{{$sprint->color3}}; color:{{$sprint->colorTexto3}};">
-         <h4>Hecho</h4>
+         <h4>@lang('messages.hecho')</h4>
          <div  id="accordion3" class="connectedSortable">
             @foreach ($requisitos as $requisito ) 
                 @if ($requisito->estado == 'Hecho')
@@ -239,7 +239,7 @@
                         <div  class="btn btn-info  pull-bottom" style="background-color:{{$requisito->color}}" id="modal{{$requisito->id}}" onclick="cambiarColor(modal{{$requisito->id}}.id)"data-toggle="collapse" data-target="#modificarColorRequisito{{$requisito->id}}" ></div>
 
                         <div class="fade collapse " id="modificarColorRequisito{{$requisito->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-                            <label style="color:#000">Cambiar color: <input class="jscolor btn-xs btn-info" onchange="updateRequisitoColor(this.jscolor,{{$requisito->id}})"></input></label>
+                            <label style="color:#000">@lang('messages.cambiar color'): <input class="jscolor btn-xs btn-info" onchange="updateRequisitoColor(this.jscolor,{{$requisito->id}})"></input></label>
                         </div>
                         <div class="box-header with-border" id="{{$requisito->id}}">
                             <h4 class="box-title">
@@ -279,12 +279,12 @@
             <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
             <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-               <label for="message-text" class="control-label">Tarea:</label>
+               <label for="message-text" class="control-label">@lang('messages.tarea'):</label>
                <input type="text" id="nombre" name="nombre" class="form-control" data-minlength="3" maxlength="20" required>
             </div>
             <div class="modal-body">
                <div class="form-group has-feedback">
-                  <label for="descripcion" class="control-label">Descripción:</label>
+                  <label for="descripcion" class="control-label">@lang('messages.descripcion'):</label>
                   <textarea id="descripcion" name="descripcion" class="form-control" rows="5" data-minlength="3" maxlength="65535" required></textarea>
                </div>
                <div class="form-group">
@@ -310,8 +310,8 @@
                </div>
             </div>
             <div class="modal-footer">
-               <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-               <button type="submit" class="btn btn-primary">Guardar</button>
+               <button type="button" class="btn btn-default" data-dismiss="modal">@lang('messages.cerrar')</button>
+               <button type="submit" class="btn btn-primary">@lang('messages.guardar')</button>
             </div>
          </form>
       </div>
@@ -332,19 +332,19 @@
             <input type="hidden" name="estado" value="{{$requisito->estado }}" />
             <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-               <label for="recipient-name" class="control-label">Nombre:</label>
+               <label for="recipient-name" class="control-label">@lang('messages.nombre'):</label>
                <input type="text" class="form-control modal-title" name="nombre" value="{{$requisito->nombre}}">
             </div>
             <div class="modal-body">
                <div class="form-group">
-                  <label for="recipient-name" class="control-label">Descripción:</label>
+                  <label for="recipient-name" class="control-label">@lang('messages.descripcion'):</label>
                   <input type="text" class="form-control" name="descripcion" value="{{$requisito->descripcion}}">
                </div>
                <div class="form-group">
-                  <label for="recipient-name" class="control-label">Fecha de inicio: </label> {{$requisito->fecha_inicio}}
+                  <label for="recipient-name" class="control-label">@lang('messages.fecha de inicio'): </label> {{$requisito->fecha_inicio}}
                </div>
                <div class="form-group">
-                  <label for="message-text" class="control-label">Fecha estimada de finalizacion:</label>
+                  <label for="message-text" class="control-label">@lang('messages.fecha estimada de fin'):</label>
                   <div class="form-group">
                      <div class='input-group date' id='fecha_fin_{{$requisito->
                         id}}'>
@@ -361,12 +361,12 @@
                </div>
             </div>
             <div class="well">
-               Usuarios Asignados Actualmente:
+               @lang('messages.usuarios asignados ahora'):
                <br> @foreach($usuarios as $usuario) @foreach($requisitosAsignados as $reqAsig ) @if($requisito->id == $reqAsig->requisito->id) @if($usuario->user->id == $reqAsig->user->id )
                <!--<option selected="selected" value="{{$usuario->user->id}}">{{$usuario->user->name}}</option>-->
                <label value="{{$usuario->user->name}}">{{$usuario->user->name}}</label>
                <br> @endif @endif @endforeach @endforeach
-               <br> Selecciona nuevos usuarios:
+               <br> @lang('messages.selecciona nuevos usuarios'):
                <br/>
                <select name="basic" id="ex-data-multiple-{{$requisito->id}}" multiple style="display: none;">
                   @foreach($usuarios as $usuario)
@@ -398,8 +398,8 @@
                </script>
             </div>
             <div class="modal-footer">
-               <button id="confirmacion{{ $requisito->id }}" type="button" class="btn btn-danger" >Eliminar</button>
-               <button type="submit" class="btn btn-success">Modificar</button>
+               <button id="confirmacion{{ $requisito->id }}" type="button" class="btn btn-danger" >@lang('messages.borrar')</button>
+               <button type="submit" class="btn btn-success">@lang('messages.modificar')</button>
             </div>
          </form>
       </div>

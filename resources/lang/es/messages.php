@@ -50,6 +50,7 @@ return [
     'borrar usuario' => 'Borrar usuario',
     'borrar'       => 'Borrar',
     'cerrar'       => 'Cerrar',
+    'guardar'      => 'Guardar',
     'por favor introduzca su nombre' => 'Por favor, introduzca su nombre',
     'por favor introduzca sus apellidos' => 'Por favor, introduzca sus apellidos',
     'por favor introduzca su email' => 'Por favor, introduzca su email',
@@ -80,5 +81,16 @@ return [
     'viernes'      => 'Viernes',
     'sabado'       => 'Sábado',
     'domingo'      => 'Domingo',
-
+    'editor de estilo' => 'Editor de estilo',
+    'selecciona la columna' => 'Selecciona la columna',
+    'color del fondo' => 'Color del fondo',
+    'color del texto' => 'Color del texto',
+    'cambiar color' => 'Cambiar color',
+    'tarea' => 'Tarea',
+    'descripcion' => 'Descripción',
+    'fecha de inicio' => 'Fecha de inicio',
+    'fecha estimada de fin' =>'Fecha estimada de finalización',
+    'usuarios asignados ahora' => 'Usuarios asignados actualmente',
+    'selecciona nuevos usuarios' => 'Selecciona nuevos usuarios',
+ 
 ];
