@@ -49,7 +49,7 @@ return [
     'progreso estimado' => 'Progreso estimado',
     'ejemplo'      => 'Ejemplo',
     'rol'          => 'Rol',
-    'metodogias agiles' => 'Metodologías ágiles',
+    'metodologias agiles' => 'Metodologías ágiles',
     'estadisticas' => 'Estadísticas',
     'graficos'     => 'Gráficos',
     'frecuencia'   => 'Frecuencia',
