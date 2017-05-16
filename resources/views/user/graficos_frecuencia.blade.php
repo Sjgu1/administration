@@ -3,11 +3,11 @@
 @section('content')
     
     <section class="content-header">
-      <h1>Gráficos<small>Frecuencia</small></h1>
+      <h1>@lang('messages.graficos')<small>@lang('messages.frecuencia')</small></h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> @lang('messages.inicio')</a></li>
         <li><a href="#">UI</a></li>
-        <li class="active">Timeline</li>
+        <li class="active">@lang('messages.actividad')</li>
       </ol>
     </section>
 
@@ -19,7 +19,7 @@
           <!-- LINE CHART -->
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Frecuencia por hora</h3>
+              <h3 class="box-title">@lang('messages.frecuencia') @lang('messages.por hora')</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -44,7 +44,7 @@
           <!-- LINE CHART -->
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Frecuencia por día</h3>
+              <h3 class="box-title">@lang('messages.frecuencia') @lang('messages.por dia')</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -173,7 +173,7 @@
     //- LINE CHART DÍA -
     //--------------
     var areaChartData2 = {
-      labels: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"],
+      labels: ["@lang('messages.lunes')", "@lang('messages.martes')", "@lang('messages.miercoles')", "@lang('messages.jueves')", "@lang('messages.viernes')", "@lang('messages.sabado')", "@lang('messages.domingo')"],
       datasets: [
         {
           label: "Commits",
