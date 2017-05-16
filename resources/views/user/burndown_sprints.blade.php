@@ -3,7 +3,7 @@
 @section('content')
     
     <section class="content-header">
-      <h1>Burndown<small>Sprints</small></h1>
+      <h1>Burndown<small>@lang('messages.sprints')</small></h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> @lang('messages.inicio')</a></li>
         <li><a href="#">UI</a></li>
