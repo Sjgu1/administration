@@ -15,12 +15,12 @@ $(document).ready(function() {
 	@section('content')
 	<table id="requisitosusers" class="table table-striped table-bordered display" cellspacing="0" width="100%">
     	<thead>
-		<h1> Requisitos </h1>
+		<h1> @lang('messages.requisitos') </h1>
 			<tr>
-        		<th>Nombre</th>
-				<th>Descripción</th>
-				<th>Sprint</th>
-				<th>Fecha de inicio</th>
+        		<th>@lang('messages.nombre')</th>
+				<th>@lang('messages.descripcion')</th>
+				<th>@lang('messages.sprint')</th>
+				<th>@lang('messages.fecha de inicio')</th>
 			</tr>
 		</thead>
 			<tbody>

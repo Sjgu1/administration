@@ -14,11 +14,11 @@
 
     <!-- Header -->
     <section class="content-header">
-        <h1>Requisitos<small>Proyecto X</small></h1>
+        <h1>@lang('messages.requisitos')<small>@lang('messages.proyecto') X</small></h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> @lang('messages.inicio')</a></li>
             <li><a href="#">UI</a></li>
-            <li class="active">Timeline</li>
+            <li class="active">@lang('messages.actividad')</li>
         </ol>
     </section>
 
@@ -33,7 +33,7 @@
             <div id="requisitos_no_finalizados" class="col-md-12">
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">Requisitos en proceso</h3>
+                        <h3 class="box-title">@lang('messages.requisitos en proceso')</h3>
 
                         <!--<div class="box-tools">
                             <div class="input-group input-group-sm" style="width: 150px;">
@@ -50,11 +50,11 @@
                     <div class="box-body table-responsive no-padding">
                         <table class="table table-hover">
                             <tr>
-                                <th>Nombre</th>
-                                <th>Progreso estimado</th>
+                                <th>@lang('messages.nombre')</th>
+                                <th>@lang('messages.progreso estimado')</th>
                                 <th>%</th>
-                                <th>Finalización</th>
-                                <th>Usuarios</th>
+                                <th>@lang('messages.finalizacion')</th>
+                                <th>@lang('messages.usuarios')</th>
                             </tr>
 
                             @foreach ($requisitos_no_finalizados as $requisito)
@@ -89,7 +89,7 @@
             <div id="requisitos_finalizados" class="col-xs-12">
                 <div class="box box-danger">
                     <div class="box-header">
-                        <h3 class="box-title">Requisitos finalizados</h3>
+                        <h3 class="box-title">@lang('messages.requisitos finalizados')</h3>
 
                         <!--<div class="box-tools">
                             <div class="input-group input-group-sm" style="width: 150px;">
@@ -106,11 +106,11 @@
                     <div class="box-body table-responsive no-padding">
                         <table class="table table-hover">
                             <tr>
-                                <th>Nombre</th>
-                                <th>Fecha inicio</th>
-                                <th>Fecha fin estimada</th>
-                                <th>Fecha fin</th>
-                                <th>Duración</th>
+                                <th>@lang('messages.nombre')</th>
+                                <th>@lang('messages.fecha de inicio')</th>
+                                <th>@lang('messages.fecha estimada de fin')</th>
+                                <th>@lang('messages.fecha fin')</th>
+                                <th>@lang('messages.duracion')</th>
                             </tr>
 
                             @foreach ($requisitos_finalizados as $requisito)
@@ -144,19 +144,19 @@
 				<input type="hidden" name="estado" value="{{$requisito->estado }}"/>
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<label for="recipient-name" class="control-label">Nombre:</label>
+					<label for="recipient-name" class="control-label">@lang('messages.nombre'):</label>
 					<input type="text" class="form-control modal-title" name="nombre" value="{{$requisito->nombre}}">
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						<label for="recipient-name" class="control-label">Descripción:</label>
+						<label for="recipient-name" class="control-label">@lang('messages.descripcion'):</label>
 						<input type="text" class="form-control" name="descripcion" value="{{$requisito->descripcion}}">
 					</div>
 					<div class="form-group">
-						<label for="recipient-name" class="control-label">Fecha de inicio: </label> {{$requisito->fecha_inicio}}
+						<label for="recipient-name" class="control-label">@lang('messages.fecha de inicio'): </label> {{$requisito->fecha_inicio}}
 					</div>
 					<div class="form-group">
-						<label for="message-text" class="control-label">Fecha estimada de finalizacion:</label>
+						<label for="message-text" class="control-label">@lang('messages.fecha estimada de fin'):</label>
 						<div class="form-group">
 							<div class='input-group date' id='fecha_fin_{{$requisito->
 								 id}}'> <input type='text' class="form-control" name="fecha_estimada_fin" value="{{$requisito->fecha_fin_estimada}}"/> <span class="input-group-addon">
@@ -171,7 +171,7 @@
 				</div>
 				
 				<div class="well">
-				Usuarios Asignados Actualmente:
+				@lang('messages.usuarios asignados ahora'):
 				<br>
                     <!-- FALTA TRABAJO DE SERGIO PARA QUE ESTO VAYA -->
                     {{--@foreach($usuarios as $usuario) 
@@ -186,7 +186,7 @@
 							@endforeach 
 						@endforeach--}
 						<br>
-				Selecciona nuevos usuarios:<br/>
+				@lang('messages.selecciona nuevos usuarios'):<br/>
 					<select name="basic" id="ex-data-multiple-{{$requisito->id}}" multiple style="display: none;" > 					
 						
                         <!-- FALTA TRABAJO DE SERGIO PARA QUE ESTO VAYA -->
@@ -222,8 +222,8 @@
            			 </script>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-					<button type="submit" class="btn btn-primary">Modificar</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">@lang('messages.cerrar')</button>
+					<button type="submit" class="btn btn-primary">@lang('messages.modificar')</button>
 				</div>
 			</form>
 		</div>

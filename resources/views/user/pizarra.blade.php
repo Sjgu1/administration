@@ -288,12 +288,12 @@
                   <textarea id="descripcion" name="descripcion" class="form-control" rows="5" data-minlength="3" maxlength="65535" required></textarea>
                </div>
                <div class="form-group">
-                  <label for="recipient-name" class="control-label">Proyecto - Sprint:</label>
+                  <label for="recipient-name" class="control-label">@lang('messages.P-S'):</label>
                   <br/>
                   <input type="hidden" name="sprint_id" value="{{$sprint->id }}" /> {{ $proyecto->nombre . ' - ' . $sprint->nombre }}
                </div>
                <div class="form-group">
-                  <label for="message-text" class="control-label">Fecha estimada de finalización:</label>
+                  <label for="message-text" class="control-label">@lang('messages.fecha estimada de fin'):</label>
                   <div class="form-group">
                      <div class='input-group date' id='datetimepicker6'>
                         <input type='text' class="form-control" name="fecha_estimada_fin" id="fecha_estimada_fin" />
