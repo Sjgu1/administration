@@ -108,11 +108,13 @@
                 <a href="#" data-toggle="collapse" data-target="#selectorColores" ><i class="fa fa-gears"></i></a>
             </small>
         </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">UI</a></li>
-        <li class="active">Timeline</li>
-    </ol>
+
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> @lang('messages.inicio')</a></li>
+            <li><a href="#">UI</a></li>
+            <li class="active">@lang('messages.actividad')</li>
+        </ol>
+
 </section>
 <div class="content">
     <div class="content">
@@ -163,7 +165,6 @@
                                 </div>
                                 <!-- /.box-body -->
                             </div>
-
                         </div>
                     </div>
                 </div>

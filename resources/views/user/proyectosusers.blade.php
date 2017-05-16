@@ -15,12 +15,12 @@ $(document).ready(function() {
 	@section('content')
 	<table id="proyectosusers" class="table table-striped table-bordered display" cellspacing="0" width="100%">
     	<thead>
-		<h1> Proyectos </h1>
+		<h1> @lang('messages.proyectos')</h1>
 			<tr>
-        		<th>Nombre</th>
-				<th>Descripción</th>
-				<th>Repositorio</th>
-				<th>Fecha de inicio</th>
+        		<th>@lang('messages.nombre')</th>
+				<th>@lang('messages.descripcion')</th>
+				<th>@lang('messages.repositorio')</th>
+				<th>@lang('messages.fecha de inicio')</th>
 			</tr>
 		</thead>
 			<tbody>

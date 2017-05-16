@@ -3,11 +3,11 @@
 @section('content')
     
     <section class="content-header">
-      <h1>Gráficos<small>Requisitos</small></h1>
+      <h1>@lang('messages.graficos')<small>@lang('messages.requisitos')</small></h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i>@lang('messages.inicio')</a></li>
         <li><a href="#">UI</a></li>
-        <li class="active">Timeline</li>
+        <li class="active">@lang('messages.actividad')</li>
       </ol>
     </section>
 
@@ -19,7 +19,7 @@
           <!-- LINE CHART -->
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Requisitos</h3>
+              <h3 class="box-title">@lang('messages.requisitos')</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>

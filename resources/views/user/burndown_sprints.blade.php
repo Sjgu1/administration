@@ -3,11 +3,11 @@
 @section('content')
     
     <section class="content-header">
-      <h1>Burndown<small>Sprints</small></h1>
+      <h1>Burndown<small>@lang('messages.sprints')</small></h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> @lang('messages.inicio')</a></li>
         <li><a href="#">UI</a></li>
-        <li class="active">Timeline</li>
+        <li class="active">@lang('messages.actividad')</li>
       </ol>
     </section>
 
@@ -19,7 +19,7 @@
           <!-- LINE CHART -->
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Sprint 1</h3>
+              <h3 class="box-title">@lang('messages.sprint') 1</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -44,7 +44,7 @@
           <!-- LINE CHART -->
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Sprint 1</h3>
+              <h3 class="box-title">@lang('messages.sprint') 1</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -93,7 +93,7 @@
       ],
       datasets: [
         {
-          label: "Burndown horas reales",
+          label: "Burndown @lang('messages.horas reales')",
           backgroundColor: "rgba(60,141,188,0.9)",
           fill: false,
           lineTension: 0,
@@ -115,7 +115,7 @@
           ]
         },
         {
-          label: "Burndown estimado",
+          label: "Burndown @lang('messages.estimado')",
           backgroundColor: "rgba(210, 214, 222, 1)",
           fill: false,
           lineTension: 0,

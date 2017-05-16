@@ -39,8 +39,8 @@
                 
                 <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())
-                            <li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in"></span> @lang('messages.iniciar sesion')</a></li>
+                            <li><a href="{{ route('register') }}">@lang('messages.registrarse')</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -49,7 +49,7 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="user/{{ $user->id }}">Tablon</a>
+                                        <a href="user/{{ $user->id }}">@lang('messages.tablon')</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('logout') }}"

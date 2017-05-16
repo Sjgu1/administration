@@ -38,9 +38,9 @@
   @endsection
   @section('seleccion')
 <ul class="nav navbar-nav">
-  <li class="active"><a href="{{ url('/home') }}">Home</a></li>
-  <li ><a href="{{ url('/proyecto') }}">Proyecto</a></li>
-  <li><a href="{{ url('/contacto') }}">Contacto</a></li>
+  <li class="active"><a href="{{ url('/home') }}">@lang('messages.inicio')</a></li>
+  <li ><a href="{{ url('/proyecto') }}">@lang('messages.proyecto')</a></li>
+  <li><a href="{{ url('/contacto') }}">@lang('messages.contacto')</a></li>
 </ul>
 <body>
 @endsection
@@ -57,7 +57,7 @@
       <div class="item active">
         <img src="images/metodologiaRecortada.png"  alt="Image">
         <div class="carousel-caption">
-          <h3>Trabaja en equipo</h3>
+          <h3>@lang('messages.trabaja en equipo')</h3>
           <p>Organiza tus proyectos de forma sencilla.</p>
         </div>      
       </div>
@@ -65,7 +65,7 @@
       <div class="item">
         <img src="images/estadisticas.jpg"  alt="Image">
         <div class="carousel-caption">
-          <h3>Estadísticas.</h3>
+          <h3>@lang('messages.estadisticas').</h3>
           <p>Comprueba el estado de tu proyecto en todo momento</p>
         </div>      
       </div>
@@ -83,7 +83,7 @@
 </div>
   
 <div class="container text-center">    
-  <h3>Metodologías Ágiles</h3><br>
+  <h3>@lang('messages.metodologias agiles')</h3><br>
   <div class="row">
     <div class="col-sm-4">
       <img src="images/reunion.jpg" class="img-responsive" style="width:100%" alt="Image">

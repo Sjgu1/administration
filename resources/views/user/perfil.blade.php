@@ -3,11 +3,11 @@
 @section('content')
 
     <section class="content-header">
-      <h1>Perfil<small>Usuario x</small></h1>
+      <h1>@lang('messages.perfil')<small>@lang('messages.usuario') x</small></h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> @lang('messages.inicio')</a></li>
         <li><a href="#">UI</a></li>
-        <li class="active">Timeline</li>
+        <li class="active">@lang('messages.actividad')</li>
       </ol>
     </section>
 
@@ -25,11 +25,11 @@
                         <input readonly="readonly" type="hidden" id="id" name="id" value="{{ $user->id }}" class="form-control">
                     </div>
                     <div class="form-group has-feedback">
-                        <label for="name" class="control-label">Nombre:</label>
+                        <label for="name" class="control-label">@lang('messages.nombre'):</label>
                         <input type="text" id="name" name="name" value="{{ $user->name }}" class="form-control" data-minlength="3" maxlength="20" required>
                     </div>
                     <div class="form-group has-feedback">
-                        <label for="apellidos" class="control-label">Apellidos:</label>
+                        <label for="apellidos" class="control-label">@lang('messages.apellidos'):</label>
                         <input  type="text" id="apellidos" name="apellidos" value="{{ $user->apellidos }}" class="form-control" data-minlength="3" maxlength="50" required>
                     </div>
                     <div class="form-group has-feedback">
@@ -37,23 +37,23 @@
                         <input type="email" name="email" id="email" value="{{ $user->email }}" class="form-control" data-minlength="3" maxlength="50" required>
                     </div>
                     <div class="form-group has-feedback">
-                        <label for="username" class="control-label">Username:</label>
+                        <label for="username" class="control-label">@lang('messages.nombre de usuario'):</label>
                         <input type="text" id="username" name="username" value="{{ $user->username }}" class="form-control" data-minlength="3" maxlength="20" required>
                     </div>
                     <div class="form-group has-feedback">
-                        <label for="username" class="control-label">Password:</label>
+                        <label for="username" class="control-label">@lang('messages.contrasenya'):</label>
                         <input type="text" id="password1" name="password1" value="" class="form-control" data-minlength="3" maxlength="20" required>
                     </div>
                     <div class="form-group has-feedback">
-                        <label for="username" class="control-label">Repetir password:</label>
+                        <label for="username" class="control-label">@lang('messages.repetir contrasenya'):</label>
                         <input type="text" id="password2" name="password1" value="" class="form-control" data-minlength="3" maxlength="20" required>
                     </div>
                     <div class="form-group has-feedback">
-                        <label for="username" class="control-label">Imagen de perfil:</label>
+                        <label for="username" class="control-label">@lang('messages.imagen de perfil'):</label>
                         <input type="file" id="imagen" name="imagen" value="">
                     </div>
                     <div class="box-footer">
-                        <input class="btn btn-primary btn-lg" type="submit" value="Modificar">
+                        <input class="btn btn-primary btn-lg" type="submit" value="@lang('messages.modificar')">
                     </div>
                 </form>
             </div>
@@ -74,12 +74,12 @@
         <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Borrar usuario</h4>
+            <h4 class="modal-title" id="myModalLabel">@lang('messages.borrar usuario')</h4>
         </div>
         <div class="modal-body">¿Estás seguro de que quieres borrar el usuario <b>{{ $user->name . ' ' . $user->apellidos}}</b>?</div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            <button type="button" id="confirmacion" class="btn btn-primary">Borrar</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">@lang('messages.cerrar')</button>
+            <button type="button" id="confirmacion" class="btn btn-primary">@lang('messages.borrar')</button>
         </div>
         </div>
     </div>

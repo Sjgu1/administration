@@ -5,14 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\ProyectoUser;
 use App\Rol;
+use App\User;
 
 class ProyectoUserController extends Controller
 {
 
     public function userspublic($id = null){
 
-        $rols = Rol::get();
         $proyecto_users = ProyectoUser::where('proyecto_id', 1)->with('user')->with('rol')->get();
+        $users = User::get();
+
+        $rols = Rol::get();
 
         foreach ($proyecto_users as $proyecto_user){
 
@@ -36,7 +39,7 @@ class ProyectoUserController extends Controller
             //var_dump($proyecto_user->rol);
         }
 
-        return view('user.users', ['proyecto_users' => $proyecto_users, 'rols' => $rols]);
+        return view('user.users', ['proyecto_users' => $proyecto_users, 'users' => $users, 'rols' => $rols]);
     }
 
     public function invitation($id = null){

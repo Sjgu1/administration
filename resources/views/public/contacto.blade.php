@@ -5,9 +5,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <ul class="nav navbar-nav">
-  <li><a href="{{ url('/home') }}">Home</a></li>
-  <li><a href="{{ url('/proyecto') }}">Proyecto</a></li>
-  <li  class="active"><a href="{{ url('/contacto') }}">Contacto</a></li>
+  <li><a href="{{ url('/home') }}">@lang('messages.inicio')</a></li>
+  <li><a href="{{ url('/proyecto') }}">@lang('messages.proyecto')</a></li>
+  <li  class="active"><a href="{{ url('/contacto') }}">@lang('messages.contacto')</a></li>
 </ul>
 <link rel="stylesheet" href="css/contact.css">
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -32,7 +32,7 @@
       <div class="item">
         <img src="images/universidad.jpg" alt="Universidad" width="1000" height="600">
         <div class="carousel-caption">
-          <h3>Universidad</h3>
+          <h3>@lang('messages.universidad')</h3>
         </div>      
       </div>
 
@@ -49,9 +49,9 @@
 
 <!-- Container (The Band Section) -->
 <div id="band" class="container text-center">
-  <h3>El equipo</h3>
+  <h3>@lang('messages.el equipo')</h3>
   <p><em>DSS</em></p>
-  <p>Somos un equipo de trabajo.</p>
+  <p>@lang('messages.somos un equipo de trabajo').</p>
   <br>
   <div class="row">
     <div class="col-sm-3">
@@ -114,15 +114,15 @@ var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="form_name">Nombre *</label>
-                    <input id="form_name" type="text" name="name" class="form-control" placeholder="Por favor, introduzca su nombre *" required="required" data-error="Firstname is required.">
+                    <label for="form_name">@lang('messages.nombre') *</label>
+                    <input id="form_name" type="text" name="name" class="form-control" placeholder="@lang('messages.por favor introduzca su nombre')" required="required" data-error="Firstname is required.">
                     <div class="help-block with-errors"></div>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="form_lastname">Apellidos *</label>
-                    <input id="form_lastname" type="text" name="surname" class="form-control" placeholder="Por favor, introduzca sus apellidos *" required="required" data-error="Lastname is required.">
+                    <label for="form_lastname">@lang('messages.apellidos') *</label>
+                    <input id="form_lastname" type="text" name="surname" class="form-control" placeholder="@lang('messages.por favor introduzca sus apellidos')" required="required" data-error="Lastname is required.">
                     <div class="help-block with-errors"></div>
                 </div>
             </div>
@@ -131,14 +131,14 @@ var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="form_email">Email *</label>
-                    <input id="form_email" type="email" name="email" class="form-control" placeholder="Por favor, introduzca su email *" required="required" data-error="Valid email is required.">
+                    <input id="form_email" type="email" name="email" class="form-control" placeholder="@lang('messages.por favor introduzca su email')" required="required" data-error="Valid email is required.">
                     <div class="help-block with-errors"></div>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="form_phone">Teléfono</label>
-                    <input id="form_phone" type="tel" name="phone" class="form-control" placeholder="Por favor, introduzca su número de teléfono">
+                    <label for="form_phone">@lang('messages.telefono')</label>
+                    <input id="form_phone" type="tel" name="phone" class="form-control" placeholder="@lang('messages.por favor introduzca su numero')">
                     <div class="help-block with-errors"></div>
                 </div>
             </div>
@@ -146,18 +146,18 @@ var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <label for="form_message">Mensaje *</label>
-                    <textarea id="form_message" name="message" class="form-control" placeholder="Mensahe a enviar *" rows="4" required="required" data-error="Por favor, introduzca su mensaje *."></textarea>
+                    <label for="form_message">@lang('messages.mensaje') *</label>
+                    <textarea id="form_message" name="message" class="form-control" placeholder="@lang('messages.mensaje a enviar')" rows="4" required="required" data-error="Por favor introduzca su mensaje *."></textarea>
                     <div class="help-block with-errors"></div>
                 </div>
             </div>
             <div class="col-md-12">
-                <input type="submit" class="btn btn-success btn-send" value="Enviar Mensaje">
+                <input type="submit" class="btn btn-success btn-send" value="@lang('messages.enviar mensaje')">
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
-                <p class="text-muted"><strong>*</strong>Estos campos son obligatorios.</p>
+                <p class="text-muted"><strong>*</strong>@lang('messages.estos campos son obligatorios').</p>
             </div>
         </div>
     </div>

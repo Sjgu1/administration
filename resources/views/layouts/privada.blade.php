@@ -98,200 +98,7 @@
             </a>
           </li>
           <!-- Fin bandera -->
-          <li class="dropdown messages-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">4</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 4 messages @lang('messages.welcome')</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li><!-- start message -->
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="/adminlte/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Support Team
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <!-- end message -->
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="/adminlte/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        AdminLTE Design Team
-                        <small><i class="fa fa-clock-o"></i> 2 hours</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="/adminlte/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Developers
-                        <small><i class="fa fa-clock-o"></i> Today</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="/adminlte/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Sales Department
-                        <small><i class="fa fa-clock-o"></i> Yesterday</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="/adminlte/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Reviewers
-                        <small><i class="fa fa-clock-o"></i> 2 days</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="footer"><a href="#">See All Messages</a></li>
-            </ul>
-          </li>
-          <!-- Notifications: style can be found in dropdown.less -->
-          <li class="dropdown notifications-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-bell-o"></i>
-              <span class="label label-warning">10</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 10 notifications</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
-                      page and may cause design problems
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-red"></i> 5 new members joined
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-shopping-cart text-green"></i> 25 sales made
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-user text-red"></i> You changed your username
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="footer"><a href="#">View all</a></li>
-            </ul>
-          </li>
-          <!-- Tasks: style can be found in dropdown.less -->
-          <li class="dropdown tasks-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-flag-o"></i>
-              <span class="label label-danger">9</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 9 tasks</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Design some buttons
-                        <small class="pull-right">20%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">20% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Create a nice theme
-                        <small class="pull-right">40%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">40% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Some task I need to do
-                        <small class="pull-right">60%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">60% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Make beautiful transitions
-                        <small class="pull-right">80%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">80% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                </ul>
-              </li>
-              <li class="footer">
-                <a href="#">View all tasks</a>
-              </li>
-            </ul>
-          </li>
-          <!-- User Account: style can be found in dropdown.less -->
-          <li class="dropdown user user-menu">
+       <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="/perfiles/{{ $user->imagen }}" class="user-image" alt="User Image">
               <span class="hidden-xs">{{ $user->name . ' ' . $user->apellidos }}</span>
@@ -303,31 +110,16 @@
 
                 <p>
                   {{ $user->name }}
-                  <small>Member since Nov. 2012</small>
+                  <small>@lang('messages.miembro desde') May. 2017</small>
                 </p>
-              </li>
-              <!-- Menu Body -->
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
-                  </div>
-                </div>
-                <!-- /.row -->
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="{{ url('perfil') }}" class="btn btn-default btn-flat">Perfil</a>
+                  <a href="{{ url('perfil') }}" class="btn btn-default btn-flat">@lang('messages.perfil')</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Cerrar sesión</a>
+                  <a href="#" class="btn btn-default btn-flat">@lang('messages.cerrar sesion')</a>
                 </div>
               </li>
             </ul>
@@ -370,56 +162,55 @@
         <li class="header">Menú</li>
          <li class="treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Proyectos</span>
+            <i class="fa fa-dashboard"></i> <span>@lang('messages.proyectos')</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/user/proyectosusers"><i class="fa fa-circle-o"></i> Listar Proyectos</a></li>
-            <li><a href="/user/proyecto/new"><i class="fa fa-circle-o"></i> Crear Proyecto</a></li>
+            <li><a href="/user/proyectosusers"><i class="fa fa-circle-o"></i> @lang('messages.listar proyectos')</a></li>
+            <li><a href="/user/proyecto/new"><i class="fa fa-circle-o"></i> @lang('messages.crear proyecto')</a></li>
           </ul>
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Sprints</span>
+            <i class="fa fa-dashboard"></i> <span>@lang('messages.sprints')</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="user/sprintsusers"><i class="fa fa-circle-o"></i> Listar Sptrints</a></li>
-            <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+            <li><a href="user/sprintsusers"><i class="fa fa-circle-o"></i> @lang('messages.listar sprints')</a></li>
           </ul>
         </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-files-o"></i>
-            <span>Requisitos</span>
+            <span>@lang('messages.requisitos')</span>
             <span class="pull-right-container">
               <span class="label label-primary pull-right"></span>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/sprintsrequisitos"><i class="fa fa-circle-o"></i> Listar Requisitos</a></li>
+            <li><a href="/sprintsrequisitos"><i class="fa fa-circle-o"></i> @lang('messages.listar requisitos')</a></li>
             <!--li><a href="/user/requisitosusers"><i class="fa fa-circle-o"></i> Crear Requisito</a></li-->
           </ul>
         </li>
         <li>
           <a href="/pizarra">
             <i class="fa fa-th"></i>
-            <span>Pizarra</span>
+            <span>@lang('messages.pizarra')</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-green">new</small>
+              <small class="label pull-right bg-green">@lang('messages.nuevo')</small>
             </span>
           </a>
         </li>
         <li>
           <a href="/actividad">
             <i class="fa fa-pie-chart"></i>
-            <span>Actividad</span>
+            <span>@lang('messages.actividad')</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-green">new</small>
+              <small class="label pull-right bg-green">@lang('messages.nuevo')</small>
               <!--<i class="fa fa-angle-left pull-right"></i>-->
             </span>
           </a>
@@ -433,7 +224,7 @@
         <li class="treeview">
           <a href="#">
             <i class="fa fa-laptop"></i>
-            <span>Gráficos</span>
+            <span>@lang('messages.graficos')</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -441,26 +232,26 @@
           <ul class="treeview-menu">
             <li><a href="/graficos/burndown"><i class="fa fa-circle-o"></i>Burndown</a></li>
             <li><a href="/graficos/burndown/sprints"><i class="fa fa-circle-o"></i>Burndown sprints</a></li>
-            <li><a href="/graficos/frecuencia"><i class="fa fa-circle-o"></i>Frecuencia</a></li>
-            <li><a href="/graficos/requisitos"><i class="fa fa-circle-o"></i>Requisitos</a></li>
+            <li><a href="/graficos/frecuencia"><i class="fa fa-circle-o"></i>@lang('messages.frecuencia')</a></li>
+            <li><a href="/graficos/requisitos"><i class="fa fa-circle-o"></i>@lang('messages.requisitos')</a></li>
             <li><a href="/graficos/commits"><i class="fa fa-circle-o"></i>Commits</a></li>
-            <li class="active"><a href="timeline.html"><i class="fa fa-circle-o"></i>Timeline</a></li>
+            <li class="active"><a href="timeline.html"><i class="fa fa-circle-o"></i>@lang('messages.actividad')</a></li>
           </ul>
         </li>
         <li>
           <a href="/calendario">
-            <i class="fa fa-edit"></i><span>Calendario</span>
+            <i class="fa fa-edit"></i><span>@lang('messages.calendario')</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-green">new</small>
+              <small class="label pull-right bg-green">@lang('messages.nuevo')</small>
             </span>
           </a>
         </li>
         <li>
           <a href="/userspublic">
             <i class="fa fa-pie-chart"></i>
-            <span>Usuarios</span>
+            <span>@lang('messages.usuarios')</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-green">new</small>
+              <small class="label pull-right bg-green">@lang('messages.nuevo')</small>
               <!--<i class="fa fa-angle-left pull-right"></i>-->
             </span>
           </a>
