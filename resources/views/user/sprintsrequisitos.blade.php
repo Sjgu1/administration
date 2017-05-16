@@ -67,7 +67,12 @@
                                     </td>
                                     <td><span class="badge bg-{{ $requisito->color }}">{!! $requisito->porcentaje !!}</span></td>
                                     <td>{{ $requisito->finalizacion }}</td>
-                                    <td><img src="/images/cara.jpg" class="user-image" alt="User Image" width="25" height="25"></td>
+
+                                    <td>
+                                        @foreach ($requisito->users as $user)
+                                            <img src="/perfiles/{{ $user->imagen }}" class="user-image" alt="User Image" width="25" height="25">
+                                        @endforeach
+                                    </td>
                                 </tr>
                             @endforeach
 
@@ -228,4 +233,37 @@
 <!-- FIN Formularios modificación -->
 @endforeach
 
+<script>
+@foreach ($requisitos as $requisito)
+
+    $("#exampleModal" . $requisito->id).click(function() {
+
+        swal({
+            title: "Are you sure?",
+            text: "No podrás deshacer esta acción",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, delete it",
+            closeOnConfirm: false
+        },
+        function(){
+            swal("Deleted!", "Your imaginary file has been deleted", "success");
+        });
+    });
+
+@endforeach
+</script>
+
+<script>
+
+    var url = window.location.href;
+    var splitted = url.split('/');
+
+    if (splitted.length == 5 && $.isNumeric(splitted[4])){
+
+        $('#exampleModal' + splitted[4]).modal('show');
+    }
+
+</script>
 @endsection

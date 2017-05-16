@@ -7,6 +7,7 @@ use App\Http\Controllers\Input;
 use App\Proyecto;
 use App\Sprint;
 use DateTime;
+use DateTimeZone;
 use DateInterval;
 use App\ProyectoUser;
 use App\Requisito;
@@ -159,7 +160,7 @@ class ProyectosController extends Controller
         return redirect('user/proyectosusers');
     }
 
-    public function actividad($id = null){
+    public function getCommits(){
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'https://api.github.com/repos/jph11/crisantemo/commits');
@@ -177,102 +178,222 @@ class ProyectosController extends Controller
 
             //$key = DateTime::createFromFormat('Y-m-d H:i:s', $commit['commit']['author']['date']);
             $date = new DateTime($commit['commit']['author']['date']);
-            $key = $date->format('d M Y');
+            //$key = $date->format('d M Y H i s');
 
             // Diferencia de tiempo
-            $fecha_actual = new DateTime('NOW');
-            $diff = $date->diff($fecha_actual);
             $diferencia = 0;
             $unidad = '';
-            //$diff = abs($date->getTimeStamp() - $fecha_actual->getTimeStamp());
 
-            // Años
-            if ($diff->y > 0){
-
-                $diferencia = $diff->y;
-                $unidad = 'año';
-            }
-            // Meses
-            else if ($diff->m > 0){
-
-                $diferencia = $diff->m;
-                $unidad = 'mes';
-            }
-            // Semanas
-            else if (floor($diff->d / 7) > 0){
-
-                $diferencia = floor($diff->d / 7);
-                $unidad = 'semana';
-            }
-            // Días
-            else if ($diff->d > 0){
-
-                $diferencia = $diff->d;
-                $unidad = 'día';
-            }
-            // Horas
-            else if ($diff->h > 0){
-
-                $diferencia = $diff->h;
-                $unidad = 'hora';
-            }
-            // Minutos
-            else if ($diff->i > 0){
-
-                $diferencia = $diff->i;
-                $unidad = 'minuto';
-            }
-            // Segundos
-            else {
-
-                $diferencia = $diff->s;
-                $unidad = 'segundo';
-            }
-
-            if ($diferencia > 1){
-
-                if ($unidad == 'mes'){
-
-                    $unidad = $unidad . 'es';
-                }
-                else {
-
-                    $unidad = $unidad . 's';
-                }
-            }
+            $this->hace($date, $diferencia, $unidad);
 
             $datos = array();
-            array_push($datos, $commit['committer']['login']);
+            $datos['tipo'] = 'commit';
+            $datos['fecha'] = $date;
+            $datos['dia_concreto'] = $date->format('d M Y');
+            $datos['commiter'] = $commit['committer']['login'];
+            $datos['commiter_url'] = $commit['committer']['html_url'];
+            $datos['commit_header'] = 'ha realizado un commit';
+            $datos['commit_body'] = $commit['commit']['message'];
+            $datos['diferencia'] = 'hace ' . $diferencia . ' ' . $unidad;
+            $datos['html_url'] = $commit['html_url'];
+            /*array_push($datos, $commit['committer']['login']);
             array_push($datos, 'ha realizado un commit');
             array_push($datos, $commit['commit']['message']);
             array_push($datos, 'hace ' . $diferencia . ' ' . $unidad);
-            array_push($datos, $commit['html_url']);
-            
-            if (array_key_exists($key, $commits)){
+            array_push($datos, $commit['html_url']);*/
 
-                array_push($commits[$key], $datos);
-            }
-            else {
-
-                $commits[$key] = array();
-                array_push($commits[$key], $datos);
-            }
-
-            //$mensaje = $commit['committer']['login'] . " ha realizado un commit: " . $commit['commit']['message'];
-            //echo $mensaje;
-            //array_push($commits[$commit['commit']['author']['date']], $mensaje);
-
-            //$contributors[$contributor['author']['login']] = $contributor['total'];
+            array_push($commits, $datos);
         }
-
-        //var_dump($commits);
-        //var_dump(json_decode($output, true));
 
         curl_close($ch);
 
-        //var_dump($contributors);
+        return $commits;
+    }
+
+    public function getHistorico(){
+
+        $eventos = array();
+        $sprints = Sprint::where('proyecto_id', 4)->get();
+
+        foreach ($sprints as $sprint){
+
+            $requisitos_aux = Requisito::where('sprint_id', $sprint->id)->with('modificacions')->get();
+            // Append a requisitos
+
+            foreach ($requisitos_aux as $requisito){
+
+                foreach ($requisito->modificacions as $modificacion){
+
+                    $datos = array();
+                    $fecha = DateTime::createFromFormat('d/m/Y H:i:s', $modificacion->fecha);
+                    //$fecha = new DateTime($modificacion->fecha);
+
+                     // Diferencia de tiempo
+                    $diferencia = 0;
+                    $unidad = '';
+
+                    $this->hace($fecha, $diferencia, $unidad);
+
+                    $datos['tipo'] = 'modificacion';
+                    $datos['fecha'] = $fecha;
+                    $datos['dia_concreto'] = $fecha->format('d M Y');
+                    $datos['diferencia'] = 'hace ' . $diferencia . ' ' . $unidad;
+                    $datos['requisito_nombre'] = $requisito->nombre;
+                    $datos['icon'] = "fa fa-user bg-aqua";
+                    $datos['id'] = $requisito->id;
+
+                    if ($modificacion->tipo == "add_user"){
+
+                        $datos['icon'] = "fa fa-user-plus bg-green";
+
+                        $mensaje = explode(':', $modificacion->mensaje);
+
+                        if ($mensaje[0] == $mensaje[1]){
+
+                            $datos['mensaje'] = $mensaje[0] . ' se ha unido al requisito';
+                        }
+                        else {
+
+                            $datos['mensaje'] = $mensaje[0] . ' ha añadido a ' . $mensaje[1] . ' al requisito';
+                        }
+                    }
+                    else if ($modificacion->tipo == "delete_user"){
+
+                        $datos['icon'] = "fa fa-user-times bg-yellow";
+
+                        $mensaje = explode(':', $modificacion->mensaje);
+
+                        if ($mensaje[0] == $mensaje[1]){
+
+                            $datos['mensaje'] = $mensaje[0] . ' se ha desvinculado del requisito';
+                        }
+                        else {
+
+                            $datos['mensaje'] = $mensaje[0] . ' ha desvinculado a ' . $mensaje[1] . ' del requisito';
+                        }
+                    }
+                    else if ($modificacion->tipo == "edit_title"){
+
+                        $datos['mensaje'] = $modificacion->mensaje . ' ha modificado el título de tal a tal';
+                    }
+                    else if ($modificacion->tipo == "edit_description"){
+
+                        $datos['mensaje'] = $modificacion->mensaje . ' ha modificado la descripción';
+                    }
+                    else if ($modificacion->tipo == "edit_fecha_fin_estimada"){
+
+                        $datos['mensaje'] = "Sergio tal tal ha modificado a Jesús";
+                    }
+                    else if ($modificacion->tipo == "edit_state"){
+
+                        $datos['mensaje'] = "Sergio tal tal ha modificado a Jesús";
+                    }
+
+                    array_push($eventos, $datos);
+                }
+            }
+        }
+
+        return $eventos;
+    }
+
+    public function hace($date, &$diferencia, &$unidad){
+
+        // Diferencia de tiempo
+        //$timezone = new DateTimeZone('Europe/Madrid');
+        //$date->setTimezone($timezone);
+        $fecha_actual = new DateTime('NOW');
+        $diff = $date->diff($fecha_actual);
+        $diferencia = 0;
+        $unidad = '';
+        //$diff = abs($date->getTimeStamp() - $fecha_actual->getTimeStamp());
+
+        // Años
+        if ($diff->y > 0){
+
+            $diferencia = $diff->y;
+            $unidad = 'año';
+        }
+        // Meses
+        else if ($diff->m > 0){
+
+            $diferencia = $diff->m;
+            $unidad = 'mes';
+        }
+        // Semanas
+        else if (floor($diff->d / 7) > 0){
+
+            $diferencia = floor($diff->d / 7);
+            $unidad = 'semana';
+        }
+        // Días
+        else if ($diff->d > 0){
+
+            $diferencia = $diff->d;
+            $unidad = 'día';
+        }
+        // Horas
+        else if ($diff->h > 0){
+
+            $diferencia = $diff->h;
+            $unidad = 'hora';
+        }
+        // Minutos
+        else if ($diff->i > 0){
+
+            $diferencia = $diff->i;
+            $unidad = 'minuto';
+        }
+        // Segundos
+        else {
+
+            $diferencia = $diff->s;
+            $unidad = 'segundo';
+        }
+
+        if ($diferencia > 1){
+
+            if ($unidad == 'mes'){
+
+                $unidad = $unidad . 'es';
+            }
+            else {
+
+                $unidad = $unidad . 's';
+            }
+        }
+    }
+
+    function cmp($a, $b){
+
+        return $a['fecha'] < $b['fecha'];
+    }
+
+    public function actividad($id = null){
+
+        $historico = $this->getHistorico();
+        $commits = $this->getCommits();
+
+        $eventos = array_merge($historico, $commits);
+        usort($eventos, array($this, "cmp"));
+
+        $aux = null;
+
+        foreach ($eventos as &$evento){
+
+            if ($evento['dia_concreto'] == $aux){
+
+                $evento['show'] = false;
+            }
+            else {
+
+                $evento['show'] = true;
+            }
+
+            $aux = $evento['dia_concreto'];
+        }
         
-        return view('user.actividad', ['commits' => $commits]);
+        return view('user.actividad', ['eventos' => $eventos]);
     }
 
     public function graficos_requisitos($id = null){

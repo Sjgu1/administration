@@ -43,6 +43,9 @@ class DatabaseSeeder extends Seeder
         // Permisos rols seed
         $this->call(PermisosRolsTableSeeder::class);
 
+        // Modificaciones seed
+        $this->call(ModificacionsTableSeeder::class);
+
         // PROVISIONAL
         // Rols usuarios seed
         //$this->call(RolsUsuariosTableSeeder::class);

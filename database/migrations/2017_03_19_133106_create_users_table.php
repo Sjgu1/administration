@@ -17,14 +17,15 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name')->nullable();
             $table->string('apellidos')->nullable();
-            $table->timestamp('username')->nullable();
-            $table->timestamp('password')->nullable();
+            $table->string('username')->nullable();
+            $table->string('password')->nullable();
             $table->timestamp('fecha_registro')->nullable();
+            $table->string('imagen')->nullable();
             //requerido logout laravel
             $table->string('remember_token')->nullable();
             // provisional
-            $table->integer('rol_id')->nullable();
-            $table->foreign('rol_id')->references('id')->on('rols')->onDelete('cascade');
+            //$table->integer('rol_id')->nullable();
+            //$table->foreign('rol_id')->references('id')->on('rols')->onDelete('cascade');
             // fin provisional
             $table->timestamps();
         });

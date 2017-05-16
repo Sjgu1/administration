@@ -21,7 +21,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'jesusperalesh@gmail.com',
             'username' => 'jph11',
             'password' => bcrypt('123456'),
-            'fecha_registro' => '20/05/2016'
+            'fecha_registro' => '20/05/2016',
+            'imagen' => '1.jpg'
         ]);
         $user->save();
 
@@ -31,7 +32,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'mcnb@gmail.com',
             'username' => 'mma63',
             'password' => bcrypt('123456'),
-            'fecha_registro' => '12/06/2016'
+            'fecha_registro' => '12/06/2016',
+            'imagen' => '2.jpg'
         ]);
         $user->save();
 
@@ -41,7 +43,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'sjgu@alu.ua.es',
             'username' => 'sjgu12',
             'password' => bcrypt('123456'),
-            'fecha_registro' => '11/06/2017'
+            'fecha_registro' => '11/06/2017',
+            'imagen' => '3.jpg'
         ]);
         $user->save();
 

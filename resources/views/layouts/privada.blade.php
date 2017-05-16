@@ -49,6 +49,10 @@
   <script src="/adminlte/dist/js/app.min.js"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="/adminlte/dist/js/demo.js"></script>
+
+  <!-- Sweet Alert -->
+  <link rel="stylesheet" href="/css/sweetalert.css">
+  <script type="text/javascript" src="/js/sweetalert.min.js"></script>
   
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -289,7 +293,7 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="/images/cara.jpg" class="user-image" alt="User Image">
+              <img src="/perfiles/{{ $user->imagen }}" class="user-image" alt="User Image">
               <span class="hidden-xs">{{ $user->name . ' ' . $user->apellidos }}</span>
             </a>
             <ul class="dropdown-menu">
@@ -298,7 +302,7 @@
                 <img src="/adminlte/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Alexander Pierce - Web Developer
+                  {{ $user->name }}
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -320,10 +324,10 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="{{ url('perfil') }}" class="btn btn-default btn-flat">Profile</a>
+                  <a href="{{ url('perfil') }}" class="btn btn-default btn-flat">Perfil</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="#" class="btn btn-default btn-flat">Cerrar sesión</a>
                 </div>
               </li>
             </ul>
@@ -363,7 +367,7 @@
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
-        <li class="header">MAIN NAVIGATION</li>
+        <li class="header">Menú</li>
          <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Proyectos</span>

@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ProyectoUser;
+use App\Rol;
 
 class ProyectoUserController extends Controller
 {
 
     public function userspublic($id = null){
 
+        $rols = Rol::get();
         $proyecto_users = ProyectoUser::where('proyecto_id', 1)->with('user')->with('rol')->get();
 
         foreach ($proyecto_users as $proyecto_user){
@@ -34,6 +36,27 @@ class ProyectoUserController extends Controller
             //var_dump($proyecto_user->rol);
         }
 
-        return view('user.users', ['proyecto_users' => $proyecto_users]);
+        return view('user.users', ['proyecto_users' => $proyecto_users, 'rols' => $rols]);
+    }
+
+    public function invitation($id = null){
+
+        $proyecto = $request->input('proyecto');
+        $anfitrion_nombre = $request->input('anfitrion_nombre');
+        $anfitrion_email = $request->input('anfitrion_email');
+        $email = $request->input('email');
+        $rol = $request->input('rol');
+
+        $data = "Mensaje de Crisantemo. Has sido invitado al proyecto: " .
+        "Nombre: ". $proyecto . "
+        Con rol: ". $rol ."
+        Por el usuario: " . $anfitrion_nombre . "
+        Con correo: " . $anfitrion_email;
+
+        Mail::raw($data, function ($message) {
+            $message->to('crisantemo.dss.2017@gmail.com', 'Crisantemo');
+        });
+
+        return view('user.userspublic');
     }
 }
