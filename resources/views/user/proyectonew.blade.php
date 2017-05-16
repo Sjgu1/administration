@@ -1,49 +1,93 @@
 @extends('layouts.privada')
-    
 <body>
 @section('content')
-        <form id="proyecto_form" action="{{ url('proyecto/create') }}" method="POST" role="form" data-toggle="validator">
-        {{ csrf_field() }}
-        <!--<div class="form-group has-feedback">
-            <label for="date" class="control-label">Date:</label>
-            <div class="input-group">
-                <input type="text" id="example1" class="form-control" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" required>
-                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+<section class="content-header">
+      <h1>Nuevo Proyecto</h1>
+      <!--<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">UI</a></li>
+        <li class="active">Timeline</li>
+      </ol>-->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <!-- /.col (LEFT) -->
+        <div class="col-md-12">
+          <!-- LINE CHART -->
+          <div class="box box-info">
+            <div class="box-body">
+
+                <form id="user_form" action="{{ url('proyecto/create') }}" method="POST" enctype="multipart/form-data" role="form" data-toggle="validator">
+                    {{ csrf_field() }}
+                    
+                    <!--Nombre-->
+                    <div class="form-group has-feedback">
+                        <label for="nombre" class="control-label">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" value="{{ old('nombre') }}" class="form-control" data-minlength="3" maxlength="20" required>
+                    </div>
+                    <!--Descripcion-->
+                    <div class="form-group has-feedback">
+                        <label for="descripcion" class="control-label">Descripción:</label>
+                        <textarea id="descripcion" name="descripcion" class="form-control" rows="5" value="{{ old('descripcion') }}" data-minlength="3" maxlength="65535" required></textarea>
+                    </div>
+                    <!--Repositorio-->
+                    <div class="form-group has-feedback">
+                        <label for="repositorio" class="control-label">Repositorio:</label>
+                        <input type="repositorio" name="repositorio" id="repositorio" class="form-control">
+                    </div>
+                    <!--Fecha inicio-->
+                    <div class="form-group has-feedback">
+                        <label for="message-text" class="control-label">Fecha de inicio:</label>
+                        <div class="form-group">
+                            <div class='input-group date' id='datetimepicker6'>
+                                <input type='text' class="form-control" name="fecha_inicio" id="fecha_inicio" />
+                                <span class="input-group-addon">
+								<span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <script>
+                            $('#datetimepicker6').datetimepicker({
+                                format: "DD/MM/YYYY"
+                            });
+                        </script>
+                    </div>
+                    <!--Fecha fin estimada-->
+                    <div class="form-group has-feedback">
+                        <label for="message-text" class="control-label">Fecha estimada de finalización:</label>
+                        <div class="form-group">
+                            <div class='input-group date' id='datetimepicker7'>
+                                <input type='text' class="form-control" name="fecha_fin_estimada" id="fecha_fin_estimada" />
+                                <span class="input-group-addon">
+								<span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <script>
+                            $('#datetimepicker7').datetimepicker({
+                                format: "DD/MM/YYYY"
+                            });
+                        </script>
+                    </div>
+                    <!--Boton-->
+                    <div class="box-footer">
+                        <input class="btn btn-primary btn-lg" type="submit" value="Crear">
+                    </div>
+                </form>
             </div>
-        </div>-->
-        <div class="form-group has-feedback">
-            <label for="id" class="control-label">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" value="{{ old('nombre') }}" class="form-control" data-minlength="3" maxlength="20" required>
-            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
         </div>
-        <div class="form-group has-feedback">
-            <label for="descripcion" class="control-label">Descripción:</label>
-            <textarea id="descripcion" name="descripcion" class="form-control" rows="5" value="{{ old('descripcion') }}" data-minlength="3" maxlength="65535" required></textarea>
-            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-        </div>
-        <div class="form-group has-feedback">
-            <label for="repositorio" class="control-label">Repositorio:</label>
-            <input type="text" id="repositorio" name="repositorio" class="form-control" value="{{ old('repositorio') }}" pattern="((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)">
-            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-        </div>
-        <div class="form-group has-feedback">
-            <label for="fecha_inicio" class="control-label">Fecha inicio:</label>
-            <div class="input-group">
-                <input type="text" id="fecha_inicio" name="fecha_inicio" class="form-control" value="{{ old('fecha_inicio') }}" placeholder="dd/MM/YYYY" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" required>
-                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-            </div>
-        </div>
-        <div class="form-group has-feedback">
-            <label for="fecha_fin_estimada" class="control-label">Fecha fin estimada:</label>
-            <div class="input-group">
-                <input type="text" id="fecha_fin_estimada" name="fecha_fin_estimada" class="form-control" value="{{ old('fecha_fin_estimada') }}" placeholder="dd/MM/YYYY" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" required>
-                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-            </div>
-        </div>
-        <br>
-        <input type="submit" class="btn btn-block btn-lg btn-primary" value="Crear">
-     </form>
-    <script>
+        <!-- /.col (RIGHT) -->
+      </div>
+      <!-- /.row -->
+
+    </section>
+ <script>
     // When the document is ready
     $(document).ready(function () {
 
@@ -60,4 +104,3 @@
     });
     </script>
 @endsection
-</body>
