@@ -22,7 +22,8 @@ class UsersTableSeeder extends Seeder
             'username' => 'jph11',
             'password' => bcrypt('123456'),
             'fecha_registro' => '20/05/2016',
-            'imagen' => '1.jpg'
+            'imagen' => '1.jpg',
+            'admin' => 'true',
         ]);
         $user->save();
 

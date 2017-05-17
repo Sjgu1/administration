@@ -6,9 +6,13 @@ use Illuminate\Http\Request;
 use App\Permiso;
 use App\Proyecto;
 use App\Sprint;
+use Auth;
 
 class PermisoController extends Controller
 {
+        public function __construct(){
+        $this->middleware('auth');
+    }
 
     public function search(){
 

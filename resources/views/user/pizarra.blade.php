@@ -134,6 +134,7 @@
                             <!-- /.box-header -->
                             <div class="box-body">
                                 <div class="row">
+                                <div class="col-md-12">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <select class="form-control" onchange="cambiarColor(this.value);">
@@ -142,7 +143,7 @@
                                                 <option value="columna3">@lang('messages.hecho')</option>
                                             </select>
                                         </div>
-
+                                    </div>
                                         <!-- /.col -->
                                         <div class="col-md-3">
                                             <div class="form-group">
@@ -161,6 +162,7 @@
                                         </div>
                                         <!-- /.col -->
                                     </div>
+                                    
                                     <!-- /.row -->
                                 </div>
                                 <!-- /.box-body -->
@@ -294,7 +296,7 @@
                 <div class="modal-content">
                     <form id="requisito_form" action="{{ url('requisito/create') }}" method="POST" role="form" data-toggle="validator">
                         <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
-                        <div class="modal-header">
+                        <div class="modal-header form-group has-feedback">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <label for="message-text" class="control-label">@lang('messages.tarea'):</label>
                             <input type="text" id="nombre" name="nombre" class="form-control" data-minlength="3" maxlength="20" required>
@@ -315,7 +317,7 @@
                                     <div class='input-group date' id='datetimepicker6'>
                                         <input type='text' class="form-control" name="fecha_estimada_fin" id="fecha_estimada_fin" />
                                         <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
+                                        <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
                                     </div>
                                 </div>
@@ -345,15 +347,15 @@
                         <input type="hidden" name="id" value="{{$requisito->id }}" />
                         <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
                         <input type="hidden" name="estado" value="{{$requisito->estado }}" />
-                        <div class="modal-header">
+                        <div class="modal-header form-group has-feedback">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <label for="recipient-name" class="control-label">@lang('messages.nombre'):</label>
-                            <input type="text" class="form-control modal-title" name="nombre" value="{{$requisito->nombre}}">
+                            <input type="text" class="form-control modal-title" name="nombre" value="{{$requisito->nombre}}"  data-minlength="3" maxlength="20" required>
                         </div>
                         <div class="modal-body">
-                            <div class="form-group">
-                                <label for="recipient-name" class="control-label">@lang('messages.descripcion'):</label>
-                                <input type="text" class="form-control" name="descripcion" value="{{$requisito->descripcion}}">
+                            <div class="form-group  has-feedback">
+                                <label for="descripcion" class="control-label">@lang('messages.descripcion'):</label>
+                                <textarea id="descripcion" name="descripcion" class="form-control" rows="5" data-minlength="3" maxlength="65535" required>{{ $requisito->descripcion }}</textarea>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">

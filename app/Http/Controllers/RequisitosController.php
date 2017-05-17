@@ -4,15 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 use App\Proyecto;
 use App\Sprint;
 use App\Requisito;
 use Log;
+use Auth;
 
 
 class RequisitosController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
 
     public function cambiarEstado(Request $request){
         
@@ -33,7 +39,7 @@ class RequisitosController extends Controller
     }
 
     public function modify(Request $request){
-
+        //$validator = Validator::make(Input::all(), $rules);
         $this->validate($request, [
             'nombre' => ['string', 'min:3', 'max:20'],
             'descripcion' => ['string', 'min:3', 'max:65535'],

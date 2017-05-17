@@ -20,11 +20,20 @@
   -->
   <link rel="stylesheet" href="/adminlte/dist/css/skins/skin-blue.min.css">
 
+  <!--  Enlaces agregados por Sergio, para la validacion de usuario con colores
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  -->
+
+
+
+    <!--<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.js"></script>-->
+
 <!-- Include Bootstrap Datepicker -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+ <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>                       
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.45/js/bootstrap-datetimepicker.min.js"></script>
 
@@ -107,7 +116,6 @@
               <!-- User image -->
               <li class="user-header">
                 <img src="/adminlte/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
                 <p>
                   {{ $user->name }}
                   <small>@lang('messages.miembro desde') May. 2017</small>
@@ -119,15 +127,19 @@
                   <a href="{{ url('perfil') }}" class="btn btn-default btn-flat">@lang('messages.perfil')</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">@lang('messages.cerrar sesion')</a>
+                  <a href="{{ route('logout') }}"  onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="btn btn-default btn-flat">@lang('messages.cerrar sesion')</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
                 </div>
               </li>
             </ul>
           </li>
           <!-- Control Sidebar Toggle Button -->
+           @if ( $user->isAdmin() == "true" )
           <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+            <a href="/index" ><i class="fa fa-gears"></i></a>
           </li>
+           @endif
+          
         </ul>
       </div>
     </nav>
@@ -136,6 +148,7 @@
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
+   
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">

@@ -13,6 +13,9 @@ use Log;
 class InsideController extends Controller
 {
 
+    public function __construct(){
+        $this->middleware('auth');
+    }
  //Proyecto
     public function searchProyecto(){
          $user = Auth::id();

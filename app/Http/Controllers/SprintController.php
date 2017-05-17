@@ -18,6 +18,9 @@ use DateInterval;
 class SprintController extends Controller
 {
 
+    public function __construct(){
+        $this->middleware('auth');
+    }
     public function pizarra(){
          $proyecto = Proyecto::get()
                     ->where('id', 1)
