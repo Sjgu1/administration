@@ -23,13 +23,11 @@ class SprintController extends Controller
         parent::__construct();
         $this->middleware('auth');
     }
-    public function pizarra(){
+    public function pizarra($id){
 
-         $proyecto = Proyecto::get()
-                    ->where('id', 1)
-                    ->first();
+         $proyecto= session()->get('selected_project');
          $sprint = Sprint::get()
-                    ->where('id', 1)
+                    ->where('id', $id)
                     ->first();
          
          $usuarios = ProyectoUser::with('user')
