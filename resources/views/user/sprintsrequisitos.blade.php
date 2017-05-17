@@ -69,8 +69,8 @@
                                     <td>{{ $requisito->finalizacion }}</td>
 
                                     <td>
-                                        @foreach ($requisito->users as $user)
-                                            <img src="/perfiles/{{ $user->imagen }}" class="user-image" alt="User Image" width="25" height="25">
+                                        @foreach ($requisito->users as $userReq)
+                                            <img src="/perfiles/{{ $userReq->imagen }}" class="user-image" alt="User Image" width="25" height="25">
                                         @endforeach
                                     </td>
                                 </tr>

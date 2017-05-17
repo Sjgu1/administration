@@ -79,7 +79,7 @@ Route::group(['middleware' => ['web', 'auth']], function(){
     Route::get('sprintsrequisitos/{sprint_id}/{requisito_id?}', 'SprintController@sprintsrequisitos');
     Route::get('calendario', 'ProyectosController@calendario');
 
-    Route::get('pizarra', 'SprintController@pizarra');
+    Route::get('pizarra/{id}', 'SprintController@pizarra');
     Route::post('pizarra', 'RequisitosController@cambiarEstado');
     Route::post('/requisitoUsuario', 'RequisitoUserController@modificarAsignaciones');
 
