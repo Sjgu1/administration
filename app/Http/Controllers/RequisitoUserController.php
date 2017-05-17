@@ -18,6 +18,7 @@ class RequisitoUserController extends Controller
         public function __construct(){
         $this->middleware('auth');
     }
+    
     public function modificarAsignaciones(Request $request){
         $tareasAsignadas = RequisitoUser::where('requisito_id', $request->id_requisito)->get();
         foreach($tareasAsignadas as $tareas){

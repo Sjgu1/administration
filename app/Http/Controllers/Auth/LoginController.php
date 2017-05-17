@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Proyecto;
 
 class LoginController extends Controller
 {
@@ -38,6 +39,9 @@ class LoginController extends Controller
     }
 
     public function authenticated($request,$user){
+
+        $request->session()->put('selected_project', 1);
+
         return redirect('/user/' . $user->id);
     }
 }

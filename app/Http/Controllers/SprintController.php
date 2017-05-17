@@ -22,6 +22,7 @@ class SprintController extends Controller
         $this->middleware('auth');
     }
     public function pizarra(){
+
          $proyecto = Proyecto::get()
                     ->where('id', 1)
                     ->first();
