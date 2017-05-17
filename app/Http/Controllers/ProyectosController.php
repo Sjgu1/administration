@@ -17,9 +17,15 @@ use Auth;
 use Log;
 
 
+
 class ProyectosController extends Controller
 {
 
+    public function __construct(){
+        $this->middleware('auth');
+        $this->middleware('admin');
+        
+    }
     public function details($id){
         $proyecto = Proyecto::where('id', $id)->first();
         if($proyecto==null){

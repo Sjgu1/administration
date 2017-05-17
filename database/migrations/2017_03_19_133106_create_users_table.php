@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->timestamp('fecha_registro')->nullable();
             $table->string('imagen')->nullable();
+            $table->boolean('admin')->default('false');
             //requerido logout laravel
             $table->string('remember_token')->nullable();
             // provisional

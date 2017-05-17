@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-
+use Auth;
 class UserController extends Controller
 {
 
@@ -15,6 +15,9 @@ class UserController extends Controller
         return view('users', compact(['users', 'valorname']));
     }
     */
+    public function __construct(){
+        $this->middleware('auth');
+    }
 
     public function gith(){
 

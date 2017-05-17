@@ -6,10 +6,14 @@ use Illuminate\Http\Request;
 use App\ProyectoUser;
 use App\Rol;
 use App\User;
+use Auth;
 
 class ProyectoUserController extends Controller
 {
 
+    public function __construct(){
+        $this->middleware('auth');
+    }
     public function userspublic($id = null){
 
         $proyecto_users = ProyectoUser::where('proyecto_id', 1)->with('user')->with('rol')->get();

@@ -6,10 +6,14 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Input;
 use App\Rol;
 use App\Permiso;
+use Auth;
 
 class RolController extends Controller
 {
 
+    public function __construct(){
+        $this->middleware('auth');
+    }
     public function details($id){
         $rol = Rol::where('id', $id)->with('permisos')->first();
         if($rol==null){

@@ -11,40 +11,38 @@
 |
 */
 
-Route::get('/', function () {
-    return redirect('home');
-    //return view('welcome');
-});
 
 
-Route::get('/admin', function () {
-    return view('public/pruebaAdmin');
-    //return view('welcome');
-});
 
+
+//--------------Rutas de acceso publicas---------------------//
 Route::get('/home', function () {
     return view('public/home');
 });
-
+Route::get('/admin', function () {
+    return view('public/pruebaAdmin');
+});
 Route::get('/proyecto', function () {
     return view('public/proyecto');
 });
 Route::get('/contacto', function () {
     return view('public/contacto');
 });
-
-
-Route::get('pizarra', 'SprintController@pizarra');
-Route::post('pizarra', 'RequisitosController@cambiarEstado');
-Route::post('/requisitoUsuario', 'RequisitoUserController@modificarAsignaciones');
-
+Route::get('/', function () {
+    return redirect('home');
+});
 Route::post('/contacto', 'ContactoController@contacto');
+//------------------------------------------------------------//
+
+
+
+
 //Route::get('index', 'RequisitosController@pagination');
 
-Route::get('hola', function(){ return view('prueba'); });
-Route::get('hola2', 'UserController@gith');
+//Route::get('hola', function(){ return view('prueba'); });
+//Route::get('hola2', 'UserController@gith');
 
-Route::get('index/{field?}', 'RequisitosController@search');
+
 
 
 //Usuario. Ahora todas las rutas se encuentran dentro del middleware web, para que la traducción funcione correctamente
@@ -56,7 +54,12 @@ Route::get('lang/{lang}', function($lang){
     
 })->where(['lang' => 'en|es']);
 
-Route::group(['middleware' => ['web']], function(){
+// poner 'auth' para que obligue a los usuarios estar conectados, poner en los controladores el constructor de auth (mirar requisitosController)
+Route::group(['middleware' => ['web', 'auth']], function(){
+
+    //Parte administrador
+    Route::get('index/{field?}', 'RequisitosController@search');//Devuelve lista de requisitos
+
 
     Route::get('user/proyectosusers', 'InsideController@searchProyecto');
     Route::get('user/proyecto/new', function(){ return view('user.proyectonew'); });
@@ -76,6 +79,13 @@ Route::group(['middleware' => ['web']], function(){
     Route::get('sprintsrequisitos/{id?}', 'SprintController@sprintsrequisitos');
     Route::get('calendario', 'ProyectosController@calendario');
 
+    Route::get('pizarra', 'SprintController@pizarra');
+    Route::post('pizarra', 'RequisitosController@cambiarEstado');
+    Route::post('/requisitoUsuario', 'RequisitoUserController@modificarAsignaciones');
+
+    Route::get('user/{id}', 'UserController@sayHello');
+    Route::get('/profile/{id}', 'UserController@details');
+
     Route::get('perfil', 'UserController@details2');
 
     Route::get('lang/{lang}', function($lang){
@@ -89,15 +99,12 @@ Route::group(['middleware' => ['web']], function(){
 });
 
 
-Route::group(['middleware'=>'auth'], function(){
-
-    Route::get('user/{id}', 'UserController@sayHello');
-    Route::get('/profile/{id}', 'UserController@details');
-});
 
 
+Route::group(['middleware' => ['web', 'auth', 'admin']], function(){
 
-
+    //Parte administrador
+    Route::get('index/{field?}', 'RequisitosController@search');//Devuelve lista de requisitos
 // Listados de objetos relacionales
 Route::get('users', 'UserController@search');
 Route::get('proyectos', 'ProyectosController@search');
@@ -153,10 +160,12 @@ Route::post('requisitoUsuario/colores', 'SprintController@modificarColores');
 Route::post('requisitoUsuario/colorRequisito', 'RequisitosController@modificarColores');
 
 
+
 // Filtrado de listado
 /*Route::post('proyectos', 'ProyectosController@filtrar');
 Route::post('sprints', 'SprintController@filtrar');
 Route::post('users', 'UserController@filtrar');
 Route::post('rols', 'RolController@filtrar');
 Route::post('requisitos', 'RequisitosController@filtrar');*/
+});
 Auth::routes();
