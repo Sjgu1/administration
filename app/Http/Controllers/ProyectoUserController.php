@@ -94,7 +94,20 @@ class ProyectoUserController extends Controller
     public function create(Request $request){
 
         $proyecto_id = session()->get('selected_project')->id;
-        $user = User::where('name', $request->input('user_name'))->first();
+        $all_users = User::get();
+        $user_id = 1;
+
+        foreach ($all_users as $aux_user){
+
+            $nombre_completo = $aux_user->name . ' ' . $aux_user->apellidos;
+
+            if ($nombre_completo == $request->input('user_name')){
+
+                $user_id = $aux_user->id;
+            }
+        }
+
+        $user = User::where('id', $user_id)->first();
         $user_id = $user->id;
         $rol_id = $request->input('rol_id');
 

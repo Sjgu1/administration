@@ -77,7 +77,7 @@
     <!-- Logo -->
     <a href="../../index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b>C</b>RS</span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>Crisantemo</b></span>
     </a>
@@ -110,12 +110,12 @@
        <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="/perfiles/{{ $user->imagen }}" class="user-image" alt="User Image">
-              <span class="hidden-xs">{{ $user->name . ' ' . $user->apellidos }}</span>
+              <span class="hidden-xs">{{ $user->name }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="/adminlte/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="/perfiles/{{ $user->imagen }}" class="img-circle" alt="User Image" height="160" width="160">
                 <p>
                   {{ $user->name }}
                   <small>@lang('messages.miembro desde') May. 2017</small>
@@ -150,15 +150,15 @@
     <section class="sidebar">
    
       <!-- Sidebar user panel -->
-      <div class="user-panel">
+      <!--<div class="user-panel">
         <div class="pull-left image">
-          <img src="/images/cara.jpg" class="img-circle" alt="User Image">
+          <img src="/images/cara.jpg" class="img-circle" alt="User Image" height="45" width="45">
         </div>
         <div class="pull-left info">
-          <p>{{ $user->name . ' ' . $user->apellidos }}</p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          <p>{{ $user->name }}</p>
+          <a href="#"><i class="fa fa-circle text-success"></i> En línea</a>
         </div>
-      </div>
+      </div>-->
       <!-- search form -->
       <!--<form action="#" method="get" class="sidebar-form">
         <div class="input-group">
@@ -186,12 +186,12 @@
             <i class="fa fa-files-o"></i>
             <span>@lang('messages.sprints')</span>
             <span class="pull-right-container">
-              <span class="fa fa-angle-left pull-right"></span>
+              <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
             @foreach ($selected_project_sprints as $sprint)
-              <li><a href="/sprintsrequisitos"><i class="fa fa-circle-o"></i>{{ $sprint->nombre }}</a></li>
+              <li><a href="/sprintsrequisitos/{{ $sprint->id }}"><i class="fa fa-circle-o"></i>{{ $sprint->nombre }}</a></li>
             @endforeach
             <!--<li><a href="/sprintsrequisitos"><i class="fa fa-circle-o"></i>@lang('messages.listar requisitos')</a></li>-->
             <!--li><a href="/user/requisitosusers"><i class="fa fa-circle-o"></i> Crear Requisito</a></li-->

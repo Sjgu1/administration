@@ -25,7 +25,7 @@
     <!-- Main content -->
     <section class="content connectedSortable">
         <div class="callout callout-info">
-            <h4>{{ $sprint->nombre }}</h4>
+            <h4>{{ $sprint->nombre }}<i class="fa fa-fw fa-edit pull-right btn " class="btn btn-primary" data-toggle="modal" data-target="#exampleModalEdit"></i></h4>
 
         <p>{{ $sprint->fecha_inicio }} <i class="fa fa-minus"></i> {{ $sprint->fecha_fin_estimada }}</p>
       </div>
@@ -132,6 +132,64 @@
         </div>
         <!-- Fin requisitos finalizados -->
     </section>
+
+<!-- Formulario modificación sprint -->
+<div class="modal fade" id="exampleModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form id="requisito_form_modificar" action="{{ url('requisito/modificar') }}" method="POST" role="form" data-toggle="validator">
+                        <input type="hidden" name="sprint_id" value="{{$sprint->id }}" />
+                        <input type="hidden" name="id" value="{{$sprint->id }}" />
+                        <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+                        <input type="hidden" name="estado" value="{{$sprint->id }}" />
+                        <div class="modal-header form-group has-feedback">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <label for="recipient-name" class="control-label">@lang('messages.nombre'):</label>
+                            <input type="text" class="form-control modal-title" name="nombre" value="{{$sprint->id}}"  data-minlength="3" maxlength="20" required>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group  has-feedback">
+                                <label for="descripcion" class="control-label">@lang('messages.descripcion'):</label>
+                                <textarea id="descripcion" name="descripcion" class="form-control" rows="5" data-minlength="3" maxlength="65535" required>{{ $sprint->id }}</textarea>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class=" col-md-6 form-group">
+                                        <label for="message-text" class="control-label">@lang('messages.fecha estimada de inicio'):</label>
+                                        <div class="form-group">
+                                            <div class='input-group date'>
+                                                <input type='text' class="form-control" value="{{$sprint->id}}" disabled /> <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="message-text" class="control-label">@lang('messages.fecha estimada de fin'):</label>
+
+                                        <div class="form-group">
+                                            <div class='input-group date' id='fecha_fin_{{$sprint->id}}'>
+                                                <input type='text' class="form-control" name="fecha_estimada_fin" value="{{$sprint->id}}" /> <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="modal-footer">
+                                <button id="confirmacion{{ $sprint->id }}" type="button" class="btn btn-danger pull-left">@lang('messages.eliminar')</button>
+                                <button type="submit" class="btn btn-success">@lang('messages.modificar')</button>
+                            </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- FIN Formulario modificación sprint -->
 
 
 <!-- Formularios modificación -->

@@ -76,7 +76,7 @@ Route::group(['middleware' => ['web', 'auth']], function(){
     Route::get('graficos/requisitos', 'ProyectosController@graficos_requisitos');
     Route::get('graficos/frecuencia', 'ProyectosController@graficos_frecuencia');
     Route::get('userspublic', 'ProyectoUserController@userspublic')->name('userspublic');
-    Route::get('sprintsrequisitos/{id?}', 'SprintController@sprintsrequisitos');
+    Route::get('sprintsrequisitos/{sprint_id}/{requisito_id?}', 'SprintController@sprintsrequisitos');
     Route::get('calendario', 'ProyectosController@calendario');
 
     Route::get('pizarra', 'SprintController@pizarra');

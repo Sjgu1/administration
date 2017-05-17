@@ -214,7 +214,7 @@ class SprintController extends Controller
     
     }
 
-    public function sprintsrequisitos($id = null){
+    public function sprintsrequisitos($sprint_id){
 
         $sprint = Sprint::where('id', 13)->first();
         $requisitos = Requisito::where('sprint_id', 13)->with('users')->get();
