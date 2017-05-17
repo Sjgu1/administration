@@ -11,7 +11,11 @@ $(document).ready(function() {
     })
 
 })
-
+$(document).ready(function() {
+	var firstName = $('.firstName').text();
+	var intials = $('.firstName').text().charAt(0);
+	var profileImage = $('.profileImage').text(intials);
+	});
 </script>
 
 <style>
@@ -41,13 +45,6 @@ $(document).ready(function() {
 							</div><!-- /.info-box-content -->
 						</div><!-- /.info-box -->
 					</div>
-					<script>
-							$(document).ready(function(){
-						var firstName = $('.firstName').text();
-						var intials = $('.firstName').text().charAt(0);
-						var profileImage = $('.profileImage').text(intials);
-						});
-					</script>
 					@endforeach
 		</section>
 	</div>
