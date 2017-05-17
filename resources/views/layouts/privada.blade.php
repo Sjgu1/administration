@@ -173,50 +173,45 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="header">Menú</li>
-         <li class="treeview">
-          <a href="#">
-            <i class="fa fa-dashboard"></i> <span>@lang('messages.proyectos')</span>
+        <li>
+          <a href="/user/proyectosusers">
+            <i class="fa fa-edit"></i><span>@lang('messages.proyectos')</span>
             <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
+              <small class="label pull-right bg-green">@lang('messages.nuevo')</small>
             </span>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="/user/proyectosusers"><i class="fa fa-circle-o"></i> @lang('messages.listar proyectos')</a></li>
-            <li><a href="/user/proyecto/new"><i class="fa fa-circle-o"></i> @lang('messages.crear proyecto')</a></li>
-          </ul>
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>@lang('messages.sprints')</span>
+            <i class="fa fa-files-o"></i>
+            <span>@lang('messages.sprints')</span>
             <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
+              <span class="fa fa-angle-left pull-right"></span>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="user/sprintsusers"><i class="fa fa-circle-o"></i> @lang('messages.listar sprints')</a></li>
+            @foreach ($selected_project_sprints as $sprint)
+              <li><a href="/sprintsrequisitos"><i class="fa fa-circle-o"></i>{{ $sprint->nombre }}</a></li>
+            @endforeach
+            <!--<li><a href="/sprintsrequisitos"><i class="fa fa-circle-o"></i>@lang('messages.listar requisitos')</a></li>-->
+            <!--li><a href="/user/requisitosusers"><i class="fa fa-circle-o"></i> Crear Requisito</a></li-->
           </ul>
         </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-files-o"></i>
-            <span>@lang('messages.requisitos')</span>
+            <span>@lang('messages.pizarra')</span>
             <span class="pull-right-container">
-              <span class="label label-primary pull-right"></span>
+              <span class="fa fa-angle-left pull-right"></span>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/sprintsrequisitos"><i class="fa fa-circle-o"></i> @lang('messages.listar requisitos')</a></li>
+            @foreach ($selected_project_sprints as $sprint)
+              <li><a href="/pizarra/{{ $sprint->id }}"><i class="fa fa-circle-o"></i>{{ $sprint->nombre }}</a></li>
+            @endforeach
+            <!--<li><a href="/sprintsrequisitos"><i class="fa fa-circle-o"></i>@lang('messages.listar requisitos')</a></li>-->
             <!--li><a href="/user/requisitosusers"><i class="fa fa-circle-o"></i> Crear Requisito</a></li-->
           </ul>
-        </li>
-        <li>
-          <a href="/pizarra">
-            <i class="fa fa-th"></i>
-            <span>@lang('messages.pizarra')</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-green">@lang('messages.nuevo')</small>
-            </span>
-          </a>
         </li>
         <li>
           <a href="/actividad">

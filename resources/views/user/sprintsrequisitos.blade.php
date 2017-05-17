@@ -58,7 +58,7 @@
                             </tr>
 
                             @foreach ($requisitos_no_finalizados as $requisito)
-                                <tr data-toggle="modal" data-target="#exampleModal{{ $requisito->id }}">
+                                <tr data-toggle="modal" data-target="#exampleModal{{ $requisito->id }}" style="cursor: pointer; cursor: hand;">
                                     <td>{{ $requisito->nombre }}</td>
                                     <td>
                                         <div class="progress progress-xs {{ $requisito->stripped }} active">
@@ -114,7 +114,7 @@
                             </tr>
 
                             @foreach ($requisitos_finalizados as $requisito)
-                                <tr data-toggle="modal" data-target="#exampleModal{{ $requisito->id }}">
+                                <tr data-toggle="modal" data-target="#exampleModal{{ $requisito->id }}" style="cursor: pointer; cursor: hand;">
                                     <td><strike>{{ $requisito->nombre }}</strike></td>
                                     <td>{{ $requisito->fecha_inicio }}</td>
                                     <td>{{ $requisito->fecha_fin_estimada }}</td>

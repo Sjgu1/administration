@@ -97,20 +97,22 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
+            <form id="requisito_form_modificar" action="{{ url('proyectousercrear') }}" method="POST" role="form" data-toggle="validator">
+            <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <input id="autocompleteUser" type="text" class="form-control modal-title" name="nombre" placeholder="Nombre">
+                <input id="autocompleteUser" type="text" class="form-control modal-title" name="user_name" placeholder="Nombre">
               </div>
             </div>
             <!-- /.col -->
             <div class="col-md-4">
               <div class="form-group">
-                <select class="form-control">
+                <select name="rol_id" class="form-control">
                     <option value="Rol" disabled="disabled" selected>Rol</option>
 
                     @foreach ($rols as $rol)
-                        <option value="{{ $rol->nombre }}">{{ $rol->nombre }}</option>
+                        <option value="{{ $rol->id }}">{{ $rol->nombre }}</option>
                     @endforeach
                 </select>
               </div>
@@ -127,6 +129,7 @@
           <!-- /.row -->
         </div>
         <!-- /.box-body -->
+        </form>
       </div>
       <!-- /.box -->
 
@@ -136,20 +139,22 @@
 <div class="modal fade" id="exampleModalProyectoUser{{ $proyecto_user->user_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form id="proyecto_user_form_modificar" action="{{ url('requisito/modificar') }}" method="POST" role="form" data-toggle="validator">
+            <form id="proyecto_user_form_modificar" action="{{ url('proyectouser/modificar') }}" method="POST" role="form" data-toggle="validator">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <label for="recipient-name" class="control-label">{{ $proyecto_user->user->name . ' ' . $proyecto_user->user->apellidos }}</label>
                 </div>
                 <div class="modal-body">
+                    <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
+                    <input id="user_id" name="user_id" type="hidden" value="{{ $proyecto_user->user_id }}"/>
                     <div class="form-group">
-                        <select class="form-control">
+                        <select id="rol_id" name="rol_id" class="form-control">
                             @foreach ($rols as $rol)
 
                                 @if ($proyecto_user->rol->nombre == $rol->nombre)
-                                    <option value="{{ $rol->nombre }}" selected>{{ $proyecto_user->rol->nombre }}</option>
+                                    <option value="{{ $rol->id }}" selected>{{ $proyecto_user->rol->nombre }}</option>
                                 @else
-                                    <option value="{{ $rol->nombre }}">{{ $rol->nombre }}</option>
+                                    <option value="{{ $rol->id }}">{{ $rol->nombre }}</option>
                                 @endif
 
                             @endforeach
@@ -157,7 +162,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" >Cancelar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-success">Modificar</button>
                 </div>
             </form>
@@ -202,18 +207,18 @@
             $("#deleteButton{{ $proyecto_user->user_id }}").click(function() {
 
                 swal({
-                    title: "Are you sure?",
-                    text: "No podrás deshacer esta acción",
+                    title: "¿Estás seguro?",
+                    text: "Vas a desvincular a {{ $proyecto_user->user->name . ' ' . $proyecto_user->user->apellidos }} del proyecto",
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "Yes, delete it",
+                    confirmButtonText: "Sí, adelante",
                     cancelButtonText: "Cancelar",
                     closeOnConfirm: false,
                     allowOutsideClick: true
                 },
                 function(){
-                    swal("Deleted!", "Your imaginary file has been deleted", "success");
+                    window.location.href = "{{ url('deleteproyectouser') . '/' . $proyecto_user->proyecto_id . '/' . $proyecto_user->user_id }}";
                 });
             });
 

@@ -24,9 +24,9 @@ class ProyectosController extends Controller
     public function __construct(){
 
         parent::__construct();
-        
+
         $this->middleware('auth');
-        $this->middleware('admin');
+        //$this->middleware('admin');
         
     }
     public function details($id){

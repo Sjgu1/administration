@@ -75,7 +75,7 @@ Route::group(['middleware' => ['web', 'auth']], function(){
     Route::get('graficos/commits', 'ProyectosController@graficos_commits');
     Route::get('graficos/requisitos', 'ProyectosController@graficos_requisitos');
     Route::get('graficos/frecuencia', 'ProyectosController@graficos_frecuencia');
-    Route::get('userspublic', 'ProyectoUserController@userspublic');
+    Route::get('userspublic', 'ProyectoUserController@userspublic')->name('userspublic');
     Route::get('sprintsrequisitos/{id?}', 'SprintController@sprintsrequisitos');
     Route::get('calendario', 'ProyectosController@calendario');
 
@@ -87,6 +87,10 @@ Route::group(['middleware' => ['web', 'auth']], function(){
     Route::get('/profile/{id}', 'UserController@details');
 
     Route::get('perfil', 'UserController@details2');
+
+    Route::post('proyectousercrear', 'ProyectoUserController@create');
+    Route::post('proyectouser/modificar', 'ProyectoUserController@modify');
+    Route::get('deleteproyectouser/{proyecto_id}/{user_id}', 'ProyectoUserController@delete');
 
     Route::get('lang/{lang}', function($lang){
 
