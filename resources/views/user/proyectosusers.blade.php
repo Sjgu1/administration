@@ -11,11 +11,23 @@ $(document).ready(function() {
 
 })
 </script>
-<body>
 	@section('content')
-	<table id="proyectosusers" class="table table-striped table-bordered display" cellspacing="0" width="100%">
+	<h1> @lang('messages.proyectos')</h1>
+		@foreach($proyectosusers as $proyectouser)
+				<div class="col-md-3 col-sm-6 col-xs-12">
+					<div class="info-box bg-aqua">
+						<span class="info-box-icon"><i class="fa fa-calendar"></i></span>
+						<div class="info-box-content">
+							<span class="info-box-text">{{ $proyectouser->proyecto->nombre }}</span>
+							
+						</div><!-- /.info-box-content -->
+					</div><!-- /.info-box -->
+				</div>
+				@endforeach
+
+	<!--<table id="proyectosusers" class="table table-striped table-bordered display" cellspacing="0" width="100%">
     	<thead>
-		<h1> @lang('messages.proyectos')</h1>
+		
 			<tr>
         		<th>@lang('messages.nombre')</th>
 				<th>@lang('messages.descripcion')</th>
@@ -23,17 +35,9 @@ $(document).ready(function() {
 				<th>@lang('messages.fecha de inicio')</th>
 			</tr>
 		</thead>
-			<tbody>
-				@foreach($proyectosusers as $proyectouser)
-				<tr>
-					<td><a href="user/proyectosusers" >{{ $proyectouser->proyecto->nombre }}</a></td>
-					<td>{{ $proyectouser->nombre }}</td>
-					<td></td>
-				</tr>
-				@endforeach
-			</tbody>
+				
+			
 		</table>
 	</form>
-	<hr>
+	<hr>-->
 @endsection
-</body>
