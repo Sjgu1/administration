@@ -16,10 +16,10 @@ class Controller extends BaseController
     public function __construct(){
 
         $this->middleware(function($request, $next){
-            
+
             if ($request->session()->has('selected_project')){
 
-                $selected_project_sprints = Sprint::where('proyecto_id', $request->session()->get('selected_project'))->get();
+                $selected_project_sprints = Sprint::where('proyecto_id', $request->session()->get('selected_project')->id)->get();
                 View::share('selected_project_sprints', $selected_project_sprints);
             }
 

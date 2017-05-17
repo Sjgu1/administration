@@ -7,6 +7,11 @@ use Mail;
 
 class ContactoController extends Controller
 {
+    public function __construct(){
+
+        parent::__construct();
+    }
+    
         public function contacto(Request $request)
     {
         

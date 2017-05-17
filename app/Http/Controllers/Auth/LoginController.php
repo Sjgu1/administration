@@ -35,12 +35,13 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        parent::__construct();
         $this->middleware('guest', ['except' => 'logout']);
     }
 
     public function authenticated($request,$user){
 
-        $request->session()->put('selected_project', 1);
+        $request->session()->put('selected_project', Proyecto::where('id', 1)->first());
 
         return redirect('/user/' . $user->id);
     }
