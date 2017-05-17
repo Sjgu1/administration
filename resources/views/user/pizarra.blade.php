@@ -174,7 +174,7 @@
         </div>
         <div class="row">
             <div class="col-md-4">
-                <div class="col-md-12 box well-sm" id="columna1" style="background-color:{{$sprint->color1}}; color:{{$sprint->colorTexto1}};">
+                <div class="col-md-12 box box-primary well-sm" id="columna1" style="background-color:{{$sprint->color1}}; color:{{$sprint->colorTexto1}};">
                     <div class="box-header with-border">
                         <h3 class="box-title">@lang('messages.por hacer')</h3>
                         <span class=" pull-right glyphicon glyphicon-plus" data-toggle="modal" data-target="#crearRequisito">
@@ -214,7 +214,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="col-md-12 well-sm" id="columna2" style="background-color:{{$sprint->color2}}; color:{{$sprint->colorTexto2}};">
+                <div class="col-md-12 box box-primary well-sm" id="columna2" style="background-color:{{$sprint->color2}}; color:{{$sprint->colorTexto2}};">
                     <div class="box-header with-border">
                         <h3 class="box-title">@lang('messages.en tramite') 
             </h3>
@@ -253,7 +253,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="col-md-12 rounded well-sm " id="columna3" style="background-color:{{$sprint->color3}}; color:{{$sprint->colorTexto3}};">
+                <div class="col-md-12 box box-primary well-sm" id="columna3" style="background-color:{{$sprint->color3}}; color:{{$sprint->colorTexto3}};">
                     <div class="box-header with-border">
                         <h3 class="box-title">@lang('messages.hecho')
             </h3>

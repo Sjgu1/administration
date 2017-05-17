@@ -213,6 +213,7 @@ class SprintController extends Controller
     }
 
     public function sprintsrequisitos($id = null){
+        
 
         $sprint = Sprint::where('id', 13)->first();
         $requisitos = Requisito::where('sprint_id', 13)->with('users')->get();
@@ -312,7 +313,7 @@ class SprintController extends Controller
 
                     $requisito->duracion = "1 día";
                 }
-
+                
                 array_push($requisitos_finalizados, $requisito);
             }
         }
