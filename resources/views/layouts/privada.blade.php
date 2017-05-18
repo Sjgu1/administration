@@ -173,7 +173,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="header">Menú</li>
-        <li>
+        <li @if ($current_view == 'proyectos') active @endif>
           <a href="/user/proyectosusers">
             <i class="fa fa-edit"></i><span>@lang('messages.proyectos')</span>
             <span class="pull-right-container">
@@ -181,7 +181,7 @@
             </span>
           </a>
         </li>
-        <li class="treeview">
+        <li class="treeview" @if ($current_view == 'sprints') active @endif>
           <a href="#">
             <i class="fa fa-files-o"></i>
             <span>@lang('messages.sprints')</span>
@@ -197,7 +197,7 @@
             <!--li><a href="/user/requisitosusers"><i class="fa fa-circle-o"></i> Crear Requisito</a></li-->
           </ul>
         </li>
-        <li class="treeview">
+        <li class="treeview" @if ($current_view == 'pizarra') active @endif>
           <a href="#">
             <i class="fa fa-files-o"></i>
             <span>@lang('messages.pizarra')</span>
@@ -213,7 +213,7 @@
             <!--li><a href="/user/requisitosusers"><i class="fa fa-circle-o"></i> Crear Requisito</a></li-->
           </ul>
         </li>
-        <li>
+        <li @if ($current_view == 'actividad') active @endif>
           <a href="/actividad">
             <i class="fa fa-pie-chart"></i>
             <span>@lang('messages.actividad')</span>
@@ -229,7 +229,7 @@
             <li><a href="../charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
           </ul>-->
         </li>
-        <li class="treeview">
+        <li class="treeview" @if ($current_view == 'graficos') active @endif>
           <a href="#">
             <i class="fa fa-laptop"></i>
             <span>@lang('messages.graficos')</span>
@@ -246,7 +246,7 @@
             <li class="active"><a href="timeline.html"><i class="fa fa-circle-o"></i>@lang('messages.actividad')</a></li>
           </ul>
         </li>
-        <li>
+        <li @if ($current_view == 'calendario') active @endif>
           <a href="/calendario">
             <i class="fa fa-edit"></i><span>@lang('messages.calendario')</span>
             <span class="pull-right-container">
@@ -254,7 +254,7 @@
             </span>
           </a>
         </li>
-        <li>
+        <li @if ($current_view == 'userspublic') active @endif>
           <a href="/userspublic">
             <i class="fa fa-pie-chart"></i>
             <span>@lang('messages.usuarios')</span>

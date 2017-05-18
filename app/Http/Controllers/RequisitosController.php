@@ -57,6 +57,11 @@ class RequisitosController extends Controller
         return redirect()->back(); 
        
     }
+
+    public function modify_public(Request $request){
+
+    }
+    
  public function modificarColores(Request $request){
 
         $requisito = Requisito::where('id', $request->input('requisito_id'))->first();
