@@ -143,7 +143,6 @@
                     <div class="form-group">
                         <select id="rol_id" name="rol_id" class="form-control">
                             @foreach ($rols as $rol)
-                                <br/>
                                 @if ($proyecto_user->rol->nombre == $rol->nombre)
                                     <option value="{{ $rol->id }}" selected>{{ $proyecto_user->rol->nombre }}</option>
                                 @else
