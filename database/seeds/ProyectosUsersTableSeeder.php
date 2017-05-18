@@ -1,10 +1,13 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Redirect;
+
 use App\User;
 use App\Proyecto;
 use App\Rol;
 use App\ProyectoUser;
+
 
 class ProyectosUsersTableSeeder extends Seeder
 
@@ -23,9 +26,10 @@ class ProyectosUsersTableSeeder extends Seeder
         $rol = Rol::where('id', '1')->first();
 
         $proyectouser = new ProyectoUser();
-        $proyectouser->user()->associate($user->id);
-        $proyectouser->proyecto()->associate($proyecto->id);
-        $proyectouser->rol()->associate($rol->id);
+        $proyectouser->user()->associate($user);
+        $proyectouser->proyecto()->associate($proyecto);
+        $proyectouser->rol()->dissociate();
+        $proyectouser->rol()->associate($rol);
         $proyectouser->save();
 
         $user = User::where('id', '2')->first();
@@ -33,9 +37,9 @@ class ProyectosUsersTableSeeder extends Seeder
         $rol = Rol::where('id', '4')->first();
 
         $proyectouser = new ProyectoUser();
-        $proyectouser->user()->associate($user->id);
-        $proyectouser->proyecto()->associate($proyecto->id);
-        $proyectouser->rol()->associate($rol->id);
+        $proyectouser->user()->associate($user);
+        $proyectouser->proyecto()->associate($proyecto);
+        $proyectouser->rol()->associate($rol);
         $proyectouser->save();
 
         $user = User::where('id', '3')->first();
@@ -43,9 +47,9 @@ class ProyectosUsersTableSeeder extends Seeder
         $rol = Rol::where('id', '2')->first();
 
         $proyectouser = new ProyectoUser();
-        $proyectouser->user()->associate($user->id);
-        $proyectouser->proyecto()->associate($proyecto->id);
-        $proyectouser->rol()->associate($rol->id);
+        $proyectouser->user()->associate($user);
+        $proyectouser->proyecto()->associate($proyecto);
+        $proyectouser->rol()->associate($rol);
         $proyectouser->save();
 
         $user = User::where('id', '1')->first();
@@ -53,9 +57,9 @@ class ProyectosUsersTableSeeder extends Seeder
         $rol = Rol::where('id', '4')->first();
 
         $proyectouser = new ProyectoUser();
-        $proyectouser->user()->associate($user->id);
-        $proyectouser->proyecto()->associate($proyecto->id);
-        $proyectouser->rol()->associate($rol->id);
+        $proyectouser->user()->associate($user);
+        $proyectouser->proyecto()->associate($proyecto);
+        $proyectouser->rol()->associate($rol);
         $proyectouser->save();
 
         $user = User::where('id', '3')->first();
@@ -63,9 +67,9 @@ class ProyectosUsersTableSeeder extends Seeder
         $rol = Rol::where('id', '3')->first();
 
         $proyectouser = new ProyectoUser();
-        $proyectouser->user()->associate($user->id);
-        $proyectouser->proyecto()->associate($proyecto->id);
-        $proyectouser->rol()->associate($rol->id);
+        $proyectouser->user()->associate($user);
+        $proyectouser->proyecto()->associate($proyecto);
+        $proyectouser->rol()->associate($rol);
         $proyectouser->save();
 
         $user = User::where('id', '1')->first();
@@ -73,9 +77,9 @@ class ProyectosUsersTableSeeder extends Seeder
         $rol = Rol::where('id', '1')->first();
 
         $proyectouser = new ProyectoUser();
-        $proyectouser->user()->associate($user->id);
-        $proyectouser->proyecto()->associate($proyecto->id);
-        $proyectouser->rol()->associate($rol->id);
+        $proyectouser->user()->associate($user);
+        $proyectouser->proyecto()->associate($proyecto);
+        $proyectouser->rol()->associate($rol);
         $proyectouser->save();
     }
 }

@@ -62,22 +62,23 @@ class ProyectoUserController extends Controller
 
         //var_dump($request);
         $proyecto_id = session()->get('selected_project')->id;
-        $user_id = $request->input('user_id');
-        $rol_id = $request->input('rol_id');
+        $user = User::where('id',$request->input('user_id'))->first();
+        $rol = Rol::where('id',$request->input('rol_id'))->first();
 
-        var_dump($proyecto_id);
-        var_dump($user_id);
-        var_dump($rol_id);
 
-        $proyecto_user = ProyectoUser::where('proyecto_id', $proyecto_id)->where('user_id', $user_id)->first();
-        $rol = Rol::where('id', $rol_id)->first();
+        $proyectouser = ProyectoUser::where('proyecto_id', $proyecto_id)->where('user_id', $user->id)->first();
 
-        $proyecto_user->proyecto()->associate($proyecto_id);
-        $proyecto_user->user()->associate($user_id);
-        $proyecto_user->rol()->associate($rol->id);
-        $proyecto_user->save();
 
-        return redirect()->route('userspublic');
+
+        $proyecto = session()->get('selected_project');
+
+        $proyectouser->rol()->dissociate();
+        $proyectouser->rol()->associate($rol);
+        
+        $proyectouser->save();
+        $proyectouser = ProyectoUser::where('proyecto_id', $proyecto_id)->where('user_id', $user->id)->first();
+
+        return back()->withInput();
     }
 
     public function delete($proyecto_id, $user_id){
@@ -86,6 +87,9 @@ class ProyectoUserController extends Controller
         //$user_id = $request->input('user_id');
 
         $proyecto_user = ProyectoUser::where('proyecto_id', $proyecto_id)->where('user_id', $user_id)->first();
+        $proyecto_user->rol()->dissociate();
+        $proyecto_user->proyecto()->dissociate();
+        $proyecto_user->user()->dissociate();
         $proyecto_user->delete();
 
         return redirect()->route('userspublic');

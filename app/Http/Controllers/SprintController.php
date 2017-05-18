@@ -23,11 +23,13 @@ class SprintController extends Controller
         parent::__construct();
         $this->middleware('auth');
     }
-    public function pizarra($id){
+    public function pizarra(){
 
-         $proyecto= session()->get('selected_project');
+         $proyecto = Proyecto::get()
+                    ->where('id', 1)
+                    ->first();
          $sprint = Sprint::get()
-                    ->where('id', $id)
+                    ->where('id', 1)
                     ->first();
          
          $usuarios = ProyectoUser::with('user')
@@ -212,7 +214,7 @@ class SprintController extends Controller
     
     }
 
-    public function sprintsrequisitos($sprint_id = null){
+    public function sprintsrequisitos($id = null){
 
         $sprint = Sprint::where('id', 13)->first();
         $requisitos = Requisito::where('sprint_id', 13)->with('users')->get();
@@ -312,7 +314,7 @@ class SprintController extends Controller
 
                     $requisito->duracion = "1 día";
                 }
-                
+
                 array_push($requisitos_finalizados, $requisito);
             }
         }
