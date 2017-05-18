@@ -59,7 +59,7 @@ Route::group(['middleware' => ['web', 'auth']], function(){
 
     //Parte administrador
     Route::get('index/{field?}', 'RequisitosController@search');//Devuelve lista de requisitos
-
+    Route::get('admin/god', function(){return view('admin.god');});
 
     Route::get('user/proyectosusers', 'InsideController@searchProyecto');
     Route::get('user/proyecto/new', function(){ return view('user.proyectonew'); });
