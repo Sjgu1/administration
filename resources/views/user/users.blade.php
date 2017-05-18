@@ -14,13 +14,7 @@
     <!-- Additional CSS Themes file - not required-->
     <link rel="stylesheet" href="/css/easy-autocomplete.themes.min.css">
 
-    <style type="text/css">
 
-        .user-image {
-            margin-left: 20%;
-        }
-
-    </style>
 
     <!-- Header -->
     <section class="content-header">
@@ -84,7 +78,6 @@
                 <!-- /.box -->
             </div>
         </div>
-
         <!-- SELECT2 EXAMPLE -->
       <div class="box box-default">
         <div class="box-header with-border">
@@ -150,7 +143,6 @@
                     <div class="form-group">
                         <select id="rol_id" name="rol_id" class="form-control">
                             @foreach ($rols as $rol)
-
                                 @if ($proyecto_user->rol->nombre == $rol->nombre)
                                     <option value="{{ $rol->id }}" selected>{{ $proyecto_user->rol->nombre }}</option>
                                 @else
@@ -181,8 +173,8 @@
 
         data: [
 
-            @foreach ($users as $user)
-                {name: {!! '"' !!}{{ $user->name . ' ' . $user->apellidos }}{!! '"' !!}, type: {!! '"' !!}{{ $user->email }}{!! '"' !!}},
+            @foreach ($users as $userRec)
+                {name: {!! '"' !!}{{ $userRec->name . ' ' . $userRec->apellidos }}{!! '"' !!}, type: {!! '"' !!}{{ $userRec->email }}{!! '"' !!}},
             @endforeach
         ],
 

@@ -312,7 +312,7 @@ class SprintController extends Controller
 
                     $requisito->duracion = "1 día";
                 }
-                
+
                 array_push($requisitos_finalizados, $requisito);
             }
         }
