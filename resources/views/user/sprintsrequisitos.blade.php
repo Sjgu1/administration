@@ -175,7 +175,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="message-text" class="control-label">Fecha estimada:</label>
+                                        <label for="message-text" class="control-label">@lang('messages.fecha estimada de fin'):</label>
 
                                         <div class="form-group">
                                             <div class='input-group date'id="fecha_fin_estimada_crear"  >
@@ -186,7 +186,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="message-text" class="control-label">Fecha fin:</label>
+                                        <label for="message-text" class="control-label">@lang('messages.fecha fin'):</label>
 
                                         <div class="form-group">
                                             <div class='input-group date'id="fecha_fin_crear"  >
@@ -300,9 +300,9 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="col-md-6" style="padding-left: 0%">
-                                    <label for="message-text" class="control-label">Usuario asignado:</label>
+                                    <label for="message-text" class="control-label">@lang('messages.usuarios asignados ahora'):</label>
                                     <select name="input_user" class="form-control">
-                                        <option value="null">Selecciona un usuario</option>
+                                        <option value="null">@lang('messages.selecciona nuevos usuarios')</option>
                                         @if (count($requisito->users) > 0)
                                             @foreach ($users as $user)
                                                 @if ($user->id == $requisito->users[0]->id)
@@ -319,7 +319,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-6" style="padding-right: 0%">
-                                    <label for="message-text" class="control-label">Color:</label>
+                                    <label for="message-text" class="control-label">@lang('messages.color'):</label>
                                     <div class="input-group my-colorpicker{{ $requisito->id }} colorpicker-element">
                                         <input type="text" name="input_color" readonly class="form-control" style="background-color: #fff" value="@if ($requisito->color != '') @endif" />
                                         <div class="input-group-addon">
@@ -332,7 +332,7 @@
                     </div>
                     <div class="modal-footer">
                         <button id="eliminar{{ $requisito->id }}" type="button" class="btn btn-danger pull-left">@lang('messages.eliminar')</button>
-                        <button class="btn btn-default" data-dismiss="modal" aria-label="Close">Cancelar</button>
+                        <button class="btn btn-default" data-dismiss="modal" aria-label="Close">@lang('messages.proyectos')</button>
                         <button type="submit" class="btn btn-success">@lang('messages.modificar')</button>
                     </div>
                 </form>

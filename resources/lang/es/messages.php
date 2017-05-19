@@ -93,6 +93,7 @@ return [
     'domingo'      => 'Domingo',
     'ajustes de diseño' => 'Ajustes de diseño',
     'selecciona la columna' => 'Selecciona la columna',
+    'color'        => 'Color',
     'color del fondo' => 'Color del fondo',
     'color del texto' => 'Color del texto',
     'color de la tarjeta' => 'Color de la tarjeta',
@@ -107,5 +108,8 @@ return [
     'duracion'     => 'Duración',
     'usuarios asignados ahora' => 'Usuarios asignados actualmente',
     'selecciona nuevos usuarios' => 'Selecciona nuevos usuarios',
- 
+    'estas seguro?' => '¿Estás seguro de que quieres borrar el usuario',
+    'gestionar proyecto' => 'Gestionar proyecto',
+    'foto de perfil' => 'Foto de perfil',
+    'opciones'     => 'Opciones',
 ];

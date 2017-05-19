@@ -28,9 +28,9 @@ $(document).ready(function() {
 	<section class="content-header">
         <h1> @lang('messages.proyectos')</h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#"><i class="fa fa-dashboard"></i>@lang('messages.inicio')</a></li>
             <li><a href="#">UI</a></li>
-            <li class="active">Timeline</li>
+            <li class="active">@lang('messages.actividad')</li>
         </ol>
     </section>
 	<div class="row">
@@ -52,7 +52,7 @@ $(document).ready(function() {
 						<div class="info-box bg-aqua">
 							<span class="info-box-icon"><div>+</div></span>
 							<div class="info-box-content">
-								<span class="info-box-text">Nuevo Proyecto</span>
+								<span class="info-box-text">@lang('messages.nuevo proyecto')</span>
 								
 							</div><!-- /.info-box-content -->
 						</div><!-- /.info-box -->

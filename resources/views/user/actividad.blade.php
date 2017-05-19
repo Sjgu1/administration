@@ -3,13 +3,13 @@
 @section('content')
     <section class="content-header">
       <h1>
-        Timeline
-        <small>Proyecto</small>
+        @lang('messages.actividad')
+        <small>@lang('messages.proyecto')</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i>@lang('messages.inicio')</a></li>
         <li><a href="#">UI</a></li>
-        <li class="active">Timeline</li>
+        <li class="active">@lang('messages.actividad')</li>
       </ol>
     </section>
 
