@@ -36,17 +36,28 @@ $(document).ready(function() {
 	<div class="row">
 		<section class="content connectedSortable">
 			@foreach($proyectosusers as $proyectouser)
-					<div class="col-md-3 col-sm-6 col-xs-12">
+				<div class="col-md-3 col-sm-6 col-xs-12">
+					<div class="info-box bg-aqua">
+						<span class="info-box-icon"><div class="profileImage"></div></span>
+						<div class="info-box-content">
+							<span class="info-box-text firstName">{{ $proyectouser->proyecto->nombre }}</span>
+							
+						</div><!-- /.info-box-content -->
+					</div><!-- /.info-box -->
+				</div>
+				<script>$('.profileImage').text($('.firstName').text().charAt(0));</script>
+				@endforeach
+				<a href="{{ url('user/proyecto/new') }}">
+				<div class="col-md-3 col-sm-6 col-xs-12">
 						<div class="info-box bg-aqua">
-							<span class="info-box-icon"><div class="profileImage"></div></span>
+							<span class="info-box-icon"><div>+</div></span>
 							<div class="info-box-content">
-								<span class="info-box-text firstName">{{ $proyectouser->proyecto->nombre }}</span>
+								<span class="info-box-text">Nuevo Proyecto</span>
 								
 							</div><!-- /.info-box-content -->
 						</div><!-- /.info-box -->
 					</div>
-					<script>$('.profileImage').text($('.firstName').text().charAt(0));</script>
-					@endforeach
+				</a>
 		</section>
 	</div>
 	
