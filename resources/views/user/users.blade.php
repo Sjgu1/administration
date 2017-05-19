@@ -14,20 +14,20 @@
     <!-- Additional CSS Themes file - not required-->
     <link rel="stylesheet" href="/css/easy-autocomplete.themes.min.css">
 
-
-
     <!-- Header -->
     <section class="content-header">
-        <h1>Usuarios<small>Proyecto X</small></h1>
+        <h1>Gestionar proyecto</h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">UI</a></li>
-            <li class="active">Timeline</li>
+            <button type="button" data-toggle="modal" data-target="#CrearSprint" class="btn btn-block btn-success btn-xs">Agregar Sprint</button>
         </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
+    <div class="callout callout-info">
+        <h4>{{$proyecto->nombre}}<i class="fa fa-fw fa-edit pull-right btn " data-toggle="modal" data-target="#exampleModalEdit"></i></h4>
+        <p>{{$proyecto->fecha_inicio}}<i class="fa fa-minus"></i>{{$proyecto->fecha_fin_estimada}}</p>
+      </div>
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
@@ -164,7 +164,169 @@
 
 @endforeach
 <!-- FIN formulario modificación rol -->
+<!-- Formulario creacion de sprint  -->
+<div class="modal fade" id="CrearSprint" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form id="proyecto_form_modificar" action="{{ url('sprint/create') }}" method="POST" role="form" data-toggle="validator">
+                        <input name="proyecto_id" type="hidden" value="{{$proyecto->id}}">
+                        <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+                        <div class="modal-header form-group has-feedback">                        
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <label>Proyecto: <small>{{$proyecto->nombre}}</small></label></br>
+                            <label for="recipient-name" class="control-label">@lang('messages.nombre'):</label>
+                            <input type="text" class="form-control modal-title" name="nombre" placeholder="Nombre del sprint" data-minlength="3" maxlength="50" required>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group  has-feedback">
+                                <label for="descripcion" class="control-label">@lang('messages.descripcion'):</label>
+                                <textarea id="descripcion" name="descripcion" class="form-control" rows="5" data-minlength="3" placeholder="Información sobre el sprint" maxlength="65535" required></textarea>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class=" col-md-4 form-group">
+                                        <label for="message-text" class="control-label">@lang('messages.fecha estimada de inicio'):</label>
+                                        <div class="form-group">
+                                            <div class='input-group date' id="fecha_inicio_sprint">
+                                                <input type='text' class="form-control"  name="fecha_inicio" required/> <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="message-text" class="control-label">Fecha estimada:</label>
 
+                                        <div class="form-group">
+                                            <div class='input-group date' id="fecha_fin_estimada_sprint" >
+                                                <input type='text' class="form-control" name="fecha_fin_estimada" required/> <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                <div class="form-group col-md-4">
+                                        <label for="message-text" class="control-label">Fecha de fin :</label>
+
+                                        <div class="form-group">
+                                            <div class='input-group date' id="fecha_fin" >
+                                                <input type='text' class="form-control" name="fecha_fin" required/> <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">@lang('messages.cerrar')</button>
+                                <button type="submit" class="btn btn-primary">@lang('messages.guardar')</button>
+                        </div>
+                        <script>
+                                $('#fecha_inicio_sprint').datetimepicker({
+                                    format: "DD/MM/YYYY"
+                                 });
+                            </script>
+                            <script>
+                                $('#fecha_fin_estimada_sprint').datetimepicker({
+                                    format: "DD/MM/YYYY"
+                                 });
+                            </script>
+                            <script>
+                                $('#fecha_fin').datetimepicker({
+                                    format: "DD/MM/YYYY"
+                                 });
+                            </script>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- FIN Formulario creacion sprint -->
+<!-- Formulario modificación proyecto -->
+<div class="modal fade" id="exampleModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form id="proyecto_form_modificar" action="{{ url('proyecto/modificar') }}" method="POST" role="form" data-toggle="validator">
+                        <input type="hidden" name="id" value="{{$proyecto->id }}" />
+                        <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+                        <div class="modal-header form-group has-feedback">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <label for="recipient-name" class="control-label">@lang('messages.nombre'):</label>
+                            <input type="text" class="form-control modal-title" name="nombre" value="{{$proyecto->nombre}}"  data-minlength="3" maxlength="20" required>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group  has-feedback">
+                                <label for="descripcion" class="control-label">@lang('messages.descripcion'):</label>
+                                <textarea id="descripcion" name="descripcion" class="form-control" rows="5" data-minlength="3" maxlength="65535" required>{{ $proyecto->descripcion }}</textarea>
+                            </div>
+                            <div class="form-group  has-feedback">
+                                <label for="descripcion" class="control-label">@lang('messages.repositorio'):</label>
+                                <input id="repositorio" name="repositorio" class="form-control" data-minlength="3" maxlength="65535" value="{{ $proyecto->repositorio }}" required>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class=" col-md-4 form-group">
+                                        <label for="message-text" class="control-label">@lang('messages.fecha estimada de inicio'):</label>
+                                        <div class="form-group">
+                                            <div class='input-group date'>
+                                                <input type='text' class="form-control"  name="fecha_inicio"  value="{{$proyecto->fecha_inicio}}"disabled /> <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="message-text" class="control-label">Fecha estimada:</label>
+
+                                        <div class="form-group">
+                                            <div class='input-group date'id="fecha_fin_estimada_crear"  >
+                                                <input type='text' class="form-control" name="fecha_fin_estimada" value="{{$proyecto->fecha_fin_estimada}}" /> <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="message-text" class="control-label">Fecha fin:</label>
+
+                                        <div class="form-group">
+                                            <div class='input-group date'id="fecha_fin_crear"  >
+                                                <input type='text' class="form-control" name="fecha_fin" value="{{$proyecto->fecha_fin}}" /> <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="modal-footer">
+                                <button id="confirmacion{{ $proyecto->id }}" type="button" class="btn btn-danger pull-left">@lang('messages.eliminar')</button>
+                                <button type="submit" class="btn btn-success">@lang('messages.modificar')</button>
+                            </div>
+                            <script>
+                                $('#fecha_fin_crear').datetimepicker({
+                                    format: "DD/MM/YYYY"
+                                 });
+                            </script>
+                            <script>
+                                $('#fecha_fin_estimada_crear').datetimepicker({
+                                    format: "DD/MM/YYYY"
+                                 });
+                            </script>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- FIN Formulario modificación proyecto -->
     </section>
 
     <script>

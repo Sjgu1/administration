@@ -19,6 +19,7 @@ class ProyectoUserController extends Controller
     }
     public function userspublic($id = null){
 
+        $proyecto= session()->get('selected_project');
         $proyecto_users = ProyectoUser::where('proyecto_id', session()->get('selected_project')->id)->with('user')->with('rol')->get();
         $users_to_exclude = array();
 
@@ -53,7 +54,7 @@ class ProyectoUserController extends Controller
             //var_dump($proyecto_user->rol);
         }
 
-        return view('user.users', ['proyecto_users' => $proyecto_users, 'users' => $users, 'rols' => $rols]);
+        return view('user.users', ['proyecto_users' => $proyecto_users, 'users' => $users, 'rols' => $rols, 'proyecto' => $proyecto]);
     }
 
     public function modify(Request $request){

@@ -64,10 +64,11 @@ class SprintController extends Controller
         $sprint->proyecto_id = $request->input('proyecto_id');
         $sprint->descripcion = $request->input('descripcion');
         $sprint->fecha_inicio = $request->input('fecha_inicio');
+        $sprint->fecha_fin= $request->input('fecha_fin');
         $sprint->fecha_fin_estimada = $request->input('fecha_fin_estimada');
 
         $sprint->save();
-        return view('exito_elemento',['slot'=> "Se ha modificado el Sprint: " .$sprint->id  ] );
+        return back();
 
     }
     public function modificarColores(Request $request){
@@ -109,11 +110,12 @@ class SprintController extends Controller
         $sprint->descripcion = $request->input('descripcion');
         $sprint->fecha_inicio = $request->input('fecha_inicio');
         $sprint->fecha_fin_estimada = $request->input('fecha_fin_estimada');
+        $sprint->fecha_fin = $request->input('fecha_fin_estimada');
         $sprint->proyecto_id = $request->input('proyecto_id');
 
         $sprint->save();
 
-        return redirect('sprints');
+        return back();
     }
 
     public function getProyectos(){
@@ -212,8 +214,8 @@ class SprintController extends Controller
     
     }
 
-    public function sprintsrequisitos($sprint_id = null){
-
+    public function sprintsrequisitos($sprint_id){
+        
         $proyecto = session()->get('selected_project');
         $sprint = Sprint::where('id', 13)->first();
         $requisitos = Requisito::where('sprint_id', 13)->with('users')->with('modificacions')->get();
@@ -240,7 +242,6 @@ class SprintController extends Controller
                 array_push($modificacions[$modificacion['id']], $modificacion);
             }
         }
-        
 
         $requisitos_no_finalizados = array();
         $requisitos_finalizados = array();
