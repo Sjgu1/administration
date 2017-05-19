@@ -92,6 +92,8 @@ Route::group(['middleware' => ['web', 'auth']], function(){
     Route::post('proyectouser/modificar', 'ProyectoUserController@modify');
     Route::get('deleteproyectouser/{proyecto_id}/{user_id}', 'ProyectoUserController@delete');
 
+    Route::post('requisito/modificar_public', 'RequisitosController@modify_public');
+
     Route::get('lang/{lang}', function($lang){
 
         session(['lang' => $lang]);

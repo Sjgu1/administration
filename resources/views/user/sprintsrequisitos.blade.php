@@ -9,6 +9,15 @@
   $.widget.bridge('uibutton', $.ui.button);
 </script>
 
+<!-- Bootstrap Color Picker -->
+<link rel="stylesheet" href="/adminlte/plugins/colorpicker/bootstrap-colorpicker.min.css">
+<!-- bootstrap datepicker -->
+<link rel="stylesheet" href="/adminlte/plugins/datepicker/datepicker3.css">
+<!-- bootstrap color picker -->
+<script src="/adminlte/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+<!-- bootstrap datepicker -->
+<script src="/adminlte/plugins/datepicker/bootstrap-datepicker.js"></script>
+
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/adminlte/dist/js/pages/dashboard.js"></script>
 
@@ -193,108 +202,125 @@
 
 
 <!-- Formularios modificación -->
-@foreach ($requisitos as $requisito)
-<div class="modal fade" id="exampleModal{{$requisito->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<form id="requisito_form_modificar" action="{{ url('requisito/modificar') }}" method="POST" role="form" data-toggle="validator">
-				<input type="hidden" name="sprint_id" value="{{$sprint->id }}" /> <input type="hidden" name="id" value="{{$requisito->id }}" /> <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
-				<input type="hidden" name="estado" value="{{$requisito->estado }}"/>
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<label for="recipient-name" class="control-label">@lang('messages.nombre'):</label>
-					<input type="text" class="form-control modal-title" name="nombre" value="{{$requisito->nombre}}">
-				</div>
-				<div class="modal-body">
-					<div class="form-group">
-						<label for="recipient-name" class="control-label">@lang('messages.descripcion'):</label>
-						<input type="text" class="form-control" name="descripcion" value="{{$requisito->descripcion}}">
-					</div>
-					<div class="form-group">
-						<label for="recipient-name" class="control-label">@lang('messages.fecha de inicio'): </label> {{$requisito->fecha_inicio}}
-					</div>
-					<div class="form-group">
-						<label for="message-text" class="control-label">@lang('messages.fecha estimada de fin'):</label>
-						<div class="form-group">
-							<div class='input-group date' id='fecha_fin_{{$requisito->
-								 id}}'> <input type='text' class="form-control" name="fecha_estimada_fin" value="{{$requisito->fecha_fin_estimada}}"/> <span class="input-group-addon">
-								<span class="glyphicon glyphicon-calendar"></span>
-								</span>
-							</div>
-						</div>
-						<script>
-            				$('#fecha_fin_{{$requisito->id}}').datetimepicker({format: "DD/MM/YYYY"});                
-           				 </script>
-					</div>
-				</div>
-				
-				<div class="well">
-				@lang('messages.usuarios asignados ahora'):
-				<br>
-                    <!-- FALTA TRABAJO DE SERGIO PARA QUE ESTO VAYA -->
-                    {{--@foreach($usuarios as $usuario) 
-							@foreach($requisitosAsignados as $reqAsig ) 
-							@if($requisito->id == $reqAsig->requisito->id)
-								@if($usuario->user->id == $reqAsig->user->id ) 
-										<!--<option selected="selected" value="{{$usuario->user->id}}">{{$usuario->user->name}}</option>-->
-										<label value="{{$usuario->user->name}}">{{$usuario->user->name}}</label>	
-										<br>
-								@endif 
-							@endif 
-							@endforeach 
-						@endforeach--}
-						<br>
-				@lang('messages.selecciona nuevos usuarios'):<br/>
-					<select name="basic" id="ex-data-multiple-{{$requisito->id}}" multiple style="display: none;" > 					
-						
-                        <!-- FALTA TRABAJO DE SERGIO PARA QUE ESTO VAYA -->
-						{{--@foreach($requisito->users as $usuario) 
-							<option  value="{{$usuario->user->id}}">{{$usuario->user->name}}</option>
-						@endforeach--}}
-					</select>
+@foreach ($requisitos as $requisito )
 
-					<script type="text/javascript">
-						$('#ex-data-multiple-{{$requisito->id}}').picker();
-						
-						$('#ex-data-multiple-{{$requisito->id}}').on('sp-change', function(){
-    						console.log($('#ex-data-multiple-{{$requisito->id}}'));
+    <div class="modal fade" id="exampleModal{{ $requisito->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form id="requisito_form_modificar" action="{{ url('requisito/modificar_public') }}" method="POST" role="form" data-toggle="validator">
+                    <input type="hidden" name="sprint_id" value="{{ $sprint->id }}" />
+                    <input type="hidden" name="input_id" value="{{ $requisito->id }}" />
+                    <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
+                    <input type="hidden" name="estado" value="{{ $requisito->estado }}" />
 
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <label for="recipient-name" class="control-label">@lang('messages.nombre'):</label>
+                        <div class="form-group has-feedback">
+                            <input type="text" class="form-control modal-title" name="input_nombre" value="{{ $requisito->nombre }}"  data-minlength="3" maxlength="20" required>
+                        </div>
+                    </div>
+                    <div class="modal-body" style="margin-bottom: 0px;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="box box-default box-solid collapsed-box" style="background-color: #fff;">
+                                    <div class="box-header with-border" style="background-color: #fff;">
+                                    <h3 class="box-title">Log</h3>
 
-						$.ajaxSetup({
-   							 headers: {
-        						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        					}
-    					});
-						var array = [];
-						for(var i=0; i<$('#ex-data-multiple-{{$requisito->id}}')["0"].selectedOptions.length; i++)
-						{
-							
-							array.push($('#ex-data-multiple-{{$requisito->id}}')["0"].selectedOptions[i].value);
-						}
-			
-							$.post("/requisitoUsuario", {
-								opciones: array,
-								id_requisito: "{{$requisito->id}}"
-							});
-						});
-           			 </script>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">@lang('messages.cerrar')</button>
-					<button type="submit" class="btn btn-primary">@lang('messages.modificar')</button>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <!-- /.box-tools -->
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <div class="box-body" style="display: none;">
+                                        @foreach ($modificacions as $clave => $valor)
+                                            @if ($clave == $requisito->id)
+                                                @foreach ($valor as $modificacion)
+                                                    <p>{!! '-' . $modificacion['mensaje'] !!}<span class="pull-right">{{ $modificacion['dia_concreto'] }}</span></p>
+                                                    <hr>
+                                                @endforeach
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-6" style="padding-left: 0%">
+                                    <label for="message-text" class="control-label">@lang('messages.fecha estimada de inicio'):</label>
+                                    <div class="input-group form-group has-feedback">
+                                        <input type='text' class="form-control" value="{{ $requisito->fecha_inicio }}" disabled />
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6" style="padding-right: 0%">
+                                    <label for="message-text" class="control-label">@lang('messages.fecha estimada de fin'):</label>
+                                    <div class="input-group form-group has-feedback">
+                                        <input id="input_fecha_estimada_fin{{ $requisito->id }}" type='text' readonly class="form-control" name="input_fecha_estimada_fin" value="{{ $requisito->fecha_fin_estimada }}"  style="background-color: #fff"/>
+                                        <span id="datepicker{{ $requisito->id }}" class="input-group-addon" style="cursor: pointer; cursor: hand;"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <label for="descripcion" class="control-label">@lang('messages.descripcion'):</label>
+                        <div class="form-group has-feedback">
+                            <textarea id="descripcion" name="input_descripcion" class="form-control" rows="5" data-minlength="3" maxlength="65535" required>{{ $requisito->descripcion }}</textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-6" style="padding-left: 0%">
+                                    <label for="message-text" class="control-label">Usuario asignado:</label>
+                                    <select name="input_user" class="form-control">
+                                        <option value="null">Selecciona un usuario</option>
+                                        @if (count($requisito->users) > 0)
+                                            @foreach ($users as $user)
+                                                @if ($user->id == $requisito->users[0]->id)
+                                                    <option value="{{ $user->id }}" selected>{{ $user->name }}</option>
+                                                @else
+                                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                                @endif
+                                            @endforeach
+                                        @else
+                                            @foreach ($users as $user)
+                                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                </div>
+                                <div class="col-md-6" style="padding-right: 0%">
+                                    <label for="message-text" class="control-label">Color:</label>
+                                    <div class="input-group my-colorpicker{{ $requisito->id }} colorpicker-element">
+                                        <input type="text" name="input_color" readonly class="form-control" style="background-color: #fff" value="@if ($requisito->color != '') @endif" />
+                                        <div class="input-group-addon">
+                                            <i style="background-color: rgb(130, 124, 124);"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="eliminar{{ $requisito->id }}" type="button" class="btn btn-danger pull-left">@lang('messages.eliminar')</button>
+                        <button class="btn btn-default" data-dismiss="modal" aria-label="Close">Cancelar</button>
+                        <button type="submit" class="btn btn-success">@lang('messages.modificar')</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endforeach
 
 <!-- FIN Formularios modificación -->
-@endforeach
 
 <script>
 @foreach ($requisitos as $requisito)
 
-    $("#exampleModal" . $requisito->id).click(function() {
+    $("#eliminar" + $requisito->id).click(function() {
 
         swal({
             title: "Are you sure?",
@@ -315,12 +341,32 @@
 
 <script>
 
+@foreach ($requisitos as $requisito)
+
+    //color picker with addon
+    $(".my-colorpicker" + {{ $requisito->id }}).colorpicker();
+
+    //Date picker
+    $('#datepicker' + {{ $requisito->id }}).datepicker({
+      autoclose: true,
+      format: 'dd/mm/yyyy'
+    })
+    .on('changeDate', function(e) {
+        // Set the value for the date input
+        $("#input_fecha_estimada_fin" + {{ $requisito->id }}).val($("#datepicker" + {{ $requisito->id }}).datepicker('getFormattedDate'));
+
+        // Revalidate it
+        //$('#eventForm').formValidation('revalidateField', 'selectedDate');
+    });
+
+@endforeach
+
     var url = window.location.href;
     var splitted = url.split('/');
 
-    if (splitted.length == 5 && $.isNumeric(splitted[4])){
+    if (splitted.length == 6 && $.isNumeric(splitted[5])){
 
-        $('#exampleModal' + splitted[4]).modal('show');
+        $('#exampleModal' + splitted[5]).modal('show');
     }
 
 </script>

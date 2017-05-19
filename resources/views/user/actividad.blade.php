@@ -63,10 +63,10 @@
                   <div class="timeline-item">
                     <span class="time"><i class="fa fa-clock-o"></i> {{ $evento['diferencia'] }}</span>
 
-                    <h3 class="timeline-header"><a href="/sprintsrequisitos/{{ $evento['id'] }}">{{ $evento['requisito_nombre'] }}</a></h3>
+                    <h3 class="timeline-header"><a href="/sprintsrequisitos/{{ $evento['sprint_id'] }}/{{ $evento['id'] }}">{{ $evento['requisito_nombre'] }}</a></h3>
 
                     <div class="timeline-body">
-                      {{ $evento['mensaje'] }}
+                      {!! $evento['mensaje'] !!}
                     </div>
                   </div>
                 </li>

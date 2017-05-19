@@ -214,8 +214,33 @@ class SprintController extends Controller
 
     public function sprintsrequisitos($sprint_id = null){
 
+        $proyecto = session()->get('selected_project');
         $sprint = Sprint::where('id', 13)->first();
-        $requisitos = Requisito::where('sprint_id', 13)->with('users')->get();
+        $requisitos = Requisito::where('sprint_id', 13)->with('users')->with('modificacions')->get();
+        $proyectousers = ProyectoUser::with('user')->where('proyecto_id', $proyecto->id)->get();
+        $users = array();
+
+        foreach ($proyectousers as $user){
+
+            array_push($users, $user->user);
+        }
+
+        $modificacions_raw = ProyectosController::getHistorico();
+        $modificacions = array();
+
+        foreach ($modificacions_raw as $modificacion){
+
+            if (array_key_exists($modificacion['id'], $modificacions)){
+
+                array_push($modificacions[$modificacion['id']], $modificacion);
+            }
+            else {
+
+                $modificacions[$modificacion['id']] = array();
+                array_push($modificacions[$modificacion['id']], $modificacion);
+            }
+        }
+        
 
         $requisitos_no_finalizados = array();
         $requisitos_finalizados = array();
@@ -317,7 +342,7 @@ class SprintController extends Controller
             }
         }
 
-        return view('user.sprintsrequisitos', ['sprint' => $sprint, 'requisitos' => $requisitos, 'requisitos_no_finalizados' => $requisitos_no_finalizados, 'requisitos_finalizados' => $requisitos_finalizados]);
+        return view('user.sprintsrequisitos', ['sprint' => $sprint, 'users' => $users, 'requisitos' => $requisitos, 'modificacions' => $modificacions, 'requisitos_no_finalizados' => $requisitos_no_finalizados, 'requisitos_finalizados' => $requisitos_finalizados]);
     }
 
 }

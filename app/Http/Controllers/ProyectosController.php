@@ -230,7 +230,7 @@ class ProyectosController extends Controller
         return $commits;
     }
 
-    public function getHistorico(){
+    public static function getHistorico(){
 
         $eventos = array();
         $sprints = Sprint::where('proyecto_id', 4)->get();
@@ -252,7 +252,7 @@ class ProyectosController extends Controller
                     $diferencia = 0;
                     $unidad = '';
 
-                    $this->hace($fecha, $diferencia, $unidad);
+                    ProyectosController::hace($fecha, $diferencia, $unidad);
 
                     $datos['tipo'] = 'modificacion';
                     $datos['fecha'] = $fecha;
@@ -260,6 +260,7 @@ class ProyectosController extends Controller
                     $datos['diferencia'] = 'hace ' . $diferencia . ' ' . $unidad;
                     $datos['requisito_nombre'] = $requisito->nombre;
                     $datos['icon'] = "fa fa-user bg-aqua";
+                    $datos['sprint_id'] = $sprint->id;
                     $datos['id'] = $requisito->id;
 
                     if ($modificacion->tipo == "add_user"){
@@ -270,11 +271,11 @@ class ProyectosController extends Controller
 
                         if ($mensaje[0] == $mensaje[1]){
 
-                            $datos['mensaje'] = $mensaje[0] . ' se ha unido al requisito';
+                            $datos['mensaje'] = '<b>' . $mensaje[0] . '</b> se ha unido al requisito';
                         }
                         else {
 
-                            $datos['mensaje'] = $mensaje[0] . ' ha añadido a ' . $mensaje[1] . ' al requisito';
+                            $datos['mensaje'] = '<b>' . $mensaje[0] . '</b> ha vinculado a <b>' . $mensaje[1] . '</b> al requisito';
                         }
                     }
                     else if ($modificacion->tipo == "delete_user"){
@@ -285,28 +286,63 @@ class ProyectosController extends Controller
 
                         if ($mensaje[0] == $mensaje[1]){
 
-                            $datos['mensaje'] = $mensaje[0] . ' se ha desvinculado del requisito';
+                            $datos['mensaje'] = '<b>' . $mensaje[0] . '</b> se ha desvinculado del requisito';
                         }
                         else {
 
-                            $datos['mensaje'] = $mensaje[0] . ' ha desvinculado a ' . $mensaje[1] . ' del requisito';
+                            $datos['mensaje'] = '<b>' . $mensaje[0] . '</b> ha desvinculado a <b>' . $mensaje[1] . '</b> del requisito';
                         }
                     }
                     else if ($modificacion->tipo == "edit_title"){
 
-                        $datos['mensaje'] = $modificacion->mensaje . ' ha modificado el título de tal a tal';
+                        $exploded1 = explode(':', $modificacion->mensaje);
+                        $author = $exploded1[0];
+                        $aux = explode(';', $exploded1[1]);
+                        $antiguo = $aux[0];
+                        $nuevo = $aux[1];
+
+                        $datos['mensaje'] = '<b>' . $author . '</b> ha modificado el título del requisito de \'' . $antiguo . '\' a \'' . $nuevo . '\'';
                     }
                     else if ($modificacion->tipo == "edit_description"){
 
-                        $datos['mensaje'] = $modificacion->mensaje . ' ha modificado la descripción';
+                        $datos['icon'] = 'fa fa-edit bg-green';
+
+                        $exploded1 = explode(':', $modificacion->mensaje);
+                        $author = $exploded1[0];
+                        $aux = explode(';', $exploded1[1]);
+                        $antiguo = $aux[0];
+                        $nuevo = $aux[1];
+
+                        $datos['mensaje'] = '<b>' . $author . '</b> ha modificado la descripción del requisito de \'' . $antiguo . '\' a \'' . $nuevo . '\'';
                     }
                     else if ($modificacion->tipo == "edit_fecha_fin_estimada"){
 
-                        $datos['mensaje'] = "Sergio tal tal ha modificado a Jesús";
+                        $datos['icon'] = 'fa fa-calendar-times-o bg-yellow';
+
+                        $exploded1 = explode(':', $modificacion->mensaje);
+                        $author = $exploded1[0];
+                        $aux = explode(';', $exploded1[1]);
+                        $antiguo = $aux[0];
+                        $nuevo = $aux[1];
+
+                        $datos['mensaje'] = '<b>' . $author . '</b> ha modificado la fecha de finalización estimada del requisito de \'' . $antiguo . '\' a \'' . $nuevo . '\'';
                     }
                     else if ($modificacion->tipo == "edit_state"){
 
-                        $datos['mensaje'] = "Sergio tal tal ha modificado a Jesús";
+                        $datos['icon'] = 'fa fa-exchange bg-primary';
+
+                        $exploded1 = explode(':', $modificacion->mensaje);
+                        $author = $exploded1[0];
+                        $aux = explode(';', $exploded1[1]);
+                        $antiguo = $aux[0];
+                        $nuevo = $aux[1];
+
+                        $datos['mensaje'] = '<b>' . $author . '</b> ha modificado el estado del requisito de \'' . $antiguo . '\' a \'' . $nuevo . '\'';
+                    }
+                    else {
+                        $datos['icon'] = 'fa fa-cubes bg-red';
+
+                        $datos['mensaje'] = '<b>' . $modificacion->mensaje . '</b> ha realizado múltiples modificaciones sobre el requisito';
                     }
 
                     array_push($eventos, $datos);
@@ -317,7 +353,7 @@ class ProyectosController extends Controller
         return $eventos;
     }
 
-    public function hace($date, &$diferencia, &$unidad){
+    public static function hace($date, &$diferencia, &$unidad){
 
         // Diferencia de tiempo
         //$timezone = new DateTimeZone('Europe/Madrid');
@@ -391,7 +427,7 @@ class ProyectosController extends Controller
 
     public function actividad($id = null){
 
-        $historico = $this->getHistorico();
+        $historico = ProyectosController::getHistorico();
         $commits = $this->getCommits();
 
         $eventos = array_merge($historico, $commits);
