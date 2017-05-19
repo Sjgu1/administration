@@ -215,7 +215,7 @@ class SprintController extends Controller
     }
 
     public function sprintsrequisitos($sprint_id){
-        
+
         $proyecto = session()->get('selected_project');
         $sprint = Sprint::where('id', 13)->first();
         $requisitos = Requisito::where('sprint_id', 13)->with('users')->with('modificacions')->get();
@@ -343,7 +343,9 @@ class SprintController extends Controller
             }
         }
 
-        return view('user.sprintsrequisitos', ['sprint' => $sprint, 'users' => $users, 'requisitos' => $requisitos, 'modificacions' => $modificacions, 'requisitos_no_finalizados' => $requisitos_no_finalizados, 'requisitos_finalizados' => $requisitos_finalizados]);
+        $proyecto = session()->get('selected_project');
+
+        return view('user.sprintsrequisitos', ['proyecto' => $proyecto, 'sprint' => $sprint, 'users' => $users, 'requisitos' => $requisitos, 'modificacions' => $modificacions, 'requisitos_no_finalizados' => $requisitos_no_finalizados, 'requisitos_finalizados' => $requisitos_finalizados]);
     }
 
 }

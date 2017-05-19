@@ -148,7 +148,7 @@
                 <div class="modal-content">
                     <form id="requisito_form_modificar" action="{{ url('sprint/modificar') }}" method="POST" role="form" data-toggle="validator">
 
-                        <input type="hidden" name="proyecto_id" value="{{$proyecto->id }}" />
+                        <input type="hidden" name="proyecto_id" value="{{ $proyecto->id }}" />
                         <input type="hidden" name="id" value="{{$sprint->id }}" />
                         <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
                         <div class="modal-header form-group has-feedback">
