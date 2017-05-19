@@ -103,9 +103,9 @@ Route::group(['middleware' => ['web', 'auth']], function(){
 });
 
 
+//agregar admin
 
-
-Route::group(['middleware' => ['web', 'auth', 'admin']], function(){
+Route::group(['middleware' => ['web', 'auth']], function(){
 
     //Parte administrador
     Route::get('index/{field?}', 'RequisitosController@search');//Devuelve lista de requisitos

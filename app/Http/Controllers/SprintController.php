@@ -113,7 +113,7 @@ class SprintController extends Controller
 
         $sprint->save();
 
-        return redirect('sprints');
+        return back();
     }
 
     public function getProyectos(){

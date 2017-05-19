@@ -142,12 +142,16 @@ class UserController extends Controller
     }
 
      public function details($id){
-        $user = User::where('id', $id)->first();
-        if($user==null){
-            return view('alerta_elemento',['slot'=> "No existe el elemento Usuario: " .$id  ] );
-        }else{
-            return view('profile', ['user' => $user]);
-        }
+         if(Auth::id()==$id){
+            $user = User::where('id', $id)->first();
+            if($user==null){
+                return view('alerta_elemento',['slot'=> "No existe el elemento Usuario: " .$id  ] );
+            }else{
+                return view('profile', ['user' => $user]);
+            }
+         }else{
+             return redirect()->back();
+         }
      }
 
      public function details2($id = null){
@@ -204,11 +208,15 @@ class UserController extends Controller
     }
 
     public function sayHello($id){
-        $user = User::where('id', $id)->first();
-        if($user==null){
-            return view('alerta_elemento',['slot'=> "No existe el elemento Usuario: " .$id  ] );
+        if(Auth::id()==$id){
+            $user = User::where('id', $id)->first();
+            if($user==null){
+                return view('alerta_elemento',['slot'=> "No existe el elemento Usuario: " .$id  ] );
+            }else{
+                return view('user', ['user' => $user]);
+            }
         }else{
-            return view('user', ['user' => $user]);
+            return redirect()->back();
         }
     }
 

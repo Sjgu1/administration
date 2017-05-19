@@ -41,22 +41,24 @@ class ProyectosController extends Controller
 
     public function modify(Request $request){
 
-        /*$this->validate($request, [
+        $this->validate($request, [
             'nombre' => ['string', 'min:3', 'max:20'],
             'descripcion' => ['string', 'min:3', 'max:65535'],
             'repositorio' => 'url | nullable'
-        ]);*/
+        ]);
 
         $proyecto = Proyecto::where('id', $request->input('id'))->first();
         $proyecto->nombre = $request->input('nombre');
         $proyecto->descripcion = $request->input('descripcion');
         $proyecto->repositorio = $request->input('repositorio');
-        $proyecto->fecha_inicio = $request->input('fecha_inicio');
+        $proyecto->fecha_fin = $request->input('fecha_fin');
+        $proyecto->repositorio = $request->input('repositorio');
         $proyecto->fecha_fin_estimada = $request->input('fecha_fin_estimada');
 
         $proyecto->save();
-        return view('exito_elemento',['slot'=> "Se ha modificado el Proyecto: " .$proyecto->id  ] );
 
+        session()->put("selected_project", Proyecto::where('id', $request->input('id'))->first() );
+        return back()->withInput();
     }
 
     public function delete($id){

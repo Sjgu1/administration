@@ -1,4 +1,5 @@
 @extends('layouts.privada')
+@section('content')
 <script src="/adminlte/colores.js"></script>
 <script type="text/javascript">
     function update(jscolor, id) {
@@ -92,7 +93,7 @@
         modal.find('.modal-body input').val(recipient)
     })
 </script>
-@section('content')
+
 <input id="cambiarColor" style="display:none;" value="columna1">
 <!-- jQuery UI 1.11.4 -->
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
@@ -102,6 +103,7 @@
 </script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/adminlte/dist/js/pages/dashboard.js"></script>
+
 <section class="content-header">
     <h1>{{$proyecto->nombre}}
             <small>{{$sprint->nombre}} 
@@ -447,16 +449,26 @@
             </div>
         </div>
     </div>
-    <script>
-        // When the document is ready
-        $(document).ready(function() {
+        <script>
+            $("#confirmacion{{ $requisito->id }}").click(function() {
 
-            $('#confirmacion{{ $requisito->id }}').click(function() {
-                window.location.href = "/requisito/borrar/{{ $requisito->id }}";
+                swal({
+                    title: "¿Estás seguro?",
+                    text: "Vas a eliminar {{ $requisito->nombre}}.",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Sí, adelante",
+                    cancelButtonText: "Cancelar",
+                    closeOnConfirm: false,
+                    allowOutsideClick: true
+                },
+                function(){
+                    window.location.href = "/requisito/borrar/{{ $requisito->id }}";            
+                });
             });
 
-        });
-    </script>
+        </script>
     @endforeach
     <script>
         $(function() {
