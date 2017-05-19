@@ -2,7 +2,7 @@
 <body>
 @section('content')
 <section class="content-header">
-      <h1>Nuevo Proyecto</h1>
+      <h1>@lang('messages.nuevo proyecto')</h1>
       <!--<ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">UI</a></li>

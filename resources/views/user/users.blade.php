@@ -16,7 +16,7 @@
 
     <!-- Header -->
     <section class="content-header">
-        <h1>Gestionar proyecto</h1>
+        <h1>@lang('messages.gestionar proyecto')</h1>
         <ol class="breadcrumb">
             <button type="button" data-toggle="modal" data-target="#CrearSprint" class="btn btn-block btn-success btn-xs">Agregar Sprint</button>
         </ol>
@@ -49,12 +49,12 @@
                     <div class="box-body table-responsive no-padding">
                         <table class="table table-hover">
                             <tr>
-                                <th>Foto de perfil</th>
-                                <th>Usuario</th>
-                                <th>Nombre y apellidos</th>
-                                <th>Rol</th>
+                                <th>@lang('messages.foto de perfil')</th>
+                                <th>@lang('messages.usuario')</th>
+                                <th>@lang('messages.nombre y apellidos')</th>
+                                <th>@lang('messages.rol')</th>
                                 <th>Email</th>
-                                <th>Opciones</th>
+                                <th>@lang('messages.opciones')</th>
                             </tr>
 
                             @foreach ($proyecto_users as $proyecto_user)
@@ -102,7 +102,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <select name="rol_id" class="form-control">
-                    <option value="Rol" disabled="disabled" selected>Rol</option>
+                    <option value="Rol" disabled="disabled" selected>@lang('messages.rol')</option>
 
                     @foreach ($rols as $rol)
                         <option value="{{ $rol->id }}">{{ $rol->nombre }}</option>
@@ -154,8 +154,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-success">Modificar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">@lang('messages.cancelar')</button>
+                    <button type="submit" class="btn btn-success">@lang('messages.modificar')</button>
                 </div>
             </form>
         </div>
@@ -196,7 +196,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="message-text" class="control-label">Fecha estimada:</label>
+                                        <label for="message-text" class="control-label">@lang('messages.fecha estimada de fin'):</label>
 
                                         <div class="form-group">
                                             <div class='input-group date' id="fecha_fin_estimada_sprint" >
@@ -208,7 +208,7 @@
                                     </div>
                                 
                                 <div class="form-group col-md-4">
-                                        <label for="message-text" class="control-label">Fecha de fin :</label>
+                                        <label for="message-text" class="control-label">@lang('messages.fecha de fin'):</label>
 
                                         <div class="form-group">
                                             <div class='input-group date' id="fecha_fin" >
@@ -282,7 +282,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="message-text" class="control-label">Fecha estimada:</label>
+                                        <label for="message-text" class="control-label">@lang('messages.fecha estimada de fin'):</label>
 
                                         <div class="form-group">
                                             <div class='input-group date'id="fecha_fin_estimada_crear"  >
@@ -293,7 +293,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="message-text" class="control-label">Fecha fin:</label>
+                                        <label for="message-text" class="control-label">@lang('messages.fecha fin'):</label>
 
                                         <div class="form-group">
                                             <div class='input-group date'id="fecha_fin_crear"  >
