@@ -185,29 +185,41 @@
                             <br>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class=" col-md-6 form-group">
+                                    <div class=" col-md-4 form-group">
                                         <label for="message-text" class="control-label">@lang('messages.fecha estimada de inicio'):</label>
                                         <div class="form-group">
                                             <div class='input-group date' id="fecha_inicio_sprint">
-                                                <input type='text' class="form-control"  name="fecha_inicio" /> <span class="input-group-addon">
+                                                <input type='text' class="form-control"  name="fecha_inicio" required/> <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                                                 </span>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="message-text" class="control-label">Fecha de fin estimada:</label>
+                                    <div class="form-group col-md-4">
+                                        <label for="message-text" class="control-label">Fecha estimada:</label>
 
                                         <div class="form-group">
                                             <div class='input-group date' id="fecha_fin_estimada_sprint" >
-                                                <input type='text' class="form-control" name="fecha_fin_estimada" /> <span class="input-group-addon">
+                                                <input type='text' class="form-control" name="fecha_fin_estimada" required/> <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                <div class="form-group col-md-4">
+                                        <label for="message-text" class="control-label">Fecha de fin :</label>
+
+                                        <div class="form-group">
+                                            <div class='input-group date' id="fecha_fin" >
+                                                <input type='text' class="form-control" name="fecha_fin" required/> <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                                                 </span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">@lang('messages.cerrar')</button>
@@ -223,6 +235,11 @@
                                     format: "DD/MM/YYYY"
                                  });
                             </script>
+                            <script>
+                                $('#fecha_fin').datetimepicker({
+                                    format: "DD/MM/YYYY"
+                                 });
+                            </script>
                     </form>
                     </div>
                 </div>
@@ -235,10 +252,8 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <form id="proyecto_form_modificar" action="{{ url('proyecto/modificar') }}" method="POST" role="form" data-toggle="validator">
-                        <input type="hidden" name="sprint_id" value="{{$proyecto->id }}" />
                         <input type="hidden" name="id" value="{{$proyecto->id }}" />
                         <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
-                        <input type="hidden" name="estado" value="{{$proyecto->id }}" />
                         <div class="modal-header form-group has-feedback">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <label for="recipient-name" class="control-label">@lang('messages.nombre'):</label>
