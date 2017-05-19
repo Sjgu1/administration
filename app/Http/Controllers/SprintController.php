@@ -64,10 +64,11 @@ class SprintController extends Controller
         $sprint->proyecto_id = $request->input('proyecto_id');
         $sprint->descripcion = $request->input('descripcion');
         $sprint->fecha_inicio = $request->input('fecha_inicio');
+        $sprint->fecha_fin= $request->input('fecha_fin');
         $sprint->fecha_fin_estimada = $request->input('fecha_fin_estimada');
 
         $sprint->save();
-        return view('exito_elemento',['slot'=> "Se ha modificado el Sprint: " .$sprint->id  ] );
+        return back();
 
     }
     public function modificarColores(Request $request){
@@ -109,6 +110,7 @@ class SprintController extends Controller
         $sprint->descripcion = $request->input('descripcion');
         $sprint->fecha_inicio = $request->input('fecha_inicio');
         $sprint->fecha_fin_estimada = $request->input('fecha_fin_estimada');
+        $sprint->fecha_fin = $request->input('fecha_fin_estimada');
         $sprint->proyecto_id = $request->input('proyecto_id');
 
         $sprint->save();
@@ -212,10 +214,11 @@ class SprintController extends Controller
     
     }
 
-    public function sprintsrequisitos($sprint_id = null){
+    public function sprintsrequisitos($sprint_id){
 
-        $sprint = Sprint::where('id', 13)->first();
-        $requisitos = Requisito::where('sprint_id', 13)->with('users')->get();
+        $sprint = Sprint::where('id', $sprint_id)->first();
+        $requisitos = Requisito::where('sprint_id', $sprint_id)->with('users')->get();
+        $proyecto = session()->get('selected_project');
 
         $requisitos_no_finalizados = array();
         $requisitos_finalizados = array();
@@ -317,7 +320,7 @@ class SprintController extends Controller
             }
         }
 
-        return view('user.sprintsrequisitos', ['sprint' => $sprint, 'requisitos' => $requisitos, 'requisitos_no_finalizados' => $requisitos_no_finalizados, 'requisitos_finalizados' => $requisitos_finalizados]);
+        return view('user.sprintsrequisitos', ['sprint' => $sprint, 'requisitos' => $requisitos, 'requisitos_no_finalizados' => $requisitos_no_finalizados, 'requisitos_finalizados' => $requisitos_finalizados, 'proyecto' => $proyecto]);
     }
 
 }
