@@ -26,7 +26,7 @@
     <section class="content">
     <div class="callout callout-info">
         <h4>{{$proyecto->nombre}}<i class="fa fa-fw fa-edit pull-right btn " data-toggle="modal" data-target="#exampleModalEdit"></i></h4>
-        <p>{{$proyecto->fecha_inicio}}<i class="fa fa-minus"></i>{{$proyecto->fecha_fin_estimada}}</p>
+        <p>{{$proyecto->fecha_inicio}} <i class="fa fa-minus"></i> {{$proyecto->fecha_fin_estimada}}</p>
       </div>
         <div class="row">
             <div class="col-xs-12">

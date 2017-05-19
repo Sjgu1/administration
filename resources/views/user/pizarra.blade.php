@@ -179,7 +179,7 @@
                 <div class="col-md-12 box box-primary well-sm" id="columna1" style="background-color:{{$sprint->color1}}; color:{{$sprint->colorTexto1}};">
                     <div class="box-header with-border">
                         <h3 class="box-title">@lang('messages.por hacer')</h3>
-                        <span class=" pull-right glyphicon glyphicon-plus" data-toggle="modal" data-target="#crearRequisito">
+                        <span class=" pull-right glyphicon glyphicon-plus" data-toggle="modal" data-target="#crearRequisito" style="cursor: pointer; cursor: hand;">
                 </span>
                     </div>
                     <div id="accordion1" class="connectedSortable box-body">

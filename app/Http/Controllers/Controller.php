@@ -24,8 +24,16 @@ class Controller extends BaseController
                 View::share('selected_project_sprints', $selected_project_sprints);
             }
 
-            //var_dump($request->path());
-            View::share('current_view', $request->path());
+            $exploded = explode("/", $request->path());
+            
+            if (count($exploded) > 1){
+
+                $exploded = $exploded[0];
+            }
+
+            //var_dump($exploded);
+
+            View::share('current_view', $exploded);
             //var_dump($request->path());
 
             return $next($request);

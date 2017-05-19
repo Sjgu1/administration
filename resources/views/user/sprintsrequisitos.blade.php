@@ -56,6 +56,7 @@
                     </div>
                     <!-- /.box-header -->
 
+                    @if (count($requisitos_no_finalizados) >= 1)
                     <div class="box-body table-responsive no-padding">
                         <table class="table table-hover">
                             <tr>
@@ -87,6 +88,7 @@
 
                         </table>
                     </div>
+                    @endif
                     <!-- /.box-body -->
                 </div>
                 <!-- /.box -->
@@ -112,6 +114,7 @@
                     </div>
                     <!-- /.box-header -->
 
+                    @if (count($requisitos_finalizados) >= 1)
                     <div class="box-body table-responsive no-padding">
                         <table class="table table-hover">
                             <tr>
@@ -134,6 +137,7 @@
 
                         </table>
                     </div>
+                    @endif
                     <!-- /.box-body -->
                 </div>
                 <!-- /.box -->

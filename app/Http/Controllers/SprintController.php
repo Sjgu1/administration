@@ -217,8 +217,8 @@ class SprintController extends Controller
     public function sprintsrequisitos($sprint_id){
 
         $proyecto = session()->get('selected_project');
-        $sprint = Sprint::where('id', 13)->first();
-        $requisitos = Requisito::where('sprint_id', 13)->with('users')->with('modificacions')->get();
+        $sprint = Sprint::where('id', $sprint_id)->first();
+        $requisitos = Requisito::where('sprint_id', $sprint_id)->with('users')->with('modificacions')->get();
         $proyectousers = ProyectoUser::with('user')->where('proyecto_id', $proyecto->id)->get();
         $users = array();
 
