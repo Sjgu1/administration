@@ -182,6 +182,10 @@ class ProyectosController extends Controller
         return redirect('user/proyectosusers');
     }
 
+    public function vistaCreate(){
+        return view('user.proyectonew');
+    }
+
     public function getCommits(){
 
         $ch = curl_init();

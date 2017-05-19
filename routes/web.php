@@ -62,7 +62,7 @@ Route::group(['middleware' => ['web', 'auth']], function(){
     Route::get('admin/god', function(){return view('admin.god');});
 
     Route::get('user/proyectosusers', 'InsideController@searchProyecto');
-    Route::get('user/proyecto/new', function(){ return view('user.proyectonew'); });
+    Route::get('user/proyecto/new', 'ProyectosController@vistaCreate');
     Route::post('user/proyecto/create', 'InsideController@createProyecto');
     Route::get('user/requisito/new', function(){ return view('user.requisitonew'); });
     Route::post('user/requisito/create', 'InsideController@createRequisito');
