@@ -252,7 +252,7 @@
             <li @if ($current_view == 'userspublic') {!! 'class="active"' !!} @endif>
               <a href="/userspublic">
                 <i class="fa fa-pie-chart"></i>
-                <span>@lang('messages.usuarios')</span>
+                <span>Configuración</span>
                 <span class="pull-right-container">
                   <small class="label pull-right bg-green">@lang('messages.nuevo')</small>
                 </span>

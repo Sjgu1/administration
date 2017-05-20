@@ -42,7 +42,9 @@ class SprintController extends Controller
         $modificar_sprint = ProyectosController::permisoChecker('modificar_sprint');
         $modificar_requisito = ProyectosController::permisoChecker('modificar_requisito');
         $borrar_requisito = ProyectosController::permisoChecker('borrar_requisito');
+        $crear_requisito = ProyectosController::permisoChecker('crear_requisito');
         // /Permisos
+        
         $modificacions_raw = ProyectosController::getHistorico();
         $modificacions = array();
 
@@ -65,7 +67,11 @@ class SprintController extends Controller
 
             array_push($users, $user->user);
         }
-         return view('user.pizarra', compact('requisitos', 'proyecto', 'sprint', 'usuarios', 'requisitosAsignados', 'modificacions', 'users', 'modificar_sprint', 'modificar_requisito', 'borrar_requisito'));
+
+        // Permisos
+        // /Permisos
+        
+        return view('user.pizarra', compact('requisitos', 'proyecto', 'sprint', 'usuarios', 'requisitosAsignados', 'modificacions', 'users', 'modificar_sprint', 'modificar_requisito', 'borrar_requisito', 'crear_requisito'));
     }
     public function details($id){
 
