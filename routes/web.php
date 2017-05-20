@@ -69,6 +69,7 @@ Route::group(['middleware' => ['web', 'auth']], function(){
     Route::get('user/requisitosusers', 'InsideController@searchRequisito');
     Route::get('user/sprintsusers', 'InsideController@searchSprint');
 
+    Route::post('setSession', 'InsideController@setSession');
     Route::get('actividad', 'ProyectosController@actividad');
     Route::get('graficos/burndown', 'ProyectosController@burndown_sprints');
     Route::get('graficos/burndown/sprints', 'ProyectosController@burndown_sprints');

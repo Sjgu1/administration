@@ -40,8 +40,8 @@ class LoginController extends Controller
     }
 
     public function authenticated($request,$user){
-
-        $request->session()->put('selected_project', Proyecto::where('id', 1)->first());
+        //$request->session()->flush();
+       // $request->session()->put('selected_project', Proyecto::where('id', 1)->first());
 
         return redirect('/user/' . $user->id);
     }

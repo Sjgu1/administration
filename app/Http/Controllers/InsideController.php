@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Input;
 use App\RequisitoUser;
+use App\Proyecto;
 use App\ProyectoUser;
 use App\Sprint;
 use Auth;
@@ -18,6 +19,13 @@ class InsideController extends Controller
         parent::__construct();
         
         $this->middleware('auth');
+    }
+
+    public function setSession(Request $request){
+        $project = Proyecto::where('id', $request->selected_project['id'])->first() ;
+        session()->put('selected_project', $project);
+        $var =   session()->get('selected_project');
+
     }
  //Proyecto
     public function searchProyecto(){
