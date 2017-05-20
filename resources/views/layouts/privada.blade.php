@@ -229,7 +229,8 @@
               <ul class="treeview-menu">
                 <li><a href="/graficos/burndown"><i class="fa fa-circle-o"></i>Burndown</a></li>
                 <li><a href="/graficos/burndown/sprints"><i class="fa fa-circle-o"></i>Burndown sprints</a></li>
-                <li><a href="/graficos/frecuencia"><i class="fa fa-circle-o"></i>@lang('messages.frecuencia')</a></li>
+                <li><a href="/graficos/frecuenciadia"><i class="fa fa-circle-o"></i>Frecuencia diaria</a></li>
+                <li><a href="/graficos/frecuenciahora"><i class="fa fa-circle-o"></i>Frecuencia horaria</a></li>
                 <li><a href="/graficos/requisitos"><i class="fa fa-circle-o"></i>@lang('messages.requisitos')</a></li>
                 <li><a href="/graficos/commits"><i class="fa fa-circle-o"></i>Commits</a></li>
                 <!--<li class="active"><a href="timeline.html"><i class="fa fa-circle-o"></i>@lang('messages.actividad')</a></li>-->

@@ -643,7 +643,7 @@ class ProyectosController extends Controller
         return view('user.calendario', ['requisitos' => $requisitos]);
     }
 
-    public function graficos_frecuencia($id = null){
+    public function graficos_frecuencia_hora($id = null){
 
         // Extracción de las horas con sus commits
         $ch = curl_init();
@@ -666,6 +666,13 @@ class ProyectosController extends Controller
         }
 
         curl_close($ch);
+        
+        $dias = array();
+        return view('user.graficos_frecuencia_hora', ['horas' => $horas, 'dias' => $dias]);
+
+    }
+
+    public function graficos_frecuencia_dia($id = null){
 
         // Extracción de los días con sus commits
         $ch = curl_init();
@@ -695,9 +702,9 @@ class ProyectosController extends Controller
         array_push($dias, $aux);
 
         curl_close($ch);
-        
-        return view('user.graficos_frecuencia', ['horas' => $horas, 'dias' => $dias]);
 
+        $horas = array();
+        return view('user.graficos_frecuencia_dia', ['dias' => $dias, 'horas' => $horas]);
     }
 
 }

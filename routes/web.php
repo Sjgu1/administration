@@ -74,7 +74,8 @@ Route::group(['middleware' => ['web', 'auth']], function(){
     Route::get('graficos/burndown/sprints', 'ProyectosController@burndown_sprints');
     Route::get('graficos/commits', 'ProyectosController@graficos_commits');
     Route::get('graficos/requisitos', 'ProyectosController@graficos_requisitos');
-    Route::get('graficos/frecuencia', 'ProyectosController@graficos_frecuencia');
+    Route::get('graficos/frecuenciadia', 'ProyectosController@graficos_frecuencia_dia');
+    Route::get('graficos/frecuenciahora', 'ProyectosController@graficos_frecuencia_hora');
     Route::get('userspublic', 'ProyectoUserController@userspublic')->name('userspublic');
     Route::get('sprintsrequisitos/{sprint_id}/{requisito_id?}', 'SprintController@sprintsrequisitos');
     Route::get('calendario', 'ProyectosController@calendario');
