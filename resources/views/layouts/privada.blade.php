@@ -89,9 +89,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
+        
       </a>
 
+      <div >
+      @yield('cabecera')
+      </div>
       <div class="navbar-custom-menu">
+      
         <ul class="nav navbar-nav">
           <!-- Bandera -->
           <li>

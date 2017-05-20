@@ -317,7 +317,7 @@
                                 <div class="col-md-6" style="padding-right: 0%">
                                     <label for="message-text" class="control-label">@lang('messages.color'):</label>
                                     <div class="input-group my-colorpicker{{ $requisito->id }} colorpicker-element">
-                                        <input type="text" name="input_color" readonly class="form-control" style="background-color: #fff" value="@if ($requisito->color != '') @endif" />
+                                        <input type="text" name="input_color" readonly class="form-control" style="background-color: #fff"  />
                                         <div class="input-group-addon">
                                             <i style="background-color: rgb(130, 124, 124);"></i>
                                         </div>
