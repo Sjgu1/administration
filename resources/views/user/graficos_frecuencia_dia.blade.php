@@ -15,7 +15,7 @@
     <section class="content">
       <div class="row">
         <!-- /.col (LEFT) -->
-        <div class="col-md-12">
+        <div class="col-md-12" style="display: none">
           <!-- LINE CHART -->
           <div class="box box-info">
             <div class="box-header with-border">
