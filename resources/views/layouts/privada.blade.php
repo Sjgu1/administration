@@ -171,194 +171,88 @@
       </form>-->
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu">
-        <li class="header">Menú</li>
-        <li class="@if ($current_view == 'user') active @endif">
-          <a href="/user/proyectosusers">
-            <i class="fa fa-edit"></i><span>@lang('messages.proyectos')</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-green">@lang('messages.nuevo')</small>
-            </span>
-          </a>
-        </li>
-        <li class="treeview @if ($current_view == 'sprintsrequisitos') active @endif">
-          <a href="#">
-            <i class="fa fa-files-o"></i>
-            <span>@lang('messages.sprints')</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            @foreach ($selected_project_sprints as $sprint)
-              <li><a href="/sprintsrequisitos/{{ $sprint->id }}"><i class="fa fa-circle-o"></i>{{ $sprint->nombre }}</a></li>
-            @endforeach
-            <!--<li><a href="/sprintsrequisitos"><i class="fa fa-circle-o"></i>@lang('messages.listar requisitos')</a></li>-->
-            <!--li><a href="/user/requisitosusers"><i class="fa fa-circle-o"></i> Crear Requisito</a></li-->
-          </ul>
-        </li>
-        <li class="treeview @if ($current_view == 'pizarra') active @endif">
-          <a href="#">
-            <i class="fa fa-files-o"></i>
-            <span>@lang('messages.pizarra')</span>
-            <span class="pull-right-container">
-              <span class="fa fa-angle-left pull-right"></span>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            @foreach ($selected_project_sprints as $sprint)
-              <li><a href="/pizarra/{{ $sprint->id }}"><i class="fa fa-circle-o"></i>{{ $sprint->nombre }}</a></li>
-            @endforeach
-            <!--<li><a href="/sprintsrequisitos"><i class="fa fa-circle-o"></i>@lang('messages.listar requisitos')</a></li>-->
-            <!--li><a href="/user/requisitosusers"><i class="fa fa-circle-o"></i> Crear Requisito</a></li-->
-          </ul>
-        </li>
-        <li class="@if ($current_view == 'actividad') active @endif">
-          <a href="/actividad">
-            <i class="fa fa-pie-chart"></i>
-            <span>@lang('messages.actividad')</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-green">@lang('messages.nuevo')</small>
-              <!--<i class="fa fa-angle-left pull-right"></i>-->
-            </span>
-          </a>
-          <!--<ul class="treeview-menu">
-            <li><a href="../charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
-            <li><a href="../charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
-            <li><a href="../charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
-            <li><a href="../charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
-          </ul>-->
-        </li>
-        <li class="treeview @if ($current_view == 'graficos') active @endif">
-          <a href="#">
-            <i class="fa fa-laptop"></i>
-            <span>@lang('messages.graficos')</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="/graficos/burndown"><i class="fa fa-circle-o"></i>Burndown</a></li>
-            <li><a href="/graficos/burndown/sprints"><i class="fa fa-circle-o"></i>Burndown sprints</a></li>
-            <li><a href="/graficos/frecuencia"><i class="fa fa-circle-o"></i>@lang('messages.frecuencia')</a></li>
-            <li><a href="/graficos/requisitos"><i class="fa fa-circle-o"></i>@lang('messages.requisitos')</a></li>
-            <li><a href="/graficos/commits"><i class="fa fa-circle-o"></i>Commits</a></li>
-            <li class="active"><a href="timeline.html"><i class="fa fa-circle-o"></i>@lang('messages.actividad')</a></li>
-          </ul>
-        </li>
-        <li class="@if ($current_view == 'calendario') {{ 'active' }} @endif">
-          <a href="/calendario">
-            <i class="fa fa-edit"></i><span>@lang('messages.calendario')</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-green">@lang('messages.nuevo')</small>
-            </span>
-          </a>
-        </li>
-        <li class="@if ($current_view == 'userspublic') active @endif">
-          <a href="/userspublic">
-            <i class="fa fa-pie-chart"></i>
-            <span>@lang('messages.usuarios')</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-green">@lang('messages.nuevo')</small>
-              <!--<i class="fa fa-angle-left pull-right"></i>-->
-            </span>
-          </a>
-          <!--<ul class="treeview-menu">
-            <li><a href="../charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
-            <li><a href="../charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
-            <li><a href="../charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
-            <li><a href="../charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
-          </ul>-->
-        </li>
-
-        <!-- A PARTIR DE AQUÍ ESTÁ COMENTADO PORQUE PARECE QUE NO NECESITAMOS MÁS OPCIONES EN EL MENÚ
-        SI SE PRECISAN MÁS, SIMPLEMENTE DESCOMENTAR
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-table"></i> <span>Tables</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="../tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
-            <li><a href="../tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="../calendar.html">
-            <i class="fa fa-calendar"></i> <span>Calendar</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-red">3</small>
-              <small class="label pull-right bg-blue">17</small>
-            </span>
-          </a>
-        </li>
-        <li>
-          <a href="../mailbox/mailbox.html">
-            <i class="fa fa-envelope"></i> <span>Mailbox</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-yellow">12</small>
-              <small class="label pull-right bg-green">16</small>
-              <small class="label pull-right bg-red">5</small>
-            </span>
-          </a>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-folder"></i> <span>Examples</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="../examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>
-            <li><a href="../examples/profile.html"><i class="fa fa-circle-o"></i> Profile</a></li>
-            <li><a href="../examples/login.html"><i class="fa fa-circle-o"></i> Login</a></li>
-            <li><a href="../examples/register.html"><i class="fa fa-circle-o"></i> Register</a></li>
-            <li><a href="../examples/lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
-            <li><a href="../examples/404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>
-            <li><a href="../examples/500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li>
-            <li><a href="../examples/blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>
-            <li><a href="../examples/pace.html"><i class="fa fa-circle-o"></i> Pace Page</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-share"></i> <span>Multilevel</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-            <li>
-              <a href="#"><i class="fa fa-circle-o"></i> Level One
+        <ul class="sidebar-menu">
+          <li class="header">Menú</li>
+            <li @if ($current_view == 'user') {!! 'class="active"' !!} @endif>
+              <a href="/user/proyectosusers">
+                <i class="fa fa-edit"></i><span>@lang('messages.proyectos')</span>
+                <span class="pull-right-container">
+                  <small class="label pull-right bg-green">@lang('messages.nuevo')</small>
+                </span>
+              </a>
+            </li>
+            <li class="treeview @if ($current_view == 'sprintsrequisitos') active @endif">
+              <a href="#">
+                <i class="fa fa-files-o"></i>
+                <span>@lang('messages.sprints')</span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
-                <li>
-                  <a href="#"><i class="fa fa-circle-o"></i> Level Two
-                    <span class="pull-right-container">
-                      <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                  </a>
-                  <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                  </ul>
-                </li>
+                @foreach ($selected_project_sprints as $sprint)
+                  <li><a href="/sprintsrequisitos/{{ $sprint->id }}"><i class="fa fa-circle-o"></i>{{ $sprint->nombre }}</a></li>
+                @endforeach
               </ul>
             </li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-          </ul>
-        </li>
-        <li><a href="../../documentation/index.html"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
-        -->
-      </ul>
+            <li class="treeview @if ($current_view == 'pizarra') active @endif">
+              <a href="#">
+                <i class="fa fa-files-o"></i>
+                <span>@lang('messages.pizarra')</span>
+                <span class="pull-right-container">
+                  <span class="fa fa-angle-left pull-right"></span>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                @foreach ($selected_project_sprints as $sprint)
+                  <li><a href="/pizarra/{{ $sprint->id }}"><i class="fa fa-circle-o"></i>{{ $sprint->nombre }}</a></li>
+                @endforeach
+              </ul>
+            </li>
+            <li class="@if ($current_view == 'actividad') active @endif">
+              <a href="/actividad">
+                <i class="fa fa-pie-chart"></i>
+                <span>@lang('messages.actividad')</span>
+                <span class="pull-right-container">
+                  <small class="label pull-right bg-green">@lang('messages.nuevo')</small>
+                </span>
+              </a>
+            </li>
+            <li class="treeview @if ($current_view == 'graficos') active @endif">
+              <a href="#">
+                <i class="fa fa-laptop"></i>
+                <span>@lang('messages.graficos')</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="/graficos/burndown"><i class="fa fa-circle-o"></i>Burndown</a></li>
+                <li><a href="/graficos/burndown/sprints"><i class="fa fa-circle-o"></i>Burndown sprints</a></li>
+                <li><a href="/graficos/frecuencia"><i class="fa fa-circle-o"></i>@lang('messages.frecuencia')</a></li>
+                <li><a href="/graficos/requisitos"><i class="fa fa-circle-o"></i>@lang('messages.requisitos')</a></li>
+                <li><a href="/graficos/commits"><i class="fa fa-circle-o"></i>Commits</a></li>
+                <!--<li class="active"><a href="timeline.html"><i class="fa fa-circle-o"></i>@lang('messages.actividad')</a></li>-->
+              </ul>
+            </li>
+            <li class="@if ($current_view == 'calendario') active @endif">
+              <a href="/calendario">
+                <i class="fa fa-edit"></i><span>@lang('messages.calendario')</span>
+                <span class="pull-right-container">
+                  <small class="label pull-right bg-green">@lang('messages.nuevo')</small>
+                </span>
+              </a>
+            </li>
+            <li @if ($current_view == 'userspublic') {!! 'class="active"' !!} @endif>
+              <a href="/userspublic">
+                <i class="fa fa-pie-chart"></i>
+                <span>@lang('messages.usuarios')</span>
+                <span class="pull-right-container">
+                  <small class="label pull-right bg-green">@lang('messages.nuevo')</small>
+                </span>
+              </a>
+            </li>
+        </ul>
     </section>
     <!-- /.sidebar -->
   </aside>

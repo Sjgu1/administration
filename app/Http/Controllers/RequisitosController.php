@@ -30,8 +30,21 @@ class RequisitosController extends Controller
     public function cambiarEstado(Request $request){
         
         $requisito = Requisito::where('id', $request->id)->first();
-        $requisito->estado= $request->estado;
+
+        if ($requisito->estado != $request->estado){
+
+            $modificacion = new Modificacion();
+            $fecha_del_sistema = new DateTime('NOW');
+            $modificacion->fecha = $fecha_del_sistema->format('d/m/Y H:i:s');
+            $modificacion->tipo = 'edit_state';
+            $modificacion->mensaje = Auth::user()->name . ' ' . Auth::user()->apellidos . ':' . $requisito->estado . ';' . $request->estado;
+            $modificacion->requisito()->associate($requisito);
+            $modificacion->save();
+        }
+
+        $requisito->estado = $request->estado;
         $requisito->save();
+
     }
     public function details($id){
         $requisito = Requisito::where('id', $id)->first();

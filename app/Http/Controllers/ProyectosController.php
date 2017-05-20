@@ -239,7 +239,7 @@ class ProyectosController extends Controller
     public static function getHistorico(){
 
         $eventos = array();
-        $sprints = Sprint::where('proyecto_id', 4)->get();
+        $sprints = Sprint::where('proyecto_id', session()->get('selected_project')->id)->get();
 
         foreach ($sprints as $sprint){
 
