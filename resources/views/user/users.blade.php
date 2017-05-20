@@ -24,14 +24,18 @@
     <section class="content-header">
         <h1>@lang('messages.gestionar proyecto')</h1>
         <ol class="breadcrumb">
+            @if ($crear_sprint)
             <button type="button" data-toggle="modal" data-target="#CrearSprint" class="btn btn-block btn-success btn-xs">Crear Sprint</button>
+            @endif
         </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
     <div class="callout callout-info">
-        <h4>{{$proyecto->nombre}}<i class="fa fa-fw fa-edit pull-right btn " data-toggle="modal" data-target="#exampleModalEdit"></i></h4>
+        <h4>{{$proyecto->nombre}}
+            @if ($modificar_proyecto) <i class="fa fa-fw fa-edit pull-right btn " data-toggle="modal" data-target="#exampleModalEdit"></i> @endif
+        </h4>
         <p>{{$proyecto->fecha_inicio}} <i class="fa fa-minus"></i> {{$proyecto->fecha_fin_estimada}}</p>
       </div>
         <div class="row">
@@ -60,7 +64,9 @@
                                 <th>@lang('messages.nombre y apellidos')</th>
                                 <th>@lang('messages.rol')</th>
                                 <th>Email</th>
+                                @if ($modificar_usuarios)
                                 <th>@lang('messages.opciones')</th>
+                                @endif
                             </tr>
 
                             @foreach ($proyecto_users as $proyecto_user)
@@ -70,10 +76,12 @@
                                     <td>{{ $proyecto_user->user->name . ' ' . $proyecto_user->user->apellidos }}</td>
                                     <td><span class="label {{ $proyecto_user->rol->label }}">{{ $proyecto_user->rol->nombre }}</span></td>
                                     <td>{{ $proyecto_user->user->email }}</td>
+                                    @if ($modificar_usuarios)
                                     <td>
                                         <i class="fa fa-fw fa-edit btn" data-toggle="modal" data-target="#exampleModalProyectoUser{{ $proyecto_user->user_id }}" style="color: blue"></i>
                                         <i id="deleteButton{{ $proyecto_user->user_id }}" class="fa fa-fw fa-trash-o btn" style="color: red"></i>
                                     </td>
+                                    @endif
                                 </tr>
                             @endforeach
 
@@ -85,6 +93,7 @@
             </div>
         </div>
         <!-- SELECT2 EXAMPLE -->
+        @if ($invitar_usuarios)
       <div class="box box-default">
         <div class="box-header with-border">
           <h3 class="box-title">Añadir usuario</h3>
@@ -131,6 +140,7 @@
         </form>
       </div>
       <!-- /.box -->
+      @endif
 
 <!-- Formulario modificación rol -->
 @foreach ($proyecto_users as $proyecto_user)

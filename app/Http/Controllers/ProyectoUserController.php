@@ -7,6 +7,7 @@ use App\ProyectoUser;
 use App\Rol;
 use App\User;
 use Auth;
+use App\Permiso;
 
 class ProyectoUserController extends Controller
 {
@@ -19,7 +20,7 @@ class ProyectoUserController extends Controller
     }
     public function userspublic($id = null){
 
-        $proyecto= session()->get('selected_project');
+        $proyecto = session()->get('selected_project');
         $proyecto_users = ProyectoUser::where('proyecto_id', session()->get('selected_project')->id)->with('user')->with('rol')->get();
         $users_to_exclude = array();
 
@@ -54,7 +55,16 @@ class ProyectoUserController extends Controller
             //var_dump($proyecto_user->rol);
         }
 
-        return view('user.users', ['proyecto_users' => $proyecto_users, 'users' => $users, 'rols' => $rols, 'proyecto' => $proyecto]);
+        // Permisos
+        $modificar_usuarios = ProyectosController::permisoChecker('modificar_usuarios');
+        $crear_sprint = ProyectosController::permisoChecker('crear_sprint');
+        $modificar_proyecto = ProyectosController::permisoChecker('modificar_proyecto');
+        $invitar_usuarios = ProyectosController::permisoChecker('invitar_usuarios');
+        // /Permisos
+
+        //var_dump($modificar_usuarios);
+
+        return view('user.users', ['proyecto_users' => $proyecto_users, 'users' => $users, 'rols' => $rols, 'proyecto' => $proyecto, 'modificar_usuarios' => $modificar_usuarios, 'crear_sprint' => $crear_sprint, 'modificar_proyecto' => $modificar_proyecto, 'invitar_usuarios' => $invitar_usuarios]);
     }
 
     public function modify(Request $request){
