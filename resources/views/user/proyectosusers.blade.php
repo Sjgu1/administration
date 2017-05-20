@@ -51,14 +51,16 @@ $(document).ready(function() {
 			@foreach($proyectosusers as $proyectouser)
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<div class="info-box bg-aqua">
-						<span class="info-box-icon btn" onclick="sesionProyecto({{$proyectouser->proyecto}})"><div class="profileImage"></div></span>
+						<span class="info-box-icon btn" onclick="sesionProyecto({{$proyectouser->proyecto}})"><div class="profileImage{{$proyectouser->proyecto->id}}"></div></span>
 						<div class="info-box-content">
-							<span class="info-box-text firstName">{{ $proyectouser->proyecto->nombre }}</span>
+							<span class="info-box-text firstName{{$proyectouser->proyecto->id}}">{{ $proyectouser->proyecto->nombre }}</span>
 							
 						</div><!-- /.info-box-content -->
 					</div><!-- /.info-box -->
 				</div>
-				<script>$('.profileImage').text($('.firstName').text().charAt(0));</script>
+				<script>$('.profileImage{{$proyectouser->proyecto->id}}').text($('.firstName{{$proyectouser->proyecto->id}}').text().charAt(0));
+				console.log($('.profileImage{{$proyectouser->proyecto->id}}').text($('.firstName{{$proyectouser->proyecto->id}}').text().charAt(0)));
+				</script>
 				@endforeach
 				<a href="{{ url('user/proyecto/new') }}">
 				<div class="col-md-3 col-sm-6 col-xs-12">
