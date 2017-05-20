@@ -405,7 +405,7 @@
                               <div class="col-md-6" style="padding-left: 0%">
                                  <label for="message-text" class="control-label">@lang('messages.fecha estimada de inicio'):</label>
                                  <div class="input-group form-group has-feedback">
-                                    <input type='text' class="form-control" value="{{ $requisito->fecha_inicio }}" disabled />
+                                    <input type='text' class="form-control" readonly value="{{ $requisito->fecha_inicio }}" disabled />
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                  </div>
                               </div>
