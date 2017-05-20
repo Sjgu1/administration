@@ -36,6 +36,7 @@ class PermisosRolsTableSeeder extends Seeder
         $permiso9 = Permiso::where('id', '9')->first();
         $permiso10 = Permiso::where('id', '10')->first();
         $permiso11 = Permiso::where('id', '11')->first();
+        $permiso12 = Permiso::where('id', '12')->first();
 
         $rol->permisos()->attach($permiso1->id);
         $rol->permisos()->attach($permiso2->id);
@@ -48,6 +49,7 @@ class PermisosRolsTableSeeder extends Seeder
         $rol->permisos()->attach($permiso9->id);
         $rol->permisos()->attach($permiso10->id);
         $rol->permisos()->attach($permiso11->id);
+        $rol->permisos()->attach($permiso12->id);
 
         $rol = Rol::where('id', '3')->first();
         $rol->permisos()->attach($permiso2->id);

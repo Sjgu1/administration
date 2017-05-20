@@ -34,7 +34,7 @@
     <section class="content">
     <div class="callout callout-info">
         <h4>{{$proyecto->nombre}}
-            @if ($modificar_proyecto) <i class="fa fa-fw fa-edit pull-right btn " data-toggle="modal" data-target="#exampleModalEdit"></i> @endif
+            <i class="fa fa-fw fa-edit pull-right btn " data-toggle="modal" data-target="#exampleModalEdit"></i>
         </h4>
         <p>{{$proyecto->fecha_inicio}} <i class="fa fa-minus"></i> {{$proyecto->fecha_fin_estimada}}</p>
       </div>
@@ -326,8 +326,13 @@
                                 
                             </div>
                             <div class="modal-footer">
-                                <button id="eliminar_proyecto{{ $proyecto->id }}" type="button" class="btn btn-danger pull-left">@lang('messages.eliminar')</button>
-                                <button type="submit" class="btn btn-success">@lang('messages.modificar')</button>
+                                @if ($borrar_proyecto)
+                                    <button id="eliminar_proyecto{{ $proyecto->id }}" type="button" class="btn btn-danger pull-left">@lang('messages.eliminar')</button>
+                                @endif
+                                <button class="btn btn-default" data-dismiss="modal" aria-label="Close">@lang('messages.proyectos')</button>
+                                @if ($modificar_proyecto)
+                                    <button type="submit" class="btn btn-success">@lang('messages.modificar')</button>
+                                @endif
                             </div>
                     </form>
                     </div>

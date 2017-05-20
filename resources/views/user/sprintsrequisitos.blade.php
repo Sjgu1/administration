@@ -34,7 +34,9 @@
     <!-- Main content -->
     <section class="content connectedSortable">
         <div class="callout callout-info">
-            <h4>{{ $sprint->nombre }}<i class="fa fa-fw fa-edit pull-right btn " class="btn btn-primary" data-toggle="modal" data-target="#exampleModalEdit"></i></h4>
+            <h4>{{ $sprint->nombre }}
+                @if ($modificar_sprint) <i class="fa fa-fw fa-edit pull-right btn " class="btn btn-primary" data-toggle="modal" data-target="#exampleModalEdit"></i>@endif
+            </h4>
 
         <p>{{ $sprint->fecha_inicio }} <i class="fa fa-minus"></i> {{ $sprint->fecha_fin_estimada }}</p>
       </div>
@@ -204,8 +206,13 @@
                                 
                             </div>
                             <div class="modal-footer">
+                                @if ($borrar_sprint)
                                 <button id="eliminar_sprint{{ $sprint->id }}" type="button" class="btn btn-danger pull-left">@lang('messages.eliminar')</button>
+                                @endif
+                                <button class="btn btn-default" data-dismiss="modal" aria-label="Close">@lang('messages.proyectos')</button>
+                                @if ($modificar_sprint)
                                 <button type="submit" class="btn btn-success">@lang('messages.modificar')</button>
+                                @endif
                             </div>
                     </form>
                     </div>
@@ -320,9 +327,13 @@
                         </div>
                     </div>
                     <div class="modal-footer">
+                        @if ($borrar_requisito)
                         <button id="eliminar{{ $requisito->id }}" type="button" class="btn btn-danger pull-left">@lang('messages.eliminar')</button>
+                        @endif
                         <button class="btn btn-default" data-dismiss="modal" aria-label="Close">@lang('messages.proyectos')</button>
+                        @if ($modificar_requisito)
                         <button type="submit" class="btn btn-success">@lang('messages.modificar')</button>
+                        @endif
                     </div>
                 </form>
             </div>

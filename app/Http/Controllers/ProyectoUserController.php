@@ -59,12 +59,13 @@ class ProyectoUserController extends Controller
         $modificar_usuarios = ProyectosController::permisoChecker('modificar_usuarios');
         $crear_sprint = ProyectosController::permisoChecker('crear_sprint');
         $modificar_proyecto = ProyectosController::permisoChecker('modificar_proyecto');
+        $borrar_proyecto = ProyectosController::permisoChecker('borrar_proyecto');
         $invitar_usuarios = ProyectosController::permisoChecker('invitar_usuarios');
         // /Permisos
 
         //var_dump($modificar_usuarios);
 
-        return view('user.users', ['proyecto_users' => $proyecto_users, 'users' => $users, 'rols' => $rols, 'proyecto' => $proyecto, 'modificar_usuarios' => $modificar_usuarios, 'crear_sprint' => $crear_sprint, 'modificar_proyecto' => $modificar_proyecto, 'invitar_usuarios' => $invitar_usuarios]);
+        return view('user.users', ['proyecto_users' => $proyecto_users, 'users' => $users, 'rols' => $rols, 'proyecto' => $proyecto, 'modificar_usuarios' => $modificar_usuarios, 'crear_sprint' => $crear_sprint, 'modificar_proyecto' => $modificar_proyecto, 'borrar_proyecto' => $borrar_proyecto, 'invitar_usuarios' => $invitar_usuarios]);
     }
 
     public function modify(Request $request){

@@ -80,5 +80,11 @@ class PermisosTableSeeder extends Seeder
             'descripcion' => 'Permiso que habilita la modificación de los datos de un determinado proyecto'
         ]);
         $permiso->save();
+
+        $permiso = new Permiso([
+            'nombre' => 'borrar_proyecto',
+            'descripcion' => 'Permiso que habilita el borrado de un determinado proyecto'
+        ]);
+        $permiso->save();
     }
 }
