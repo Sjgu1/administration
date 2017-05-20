@@ -204,7 +204,7 @@
                                 
                             </div>
                             <div class="modal-footer">
-                                <button id="confirmacion{{ $sprint->id }}" type="button" class="btn btn-danger pull-left">@lang('messages.eliminar')</button>
+                                <button id="eliminar_sprint{{ $sprint->id }}" type="button" class="btn btn-danger pull-left">@lang('messages.eliminar')</button>
                                 <button type="submit" class="btn btn-success">@lang('messages.modificar')</button>
                             </div>
                     </form>
@@ -335,19 +335,21 @@
 <script>
 @foreach ($requisitos as $requisito)
 
-    $("#eliminar" + {{ $requisito->id }}).click(function() {
+    $("#eliminar{{ $requisito->id }}").click(function() {
 
         swal({
-            title: "Are you sure?",
-            text: "No podrás deshacer esta acción",
+            title: "¿Estás seguro?",
+            text: "Vas a borrar el requisito {{ $requisito->nombre }}",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Yes, delete it",
-            closeOnConfirm: false
+            cancelButtonText: "Cancelar",
+            confirmButtonText: "Sí, adelante",
+            closeOnConfirm: false,
+            allowOutsideClick: true
         },
         function(){
-            swal("Deleted!", "Your imaginary file has been deleted", "success");
+            window.location.href = "{{ url('deleteproyectouser') . '/' . $requisito->id . '/' . $requisito->id }}";
         });
     });
 
@@ -359,16 +361,16 @@
 @foreach ($requisitos as $requisito)
 
     //color picker with addon
-    $(".my-colorpicker" + {{ $requisito->id }}).colorpicker();
+    $(".my-colorpicker{{ $requisito->id }}").colorpicker();
 
     //Date picker
-    $('#datepicker' + {{ $requisito->id }}).datepicker({
+    $('#datepicker{{ $requisito->id }}').datepicker({
       autoclose: true,
       format: 'dd/mm/yyyy'
     })
     .on('changeDate', function(e) {
         // Set the value for the date input
-        $("#input_fecha_estimada_fin" + {{ $requisito->id }}).val($("#datepicker" + {{ $requisito->id }}).datepicker('getFormattedDate'));
+        $("#input_fecha_estimada_fin{{ $requisito->id }}").val($("#datepicker{{ $requisito->id }}").datepicker('getFormattedDate'));
 
         // Revalidate it
         //$('#eventForm').formValidation('revalidateField', 'selectedDate');
@@ -390,42 +392,64 @@
 <script>
 
     //Date picker
-    $('#datepicker_fecha_inicio_sprint' + {{ $sprint->id }}).datepicker({
+    $('#datepicker_fecha_inicio_sprint{{ $sprint->id }}').datepicker({
       autoclose: true,
       format: 'dd/mm/yyyy'
     })
     .on('changeDate', function(e) {
         // Set the value for the date input
-        $("#input_fecha_inicio_sprint" + {{ $sprint->id }}).val($("#datepicker_fecha_inicio_sprint" + {{ $sprint->id }}).datepicker('getFormattedDate'));
+        $("#input_fecha_inicio_sprint{{ $sprint->id }}").val($("#datepicker_fecha_inicio_sprint{{ $sprint->id }}").datepicker('getFormattedDate'));
 
         // Revalidate it
         //$('#eventForm').formValidation('revalidateField', 'selectedDate');
     });
 
     //Date picker
-    $('#datepicker_fecha_fin_estimada_sprint' + {{ $sprint->id }}).datepicker({
+    $('#datepicker_fecha_fin_estimada_sprint{{ $sprint->id }}').datepicker({
       autoclose: true,
       format: 'dd/mm/yyyy'
     })
     .on('changeDate', function(e) {
         // Set the value for the date input
-        $("#input_fecha_fin_estimada_sprint" + {{ $sprint->id }}).val($("#datepicker_fecha_fin_estimada_sprint" + {{ $sprint->id }}).datepicker('getFormattedDate'));
+        $("#input_fecha_fin_estimada_sprint{{ $sprint->id }}").val($("#datepicker_fecha_fin_estimada_sprint{{ $sprint->id }}").datepicker('getFormattedDate'));
 
         // Revalidate it
         //$('#eventForm').formValidation('revalidateField', 'selectedDate');
     });
 
     //Date picker
-    $('#datepicker_fecha_fin_sprint' + {{ $sprint->id }}).datepicker({
+    $('#datepicker_fecha_fin_sprint{{ $sprint->id }}').datepicker({
       autoclose: true,
       format: 'dd/mm/yyyy'
     })
     .on('changeDate', function(e) {
         // Set the value for the date input
-        $("#input_fecha_fin_sprint" + {{ $sprint->id }}).val($("#datepicker_fecha_fin_sprint" + {{ $sprint->id }}).datepicker('getFormattedDate'));
+        $("#input_fecha_fin_sprint{{ $sprint->id }}").val($("#datepicker_fecha_fin_sprint{{ $sprint->id }}").datepicker('getFormattedDate'));
 
         // Revalidate it
         //$('#eventForm').formValidation('revalidateField', 'selectedDate');
+    });
+
+</script>
+
+<script>
+
+    $("#eliminar_sprint{{ $sprint->id }}").click(function() {
+
+        swal({
+            title: "¿Estás seguro?",
+            text: "Vas a borrar el sprint {{ $sprint->nombre }}",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            cancelButtonText: "Cancelar",
+            confirmButtonText: "Sí, adelante",
+            closeOnConfirm: false,
+            allowOutsideClick: true
+        },
+        function(){
+            window.location.href = "{{ url('deleteproyectouser') . '/' . $sprint->id . '/' . $sprint->id }}";
+        });
     });
 
 </script>
