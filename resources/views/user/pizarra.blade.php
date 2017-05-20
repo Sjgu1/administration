@@ -2,17 +2,19 @@
 @section('content')
 <script src="/adminlte/colores.js"></script>
 <script type="text/javascript">
-    function update(jscolor, id) {
-        document.getElementById(document.getElementById('cambiarColor').getAttribute('value')).style.backgroundColor = '#' + jscolor;
+    function update(valor, id) {  
+        console.log( valor);   
+        console.log( id);     
+        document.getElementById(document.getElementById('cambiarColor').getAttribute('value')).style.backgroundColor =valor;
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        console.log("aqui llego");
+        
         $.post("/requisitoUsuario/colores", {
             columna: document.getElementById('cambiarColor').getAttribute('value'),
-            color: document.getElementById(document.getElementById('cambiarColor').getAttribute('value')).style.backgroundColor = '#' + jscolor,
+            color: document.getElementById(document.getElementById('cambiarColor').getAttribute('value')).style.backgroundColor =  valor,
             cambiar: "fondo",
             sprint_id: id
         });
@@ -20,8 +22,10 @@
     }
 </script>
 <script type="text/javascript">
-    function updateTexto(jscolor, id) {
-        document.getElementById(document.getElementById('cambiarColor').getAttribute('value')).style.color = '#' + jscolor;
+    function updateTexto(valor, id) {
+         console.log(document.getElementById(document.getElementById('cambiarColor').getAttribute('value')).firstElementChild);
+        document.getElementById(document.getElementById('cambiarColor').getAttribute('value')).firstElementChild.style.color = valor;
+       
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -29,7 +33,7 @@
         });
         $.post("/requisitoUsuario/colores", {
             columna: document.getElementById('cambiarColor').getAttribute('value'),
-            color: document.getElementById(document.getElementById('cambiarColor').getAttribute('value')).style.color = '#' + jscolor,
+            color: document.getElementById(document.getElementById('cambiarColor').getAttribute('value')).firstElementChild.style.color = valor,
             cambiar: "texto",
             sprint_id: id
         });
@@ -38,9 +42,9 @@
 </script>
 
 <script type="text/javascript">
-    function updateRequisitoColor(jscolor, id) {
+    function updateRequisitoColor(valor, id) {
         //document.getElementById(document.getElementById('cambiarColor').getAttribute('value')).css.backgroundTopColor = '#' + jscolor;
-        document.getElementById(document.getElementById('cambiarColor').getAttribute('value')).style.borderTopColor = '#' + jscolor;
+        document.getElementById(document.getElementById('cambiarColor').getAttribute('value')).style.borderTopColor =valor;
         // $('document.getElementById(document.getElementById('cambiarColor').getAttribute('value'))')
 
         $.ajaxSetup({
@@ -49,7 +53,7 @@
             }
         });
         $.post("/requisitoUsuario/colorRequisito", {
-            color: document.getElementById(document.getElementById('cambiarColor').getAttribute('value')).style.color = '#' + jscolor,
+            color: document.getElementById(document.getElementById('cambiarColor').getAttribute('value')).style.color = valor,
             requisito_id: id
         });
     }
@@ -79,12 +83,15 @@
     }
 
     function cambiarColor(recibido) {
+                console.log("aqui llego");
+
         var a = document.getElementById('cambiarColor');
         a.setAttribute('value', recibido);
         console.log(recibido);
     }
 </script>
 <script>
+
     $('#exampleModal').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget)
         var recipient = button.data('whatever')
@@ -93,7 +100,9 @@
         modal.find('.modal-body input').val(recipient)
     })
 </script>
+<script>
 
+</script>
 <input id="cambiarColor" style="display:none;" value="columna1">
 <!-- jQuery UI 1.11.4 -->
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
@@ -103,6 +112,11 @@
 </script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/adminlte/dist/js/pages/dashboard.js"></script>
+<!-- Bootstrap Color Picker -->
+<link rel="stylesheet" href="/adminlte/plugins/colorpicker/bootstrap-colorpicker.min.css">
+
+<!-- bootstrap color picker -->
+<script src="/adminlte/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
 
 <section class="content-header">
     <h1>{{$proyecto->nombre}}
@@ -149,20 +163,41 @@
                                     </div>
                                         <!-- /.col -->
                                         <div class="col-md-3">
+<<<<<<< HEAD
+                                        <label>@lang('messages.color del fondo')</label>
+                                        <div class="input-group my-colorpicker-col colorpicker-element">                             
+                                        <input type="text" name="input_color_col" id="input_color_col"  class="form-control" style="background-color: #fff;" />
+                                        <div class="input-group-addon">
+                                            <i style="background-color: rgb(130, 124, 124);"></i>
+=======
                                             <div class="form-group">
                                                 <label>@lang('messages.color del fondo')</label>
                                                 <input class="form-control jscolor" onchange="update(this.jscolor, {{$sprint->id}})">
                                                 <br/>
                                             </div>
+>>>>>>> 4a37770a77588b51625be6d2e8c177dbe51e68a8
                                         </div>
+                                    </div>
+                                    </div>
+                                        
                                         <!-- /.col -->
                                         <div class="col-md-3">
+<<<<<<< HEAD
+                                        <label>@lang('messages.color del texto')</label>
+                                        <div class="input-group my-colorpicker-text colorpicker-element">                             
+                                        <input type="text" name="input_color_text" id="input_color_text"  class="form-control" style="background-color: #fff;" changeColor="updateTexto(this.value,{{$sprint->id}})"/>
+                                        <div class="input-group-addon">
+                                            <i style="background-color: rgb(130, 124, 124);"></i>
+=======
                                             <div class="form-group">
                                                 <label>@lang('messages.color del texto')</label>
                                                 <input class="form-control jscolor" onchange="updateTexto(this.jscolor,{{$sprint->id}})">
                                             </div>
                                             <!-- /.form-group -->
+>>>>>>> 4a37770a77588b51625be6d2e8c177dbe51e68a8
                                         </div>
+                                    </div>
+                                    </div>
                                         <!-- /.col -->
                                     </div>
                                     
@@ -178,7 +213,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="col-md-12 box box-primary well-sm" id="columna1" style="background-color:{{$sprint->color1}}; color:{{$sprint->colorTexto1}};">
-                    <div class="box-header with-border">
+                    <div class="box-header with-border" >
                         <h3 class="box-title">@lang('messages.por hacer')</h3>
                         <span class=" pull-right glyphicon glyphicon-plus" data-toggle="modal" data-target="#crearRequisito" style="cursor: pointer; cursor: hand;">
                 </span>
@@ -339,6 +374,7 @@
                 </div>
             </div>
         </div>
+        <!-- Modificar requisitos////////////////////////////// -->
         @foreach ($requisitos as $requisito )
 
         <div class="modal fade" id="exampleModal{{$requisito->
@@ -383,17 +419,16 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>             
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class=" col-md-6 ">
-                                            <div class="form-group">
-                                                <div <div class='input-group'>
-                                                    <label style="color:#000">@lang('messages.color de la tarjeta'):
-                                                        <input style="z-index:2;" class="jscolor btn-xs btn-info" onchange="updateRequisitoColor(this.jscolor,{{$requisito->id}})">
-                                                    </label>
-                                                </div>
-                                            </div>
+                                            <label style="color:#000">@lang('messages.color de la tarjeta'):
+                                        <div class="input-group my-colorpicker-{{$requisito->id}} colorpicker-element">                             
+                                        <input type="text" name="input_color_{{$requisito->id}}" id="input_color_{{$requisito->id}}"  class="form-control" style="background-color: #fff;" />
+                                        <div class="input-group-addon">
+                                            <i style="background-color: rgb(130, 124, 124);"></i>
+                                        </div>
                                         </div>
                                     </div>
                                     <script>
@@ -416,6 +451,13 @@
                                     <option value="{{$usuario->user->id}}">{{$usuario->user->name}}</option>
                                     @endforeach
                                 </select>
+                                 <script>
+                                         $('.my-colorpicker-{{$requisito->id}}').colorpicker().on('changeColor', function(ev){
+                                             var a=  ev.color.toHex();
+                                            console.log("asasas");
+                                            updateRequisitoColor(a, {{$requisito->id}});
+                                    });
+                                    </script>
                                 <script type="text/javascript">
                                     $('#ex-data-multiple-{{$requisito->id}}').picker();
 
@@ -451,6 +493,7 @@
         </div>
     </div>
         <script>
+            $(".my-colorpicker-col").colorpicker();
             $("#confirmacion{{ $requisito->id }}").click(function() {
 
                 swal({
@@ -478,5 +521,16 @@
                 opacity: 0.5
             }).disableSelection();
         });
+    </script>
+    <script>
+        $('.my-colorpicker-col').colorpicker().on('changeColor', function(ev){
+            var a=  ev.color.toHex();
+            update(a, {{$sprint->id}});
+    });
+     $('.my-colorpicker-text').colorpicker().on('changeColor', function(ev){
+            var a=  ev.color.toHex();
+            console.log(a);
+            updateTexto(a, {{$sprint->id}});
+    });
     </script>
     @endsection
