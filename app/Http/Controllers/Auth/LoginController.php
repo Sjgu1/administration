@@ -43,6 +43,6 @@ class LoginController extends Controller
         //$request->session()->flush();
        // $request->session()->put('selected_project', Proyecto::where('id', 1)->first());
 
-        return redirect('/user/' . $user->id);
+        return redirect('/user/proyectosusers');
     }
 }

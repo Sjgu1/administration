@@ -1,5 +1,7 @@
 @extends('layouts.privada')
-@section('cabecera')
+
+	@section('content')
+	@section('cabecera')
 @if(session()->has('message'))
     @if(session()->has('exito'))
     <div id="event-modal" class="callout callout-success" style="position: fixed;">
@@ -36,8 +38,6 @@ $(document).ready(function() {
 		padding: 25%;
 	}
 </style>
-
-	@section('content')
 	<section class="content-header">
         <h1> @lang('messages.proyectos')</h1>
         <ol class="breadcrumb">
