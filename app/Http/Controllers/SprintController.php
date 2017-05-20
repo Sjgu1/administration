@@ -44,7 +44,7 @@ class SprintController extends Controller
         $borrar_requisito = ProyectosController::permisoChecker('borrar_requisito');
         $crear_requisito = ProyectosController::permisoChecker('crear_requisito');
         // /Permisos
-        
+
         $modificacions_raw = ProyectosController::getHistorico();
         $modificacions = array();
 
@@ -294,7 +294,7 @@ class SprintController extends Controller
                 $requisito->progreso = ($dias_totales == 0 ? 100 . '%' : floor($dias_que_llevo / $dias_totales * 100) . '%');
                 $requisito->porcentaje = $requisito->progreso;
 
-                $diferencia = '';
+                $diferencia = 0;
 
                 // Lleva retraso
                 if ($fecha_fin_estimada < $fecha_dia_de_hoy){
@@ -310,9 +310,21 @@ class SprintController extends Controller
                 else {
 
                     $diferencia = $fecha_dia_de_hoy->diff($fecha_fin_estimada)->format('%a');
-                    $requisito->finalizacion = "En " . $diferencia;
-                    $requisito->color = 'green';
-                    $requisito->stripped = 'progress-striped';
+
+                    if ($fecha_dia_de_hoy >= $fecha_inicio){
+
+                        $requisito->finalizacion = "En " . $diferencia;
+                        $requisito->color = 'green';
+                        $requisito->stripped = 'progress-striped';
+
+                    }
+                    else {
+
+                        $requisito->finalizacion = "En " . $diferencia;
+                        $requisito->progreso = '0%';
+                        $requisito->porcentaje = $requisito->progreso;
+
+                    }
                 }
 
                 if ($diferencia == 1){
@@ -329,44 +341,48 @@ class SprintController extends Controller
             else {
 
                 $fecha_fin = DateTime::createFromFormat('d/m/Y', $requisito->fecha_fin);
-                $diferencia = $fecha_inicio->diff($fecha_fin);
+                $diferencia = $fecha_inicio->diff($fecha_fin)->format('%a');
 
-                if ($diferencia->d / 7 > 1){
+                if ($diferencia / 7 > 1){
 
-                    $requisito->duracion = $diferencia->w . " semanas";
+                    $requisito->duracion = floor($diferencia / 7) . " semanas";
 
-                    if ($diferencia->d > 0){
+                    if ($diferencia > 0){
 
-                        if ($diferencia->d > 1){
+                        $aux_aux = $fecha_inicio->diff($fecha_fin);
+                        
+                        if ($diferencia > 1){
 
-                            $requisito->duracion = $requisito->duracion . " y " . $diferencia->d . " días";
+                            $requisito->duracion = $requisito->duracion . " y " . $aux_aux->d . " días";
                         }
                         else {
 
-                            $requisito->duracion = $requisito->duracion . " y " . $diferencia->d . " día";
+                            $requisito->duracion = $requisito->duracion . " y " . $aux_aux->d . " día";
                         }
                     }
                 }
-                else if ($diferencia->d / 7 == 1){
+                else if (floor($diferencia / 7) == 1){
 
                     $requisito->duracion = "1 semana";
 
-                    if ($diferencia->d > 0){
+                    if ($diferencia > 0){
 
-                        if ($diferencia->d > 1){
+                        $aux_aux = $fecha_inicio->diff($fecha_fin);
 
-                            $requisito->duracion = $requisito->duracion . " y " . $diferencia->d . " días";
+                        if ($diferencia > 1){
+
+                            $requisito->duracion = $requisito->duracion . " y " . $aux_aux . " días";
                         }
                         else {
 
-                            $requisito->duracion = $requisito->duracion . " y " . $diferencia->d . " día";
+                            $requisito->duracion = $requisito->duracion . " y " . $aux_aux . " día";
                         }
                     }
 
                 }
-                else if ($diferencia->d > 1){
+                else if ($diferencia > 1){
 
-                    $requisito->duracion = $diferencia->d . " días";
+                    $requisito->duracion = $diferencia . " días";
                 }
                 else {
 

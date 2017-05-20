@@ -482,7 +482,19 @@ class ProyectosController extends Controller
 
     public function graficos_requisitos($id = null){
 
-        $requisitos = Requisito::with('users')->get();
+        $sprints = Sprint::where('proyecto_id', session()->get('selected_project')->id)->get();
+        $requisitos = array();
+
+        foreach ($sprints as $sprint){
+
+            $requisitos_aux = Requisito::where('sprint_id', $sprint->id)->get();
+
+            foreach ($requisitos_aux as $requisito_aux){
+
+                array_push($requisitos, $requisito_aux);
+            }
+
+        }
 
         //var_dump($requisitos);
 
@@ -492,13 +504,15 @@ class ProyectosController extends Controller
 
             foreach ($requisito->users as $user){
 
-                if (array_key_exists($user->username, $usuarios)){
+                $key = $user->name . ' ' . $user->apellidos;
 
-                    $usuarios[$user->username] += 1;
+                if (array_key_exists($key, $usuarios)){
+
+                    $usuarios[$key] += 1;
                 }
                 else {
 
-                    $usuarios[$user->username] = 1;
+                    $usuarios[$key] = 1;
                 }
 
             }
@@ -537,91 +551,94 @@ class ProyectosController extends Controller
 
     public function burndown_sprints($id = null){
 
-        $sprint = Sprint::where('id', 13)->first();
-        $requisitos = $sprint->requisitos;
+        $sprints = Sprint::where('proyecto_id', session()->get('selected_project')->id)->with('requisitos')->get();
+        $results = array();
 
-        // Cálculo de días totales
-        $fecha_inicio = DateTime::createFromFormat('d/m/Y', $sprint->fecha_inicio);
-        $fecha_fin_estimada = DateTime::createFromFormat('d/m/Y', $sprint->fecha_fin_estimada);
-        $dias = $fecha_inicio->diff($fecha_fin_estimada)->format('%a');
+        foreach ($sprints as $sprint){
 
-        // Cálculo de horas totales estimadas de acuerdo a la suma de todos los requisitos
-        $horas_totales = 0;
+            $requisitos = $sprint->requisitos;
 
-        foreach ($requisitos as $requisito){
+            // Cálculo de días totales
+            $fecha_inicio = DateTime::createFromFormat('d/m/Y', $sprint->fecha_inicio);
+            $fecha_fin_estimada = DateTime::createFromFormat('d/m/Y', $sprint->fecha_fin_estimada);
+            $fecha_dia_de_hoy = new DateTime('NOW');
 
-            $fecha_inicio_requisito = DateTime::createFromFormat('d/m/Y', $requisito->fecha_inicio);
-            $fecha_fin_estimada_requisito = DateTime::createFromFormat('d/m/Y', $requisito->fecha_fin_estimada);
+            $dias = $fecha_inicio->diff($fecha_fin_estimada)->format('%a');
 
-            //var_dump($fecha_inicio_requisito->diff($fecha_fin_estimada_requisito)->format('%a'));
-            $horas_totales += $fecha_inicio_requisito->diff($fecha_fin_estimada_requisito)->format('%a') * 8;
-        }
+            // Cálculo de la cantidad de requisitos a realizar por sprint
+            $requisitos_totales = count($requisitos);
 
-        // Tamaño a sustraer en la gráfica de burndown estimado a medida que pasen los días
-        $to_substract = $horas_totales / $dias;
+            // Tamaño a sustraer en la gráfica de burndown estimado a medida que pasen los días
+            $to_substract = $requisitos_totales / $dias;
 
-        $burndown_estimado = array();
-        $burndown_reales = array();
-        for ($i = 0; $i <= $dias; $i++){ $burndown_reales[$i] = $horas_totales; }
+            $burndown_estimado = array();
+            $burndown_reales = array();
+            //for ($i = 0; $i <= $dias; $i++){ $burndown_reales[$i] = $requisitos_totales; }
 
-        $fechas = array();
+            $fechas = array();
 
-        // Extracción de las horas reales y de las fechas
-        $burndown_estimado_hora = $horas_totales;
-        $fecha_actual = DateTime::createFromFormat('d/m/Y', $fecha_inicio->format('d/m/Y'));
+            // Extracción de las horas reales y de las fechas
+            $burndown_estimado_hora = $requisitos_totales;
+            $fechai = DateTime::createFromFormat('d/m/Y', $fecha_inicio->format('d/m/Y'));
 
-        for ($i = 0; $i <= $dias; $i++){
+            for ($i = 0; $i <= $dias; $i++){
 
-            array_push($burndown_estimado, $burndown_estimado_hora);
-            $burndown_estimado_hora = abs(bcsub($burndown_estimado_hora, $to_substract, 4));
+                array_push($burndown_estimado, $burndown_estimado_hora);
+                $burndown_estimado_hora = abs(bcsub($burndown_estimado_hora, $to_substract, 4));
 
-            //if ($fecha_actual <= new DateTime('NOW')){
+                // Contabilizamos los requisitos hechos pero solo hasta el día actual
+                if ($fechai <= $fecha_dia_de_hoy){
 
-                foreach ($requisitos as $requisito){
+                    $burndown_reales[$i] = $requisitos_totales;
 
-                    if ($requisito->fecha_fin != null){
+                    foreach ($requisitos as $requisito){
 
-                        $fecha_aux = DateTime::createFromFormat('d/m/Y', $requisito->fecha_fin);
+                        if ($requisito->estado == 'Hecho'){
 
-                        // Ha finalizado antes o en el día que estamos mirando
-                        if ($fecha_aux <= $fecha_actual){
+                            $requisito_fecha_fin = DateTime::createFromFormat('d/m/Y', $requisito->fecha_fin);
+                            
+                            if ($fechai >= $requisito_fecha_fin){
 
-                            // Ha finalizado antes de lo estimado
-                            $fecha_aux_estimada = DateTime::createFromFormat('d/m/Y', $requisito->fecha_fin_estimada);
-
-                            if ($fecha_aux < $fecha_aux_estimada){
-
-                                $burndown_reales[$i] -= DateTime::createFromFormat('d/m/Y', $requisito->fecha_inicio)->diff($fecha_aux_estimada)->format('%a') * 8;
-                            }
-                            // Ha finalizado el día estimado o posterior
-                            else {
-
-                                $burndown_reales[$i] -= DateTime::createFromFormat('d/m/Y', $requisito->fecha_inicio)->diff($fecha_aux)->format('%a') * 8;
+                                $burndown_reales[$i] -= 1;
                             }
                         }
                     }
+
                 }
 
-            /*}
-            else {
+                array_push($fechas, $fechai->format('d-m-Y'));
+                $fechai->add(new DateInterval('P1D'));
+            }
 
-                unset($burndown_reales[$i]);
-            }*/
-
-            array_push($fechas, $fecha_actual->format('d-m-Y'));
-            $fecha_actual->add(new DateInterval('P1D'));
+            $results[$sprint->id] = array();
+            $results[$sprint->id]['nombre'] = $sprint->nombre;
+            $results[$sprint->id]['burndown_estimado'] = $burndown_estimado;
+            $results[$sprint->id]['burndown_reales'] = $burndown_reales;
+            $results[$sprint->id]['fechas'] = $fechas;
         }
 
         //var_dump($burndown_reales);
         //$fecha_inicio = new DateTime($sprint->fecha_inicio);
 
-        return view('user.burndown_sprints', ['fechas' => $fechas, 'burndown_estimado' => $burndown_estimado, 'burndown_reales' => $burndown_reales]);
+        return view('user.burndown_sprints', ['results' => $results]);
     }
 
     public function calendario($id = null){
 
         // Hay que sacar todos los requisitos del proyecto, no solo los de un determinado sprint
-        $requisitos = Requisito::where('sprint_id', 13)->get();
+        $sprints = Sprint::where('proyecto_id', session()->get('selected_project')->id)->get();
+        $requisitos = array();
+        
+        foreach ($sprints as $sprint){
+            
+            $requisitos_aux = Requisito::where('sprint_id', $sprint->id)->get();
+
+            foreach ($requisitos_aux as $requisito_aux){
+
+                array_push($requisitos, $requisito_aux);
+            }
+            //array_push($requisitos, $requisitos_aux);
+        }
 
         $colores = array();
         array_push($colores, "#f56954");

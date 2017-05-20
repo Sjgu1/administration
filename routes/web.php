@@ -70,7 +70,6 @@ Route::group(['middleware' => ['web', 'auth']], function(){
     Route::get('user/sprintsusers', 'InsideController@searchSprint');
 
     Route::get('actividad', 'ProyectosController@actividad');
-    Route::get('graficos/burndown', 'ProyectosController@burndown_sprints');
     Route::get('graficos/burndown/sprints', 'ProyectosController@burndown_sprints');
     Route::get('graficos/commits', 'ProyectosController@graficos_commits');
     Route::get('graficos/requisitos', 'ProyectosController@graficos_requisitos');

@@ -15,11 +15,13 @@
     <section class="content">
       <div class="row">
         <!-- /.col (LEFT) -->
+
+        @foreach ($results as $clave => $valor)
         <div class="col-md-12">
           <!-- LINE CHART -->
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">@lang('messages.sprint') 1</h3>
+              <h3 class="box-title">{{ $valor['nombre'] }}</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -29,46 +31,21 @@
             </div>
             <div class="box-body">
               <div class="chart">
-                <canvas id="lineChart" style="height: 250px; width: 454px;" height="250" width="454"></canvas>
+                <canvas id="lineChart{{$clave}}" style="height: 250px; width: 454px;" height="250" width="454"></canvas>
               </div>
             </div>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
-
         </div>
         <!-- /.col (RIGHT) -->
+        @endforeach
 
-        <!-- /.col (LEFT) -->
-        <div class="col-md-12">
-          <!-- LINE CHART -->
-          <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">@lang('messages.sprint') 1</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-            <div class="box-body">
-              <div class="chart">
-                <canvas id="lineChart2" style="height: 250px; width: 454px;" height="250" width="454"></canvas>
-              </div>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-
-        </div>
-        <!-- /.col (RIGHT) -->
       </div>
       <!-- /.row -->
 
     </section>
     <script>
-  $(function () {
     /* ChartJS
      * -------
      * Here we will create a few charts using ChartJS
@@ -83,10 +60,14 @@
     // This will get the first returned node in the jQuery collection.
     //var areaChart = new Chart(areaChartCanvas);
 
+    @foreach ($results as $clave => $result)
+
+    $(function () {
+
     var areaChartData = {
       labels: [
 
-        @foreach ($fechas as $fecha)
+        @foreach ($result['fechas'] as $fecha)
           {!! '"' !!} {{ $fecha }} {!! '"' !!} {{ ',' }}
         @endforeach
 
@@ -108,7 +89,7 @@
           //pointHighlightStroke: "rgba(60,141,188,1)",
           data: [
 
-            @foreach ($burndown_reales as $hora)
+            @foreach ($result['burndown_reales'] as $hora)
               {{ $hora . ',' }}
             @endforeach
 
@@ -130,7 +111,7 @@
           //pointHighlightStroke: "rgba(220,220,220,1)",
           data: [
 
-            @foreach ($burndown_estimado as $hora)
+            @foreach ($result['burndown_estimado'] as $hora)
               {{ $hora . ',' }}
             @endforeach
           
@@ -184,7 +165,7 @@
     //-------------
     //- LINE CHART -
     //--------------
-    var lineChartCanvas = $("#lineChart").get(0).getContext("2d");
+    var lineChartCanvas = $("#lineChart{{$clave}}").get(0).getContext("2d");
     //var lineChart = new Chart(lineChartCanvas);
     var lineChartOptions = areaChartOptions;
     lineChartOptions.fill = false;
@@ -196,117 +177,9 @@
         options: lineChartOptions
     });
 
-    //-------------
-    //- PIE CHART -
-    //-------------
-    // Get context with jQuery - using jQuery's .get() method.
-    var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
-    var pieChart = new Chart(pieChartCanvas);
-    var PieData = [
-      {
-        value: 700,
-        color: "#f56954",
-        highlight: "#f56954",
-        label: "Chrome"
-      },
-      {
-        value: 500,
-        color: "#00a65a",
-        highlight: "#00a65a",
-        label: "IE"
-      },
-      {
-        value: 400,
-        color: "#f39c12",
-        highlight: "#f39c12",
-        label: "FireFox"
-      },
-      {
-        value: 600,
-        color: "#00c0ef",
-        highlight: "#00c0ef",
-        label: "Safari"
-      },
-      {
-        value: 300,
-        color: "#3c8dbc",
-        highlight: "#3c8dbc",
-        label: "Opera"
-      },
-      {
-        value: 100,
-        color: "#d2d6de",
-        highlight: "#d2d6de",
-        label: "Navigator"
-      }
-    ];
-    var pieOptions = {
-      //Boolean - Whether we should show a stroke on each segment
-      segmentShowStroke: true,
-      //String - The colour of each segment stroke
-      segmentStrokeColor: "#fff",
-      //Number - The width of each segment stroke
-      segmentStrokeWidth: 2,
-      //Number - The percentage of the chart that we cut out of the middle
-      percentageInnerCutout: 50, // This is 0 for Pie charts
-      //Number - Amount of animation steps
-      animationSteps: 100,
-      //String - Animation easing effect
-      animationEasing: "easeOutBounce",
-      //Boolean - Whether we animate the rotation of the Doughnut
-      animateRotate: true,
-      //Boolean - Whether we animate scaling the Doughnut from the centre
-      animateScale: false,
-      //Boolean - whether to make the chart responsive to window resizing
-      responsive: true,
-      // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
-      maintainAspectRatio: true,
-      //String - A legend template
-      legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
-    };
-    //Create pie or douhnut chart
-    // You can switch between pie and douhnut using the method below.
-    pieChart.Doughnut(PieData, pieOptions);
-
-    //-------------
-    //- BAR CHART -
-    //-------------
-    var barChartCanvas = $("#barChart").get(0).getContext("2d");
-    var barChart = new Chart(barChartCanvas);
-    var barChartData = areaChartData;
-    barChartData.datasets[1].fillColor = "#00a65a";
-    barChartData.datasets[1].strokeColor = "#00a65a";
-    barChartData.datasets[1].pointColor = "#00a65a";
-    var barChartOptions = {
-      //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
-      scaleBeginAtZero: true,
-      //Boolean - Whether grid lines are shown across the chart
-      scaleShowGridLines: true,
-      //String - Colour of the grid lines
-      scaleGridLineColor: "rgba(0,0,0,.05)",
-      //Number - Width of the grid lines
-      scaleGridLineWidth: 1,
-      //Boolean - Whether to show horizontal lines (except X axis)
-      scaleShowHorizontalLines: true,
-      //Boolean - Whether to show vertical lines (except Y axis)
-      scaleShowVerticalLines: true,
-      //Boolean - If there is a stroke on each bar
-      barShowStroke: true,
-      //Number - Pixel width of the bar stroke
-      barStrokeWidth: 2,
-      //Number - Spacing between each of the X value sets
-      barValueSpacing: 5,
-      //Number - Spacing between data sets within X values
-      barDatasetSpacing: 1,
-      //String - A legend template
-      legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
-      //Boolean - whether to make the chart responsive
-      responsive: true,
-      maintainAspectRatio: true
-    };
-
-    barChartOptions.datasetFill = false;
-    barChart.Bar(barChartData, barChartOptions);
   });
+
+  @endforeach
+
 </script>
 @endsection

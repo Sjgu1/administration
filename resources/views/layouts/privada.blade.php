@@ -232,7 +232,6 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="/graficos/burndown"><i class="fa fa-circle-o"></i>Burndown</a></li>
                 <li><a href="/graficos/burndown/sprints"><i class="fa fa-circle-o"></i>Burndown sprints</a></li>
                 <li><a href="/graficos/frecuenciadia"><i class="fa fa-circle-o"></i>Frecuencia diaria</a></li>
                 <li><a href="/graficos/frecuenciahora"><i class="fa fa-circle-o"></i>Frecuencia horaria</a></li>
