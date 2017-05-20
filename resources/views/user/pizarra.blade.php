@@ -163,38 +163,23 @@
                                     </div>
                                         <!-- /.col -->
                                         <div class="col-md-3">
-<<<<<<< HEAD
                                         <label>@lang('messages.color del fondo')</label>
                                         <div class="input-group my-colorpicker-col colorpicker-element">                             
                                         <input type="text" name="input_color_col" id="input_color_col"  class="form-control" style="background-color: #fff;" />
                                         <div class="input-group-addon">
                                             <i style="background-color: rgb(130, 124, 124);"></i>
-=======
-                                            <div class="form-group">
-                                                <label>@lang('messages.color del fondo')</label>
-                                                <input class="form-control jscolor" onchange="update(this.jscolor, {{$sprint->id}})">
-                                                <br/>
-                                            </div>
->>>>>>> 4a37770a77588b51625be6d2e8c177dbe51e68a8
                                         </div>
                                     </div>
                                     </div>
                                         
                                         <!-- /.col -->
                                         <div class="col-md-3">
-<<<<<<< HEAD
+
                                         <label>@lang('messages.color del texto')</label>
                                         <div class="input-group my-colorpicker-text colorpicker-element">                             
                                         <input type="text" name="input_color_text" id="input_color_text"  class="form-control" style="background-color: #fff;" changeColor="updateTexto(this.value,{{$sprint->id}})"/>
                                         <div class="input-group-addon">
                                             <i style="background-color: rgb(130, 124, 124);"></i>
-=======
-                                            <div class="form-group">
-                                                <label>@lang('messages.color del texto')</label>
-                                                <input class="form-control jscolor" onchange="updateTexto(this.jscolor,{{$sprint->id}})">
-                                            </div>
-                                            <!-- /.form-group -->
->>>>>>> 4a37770a77588b51625be6d2e8c177dbe51e68a8
                                         </div>
                                     </div>
                                     </div>
@@ -374,6 +359,7 @@
                 </div>
             </div>
         </div>
+        
         <!-- Modificar requisitos////////////////////////////// -->
         @foreach ($requisitos as $requisito )
 
@@ -386,42 +372,89 @@
                         <input type="hidden" name="id" value="{{$requisito->id }}" />
                         <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
                         <input type="hidden" name="estado" value="{{$requisito->estado }}" />
-                        <div class="modal-header form-group has-feedback">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <label for="recipient-name" class="control-label">@lang('messages.nombre'):</label>
-                            <input type="text" class="form-control modal-title" name="nombre" value="{{$requisito->nombre}}"  data-minlength="3" maxlength="20" required>
+                        
+                        <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <label for="recipient-name" class="control-label">@lang('messages.nombre'):</label>
+                        <div class="form-group has-feedback">
+                            <input type="text" class="form-control modal-title" name="input_nombre" value="{{ $requisito->nombre }}"  data-minlength="3" maxlength="20" required>
                         </div>
-                        <div class="modal-body">
-                            <div class="form-group  has-feedback">
-                                <label for="descripcion" class="control-label">@lang('messages.descripcion'):</label>
-                                <textarea id="descripcion" name="descripcion" class="form-control" rows="5" data-minlength="3" maxlength="65535" required>{{ $requisito->descripcion }}</textarea>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class=" col-md-6 form-group">
-                                        <label for="message-text" class="control-label">@lang('messages.fecha estimada de inicio'):</label>
-                                        <div class="form-group">
-                                            <div class='input-group date'>
-                                                <input type='text' class="form-control" value="{{$requisito->fecha_inicio}}" disabled /> <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="message-text" class="control-label">@lang('messages.fecha estimada de fin'):</label>
 
-                                        <div class="form-group">
-                                            <div class='input-group date' id='fecha_fin_{{$requisito->id}}'>
-                                                <input type='text' class="form-control" name="fecha_estimada_fin" value="{{$requisito->fecha_fin_estimada}}" /> <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                                                </span>
-                                            </div>
-                                        </div>
+                        <div class="modal-body" style="margin-bottom: 0px;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="box box-default box-solid collapsed-box" style="background-color: #fff;">
+                                    <div class="box-header with-border" style="background-color: #fff;">
+                                    <h3 class="box-title">Log</h3>
+
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                                        </button>
                                     </div>
-                                </div>             
-                                <div class="row">
-                                    <div class="col-md-12">
+                                    <!-- /.box-tools -->
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <div class="box-body" style="display: none;">
+                                        @foreach ($modificacions as $clave => $valor)
+                                            @if ($clave == $requisito->id)
+                                                @foreach ($valor as $modificacion)
+                                                    <p>{!! '-' . $modificacion['mensaje'] !!}<span class="pull-right">{{ $modificacion['dia_concreto'] }}</span></p>
+                                                    <hr>
+                                                @endforeach
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-6" style="padding-left: 0%">
+                                    <label for="message-text" class="control-label">@lang('messages.fecha estimada de inicio'):</label>
+                                    <div class="input-group form-group has-feedback">
+                                        <input type='text' class="form-control" value="{{ $requisito->fecha_inicio }}" disabled />
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6" style="padding-right: 0%">
+                                    <label for="message-text" class="control-label">@lang('messages.fecha estimada de fin'):</label>
+                                    <div class="input-group form-group has-feedback">
+                                        <input id="input_fecha_estimada_fin{{ $requisito->id }}" type='text' readonly class="form-control" name="input_fecha_estimada_fin" value="{{ $requisito->fecha_fin_estimada }}"  style="background-color: #fff"/>
+                                        <span id="datepicker{{ $requisito->id }}" class="input-group-addon" style="cursor: pointer; cursor: hand;"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <label for="descripcion" class="control-label">@lang('messages.descripcion'):</label>
+                        <div class="form-group has-feedback">
+                            <textarea id="descripcion" name="input_descripcion" class="form-control" rows="5" data-minlength="3" maxlength="65535" required>{{ $requisito->descripcion }}</textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-6" style="padding-left: 0%">
+                                    <label for="message-text" class="control-label">@lang('messages.usuarios asignados ahora'):</label>
+                                    <select name="input_user" class="form-control">
+                                        <option value="null">@lang('messages.selecciona nuevos usuarios')</option>
+                                        @if (count($requisito->users) > 0)
+                                            @foreach ($users as $user)
+                                                @if ($user->id == $requisito->users[0]->id)
+                                                    <option value="{{ $user->id }}" selected>{{ $user->name . ' ' . $user->apellidos }}</option>
+                                                @else
+                                                    <option value="{{ $user->id }}">{{ $user->name . ' ' . $user->apellidos }}</option>
+                                                @endif
+                                            @endforeach
+                                        @else
+                                            @foreach ($users as $user)
+                                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                </div>
+                    
+                   
                                         <div class=" col-md-6 ">
                                             <label style="color:#000">@lang('messages.color de la tarjeta'):
                                         <div class="input-group my-colorpicker-{{$requisito->id}} colorpicker-element">                             
@@ -431,6 +464,22 @@
                                         </div>
                                         </div>
                                     </div>
+                                    </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        @if ($borrar_requisito)
+                        <button id="eliminar{{ $requisito->id }}" type="button" class="btn btn-danger pull-left">@lang('messages.eliminar')</button>
+                        @endif
+                        <button class="btn btn-default" data-dismiss="modal" aria-label="Close">@lang('messages.proyectos')</button>
+                        @if ($modificar_requisito)
+                        <button type="submit" class="btn btn-success">@lang('messages.modificar')</button>
+                        @endif
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
                                     <script>
                                         $('#fecha_fin_{{$requisito->id}}').datetimepicker({
                                             format: "DD/MM/YYYY"
@@ -438,19 +487,7 @@
                                     </script>
                                 </div>
                             </div>
-                            <div class="well">
-                                @lang('messages.usuarios asignados ahora'):
-                                <br> @foreach($usuarios as $usuario) @foreach($requisitosAsignados as $reqAsig ) @if($requisito->id == $reqAsig->requisito->id) @if($usuario->user->id == $reqAsig->user->id )
-                                <!--<option selected="selected" value="{{$usuario->user->id}}">{{$usuario->user->name}}</option>-->
-                                <label value="{{$usuario->user->name}}">{{$usuario->user->name}}</label>
-                                <br> @endif @endif @endforeach @endforeach
-                                <br> @lang('messages.selecciona nuevos usuarios'):
-                                <br/>
-                                <select name="basic" id="ex-data-multiple-{{$requisito->id}}" multiple style="display: none;">
-                                    @foreach($usuarios as $usuario)
-                                    <option value="{{$usuario->user->id}}">{{$usuario->user->name}}</option>
-                                    @endforeach
-                                </select>
+
                                  <script>
                                          $('.my-colorpicker-{{$requisito->id}}').colorpicker().on('changeColor', function(ev){
                                              var a=  ev.color.toHex();

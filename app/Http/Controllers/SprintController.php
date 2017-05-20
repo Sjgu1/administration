@@ -29,7 +29,7 @@ class SprintController extends Controller
          $sprint = Sprint::get()
                     ->where('id', $id)
                     ->first();
-         
+         $proyectousers = ProyectoUser::with('user')->where('proyecto_id', $proyecto->id)->get();
          $usuarios = ProyectoUser::with('user')
                     ->where('proyecto_id',$proyecto->id)
                     ->get();
@@ -37,7 +37,35 @@ class SprintController extends Controller
                     ->get();
          $requisitos = Requisito::get()
                     ->where('sprint_id', $sprint->id);
-         return view('user.pizarra', compact('requisitos', 'proyecto', 'sprint', 'usuarios', 'requisitosAsignados'));
+
+        // Permisos
+        $modificar_sprint = ProyectosController::permisoChecker('modificar_sprint');
+        $modificar_requisito = ProyectosController::permisoChecker('modificar_requisito');
+        $borrar_requisito = ProyectosController::permisoChecker('borrar_requisito');
+        // /Permisos
+        $modificacions_raw = ProyectosController::getHistorico();
+        $modificacions = array();
+
+        foreach ($modificacions_raw as $modificacion){
+
+            if (array_key_exists($modificacion['id'], $modificacions)){
+
+                array_push($modificacions[$modificacion['id']], $modificacion);
+            }
+            else {
+
+                $modificacions[$modificacion['id']] = array();
+                array_push($modificacions[$modificacion['id']], $modificacion);
+            }
+        }
+
+        $users = array();
+
+        foreach ($proyectousers as $user){
+
+            array_push($users, $user->user);
+        }
+         return view('user.pizarra', compact('requisitos', 'proyecto', 'sprint', 'usuarios', 'requisitosAsignados', 'modificacions', 'users', 'modificar_sprint', 'modificar_requisito', 'borrar_requisito'));
     }
     public function details($id){
 
