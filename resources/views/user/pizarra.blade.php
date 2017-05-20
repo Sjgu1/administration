@@ -1,4 +1,17 @@
 @extends('layouts.privada')
+@section('cabecera')
+@if(session()->has('message'))
+    @if(session()->has('exito'))
+    <div id="event-modal" class="callout callout-success" style="position: fixed;">
+        <p>{{ session()->get('message') }}</p>
+    </div>
+    @else
+    <div id="event-modal" class="callout callout-danger" style="position: fixed;">
+        <p>{{ session()->get('message') }}</p>
+    </div>
+    @endif
+@endif
+@endsection
 @section('content')
 <script src="/adminlte/colores.js"></script>
 <script type="text/javascript">
@@ -402,7 +415,7 @@
                               <div class="col-md-6" style="padding-left: 0%">
                                  <label for="message-text" class="control-label">@lang('messages.fecha estimada de inicio'):</label>
                                  <div class="input-group form-group has-feedback">
-                                    <input type='text' class="form-control" value="{{ $requisito->fecha_inicio }}" disabled />
+                                    <input type='text' class="form-control" readonly value="{{ $requisito->fecha_inicio }}" disabled />
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                  </div>
                               </div>
@@ -545,5 +558,13 @@
        var a=  ev.color.toHex();
        updateTexto(a, {{$sprint->id}});
    });
+</script>
+<script>
+
+$(document).ready(function(){
+   setTimeout(function(){
+         $('#event-modal').fadeOut(200);
+   },1000);
+});
 </script>
 @endsection

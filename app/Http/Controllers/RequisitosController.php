@@ -230,8 +230,10 @@ class RequisitosController extends Controller
         $requisito->descripcion = $input_descripcion;
         $requisito->fecha_fin_estimada = $input_fecha_fin_estimada;
         $requisito->color = $input_color;
-        $requisito->save();
+        $success = $requisito->save();
 
+    
+        
         if ($input_user != 'null'){
 
             $deleter = RequisitoUser::where('requisito_id', $requisito->id)->delete();
@@ -246,7 +248,11 @@ class RequisitosController extends Controller
             $deleter = RequisitoUser::where('requisito_id', $requisito->id)->delete();
         }
 
-        return redirect()->back();
+        if($success){
+            return redirect()->back()->with('message', 'Se ha modficado el requisito')->with('exito', 'eliminado');  
+        }else{
+             return redirect()->back()->with('message', 'Error al modificar el requisito');
+        }
     }
     
  public function modificarColores(Request $request){
@@ -260,8 +266,14 @@ class RequisitosController extends Controller
         
 
         $requisito = Requisito::where('id', $id)->first();
-        $requisito->delete();
-        return redirect()->back();       // return view('exito_elemento',['slot'=> "Se ha eliminado el Requisito: " .$requisito->id  ] );
+        $success = $requisito->delete();
+    
+        if($success){
+            return redirect()->back()->with('message', 'Se ha eliminado el requisito')->with('exito', 'eliminado');  
+        }else{
+             return redirect()->back()->with('message', 'Error al eliminar el requisito');
+        }
+            // return view('exito_elemento',['slot'=> "Se ha eliminado el Requisito: " .$requisito->id  ] );
 
     }
 
