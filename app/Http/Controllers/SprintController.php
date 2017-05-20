@@ -345,7 +345,14 @@ class SprintController extends Controller
 
         $proyecto = session()->get('selected_project');
 
-        return view('user.sprintsrequisitos', ['proyecto' => $proyecto, 'sprint' => $sprint, 'users' => $users, 'requisitos' => $requisitos, 'modificacions' => $modificacions, 'requisitos_no_finalizados' => $requisitos_no_finalizados, 'requisitos_finalizados' => $requisitos_finalizados]);
+        // Permisos
+        $modificar_sprint = ProyectosController::permisoChecker('modificar_sprint');
+        $borrar_sprint = ProyectosController::permisoChecker('borrar_sprint');
+        $modificar_requisito = ProyectosController::permisoChecker('modificar_requisito');
+        $borrar_requisito = ProyectosController::permisoChecker('borrar_requisito');
+        // /Permisos
+
+        return view('user.sprintsrequisitos', ['proyecto' => $proyecto, 'sprint' => $sprint, 'users' => $users, 'requisitos' => $requisitos, 'modificacions' => $modificacions, 'requisitos_no_finalizados' => $requisitos_no_finalizados, 'requisitos_finalizados' => $requisitos_finalizados, 'modificar_sprint' => $modificar_sprint, 'borrar_sprint' => $borrar_sprint, 'modificar_requisito' => $modificar_requisito, 'borrar_requisito' => $borrar_requisito]);
     }
 
 }

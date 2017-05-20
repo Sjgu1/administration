@@ -16,50 +16,74 @@ class PermisosTableSeeder extends Seeder
         DB::table('permisos')->delete();
 
         $permiso = new Permiso([
-            'nombre' => 'Crear sprint',
+            'nombre' => 'crear_sprint',
             'descripcion' => 'Permiso que habilita la creación de sprints en un determinado proyecto'
         ]);
         $permiso->save();
 
         $permiso = new Permiso([
-            'nombre' => 'Visualizar sprint',
+            'nombre' => 'visualizar_sprint',
             'descripcion' => 'Permiso que habilita la visualización de sprints en un determinado proyecto'
         ]);
         $permiso->save();
 
         $permiso = new Permiso([
-            'nombre' => 'Modificar sprint',
+            'nombre' => 'modificar_sprint',
             'descripcion' => 'Permiso que habilita la modificación de sprints en un determinado proyecto'
         ]);
         $permiso->save();
 
         $permiso = new Permiso([
-            'nombre' => 'Borrar sprint',
+            'nombre' => 'borrar_sprint',
             'descripcion' => 'Permiso que habilita el borrado de sprints en un determinado proyecto'
         ]);
         $permiso->save();
 
         $permiso = new Permiso([
-            'nombre' => 'Crear requisito',
+            'nombre' => 'crear_requisito',
             'descripcion' => 'Permiso que habilita la creación de requisitos en un determinado proyecto'
         ]);
         $permiso->save();
 
         $permiso = new Permiso([
-            'nombre' => 'Visualizar requisito',
+            'nombre' => 'visualizar_requisito',
             'descripcion' => 'Permiso que habilita la visualización de requisitos en un determinado proyecto'
         ]);
         $permiso->save();
 
         $permiso = new Permiso([
-            'nombre' => 'Modificar requisito',
+            'nombre' => 'modificar_requisito',
             'descripcion' => 'Permiso que habilita la modificación de requisitos en un determinado proyecto'
         ]);
         $permiso->save();
 
         $permiso = new Permiso([
-            'nombre' => 'Borrar requisito',
+            'nombre' => 'borrar_requisito',
             'descripcion' => 'Permiso que habilita el borrado de requisitos en un determinado proyecto'
+        ]);
+        $permiso->save();
+
+        $permiso = new Permiso([
+            'nombre' => 'modificar_usuarios',
+            'descripcion' => 'Permiso que habilita la modificación o borrado de usuarios en un determinado proyecto'
+        ]);
+        $permiso->save();
+
+        $permiso = new Permiso([
+            'nombre' => 'invitar_usuarios',
+            'descripcion' => 'Permiso que habilita la invitación de usuarios en un determinado proyecto'
+        ]);
+        $permiso->save();
+
+        $permiso = new Permiso([
+            'nombre' => 'modificar_proyecto',
+            'descripcion' => 'Permiso que habilita la modificación de los datos de un determinado proyecto'
+        ]);
+        $permiso->save();
+
+        $permiso = new Permiso([
+            'nombre' => 'borrar_proyecto',
+            'descripcion' => 'Permiso que habilita el borrado de un determinado proyecto'
         ]);
         $permiso->save();
     }

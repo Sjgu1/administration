@@ -30,22 +30,34 @@ class RequisitosController extends Controller
     public function cambiarEstado(Request $request){
         
         $requisito = Requisito::where('id', $request->id)->first();
+        $fecha_del_sistema = new DateTime('NOW');
 
         if ($requisito->estado != $request->estado){
 
             $modificacion = new Modificacion();
-            $fecha_del_sistema = new DateTime('NOW');
             $modificacion->fecha = $fecha_del_sistema->format('d/m/Y H:i:s');
             $modificacion->tipo = 'edit_state';
             $modificacion->mensaje = Auth::user()->name . ' ' . Auth::user()->apellidos . ':' . $requisito->estado . ';' . $request->estado;
             $modificacion->requisito()->associate($requisito);
             $modificacion->save();
+
+            $requisito->estado = $request->estado;
+
+            if ($requisito->estado == 'Hecho'){
+
+                $requisito->fecha_fin = $fecha_del_sistema->format('d/m/Y');
+
+            }
+            else {
+
+                $requisito->fecha_fin = '';
+            }
+
+            $requisito->save();
         }
 
-        $requisito->estado = $request->estado;
-        $requisito->save();
-
     }
+
     public function details($id){
         $requisito = Requisito::where('id', $id)->first();
         $requisito_sprint = Sprint::where('id', $requisito->sprint_id)->first();

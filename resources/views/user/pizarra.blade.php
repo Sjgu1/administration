@@ -153,6 +153,7 @@
                                 <div class="col-md-12">
                                     <div class="col-md-6">
                                         <div class="form-group">
+                                            <label>Estado</label>
                                             <select class="form-control" onchange="cambiarColor(this.value);">
                                                 <option value="columna1">@lang('messages.por hacer')</option>
                                                 <option value="columna2">@lang('messages.en tramite')</option>
@@ -162,22 +163,38 @@
                                     </div>
                                         <!-- /.col -->
                                         <div class="col-md-3">
+<<<<<<< HEAD
                                         <label>@lang('messages.color del fondo')</label>
                                         <div class="input-group my-colorpicker-col colorpicker-element">                             
                                         <input type="text" name="input_color_col" id="input_color_col"  class="form-control" style="background-color: #fff;" />
                                         <div class="input-group-addon">
                                             <i style="background-color: rgb(130, 124, 124);"></i>
+=======
+                                            <div class="form-group">
+                                                <label>@lang('messages.color del fondo')</label>
+                                                <input class="form-control jscolor" onchange="update(this.jscolor, {{$sprint->id}})">
+                                                <br/>
+                                            </div>
+>>>>>>> 4a37770a77588b51625be6d2e8c177dbe51e68a8
                                         </div>
                                     </div>
                                     </div>
                                         
                                         <!-- /.col -->
                                         <div class="col-md-3">
+<<<<<<< HEAD
                                         <label>@lang('messages.color del texto')</label>
                                         <div class="input-group my-colorpicker-text colorpicker-element">                             
                                         <input type="text" name="input_color_text" id="input_color_text"  class="form-control" style="background-color: #fff;" changeColor="updateTexto(this.value,{{$sprint->id}})"/>
                                         <div class="input-group-addon">
                                             <i style="background-color: rgb(130, 124, 124);"></i>
+=======
+                                            <div class="form-group">
+                                                <label>@lang('messages.color del texto')</label>
+                                                <input class="form-control jscolor" onchange="updateTexto(this.jscolor,{{$sprint->id}})">
+                                            </div>
+                                            <!-- /.form-group -->
+>>>>>>> 4a37770a77588b51625be6d2e8c177dbe51e68a8
                                         </div>
                                     </div>
                                     </div>

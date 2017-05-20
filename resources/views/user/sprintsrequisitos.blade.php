@@ -34,7 +34,9 @@
     <!-- Main content -->
     <section class="content connectedSortable">
         <div class="callout callout-info">
-            <h4>{{ $sprint->nombre }}<i class="fa fa-fw fa-edit pull-right btn " class="btn btn-primary" data-toggle="modal" data-target="#exampleModalEdit"></i></h4>
+            <h4>{{ $sprint->nombre }}
+                @if ($modificar_sprint) <i class="fa fa-fw fa-edit pull-right btn " class="btn btn-primary" data-toggle="modal" data-target="#exampleModalEdit"></i>@endif
+            </h4>
 
         <p>{{ $sprint->fecha_inicio }} <i class="fa fa-minus"></i> {{ $sprint->fecha_fin_estimada }}</p>
       </div>
@@ -64,7 +66,7 @@
                                 <th>@lang('messages.progreso estimado')</th>
                                 <th>%</th>
                                 <th>@lang('messages.finalizacion')</th>
-                                <th>@lang('messages.usuarios')</th>
+                                <th>@lang('messages.usuario')</th>
                             </tr>
 
                             @foreach ($requisitos_no_finalizados as $requisito)
@@ -80,7 +82,7 @@
 
                                     <td>
                                         @foreach ($requisito->users as $userReq)
-                                            <img src="/perfiles/{{ $userReq->imagen }}" class="user-image" alt="User Image" width="25" height="25">
+                                            <img src="/perfiles/{{ $userReq->imagen }}" class="user-image" alt="User Image" width="25" height="25" style="margin-left: 10%;">
                                         @endforeach
                                     </td>
                                 </tr>
@@ -169,22 +171,22 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class=" col-md-4 form-group">
-                                        <label for="message-text" class="control-label">@lang('messages.fecha estimada de inicio'):</label>
+                                        <label for="message-text" class="control-label">Fecha estimada inicio:</label>
                                         <div class="form-group">
                                             <div class='input-group date' id="fecha_inicio_crear">
-                                                <input type='text' class="form-control"  name="fecha_inicio"  value="{{$sprint->fecha_inicio}}" /> <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
+                                                <input id="input_fecha_inicio_sprint{{ $sprint->id }}" type='text' readonly class="form-control"  name="fecha_inicio"  value="{{ $sprint->fecha_inicio }}" style="background-color: #fff; "/> <span class="input-group-addon">
+                                                    <span id="datepicker_fecha_inicio_sprint{{ $sprint->id }}" class="glyphicon glyphicon-calendar"></span>
                                                 </span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="message-text" class="control-label">@lang('messages.fecha estimada de fin'):</label>
+                                        <label for="message-text" class="control-label">Fecha estimada fin:</label>
 
                                         <div class="form-group">
                                             <div class='input-group date'id="fecha_fin_estimada_crear"  >
-                                                <input type='text' class="form-control" name="fecha_fin_estimada" value="{{$sprint->fecha_fin_estimada}}" /> <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
+                                                <input id="input_fecha_fin_estimada_sprint{{ $sprint->id }}"type='text' readonly class="form-control" name="fecha_fin_estimada" value="{{ $sprint->fecha_fin_estimada }}" style="background-color: #fff; "/> <span class="input-group-addon">
+                                                <span id="datepicker_fecha_fin_estimada_sprint{{ $sprint->id }}" class="glyphicon glyphicon-calendar"></span>
                                                 </span>
                                             </div>
                                         </div>
@@ -193,9 +195,9 @@
                                         <label for="message-text" class="control-label">@lang('messages.fecha fin'):</label>
 
                                         <div class="form-group">
-                                            <div class='input-group date'id="fecha_fin_crear"  >
-                                                <input type='text' class="form-control" name="fecha_fin" value="{{$sprint->fecha_fin}}" /> <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
+                                            <div class='input-group date'id="fecha_fin_crear" >
+                                                <input id="input_fecha_fin_sprint{{ $sprint->id }}" type='text' readonly class="form-control" name="fecha_fin" value="{{ $sprint->fecha_fin }}" style="background-color: #fff; "/> <span class="input-group-addon">
+                                                <span id="datepicker_fecha_fin_sprint{{ $sprint->id }}" class="glyphicon glyphicon-calendar"></span>
                                                 </span>
                                             </div>
                                         </div>
@@ -204,24 +206,14 @@
                                 
                             </div>
                             <div class="modal-footer">
-                                <button id="confirmacion{{ $sprint->id }}" type="button" class="btn btn-danger pull-left">@lang('messages.eliminar')</button>
+                                @if ($borrar_sprint)
+                                <button id="eliminar_sprint{{ $sprint->id }}" type="button" class="btn btn-danger pull-left">@lang('messages.eliminar')</button>
+                                @endif
+                                <button class="btn btn-default" data-dismiss="modal" aria-label="Close">@lang('messages.proyectos')</button>
+                                @if ($modificar_sprint)
                                 <button type="submit" class="btn btn-success">@lang('messages.modificar')</button>
+                                @endif
                             </div>
-                            <script>
-                                $('#fecha_inicio_crear').datetimepicker({
-                                    format: "DD/MM/YYYY"
-                                 });
-                            </script>
-                            <script>
-                                $('#fecha_fin_crear').datetimepicker({
-                                    format: "DD/MM/YYYY"
-                                 });
-                            </script>
-                            <script>
-                                $('#fecha_fin_estimada_crear').datetimepicker({
-                                    format: "DD/MM/YYYY"
-                                 });
-                            </script>
                     </form>
                     </div>
                 </div>
@@ -310,9 +302,9 @@
                                         @if (count($requisito->users) > 0)
                                             @foreach ($users as $user)
                                                 @if ($user->id == $requisito->users[0]->id)
-                                                    <option value="{{ $user->id }}" selected>{{ $user->name }}</option>
+                                                    <option value="{{ $user->id }}" selected>{{ $user->name . ' ' . $user->apellidos }}</option>
                                                 @else
-                                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                                    <option value="{{ $user->id }}">{{ $user->name . ' ' . $user->apellidos }}</option>
                                                 @endif
                                             @endforeach
                                         @else
@@ -335,9 +327,13 @@
                         </div>
                     </div>
                     <div class="modal-footer">
+                        @if ($borrar_requisito)
                         <button id="eliminar{{ $requisito->id }}" type="button" class="btn btn-danger pull-left">@lang('messages.eliminar')</button>
+                        @endif
                         <button class="btn btn-default" data-dismiss="modal" aria-label="Close">@lang('messages.proyectos')</button>
+                        @if ($modificar_requisito)
                         <button type="submit" class="btn btn-success">@lang('messages.modificar')</button>
+                        @endif
                     </div>
                 </form>
             </div>
@@ -350,19 +346,21 @@
 <script>
 @foreach ($requisitos as $requisito)
 
-    $("#eliminar" + $requisito->id).click(function() {
+    $("#eliminar{{ $requisito->id }}").click(function() {
 
         swal({
-            title: "Are you sure?",
-            text: "No podrás deshacer esta acción",
+            title: "¿Estás seguro?",
+            text: "Vas a borrar el requisito {{ $requisito->nombre }}",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Yes, delete it",
-            closeOnConfirm: false
+            cancelButtonText: "Cancelar",
+            confirmButtonText: "Sí, adelante",
+            closeOnConfirm: false,
+            allowOutsideClick: true
         },
         function(){
-            swal("Deleted!", "Your imaginary file has been deleted", "success");
+            window.location.href = "{{ url('deleteproyectouser') . '/' . $requisito->id . '/' . $requisito->id }}";
         });
     });
 
@@ -374,16 +372,16 @@
 @foreach ($requisitos as $requisito)
 
     //color picker with addon
-    $(".my-colorpicker" + {{ $requisito->id }}).colorpicker();
+    $(".my-colorpicker{{ $requisito->id }}").colorpicker();
 
     //Date picker
-    $('#datepicker' + {{ $requisito->id }}).datepicker({
+    $('#datepicker{{ $requisito->id }}').datepicker({
       autoclose: true,
       format: 'dd/mm/yyyy'
     })
     .on('changeDate', function(e) {
         // Set the value for the date input
-        $("#input_fecha_estimada_fin" + {{ $requisito->id }}).val($("#datepicker" + {{ $requisito->id }}).datepicker('getFormattedDate'));
+        $("#input_fecha_estimada_fin{{ $requisito->id }}").val($("#datepicker{{ $requisito->id }}").datepicker('getFormattedDate'));
 
         // Revalidate it
         //$('#eventForm').formValidation('revalidateField', 'selectedDate');
@@ -400,4 +398,71 @@
     }
 
 </script>
+
+
+<script>
+
+    //Date picker
+    $('#datepicker_fecha_inicio_sprint{{ $sprint->id }}').datepicker({
+      autoclose: true,
+      format: 'dd/mm/yyyy'
+    })
+    .on('changeDate', function(e) {
+        // Set the value for the date input
+        $("#input_fecha_inicio_sprint{{ $sprint->id }}").val($("#datepicker_fecha_inicio_sprint{{ $sprint->id }}").datepicker('getFormattedDate'));
+
+        // Revalidate it
+        //$('#eventForm').formValidation('revalidateField', 'selectedDate');
+    });
+
+    //Date picker
+    $('#datepicker_fecha_fin_estimada_sprint{{ $sprint->id }}').datepicker({
+      autoclose: true,
+      format: 'dd/mm/yyyy'
+    })
+    .on('changeDate', function(e) {
+        // Set the value for the date input
+        $("#input_fecha_fin_estimada_sprint{{ $sprint->id }}").val($("#datepicker_fecha_fin_estimada_sprint{{ $sprint->id }}").datepicker('getFormattedDate'));
+
+        // Revalidate it
+        //$('#eventForm').formValidation('revalidateField', 'selectedDate');
+    });
+
+    //Date picker
+    $('#datepicker_fecha_fin_sprint{{ $sprint->id }}').datepicker({
+      autoclose: true,
+      format: 'dd/mm/yyyy'
+    })
+    .on('changeDate', function(e) {
+        // Set the value for the date input
+        $("#input_fecha_fin_sprint{{ $sprint->id }}").val($("#datepicker_fecha_fin_sprint{{ $sprint->id }}").datepicker('getFormattedDate'));
+
+        // Revalidate it
+        //$('#eventForm').formValidation('revalidateField', 'selectedDate');
+    });
+
+</script>
+
+<script>
+
+    $("#eliminar_sprint{{ $sprint->id }}").click(function() {
+
+        swal({
+            title: "¿Estás seguro?",
+            text: "Vas a borrar el sprint {{ $sprint->nombre }}",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            cancelButtonText: "Cancelar",
+            confirmButtonText: "Sí, adelante",
+            closeOnConfirm: false,
+            allowOutsideClick: true
+        },
+        function(){
+            window.location.href = "{{ url('deleteproyectouser') . '/' . $sprint->id . '/' . $sprint->id }}";
+        });
+    });
+
+</script>
+
 @endsection

@@ -15,8 +15,8 @@ use App\User;
 use App\Rol;
 use Auth;
 use Log;
-
-
+use DB;
+use App\Permiso;
 
 class ProyectosController extends Controller
 {
@@ -37,6 +37,28 @@ class ProyectosController extends Controller
             return view('proyecto', ['proyecto' => $proyecto]);
         }
         
+    }
+
+    public static function permisoChecker($nombre_permiso){
+
+        $aux = ProyectoUser::where('proyecto_id', session()->get('selected_project')->id)->where('user_id', Auth::user()->id)->with('rol')->first();
+        $permisos = DB::table('permiso_rol')->where('rol_id', $aux->rol_id)->get();
+        $allowed = false;
+
+        //var_dump($permisos);
+
+        foreach ($permisos as $perm_aux){
+
+            $permiso = Permiso::where('id', $perm_aux->permiso_id)->first();
+
+            if ($permiso->nombre == $nombre_permiso){
+
+                $allowed = true;
+                break;
+            }
+        }
+
+        return $allowed;
     }
 
     public function modify(Request $request){
@@ -335,7 +357,7 @@ class ProyectosController extends Controller
                     }
                     else if ($modificacion->tipo == "edit_state"){
 
-                        $datos['icon'] = 'fa fa-exchange bg-primary';
+                        $datos['icon'] = 'fa fa-exchange bg-green';
 
                         $exploded1 = explode(':', $modificacion->mensaje);
                         $author = $exploded1[0];
