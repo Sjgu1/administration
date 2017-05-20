@@ -2,13 +2,18 @@
 @section('cabecera')
 @if(session()->has('message'))
     @if(session()->has('exito'))
-    <div id="event-modal" class="callout callout-success" style="position: fixed;">
-        <p>{{ session()->get('message') }}</p>
+    <div  id="event-modal" class="alert alert-success alert-dismissible" style="position: absolute;">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                {{ session()->get('message') }}
     </div>
     @else
-    <div id="event-modal" class="callout callout-danger" style="position: fixed;">
-        <p>{{ session()->get('message') }}</p>
+    <div id="event-modal" class="alert alert-danger alert-dismissible" style="position: absolute;">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                {{ session()->get('message') }}
     </div>
+
     @endif
 @endif
 @endsection
