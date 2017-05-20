@@ -111,8 +111,10 @@
 <script src="/adminlte/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
 <section class="content-header">
    <h1>{{$proyecto->nombre}}
-      <small>{{$sprint->nombre}} 
+      <small>{{$sprint->nombre}}
+      @if ($modificar_sprint)
       <a href="#" data-toggle="collapse" data-target="#selectorColores" ><i class="fa fa-gears"></i></a>
+      @endif
       </small>
    </h1>
    <ol class="breadcrumb">
@@ -184,10 +186,12 @@
             <div class="col-md-12 box box-primary well-sm" id="columna1" style="background-color:{{$sprint->color1}}; color:{{$sprint->colorTexto1}};">
                <div class="box-header with-border" >
                   <h3 class="box-title">@lang('messages.por hacer')</h3>
+                  @if ($crear_requisito)
                   <span class=" pull-right glyphicon glyphicon-plus" data-toggle="modal" data-target="#crearRequisito" style="cursor: pointer; cursor: hand;">
+                  @endif
                   </span>
                </div>
-               <div id="accordion1" class="connectedSortable box-body">
+               <div id="accordion1" class="@if ($modificar_requisito) connectedSortable @endif box-body">
                   @foreach ($requisitos as $requisito ) @if ($requisito->estado == 'Por hacer')
                   <div class="panel box box-primary" style="border-top-width:7px; border-top-color:{{$requisito->color}}" id="modal{{$requisito->id}}" onclick="cambiarColor(modal{{$requisito->id}}.id)">
                      <div class="box-header with-border" id="{{$requisito->id}}">
@@ -226,7 +230,7 @@
                   <h3 class="box-title">@lang('messages.en tramite') 
                   </h3>
                </div>
-               <div id="accordion2" class="connectedSortable box-body">
+               <div id="accordion2" class="@if ($modificar_requisito) connectedSortable @endif box-body">
                   @foreach ($requisitos as $requisito ) @if ($requisito->estado == 'En trámite')
                   <div class="panel box box-primary" style="border-top-width:7px; border-top-color:{{$requisito->color}}" id="modal{{$requisito->id}}" onclick="cambiarColor(modal{{$requisito->id}}.id)">
                      <div class="box-header with-border" id="{{$requisito->id}}">
@@ -264,7 +268,7 @@
                   <h3 class="box-title">@lang('messages.hecho')
                   </h3>
                </div>
-               <div id="accordion3" class="connectedSortable box-body">
+               <div id="accordion3" class="@if ($modificar_requisito) connectedSortable @endif box-body">
                   @foreach ($requisitos as $requisito ) @if ($requisito->estado == 'Hecho')
                   <div class="panel box box-primary" style="border-top-width:7px; border-top-color:{{$requisito->color}}" id="modal{{$requisito->id}}" onclick="cambiarColor(modal{{$requisito->id}}.id)">
                      <div class="box-header with-border" id="{{$requisito->id}}">
@@ -297,6 +301,7 @@
             </div>
          </div>
       </div>
+      <!-- FORMULARIO CREACIÓN NUEVO REQUISITO -->
       <div class="modal fade" id="crearRequisito" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
          <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -315,7 +320,10 @@
                      <div class="form-group">
                         <label for="recipient-name" class="control-label">@lang('messages.P-S'):</label>
                         <br/>
-                        <input type="hidden" name="sprint_id" value="{{$sprint->id }}" /> {{ $proyecto->nombre . ' - ' . $sprint->nombre }}
+                        <input type="hidden" name="sprint_id" value="{{$sprint->id }}" />
+                        <select class="form-control" disabled>
+                            <option>{{ $proyecto->nombre . ' - ' . $sprint->nombre }}</option>
+                        </select>
                      </div>
                      <div class="form-group">
                         <label for="message-text" class="control-label">@lang('messages.fecha estimada de fin'):</label>
@@ -342,6 +350,8 @@
             </div>
          </div>
       </div>
+      <!-- FIN FORMULARIO CREACIÓN NUEVO REQUISITO -->
+
       <!-- Modificar requisitos////////////////////////////// -->
       @foreach ($requisitos as $requisito )
       <div class="modal fade" id="exampleModal{{$requisito->
@@ -415,7 +425,7 @@
                         <div class="row">
                            <div class="col-md-12">
                               <div class="col-md-6" style="padding-left: 0%">
-                                 <label for="message-text" class="control-label">@lang('messages.usuarios asignados ahora'):</label>
+                                 <label for="message-text" class="control-label">Usuario asignado:</label>
                                  <select name="input_user" class="form-control">
                                     <option value="null">@lang('messages.selecciona nuevos usuarios')</option>
                                     @if (count($requisito->users) > 0)

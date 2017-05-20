@@ -296,7 +296,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="col-md-6" style="padding-left: 0%">
-                                    <label for="message-text" class="control-label">@lang('messages.usuarios asignados ahora'):</label>
+                                    <label for="message-text" class="control-label">Usuario asignado:</label>
                                     <select name="input_user" class="form-control">
                                         <option value="null">@lang('messages.selecciona nuevos usuarios')</option>
                                         @if (count($requisito->users) > 0)
