@@ -1,4 +1,17 @@
 @extends('layouts.privada')
+@section('cabecera')
+@if(session()->has('message'))
+    @if(session()->has('exito'))
+    <div id="event-modal" class="callout callout-success" style="position: fixed;">
+        <p>{{ session()->get('message') }}</p>
+    </div>
+    @else
+    <div id="event-modal" class="callout callout-danger" style="position: fixed;">
+        <p>{{ session()->get('message') }}</p>
+    </div>
+    @endif
+@endif
+@endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -38,14 +51,16 @@ $(document).ready(function() {
 			@foreach($proyectosusers as $proyectouser)
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<div class="info-box bg-aqua">
-						<span class="info-box-icon"><div class="profileImage"></div></span>
+						<span class="info-box-icon btn" onclick="sesionProyecto({{$proyectouser->proyecto}})"><div class="profileImage{{$proyectouser->proyecto->id}}"></div></span>
 						<div class="info-box-content">
-							<span class="info-box-text firstName">{{ $proyectouser->proyecto->nombre }}</span>
+							<span class="info-box-text firstName{{$proyectouser->proyecto->id}}">{{ $proyectouser->proyecto->nombre }}</span>
 							
 						</div><!-- /.info-box-content -->
 					</div><!-- /.info-box -->
 				</div>
-				<script>$('.profileImage').text($('.firstName').text().charAt(0));</script>
+				<script>$('.profileImage{{$proyectouser->proyecto->id}}').text($('.firstName{{$proyectouser->proyecto->id}}').text().charAt(0));
+				console.log($('.profileImage{{$proyectouser->proyecto->id}}').text($('.firstName{{$proyectouser->proyecto->id}}').text().charAt(0)));
+				</script>
 				@endforeach
 				<a href="{{ url('user/proyecto/new') }}">
 				<div class="col-md-3 col-sm-6 col-xs-12">
@@ -77,4 +92,29 @@ $(document).ready(function() {
 		</table>
 	</form>
 	<hr>-->
+	<script>
+function sesionProyecto(elmnt) {
+     console.log(elmnt);
+
+    $.ajaxSetup({
+           headers: {
+               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+           }
+       });
+       
+
+       $.post("/setSession", {
+           selected_project: elmnt
+       });
+
+	    window.location.href = "/userspublic";
+}
+	</script>
+	<script>
+$(document).ready(function(){
+   setTimeout(function(){
+         $('#event-modal').fadeOut(200);
+   },1000);
+});
+</script>
 @endsection

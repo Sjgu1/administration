@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Session\Store;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Input;
@@ -101,8 +102,14 @@ class SprintController extends Controller
         $sprint->fecha_fin= $request->input('fecha_fin');
         $sprint->fecha_fin_estimada = $request->input('fecha_fin_estimada');
 
-        $sprint->save();
-        return back();
+        
+        $success =  $sprint->save();
+    
+        if($success){
+            return redirect()->back()->with('message', 'Se ha modificado el sprint correctamente')->with('exito', 'eliminado');  
+        }else{
+             return redirect()->back()->with('message', 'Error al modificar el sprint');
+        }
 
     }
     public function modificarColores(Request $request){
@@ -128,8 +135,13 @@ class SprintController extends Controller
     public function delete($id){
 
         $sprint = Sprint::where('id', $id)->first();
-        $sprint->delete();
-        return view('exito_elemento',['slot'=> "Se ha eliminado el Sprint: " .$sprint->id  ] );
+        $success =  $sprint->delete();
+    
+        if($success){
+            return redirect('/userspublic')->with('message', 'Se ha eliminado el sprint correctamente')->with('exito', 'eliminado');  
+        }else{
+             return redirect()->back()->with('message', 'Error al eliminar el sprint');
+        }
 
     }
     public function create(Request $request){

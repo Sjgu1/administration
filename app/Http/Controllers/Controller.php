@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Route;
 use View;
 use App\Sprint;
+use App\Proyecto;
+
 
 class Controller extends BaseController
 {
@@ -17,10 +19,12 @@ class Controller extends BaseController
     public function __construct(){
 
         $this->middleware(function($request, $next){
-
-            if ($request->session()->has('selected_project')){
-
-                $selected_project_sprints = Sprint::where('proyecto_id', $request->session()->get('selected_project')->id)->get();
+             $gga = session()->get('selected_project')['id'];
+            if ($request->session()->has('selected_project') ==true ){
+                $selected_project_sprints = Sprint::where('proyecto_id', $gga)->get();
+                View::share('selected_project_sprints', $selected_project_sprints);
+            }else{
+                $selected_project_sprints =[];
                 View::share('selected_project_sprints', $selected_project_sprints);
             }
 

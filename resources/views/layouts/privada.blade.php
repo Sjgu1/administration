@@ -248,7 +248,7 @@
                 </span>
               </a>
             </li>
-            <li @if ($current_view == 'userspublic') {!! 'class="active"' !!} @endif>
+            <li @if ($current_view == 'userspublic') {!! 'class="active"' !!} @endif>    
               <a href="/userspublic">
                 <i class="fa fa-pie-chart"></i>
                 <span>Configuración</span>

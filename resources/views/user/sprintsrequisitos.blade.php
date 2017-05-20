@@ -1,5 +1,17 @@
 @extends('layouts.privada')
-
+@section('cabecera')
+@if(session()->has('message'))
+    @if(session()->has('exito'))
+    <div id="event-modal" class="callout callout-success" style="position: fixed;">
+        <p>{{ session()->get('message') }}</p>
+    </div>
+    @else
+    <div id="event-modal" class="callout callout-danger" style="position: fixed;">
+        <p>{{ session()->get('message') }}</p>
+    </div>
+    @endif
+@endif
+@endsection
 @section('content')
 
 <!-- jQuery UI 1.11.4 -->
@@ -459,10 +471,16 @@
             allowOutsideClick: true
         },
         function(){
-            window.location.href = "{{ url('deleteproyectouser') . '/' . $sprint->id . '/' . $sprint->id }}";
+            window.location.href = "{{ url('sprint/borrar') . '/' . $sprint->id }}";
         });
     });
 
 </script>
-
+<script>
+$(document).ready(function(){
+   setTimeout(function(){
+         $('#event-modal').fadeOut(200);
+   },1000);
+});
+</script>
 @endsection

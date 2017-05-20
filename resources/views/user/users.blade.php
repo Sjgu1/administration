@@ -1,5 +1,17 @@
 @extends('layouts.privada')
-
+@section('cabecera')
+@if(session()->has('message'))
+    @if(session()->has('exito'))
+    <div id="event-modal" class="callout callout-success" style="position: fixed;">
+        <p>{{ session()->get('message') }}</p>
+    </div>
+    @else
+    <div id="event-modal" class="callout callout-danger" style="position: fixed;">
+        <p>{{ session()->get('message') }}</p>
+    </div>
+    @endif
+@endif
+@endsection
 @section('content')
 
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
@@ -436,10 +448,16 @@
             allowOutsideClick: true
         },
         function(){
-            window.location.href = "{{ url('deleteproyectouser') . '/' . $proyecto->id . '/' . $proyecto->id }}";
+            window.location.href = "{{ url('proyecto') . '/' . 'borrar'. '/' . $proyecto->id }}";
         });
     });
 
 </script>
-
+	<script>
+$(document).ready(function(){
+   setTimeout(function(){
+         $('#event-modal').fadeOut(200);
+   },1000);
+});
+</script>
 @endsection

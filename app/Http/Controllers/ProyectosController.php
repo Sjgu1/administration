@@ -77,16 +77,27 @@ class ProyectosController extends Controller
         $proyecto->repositorio = $request->input('repositorio');
         $proyecto->fecha_fin_estimada = $request->input('fecha_fin_estimada');
 
-        $proyecto->save();
+        $success =   $proyecto->save();
+         session()->put("selected_project", Proyecto::where('id', $request->input('id'))->first() );
+        if($success){
+            return redirect()->back()->with('message', 'Se ha modificado el proyecto correctamente')->with('exito', 'eliminado');  
+        }else{
+             return redirect()->back()->with('message', 'Error al modificar el proyecto');
+        }
+       
 
-        session()->put("selected_project", Proyecto::where('id', $request->input('id'))->first() );
-        return back()->withInput();
     }
 
     public function delete($id){
 
         $proyecto = Proyecto::where('id', $id)->first();
-        $proyecto->delete();
+        $success = $proyecto->delete(); 
+        if($success){
+            session()->forget('selected_project');
+            return redirect('/user/proyectosusers')->with('message', 'Se ha eliminado el proyecto correctamente')->with('exito', 'eliminado');  
+        }else{
+             return redirect()->back()->with('message', 'Error al eliminar el proyecto');
+        }
         return view('exito_elemento',['slot'=> "Se ha eliminado el Proyecto: " .$proyecto->id  ] );
 
     }
