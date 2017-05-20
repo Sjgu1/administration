@@ -300,16 +300,16 @@
                                     <select name="input_user" class="form-control">
                                         <option value="null">@lang('messages.selecciona nuevos usuarios')</option>
                                         @if (count($requisito->users) > 0)
-                                            @foreach ($users as $user)
-                                                @if ($user->id == $requisito->users[0]->id)
-                                                    <option value="{{ $user->id }}" selected>{{ $user->name . ' ' . $user->apellidos }}</option>
+                                            @foreach ($users as $userB)
+                                                @if ($userB->id == $requisito->users[0]->id)
+                                                    <option value="{{ $userB->id }}" selected>{{ $userB->name . ' ' . $userB->apellidos }}</option>
                                                 @else
-                                                    <option value="{{ $user->id }}">{{ $user->name . ' ' . $user->apellidos }}</option>
+                                                    <option value="{{ $userB->id }}">{{ $userB->name . ' ' . $userB->apellidos }}</option>
                                                 @endif
                                             @endforeach
                                         @else
-                                            @foreach ($users as $user)
-                                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                            @foreach ($users as $userB)
+                                                    <option value="{{ $userB->id }}">{{ $userB->name }}</option>
                                             @endforeach
                                         @endif
                                     </select>
