@@ -64,7 +64,7 @@
                                 <th>@lang('messages.progreso estimado')</th>
                                 <th>%</th>
                                 <th>@lang('messages.finalizacion')</th>
-                                <th>@lang('messages.usuarios')</th>
+                                <th>@lang('messages.usuario')</th>
                             </tr>
 
                             @foreach ($requisitos_no_finalizados as $requisito)
@@ -80,7 +80,7 @@
 
                                     <td>
                                         @foreach ($requisito->users as $userReq)
-                                            <img src="/perfiles/{{ $userReq->imagen }}" class="user-image" alt="User Image" width="25" height="25">
+                                            <img src="/perfiles/{{ $userReq->imagen }}" class="user-image" alt="User Image" width="25" height="25" style="margin-left: 10%;">
                                         @endforeach
                                     </td>
                                 </tr>
@@ -169,22 +169,22 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class=" col-md-4 form-group">
-                                        <label for="message-text" class="control-label">@lang('messages.fecha estimada de inicio'):</label>
+                                        <label for="message-text" class="control-label">Fecha estimada inicio:</label>
                                         <div class="form-group">
                                             <div class='input-group date' id="fecha_inicio_crear">
-                                                <input type='text' class="form-control"  name="fecha_inicio"  value="{{$sprint->fecha_inicio}}" /> <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
+                                                <input id="input_fecha_inicio_sprint{{ $sprint->id }}" type='text' readonly class="form-control"  name="fecha_inicio"  value="{{ $sprint->fecha_inicio }}" style="background-color: #fff; "/> <span class="input-group-addon">
+                                                    <span id="datepicker_fecha_inicio_sprint{{ $sprint->id }}" class="glyphicon glyphicon-calendar"></span>
                                                 </span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="message-text" class="control-label">@lang('messages.fecha estimada de fin'):</label>
+                                        <label for="message-text" class="control-label">Fecha estimada fin:</label>
 
                                         <div class="form-group">
                                             <div class='input-group date'id="fecha_fin_estimada_crear"  >
-                                                <input type='text' class="form-control" name="fecha_fin_estimada" value="{{$sprint->fecha_fin_estimada}}" /> <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
+                                                <input id="input_fecha_fin_estimada_sprint{{ $sprint->id }}"type='text' readonly class="form-control" name="fecha_fin_estimada" value="{{ $sprint->fecha_fin_estimada }}" style="background-color: #fff; "/> <span class="input-group-addon">
+                                                <span id="datepicker_fecha_fin_estimada_sprint{{ $sprint->id }}" class="glyphicon glyphicon-calendar"></span>
                                                 </span>
                                             </div>
                                         </div>
@@ -193,9 +193,9 @@
                                         <label for="message-text" class="control-label">@lang('messages.fecha fin'):</label>
 
                                         <div class="form-group">
-                                            <div class='input-group date'id="fecha_fin_crear"  >
-                                                <input type='text' class="form-control" name="fecha_fin" value="{{$sprint->fecha_fin}}" /> <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
+                                            <div class='input-group date'id="fecha_fin_crear" >
+                                                <input id="input_fecha_fin_sprint{{ $sprint->id }}" type='text' readonly class="form-control" name="fecha_fin" value="{{ $sprint->fecha_fin }}" style="background-color: #fff; "/> <span class="input-group-addon">
+                                                <span id="datepicker_fecha_fin_sprint{{ $sprint->id }}" class="glyphicon glyphicon-calendar"></span>
                                                 </span>
                                             </div>
                                         </div>
@@ -207,21 +207,6 @@
                                 <button id="confirmacion{{ $sprint->id }}" type="button" class="btn btn-danger pull-left">@lang('messages.eliminar')</button>
                                 <button type="submit" class="btn btn-success">@lang('messages.modificar')</button>
                             </div>
-                            <script>
-                                $('#fecha_inicio_crear').datetimepicker({
-                                    format: "DD/MM/YYYY"
-                                 });
-                            </script>
-                            <script>
-                                $('#fecha_fin_crear').datetimepicker({
-                                    format: "DD/MM/YYYY"
-                                 });
-                            </script>
-                            <script>
-                                $('#fecha_fin_estimada_crear').datetimepicker({
-                                    format: "DD/MM/YYYY"
-                                 });
-                            </script>
                     </form>
                     </div>
                 </div>
@@ -310,9 +295,9 @@
                                         @if (count($requisito->users) > 0)
                                             @foreach ($users as $user)
                                                 @if ($user->id == $requisito->users[0]->id)
-                                                    <option value="{{ $user->id }}" selected>{{ $user->name }}</option>
+                                                    <option value="{{ $user->id }}" selected>{{ $user->name . ' ' . $user->apellidos }}</option>
                                                 @else
-                                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                                    <option value="{{ $user->id }}">{{ $user->name . ' ' . $user->apellidos }}</option>
                                                 @endif
                                             @endforeach
                                         @else
@@ -350,7 +335,7 @@
 <script>
 @foreach ($requisitos as $requisito)
 
-    $("#eliminar" + $requisito->id).click(function() {
+    $("#eliminar" + {{ $requisito->id }}).click(function() {
 
         swal({
             title: "Are you sure?",
@@ -400,4 +385,49 @@
     }
 
 </script>
+
+
+<script>
+
+    //Date picker
+    $('#datepicker_fecha_inicio_sprint' + {{ $sprint->id }}).datepicker({
+      autoclose: true,
+      format: 'dd/mm/yyyy'
+    })
+    .on('changeDate', function(e) {
+        // Set the value for the date input
+        $("#input_fecha_inicio_sprint" + {{ $sprint->id }}).val($("#datepicker_fecha_inicio_sprint" + {{ $sprint->id }}).datepicker('getFormattedDate'));
+
+        // Revalidate it
+        //$('#eventForm').formValidation('revalidateField', 'selectedDate');
+    });
+
+    //Date picker
+    $('#datepicker_fecha_fin_estimada_sprint' + {{ $sprint->id }}).datepicker({
+      autoclose: true,
+      format: 'dd/mm/yyyy'
+    })
+    .on('changeDate', function(e) {
+        // Set the value for the date input
+        $("#input_fecha_fin_estimada_sprint" + {{ $sprint->id }}).val($("#datepicker_fecha_fin_estimada_sprint" + {{ $sprint->id }}).datepicker('getFormattedDate'));
+
+        // Revalidate it
+        //$('#eventForm').formValidation('revalidateField', 'selectedDate');
+    });
+
+    //Date picker
+    $('#datepicker_fecha_fin_sprint' + {{ $sprint->id }}).datepicker({
+      autoclose: true,
+      format: 'dd/mm/yyyy'
+    })
+    .on('changeDate', function(e) {
+        // Set the value for the date input
+        $("#input_fecha_fin_sprint" + {{ $sprint->id }}).val($("#datepicker_fecha_fin_sprint" + {{ $sprint->id }}).datepicker('getFormattedDate'));
+
+        // Revalidate it
+        //$('#eventForm').formValidation('revalidateField', 'selectedDate');
+    });
+
+</script>
+
 @endsection

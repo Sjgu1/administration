@@ -335,7 +335,7 @@ class ProyectosController extends Controller
                     }
                     else if ($modificacion->tipo == "edit_state"){
 
-                        $datos['icon'] = 'fa fa-exchange bg-primary';
+                        $datos['icon'] = 'fa fa-exchange bg-green';
 
                         $exploded1 = explode(':', $modificacion->mensaje);
                         $author = $exploded1[0];

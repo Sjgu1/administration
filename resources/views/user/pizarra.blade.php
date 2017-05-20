@@ -139,6 +139,7 @@
                                 <div class="col-md-12">
                                     <div class="col-md-6">
                                         <div class="form-group">
+                                            <label>Estado</label>
                                             <select class="form-control" onchange="cambiarColor(this.value);">
                                                 <option value="columna1">@lang('messages.por hacer')</option>
                                                 <option value="columna2">@lang('messages.en tramite')</option>
@@ -150,7 +151,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>@lang('messages.color del fondo')</label>
-                                                <input class="jscolor" onchange="update(this.jscolor, {{$sprint->id}})">
+                                                <input class="form-control jscolor" onchange="update(this.jscolor, {{$sprint->id}})">
                                                 <br/>
                                             </div>
                                         </div>
@@ -158,7 +159,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>@lang('messages.color del texto')</label>
-                                                <input class="jscolor" onchange="updateTexto(this.jscolor,{{$sprint->id}})">
+                                                <input class="form-control jscolor" onchange="updateTexto(this.jscolor,{{$sprint->id}})">
                                             </div>
                                             <!-- /.form-group -->
                                         </div>
