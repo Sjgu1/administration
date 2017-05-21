@@ -71,11 +71,19 @@ class RequisitosController extends Controller
     }
 
     public function modify(Request $request){
-        //$validator = Validator::make(Input::all(), $rules);
         $this->validate($request, [
             'nombre' => ['string', 'min:3', 'max:20'],
             'descripcion' => ['string', 'min:3', 'max:65535'],
+            'fecha_estimada_fin' => ['required']
         ]);
+        
+        $sprintLeido = Sprint::where('id', $request->input('sprint_id') )->first();
+        $fecha_inicio_sprint_comprobar = DateTime::createFromFormat('d/m/Y', $sprintLeido->fecha_inicio);
+        $fecha_fin_estimada_comprobar = DateTime::createFromFormat('d/m/Y', $request->input('fecha_estimada_fin'));
+
+        if( $fecha_fin_estimada_comprobar < $fecha_inicio_sprint_comprobar ){
+            return redirect()->back()->with('message', 'Error al modificar el proyecto, compruebe las fechas');
+        }
 
         $requisito = Requisito::where('id', $request->input('id'))->first();
         $requisito->nombre = $request->input('nombre');
@@ -89,11 +97,19 @@ class RequisitosController extends Controller
 
     public function modify_public(Request $request){
 
-        //$validator = Validator::make(Input::all(), $rules);
         $this->validate($request, [
-            'nombre' => ['string', 'min:3', 'max:20'],
-            'descripcion' => ['string', 'min:3', 'max:65535'],
+            'input_nombre' => ['string', 'min:3', 'max:20'],
+            'input_descripcion' => ['string', 'min:3', 'max:65535'],
+            'input_fecha_estimada_fin' => ['required']
         ]);
+        
+        $requisitoLeido = Requisito::where('id', $request->input('input_id') )->first();
+        $fecha_inicio_requisito_comprobar = DateTime::createFromFormat('d/m/Y', $requisitoLeido->fecha_inicio);
+        $fecha_fin_estimada_comprobar = DateTime::createFromFormat('d/m/Y', $request->input('input_fecha_estimada_fin'));
+
+        if( $fecha_fin_estimada_comprobar < $fecha_inicio_requisito_comprobar ){
+            return redirect()->back()->with('message', 'Error al modificar el proyecto, compruebe las fechas');
+        }
 
         $input_nombre = $request->input('input_nombre');
         $input_descripcion = $request->input('input_descripcion');
@@ -367,8 +383,17 @@ class RequisitosController extends Controller
         $this->validate($request, [
             'nombre' => ['string', 'min:3', 'max:20'],
             'descripcion' => ['string', 'min:3', 'max:65535'],
+            'fecha_estimada_fin' => ['required']
         ]);
+        
+        $sprintLeido = Sprint::where('id', $request->input('sprint_id') )->first();
+        $fecha_inicio_sprint_comprobar = DateTime::createFromFormat('d/m/Y', $sprintLeido->fecha_inicio);
+        $fecha_fin_estimada_comprobar = DateTime::createFromFormat('d/m/Y', $request->input('fecha_estimada_fin'));
 
+        if( $fecha_fin_estimada_comprobar < $fecha_inicio_sprint_comprobar ){
+            return redirect()->back()->with('message', 'Error al modificar el proyecto, compruebe las fechas');
+        }
+        
         $requisito = new Requisito();
         $requisito->nombre = $request->input('nombre');
         $requisito->descripcion = $request->input('descripcion');

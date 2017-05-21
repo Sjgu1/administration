@@ -2,22 +2,18 @@
 @section('cabecera')
 @if(session()->has('message'))
     @if(session()->has('exito'))
-    <div  id="event-modal" class="alert alert-success alert-dismissible" style="position: absolute;">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h4><i class="icon fa fa-check"></i> Alert!</h4>
-                {{ session()->get('message') }}
+    <div id="event-modal" class="callout callout-success" style="position: fixed;">
+        <p>{{ session()->get('message') }}</p>
     </div>
     @else
-    <div id="event-modal" class="alert alert-danger alert-dismissible" style="position: absolute;">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h4><i class="icon fa fa-ban"></i> Alert!</h4>
-                {{ session()->get('message') }}
+    <div id="event-modal" class="callout callout-danger" style="position: fixed;">
+        <p>{{ session()->get('message') }}</p>
     </div>
-
     @endif
 @endif
 @endsection
 @section('content')
+<input id="fecha_inicio_sprint" class="hide" value="{{$sprint->fecha_inicio}}"/>
 <script src="/adminlte/colores.js"></script>
 <script type="text/javascript">
    function update(valor, id) {  
@@ -121,6 +117,12 @@
 <script>
    $.widget.bridge('uibutton', $.ui.button);
 </script>
+<!-- bootstrap datepicker -->
+<link rel="stylesheet" href="/adminlte/plugins/datepicker/datepicker3.css">
+<!-- bootstrap color picker -->
+<script src="/adminlte/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+<!-- bootstrap datepicker -->
+<script src="/adminlte/plugins/datepicker/bootstrap-datepicker.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/adminlte/dist/js/pages/dashboard.js"></script>
 <!-- Bootstrap Color Picker -->
@@ -343,21 +345,16 @@
                             <option>{{ $proyecto->nombre . ' - ' . $sprint->nombre }}</option>
                         </select>
                      </div>
-                     <div class="form-group">
+                     <div class="form-group has-feedback">
                         <label for="message-text" class="control-label">@lang('messages.fecha estimada de fin'):</label>
-                        <div class="form-group">
-                           <div class='input-group date' id='datetimepicker6'>
-                              <input type='text' class="form-control" name="fecha_estimada_fin" id="fecha_estimada_fin" />
-                              <span class="input-group-addon">
-                              <span class="glyphicon glyphicon-calendar"></span>
-                              </span>
-                           </div>
+                        <div class="form-group has-feedback">
+                            <div class='input-group date has-feedback' id="datetimepicker6">
+                                <input required name="fecha_estimada_fin" id="fecha_estimada_fin"  type='text' readonly class="form-control"  style="background-color: #fff; "/> <span class="input-group-addon">
+                                    <span  id="datepicker_fecha_estimada_fin"  class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                            </div>
                         </div>
-                        <script>
-                           $('#datetimepicker6').datetimepicker({
-                               format: "DD/MM/YYYY"
-                           });
-                        </script>
+                       
                      </div>
                   </div>
                   <div class="modal-footer">
@@ -420,15 +417,15 @@
                               <div class="col-md-6" style="padding-left: 0%">
                                  <label for="message-text" class="control-label">@lang('messages.fecha estimada de inicio'):</label>
                                  <div class="input-group form-group has-feedback">
-                                    <input type='text' class="form-control" readonly value="{{ $requisito->fecha_inicio }}" disabled />
+                                    <input type='text' class="form-control" id="fecha_inicio{{ $requisito->id }}" name="fecha_inicio"readonly value="{{ $requisito->fecha_inicio }}" disabled />
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                  </div>
                               </div>
-                              <div class="form-group col-md-6">
+                              <div class="form-group col-md-6 has-feedback">
                                  <label for="message-text" class="control-label">@lang('messages.fecha estimada de fin'):</label>
-                                 <div class="form-group">
-                                    <div class='input-group date' id='fecha_fin_{{$requisito->id}}'>
-                                       <input type='text' class="form-control" name="input_fecha_estimada_fin" value="{{$requisito->fecha_fin_estimada}}" /> <span class="input-group-addon">
+                                 <div class="form-group has-feedback">
+                                    <div class='input-group date has-feedback' id='fecha_fin_{{$requisito->id}}'>
+                                       <input type='text' class="form-control" id='input_fecha_estimada_fin{{$requisito->id}}' name="input_fecha_estimada_fin" value="{{$requisito->fecha_fin_estimada}}" /> <span id="datepicker{{ $requisito->id }}"class="input-group-addon">
                                        <span class="glyphicon glyphicon-calendar"></span>
                                        </span>
                                     </div>
@@ -525,6 +522,23 @@
    </div>
 </div>
 <script>
+@foreach ($requisitos as $requisito)
+    $('#datepicker{{ $requisito->id }}').datepicker({
+      autoclose: true,
+      format: 'dd/mm/yyyy',
+      startDate: $("#fecha_inicio{{ $requisito->id }}").val()
+    })
+    .on('changeDate', function(e) {
+        // Set the value for the date input
+        $("#input_fecha_estimada_fin{{ $requisito->id }}").val($("#datepicker{{ $requisito->id }}").datepicker('getFormattedDate'));
+
+        // Revalidate it
+        //$('#eventForm').formValidation('revalidateField', 'selectedDate');
+    });
+
+@endforeach
+</script>
+<script>
    $(".my-colorpicker-col").colorpicker();
    $("#confirmacion{{ $requisito->id }}").click(function() {
    
@@ -565,11 +579,20 @@
    });
 </script>
 <script>
-
 $(document).ready(function(){
    setTimeout(function(){
          $('#event-modal').fadeOut(200);
    },1000);
 });
+</script>
+ <script>
+    $('#datepicker_fecha_estimada_fin').datepicker({
+    autoclose: true,
+    format: 'dd/mm/yyyy',
+    startDate: $("#fecha_inicio_sprint").val()
+    })
+    .on('changeDate', function(e) {
+        $("#fecha_estimada_fin").val($("#datepicker_fecha_estimada_fin").datepicker('getFormattedDate'));
+    });
 </script>
 @endsection
