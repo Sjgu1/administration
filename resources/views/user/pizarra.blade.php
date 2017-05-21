@@ -139,8 +139,8 @@
    </h1>
    <ol class="breadcrumb">
       <li><i class="fa fa-dashboard"></i> {{$proyecto->nombre}}</li>
-      <li>{{$sprint->nombre}}</li>
-      <li class="active">@lang('messages.pizarra')</li>
+      <li>@lang('messages.pizarra')</li>
+      <li class="active">{{$sprint->nombre}}</li>
    </ol>
 </section>
 <div class="content">
