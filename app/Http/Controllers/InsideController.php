@@ -39,8 +39,17 @@ class InsideController extends Controller
         $this->validate($request, [
             'nombre' => ['string', 'min:3', 'max:20'],
             'descripcion' => ['string', 'min:3', 'max:65535'],
-            'repositorio' => 'url | nullable'
+            'repositorio' => 'url | nullable',
+            'fecha_inicio'=> 'date | required',
+            'fecha_fin_estimada'=> 'date | required'
         ]);
+
+        $fecha_inicio_comprobar = DateTime::createFromFormat('d/m/Y', $request->input('fecha_inicio'));
+        $fecha_fin_estimada_comprobar = DateTime::createFromFormat('d/m/Y', $request->input('fecha_fin_estimada'));
+
+        if( $fecha_fin_estimada_comprobar < $fecha_inicio_comprobar ){
+            return redirect()->back();
+        }
 
         $proyecto = new Proyecto();
         $proyecto->nombre = $request->input('nombre');
@@ -48,6 +57,8 @@ class InsideController extends Controller
         $proyecto->repositorio = $request->input('repositorio');
         $proyecto->fecha_inicio = $request->input('fecha_inicio');
         $proyecto->fecha_fin_estimada = $request->input('fecha_fin_estimada');
+
+
 
         $proyecto->save();
         return redirect('user.proyectosusers');

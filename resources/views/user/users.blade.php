@@ -32,6 +32,8 @@
     <!-- bootstrap datepicker -->
     <script src="/adminlte/plugins/datepicker/bootstrap-datepicker.js"></script>
 
+    
+
     <!-- Header -->
     <section class="content-header">
         <h1>@lang('messages.gestionar proyecto')</h1>
@@ -152,6 +154,7 @@
         </form>
       </div>
       <!-- /.box -->
+      </div>
       @endif
 
 <!-- Formulario modificación rol -->
@@ -196,7 +199,7 @@
 <div class="modal fade" id="CrearSprint" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <form id="proyecto_form_modificar" action="{{ url('sprint/create') }}" method="POST" role="form" data-toggle="validator">
+                    <form id="sprint_form_crear" action="{{ url('sprint/create') }}" method="POST" role="form" data-toggle="validator">
                         <input name="proyecto_id" type="hidden" value="{{$proyecto->id}}">
                         <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
                         <div class="modal-header form-group has-feedback">                        
@@ -209,67 +212,44 @@
                                 <label for="descripcion" class="control-label">@lang('messages.descripcion'):</label>
                                 <textarea id="descripcion" name="descripcion" class="form-control" rows="5" data-minlength="3" placeholder="Información sobre el sprint" maxlength="65535" required></textarea>
                             </div>
-                            <label>Proyecto:</label>
+                            <!--<label>Proyecto:</label>
                             <select disabled class="form-control">
                                 <option>{{ $proyecto->nombre }}</option>
                             </select>
                             <br>
-                            <br>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class=" col-md-6 form-group">
+                            <br>-->
+                            <div class="row  has-feedback">
+                                <div class="col-md-12 has-feedback ">
+                                
+                                    <div class=" col-md-6 form-group  has-feedback">
                                         <label for="message-text" class="control-label">@lang('messages.fecha estimada de inicio'):</label>
-                                        <div class="form-group">
-                                            <div class='input-group date'>
-                                                <input id="fecha_inicio_sprint_input" type='text' readonly class="form-control"  name="fecha_inicio" required style="background-color: #fff;"/> <span id="fecha_inicio_sprint" class="input-group-addon">
+                                        <div class="form-group  has-feedback ">
+                                            <div class="input-group date  has-feedback">                                          
+                                                <input type='text' id="fecha_incio_estimada_input" readonly class="form-control" name="fecha_inicio" value="{{$proyecto->fecha_inicio}}" style="background-color: #fff;"/> <span id="fecha_inicio_estimada_crear" class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
-                                                </span>
+                                                </span>                           
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-6  has-feedback">
                                         <label for="message-text" class="control-label">Fecha estimada fin:</label>
-
-                                        <div class="form-group">
-                                            <div class='input-group date'>
-                                                <input id="fecha_fin_estimada_sprint_input" type='text' readonly class="form-control" name="fecha_fin_estimada" required style="background-color: #fff;"/> <span id="fecha_fin_estimada_sprint" class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
+                                        <div class="form-group  has-feedback ">
+                                            <div class='input-group date  has-feedback'>
+                                                <input id="fecha_fin_estimada_sprint_input" type='text' readonly class="form-control" name="fecha_fin_estimada" value="" style="background-color: #fff;"/> 
+                                                    <span id="fecha_fin_estimada_sprint" class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
                                                 </span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">@lang('messages.cerrar')</button>
                                 <button type="submit" class="btn btn-primary">Crear</button>
                         </div>
-                        <script>
-                                $('#fecha_inicio_sprint').datepicker({
-                                    autoclose: true,
-                                    format: "dd/mm/yyyy"
-                                 })
-                                 .on('changeDate', function(e) {
-                                    // Set the value for the date input
-                                    $("#fecha_inicio_sprint_input").val($("#fecha_inicio_sprint").datepicker('getFormattedDate'));
-
-                                    // Revalidate it
-                                    //$('#eventForm').formValidation('revalidateField', 'selectedDate');
-                                });
-                            </script>
-                            <script>
-                                $('#fecha_fin_estimada_sprint').datepicker({
-                                    autoclose: true,
-                                    format: "dd/mm/yyyy"
-                                 })
-                                 .on('changeDate', function(e) {
-                                    // Set the value for the date input
-                                    $("#fecha_fin_estimada_sprint_input").val($("#fecha_fin_estimada_sprint").datepicker('getFormattedDate'));
-
-                                    // Revalidate it
-                                    //$('#eventForm').formValidation('revalidateField', 'selectedDate');
-                                });
-                            </script>
+                        
                     </form>
                     </div>
                 </div>
@@ -301,33 +281,33 @@
                             </div>
                             <br>
                             <div class="row">
-                                <div class="col-md-12">
-                                    <div class=" col-md-4 form-group">
+                                <div class="col-md-12 has-feedback ">
+                                    <div class=" col-md-4 form-group  has-feedback">
                                         <label for="message-text" class="control-label">@lang('messages.fecha estimada de inicio'):</label>
-                                        <div class="form-group">
-                                            <div class='input-group date'>
-                                                <input type='text' disabled class="form-control"  name="fecha_inicio"  value="{{$proyecto->fecha_inicio}}"disabled /> <span class="input-group-addon">
+                                        <div class="form-group  has-feedback">
+                                            <div class='input-group  has-feedback date'>
+                                                <input type='text' disabled class="form-control"  name="fecha_inicio_proyecto"   id="fecha_inicio_proyecto" value="{{$proyecto->fecha_inicio}}"disabled /> <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                                                 </span>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group col-md-4">
+                                    <div class="form-group col-md-4  has-feedback">
                                         <label for="message-text" class="control-label">Fecha estimada fin:</label>
 
-                                        <div class="form-group">
-                                            <div class='input-group date' >
+                                        <div class="form-group  has-feedback">
+                                            <div class='input-group date  has-feedback' >
                                                 <input type='text' id="fecha_fin_estimada_input" readonly class="form-control" name="fecha_fin_estimada" value="{{$proyecto->fecha_fin_estimada}}" style="background-color: #fff;"/> <span id="fecha_fin_estimada_crear" class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                                                 </span>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group col-md-4">
+                                    <div class="form-group col-md-4  has-feedback">
                                         <label for="message-text" class="control-label">@lang('messages.fecha fin'):</label>
 
-                                        <div class="form-group">
-                                            <div class='input-group date'  >
+                                        <div class="form-group has-feedback">
+                                            <div class='input-group date  has-feedback'  >
                                                 <input type='text' id="fecha_fin_input" readonly class="form-control" name="fecha_fin" value="{{$proyecto->fecha_fin}}" style="background-color: #fff;"/> <span id="fecha_fin_crear" class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                                                 </span>
@@ -406,11 +386,13 @@
 </script>
 
 <script>
+    console.log( $("#fecha_inicio_proyecto").val());
     $('#fecha_fin_crear').datepicker({
         autoclose: true,
-        format: "dd/mm/yyyy"
-    })
-    .on('changeDate', function(e) {
+        format: "dd/mm/yyyy",
+        startDate: $("#fecha_inicio_proyecto").val()
+    });
+    $('#fecha_fin_crear').datepicker().on('changeDate', function(e) {
         // Set the value for the date input
         $("#fecha_fin_input").val($("#fecha_fin_crear").datepicker('getFormattedDate'));
 
@@ -421,11 +403,27 @@
 <script>
     $('#fecha_fin_estimada_crear').datepicker({
         autoclose: true,
-        format: "dd/mm/yyyy"
+        format: "dd/mm/yyyy",
+        startDate: $("#fecha_inicio_proyecto").val()
     })
     .on('changeDate', function(e) {
         // Set the value for the date input
         $("#fecha_fin_estimada_input").val($("#fecha_fin_estimada_crear").datepicker('getFormattedDate'));
+
+        // Revalidate it
+        //$('#eventForm').formValidation('revalidateField', 'selectedDate');
+    });
+</script>
+<script>
+    $('#fecha_inicio_estimada_crear').datepicker({
+        autoclose: true,
+        format: "dd/mm/yyyy",
+        startDate: $("#fecha_inicio_proyecto").val()
+    })
+    .on('changeDate', function(e) {
+        // Set the value for the date input
+        $("#fecha_incio_estimada_input").val($("#fecha_inicio_estimada_crear").datepicker('getFormattedDate'))
+        $("#fecha_fin_estimada_sprint").datepicker('setStartDate', $('#fecha_inicio_estimada_crear').datepicker('getDate'));
 
         // Revalidate it
         //$('#eventForm').formValidation('revalidateField', 'selectedDate');
@@ -460,4 +458,15 @@ $(document).ready(function(){
    },1000);
 });
 </script>
+<script>
+     $('#fecha_fin_estimada_sprint').datepicker({
+    autoclose: true,
+    format: "dd/mm/yyyy",
+    startDate: $("#fecha_inicio_proyecto").val()
+    })
+    .on('changeDate', function(e) {
+     $("#fecha_fin_estimada_sprint_input").val($("#fecha_fin_estimada_sprint").datepicker('getFormattedDate'));
+});
+</script>
+
 @endsection

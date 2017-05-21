@@ -91,8 +91,21 @@ class SprintController extends Controller
 
         $this->validate($request, [
             'nombre' => ['string', 'min:3', 'max:50'],
-            'descripcion' => ['string', 'min:3', 'max:65535']
+            'descripcion' => ['string', 'min:3', 'max:65535'],
+            'fecha_inicio' => ['required'],
+            'fecha_estimada_fin' => ['required']
         ]);
+
+        $fecha_inicio_comprobar = DateTime::createFromFormat('d/m/Y',$request->input('fecha_inicio'));
+        $fecha_fin_estimada_comprobar = DateTime::createFromFormat('d/m/Y', $request->input('fecha_fin_estimada'));
+        $fecha_fin_comprobar = DateTime::createFromFormat('d/m/Y', $request->input('fecha_fin'));
+
+        if( $fecha_fin_estimada_comprobar < $fecha_inicio_comprobar ){
+            return redirect()->back()->with('message', 'Error al modificar el proyecto, compruebe las fechas');
+        }
+        if( $fecha_fin_comprobar < $fecha_inicio_comprobar ){
+            return redirect()->back()->with('message', 'Error al modificar el proyecto, compruebe las fechas');
+        }
 
         $sprint = Sprint::where('id', $request->input('id'))->first();
         $sprint->nombre = $request->input('nombre');
@@ -148,15 +161,25 @@ class SprintController extends Controller
 
         $this->validate($request, [
             'nombre' => ['string', 'min:3', 'max:50'],
-            'descripcion' => ['string', 'min:3', 'max:65535']
+            'descripcion' => ['string', 'min:3', 'max:65535'],
+            'fecha_inicio' => ['required'],
+            'fecha_fin_estimada' => ['required']
+
         ]);
+
+        $fecha_inicio_comprobar = DateTime::createFromFormat('d/m/Y',$request->input('fecha_inicio'));
+        $fecha_fin_estimada_comprobar = DateTime::createFromFormat('d/m/Y', $request->input('fecha_fin_estimada'));
+
+        if( $fecha_fin_estimada_comprobar < $fecha_inicio_comprobar ){
+            return redirect()->back()->with('message', 'Error al modificar el proyecto, compruebe las fechas');
+        }
+        
 
         $sprint = new Sprint();
         $sprint->nombre = $request->input('nombre');
         $sprint->descripcion = $request->input('descripcion');
         $sprint->fecha_inicio = $request->input('fecha_inicio');
         $sprint->fecha_fin_estimada = $request->input('fecha_fin_estimada');
-        $sprint->fecha_fin = $request->input('fecha_fin_estimada');
         $sprint->proyecto_id = $request->input('proyecto_id');
 
         $sprint->save();

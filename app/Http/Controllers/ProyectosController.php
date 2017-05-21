@@ -63,13 +63,26 @@ class ProyectosController extends Controller
 
     public function modify(Request $request){
 
-        $this->validate($request, [
+         $this->validate($request, [
             'nombre' => ['string', 'min:3', 'max:20'],
             'descripcion' => ['string', 'min:3', 'max:65535'],
-            'repositorio' => 'url | nullable'
+            'repositorio' => 'url | nullable',
+            'fecha_fin_estimada'=> 'required',
+            'fecha_fin'=> 'nullable'
         ]);
-
         $proyecto = Proyecto::where('id', $request->input('id'))->first();
+
+        $fecha_inicio_comprobar = DateTime::createFromFormat('d/m/Y', $proyecto->fecha_inicio);
+        $fecha_fin_estimada_comprobar = DateTime::createFromFormat('d/m/Y', $request->input('fecha_fin_estimada'));
+        $fecha_fin_comprobar = DateTime::createFromFormat('d/m/Y', $request->input('fecha_fin'));
+
+        if( $fecha_fin_estimada_comprobar < $fecha_inicio_comprobar ){
+            return redirect()->back()->with('message', 'Error al modificar el proyecto, compruebe las fechas');
+        }
+        if( $fecha_fin_comprobar!= null && $fecha_fin_comprobar < $fecha_inicio_comprobar ){
+            return redirect()->back()->with('message', 'Error al modificar el proyecto, compruebe las fechas');
+        }
+        
         $proyecto->nombre = $request->input('nombre');
         $proyecto->descripcion = $request->input('descripcion');
         $proyecto->repositorio = $request->input('repositorio');
@@ -189,11 +202,20 @@ class ProyectosController extends Controller
 
     public function create(Request $request){
 
-        /*$this->validate($request, [
+       $this->validate($request, [
             'nombre' => ['string', 'min:3', 'max:20'],
             'descripcion' => ['string', 'min:3', 'max:65535'],
-            'repositorio' => 'url | nullable'
-        ]);*/
+            'repositorio' => 'url | nullable',
+            'fecha_inicio'=> 'date | required',
+            'fecha_fin_estimada'=> 'date | required'
+        ]);
+
+        $fecha_inicio_comprobar = DateTime::createFromFormat('d/m/Y', $request->input('fecha_inicio'));
+        $fecha_fin_estimada_comprobar = DateTime::createFromFormat('d/m/Y', $request->input('fecha_fin_estimada'));
+
+        if( $fecha_fin_estimada_comprobar < $fecha_inicio_comprobar ){
+            return redirect()->back();
+        }
 
         $proyecto = new Proyecto();
         $proyecto->nombre = $request->input('nombre');

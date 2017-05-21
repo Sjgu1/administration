@@ -1,5 +1,17 @@
 @extends('layouts.privada')
-<body>
+@section('cabecera')
+@if(session()->has('message'))
+    @if(session()->has('exito'))
+    <div id="event-modal" class="callout callout-success" style="position: fixed;">
+        <p>{{ session()->get('message') }}</p>
+    </div>
+    @else
+    <div id="event-modal" class="callout callout-danger" style="position: fixed;">
+        <p>{{ session()->get('message') }}</p>
+    </div>
+    @endif
+@endif
+@endsection
 @section('content')
 <section class="content-header">
       <h1>@lang('messages.nuevo proyecto')</h1>
@@ -40,9 +52,9 @@
                     <!--Fecha inicio-->
                     <div class="form-group has-feedback">
                         <label for="message-text" class="control-label">@lang('messages.fecha de inicio'):</label>
-                        <div class="form-group">
+                        <div class="form-group has-feedback">
                             <div class='input-group date' id='datetimepicker6'>
-                                <input type='text' class="form-control" name="fecha_inicio" id="fecha_inicio" />
+                                <input type='text' class="form-control" name="fecha_inicio" id="fecha_inicio" required/>
                                 <span class="input-group-addon">
 								<span class="glyphicon glyphicon-calendar"></span>
                                 </span>
@@ -57,9 +69,9 @@
                     <!--Fecha fin estimada-->
                     <div class="form-group has-feedback">
                         <label for="message-text" class="control-label">@lang('messages.fecha estimada de fin'):</label>
-                        <div class="form-group">
+                        <div class="form-group  has-feedback">
                             <div class='input-group date' id='datetimepicker7'>
-                                <input type='text' class="form-control" name="fecha_fin_estimada" id="fecha_fin_estimada" />
+                                <input type='text' class="form-control " name="fecha_fin_estimada" id="fecha_fin_estimada" required />
                                 <span class="input-group-addon">
 								<span class="glyphicon glyphicon-calendar"></span>
                                 </span>
@@ -87,4 +99,11 @@
       <!-- /.row -->
 
     </section>
+    <script>
+$(document).ready(function(){
+   setTimeout(function(){
+         $('#event-modal').fadeOut(200);
+   },1000);
+});
+</script>
 @endsection
