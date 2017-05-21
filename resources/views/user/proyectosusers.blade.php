@@ -1,5 +1,7 @@
 @extends('layouts.privada')
-@section('cabecera')
+
+	@section('content')
+	@section('cabecera')
 @if(session()->has('message'))
     @if(session()->has('exito'))
     <div id="event-modal" class="callout callout-success" style="position: fixed;">
@@ -31,13 +33,6 @@ $(document).ready(function() {
 	});*/
 </script>
 
-<style>
-	.centrate{
-		padding: 25%;
-	}
-</style>
-
-	@section('content')
 	<section class="content-header">
         <h1> @lang('messages.proyectos')</h1>
         <ol class="breadcrumb">
@@ -50,8 +45,8 @@ $(document).ready(function() {
 		<section class="content connectedSortable">
 			@foreach($proyectosusers as $proyectouser)
 				<div class="col-md-3 col-sm-6 col-xs-12">
-					<div class="info-box bg-aqua">
-						<span class="info-box-icon btn" onclick="sesionProyecto({{$proyectouser->proyecto}})"><div class="profileImage{{$proyectouser->proyecto->id}}"></div></span>
+					<div class="info-box bg-aqua" onclick="sesionProyecto({{$proyectouser->proyecto}})">
+						<span class="info-box-icon" ><div class="profileImage{{$proyectouser->proyecto->id}} "></div></span>
 						<div class="info-box-content">
 							<span class="info-box-text firstName{{$proyectouser->proyecto->id}}">{{ $proyectouser->proyecto->nombre }}</span>
 							
