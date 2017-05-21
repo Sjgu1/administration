@@ -50,8 +50,8 @@ $(document).ready(function() {
 		<section class="content connectedSortable">
 			@foreach($proyectosusers as $proyectouser)
 				<div class="col-md-3 col-sm-6 col-xs-12">
-					<div class="info-box bg-aqua">
-						<span class="info-box-icon btn" onclick="sesionProyecto({{$proyectouser->proyecto}})"><div class="profileImage{{$proyectouser->proyecto->id}}"></div></span>
+					<div class="info-box bg-aqua" onclick="sesionProyecto({{$proyectouser->proyecto}})">
+						<span class="info-box-icon btn" ><div class="profileImage{{$proyectouser->proyecto->id}}"></div></span>
 						<div class="info-box-content">
 							<span class="info-box-text firstName{{$proyectouser->proyecto->id}}">{{ $proyectouser->proyecto->nombre }}</span>
 							
