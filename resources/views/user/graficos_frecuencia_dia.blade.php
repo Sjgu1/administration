@@ -6,8 +6,8 @@
       <h1>@lang('messages.graficos')<small>@lang('messages.frecuencia')</small></h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> @lang('messages.inicio')</a></li>
-        <li><a href="#">UI</a></li>
-        <li class="active">@lang('messages.actividad')</li>
+        <li>@lang('messages.graficos')</li>
+        <li class="active">@lang('messages.frecuencia') @lang('messages.por dia')</li>
       </ol>
     </section>
 

@@ -6,8 +6,8 @@
       <h1>Burndown<small>@lang('messages.sprints')</small></h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> @lang('messages.inicio')</a></li>
-        <li><a href="#">UI</a></li>
-        <li class="active">@lang('messages.actividad')</li>
+        <li><a href="#">@lang('messages.graficos')</a></li>
+        <li class="active">Burndown</li>
       </ol>
     </section>
 
