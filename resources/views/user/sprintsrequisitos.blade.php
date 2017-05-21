@@ -35,11 +35,11 @@
 <input id="fecha_inicio_proyecto" value="{{$proyecto->fecha_inicio}}" class="hide"/>
     <!-- Header -->
     <section class="content-header">
-        <h1>@lang('messages.requisitos')<small>@lang('messages.proyecto') X</small></h1>
+        <h1>@lang('messages.requisitos')<small>{{$proyecto->nombre}}</small></h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> @lang('messages.inicio')</a></li>
-            <li><a href="#">UI</a></li>
-            <li class="active">@lang('messages.actividad')</li>
+            <li><i class="fa fa-dashboard"></i> @lang('messages.inicio')</li>
+            <li>Sprints</li>
+            <li class="active">{{ $sprint->nombre }}</li>
         </ol>
     </section>
 

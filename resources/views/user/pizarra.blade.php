@@ -138,9 +138,9 @@
       </small>
    </h1>
    <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> @lang('messages.inicio')</a></li>
-      <li><a href="#">UI</a></li>
-      <li class="active">@lang('messages.actividad')</li>
+      <li><i class="fa fa-dashboard"></i> {{$proyecto->nombre}}</li>
+      <li>{{$sprint->nombre}}</li>
+      <li class="active">@lang('messages.pizarra')</li>
    </ol>
 </section>
 <div class="content">
