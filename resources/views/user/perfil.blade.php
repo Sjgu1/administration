@@ -1,5 +1,21 @@
 @extends('layouts.privada')
-
+@section('cabecera')
+@if(session()->has('message'))
+    @if(session()->has('exito'))
+    <div class="alert alert-success alert-dismissible" id="event-modal">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+       <h4><i class="icon fa fa-check"></i> Éxito!</h4>
+      <p>{{ session()->get('message') }}</p>
+    </div>
+    @else
+    <div class="alert alert-danger alert-dismissible" id="event-modal">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+        <p>{{ session()->get('message') }}</p>
+    </div>
+    @endif
+@endif
+@endsection
 @section('content')
 
     <section class="content-header">
@@ -37,7 +53,7 @@
                     </div>
                     <div class="form-group has-feedback">
                         <label for="username" class="control-label">@lang('messages.contrasenya'):</label>
-                        <input type="password" id="password1" name="password1" value="" class="form-control" data-minlength="3" maxlength="20" required>
+                        <input type="password" id="password1" name="password" value="" class="form-control" data-minlength="3" maxlength="20" required>
                     </div>
                     <div class="form-group has-feedback">
                         <label for="username" class="control-label">@lang('messages.repetir contrasenya'):</label>
@@ -85,4 +101,11 @@
             window.location.href="/user/borrar/{{ $user->id }}";
         })
     </script>
+    	<script>
+$(document).ready(function(){
+   setTimeout(function(){
+         $('#event-modal').fadeOut(400);
+   },2000);
+});
+</script>
 @endsection

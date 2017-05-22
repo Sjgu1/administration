@@ -92,7 +92,9 @@
         
       </a>
 
-      <div >
+     <div style=" position: fixed;
+  left: 50%;
+  margin-left: -100px;" >
       @yield('cabecera')
       </div>
       <div class="navbar-custom-menu">

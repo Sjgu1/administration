@@ -1,18 +1,23 @@
 @extends('layouts.privada')
 
 	@section('content')
-	@section('cabecera')
+@section('cabecera')
 @if(session()->has('message'))
     @if(session()->has('exito'))
-    <div id="event-modal" class="callout callout-success" style="position: fixed;">
-        <p>{{ session()->get('message') }}</p>
+    <div class="alert alert-success alert-dismissible" id="event-modal">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+       <h4><i class="icon fa fa-check"></i> Éxito!</h4>
+      <p>{{ session()->get('message') }}</p>
     </div>
     @else
-    <div id="event-modal" class="callout callout-danger" style="position: fixed;">
+    <div class="alert alert-danger alert-dismissible" id="event-modal">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
         <p>{{ session()->get('message') }}</p>
     </div>
     @endif
 @endif
+@endsection
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -46,7 +51,7 @@ $(document).ready(function() {
 			@foreach($proyectosusers as $proyectouser)
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<div class="info-box bg-aqua" onclick="sesionProyecto({{$proyectouser->proyecto}})">
-						<span class="info-box-icon" ><div class="profileImage{{$proyectouser->proyecto->id}} "></div></span>
+						<span class="info-box-icon btn" ><div class="profileImage{{$proyectouser->proyecto->id}} "></div></span>
 						<div class="info-box-content">
 							<span class="info-box-text firstName{{$proyectouser->proyecto->id}}">{{ $proyectouser->proyecto->nombre }}</span>
 							
@@ -89,7 +94,7 @@ $(document).ready(function() {
 	<hr>-->
 	<script>
 function sesionProyecto(elmnt) {
-     console.log(elmnt);
+     console.log("hola");
 
     $.ajaxSetup({
            headers: {
@@ -108,8 +113,8 @@ function sesionProyecto(elmnt) {
 	<script>
 $(document).ready(function(){
    setTimeout(function(){
-         $('#event-modal').fadeOut(200);
-   },1000);
+         $('#event-modal').fadeOut(400);
+   },2000);
 });
 </script>
 @endsection
