@@ -127,8 +127,6 @@
 <script src="/adminlte/dist/js/pages/dashboard.js"></script>
 <!-- Bootstrap Color Picker -->
 <link rel="stylesheet" href="/adminlte/plugins/colorpicker/bootstrap-colorpicker.min.css">
-<!-- bootstrap color picker -->
-<script src="/adminlte/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
 <section class="content-header">
    <h1>{{$proyecto->nombre}}
       <small>{{$sprint->nombre}}
@@ -539,6 +537,7 @@
 @endforeach
 </script>
 <script>
+@foreach ($requisitos as $requisito)
    $(".my-colorpicker-col").colorpicker();
    $("#confirmacion{{ $requisito->id }}").click(function() {
    
@@ -557,7 +556,7 @@
            window.location.href = "/requisito/borrar/{{ $requisito->id }}";            
        });
    });
-   
+   @endforeach
 </script>
 @endforeach
 <script>
