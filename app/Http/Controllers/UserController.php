@@ -207,7 +207,8 @@ class UserController extends Controller
 
     }
 
-    public function sayHello($id){
+    // ANTIGUA, NO SÉ POR QUÉ SE USA
+    /*public function sayHello($id){
         if(Auth::id()==$id){
             $user = User::where('id', $id)->first();
             if($user==null){
@@ -217,6 +218,19 @@ class UserController extends Controller
             }
         }else{
             return redirect()->back();
+        }
+    }*/
+
+    public function sayHello($id){
+
+        $user = User::where('id', $id)->first();
+
+        if ($user==null){
+
+            return view('alerta_elemento',['slot'=> "No existe el elemento Usuario: " .$id  ] );
+        }
+        else {
+            return view('user', ['user' => $user]);
         }
     }
 

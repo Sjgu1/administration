@@ -49,7 +49,7 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="user/{{ $user->id }}">@lang('messages.tablon')</a>
+                                        <a href="user/proyectosusers">@lang('messages.tablon')</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('logout') }}"
