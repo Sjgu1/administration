@@ -100,7 +100,7 @@ class UserController extends Controller
             $valorname=$name;
         }
         if ($name==null) {
-            $users = User::get();
+            $users = User::get(); 
             foreach($users as $user){
                 $appends[]= $user->id;
             }
@@ -163,12 +163,13 @@ class UserController extends Controller
 
     public function modify(Request $request){
 
-        /*$this->validate($request, [
-            'name' => ['string', 'min:3', 'max:20'],
+        $this->validate($request, [
+            'name' => ['string', 'min:3', 'max:20','required'],
             'apellidos' => ['string', 'min:3', 'max:50'],
-            'email' => ['email'],
-            'username' => ['string', 'min:3', 'max:20']
-        ]);*/
+            'email' => ['email','required'],
+            'username' => ['string', 'min:3', 'max:20', 'required'],
+            'password' => ['string', 'required']
+        ]);
 
         $user = User::where('id', $request->input('id'))->first();
         $user->name = $request->input('name');
@@ -195,7 +196,7 @@ class UserController extends Controller
         }*/
 
         $user->save();
-        return view('exito_elemento',['slot'=> "Se ha modificado el Usuario: " .$user->id  ] );
+        return redirect()->back();
 
     }
 

@@ -206,8 +206,8 @@ class ProyectosController extends Controller
             'nombre' => ['string', 'min:3', 'max:20'],
             'descripcion' => ['string', 'min:3', 'max:65535'],
             'repositorio' => 'url | nullable',
-            'fecha_inicio'=> 'date | required',
-            'fecha_fin_estimada'=> 'date | required'
+            'fecha_inicio'=> 'required',
+            'fecha_fin_estimada'=> 'required'
         ]);
 
         $fecha_inicio_comprobar = DateTime::createFromFormat('d/m/Y', $request->input('fecha_inicio'));
