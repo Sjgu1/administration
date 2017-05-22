@@ -132,5 +132,6 @@ return [
     'estado'        => 'Estado',
     'menu'          => 'Menú',
     'el repositorio es invalido' => 'El repositorio es inválido o existe un error de conexión',
+    'estas seguro'  => '¿Estás seguro?',
 
 ];
