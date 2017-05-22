@@ -3,12 +3,7 @@
 @section('content')
 
     <section class="content-header">
-      <h1>@lang('messages.perfil')<small>@lang('messages.usuario') x</small></h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> @lang('messages.inicio')</a></li>
-        <li><a href="#">UI</a></li>
-        <li class="active">@lang('messages.actividad')</li>
-      </ol>
+      <h1>@lang('messages.perfil')<small>{{ $user->name }}</small></h1>
     </section>
 
     <!-- Main content -->

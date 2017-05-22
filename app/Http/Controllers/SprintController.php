@@ -334,6 +334,8 @@ class SprintController extends Controller
                 // Lleva retraso
                 if ($fecha_fin_estimada < $fecha_dia_de_hoy){
 
+                    $requisito->progreso = '100%';
+
                     $diferencia = $fecha_fin_estimada->diff($fecha_dia_de_hoy)->format('%a');
                     $requisito->finalizacion = "Hace " . $diferencia;
                     $requisito->color = 'red';
@@ -343,6 +345,9 @@ class SprintController extends Controller
                 }
                 // O se estima que acabe hoy, o que acabe en días posteriores. Va bien.
                 else {
+
+                    $requisito->progreso = floor($fecha_inicio->diff($fecha_dia_de_hoy)->format('%a') / $dias_totales * 100) . '%';
+                    $requisito->porcentaje = $requisito->progreso;
 
                     $diferencia = $fecha_dia_de_hoy->diff($fecha_fin_estimada)->format('%a');
 
