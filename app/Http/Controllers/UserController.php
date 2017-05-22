@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
+use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
 
@@ -163,19 +164,24 @@ class UserController extends Controller
 
     public function modify(Request $request){
 
-        /*$this->validate($request, [
-            'name' => ['string', 'min:3', 'max:20'],
+        $this->validate($request, [
+            'name' => ['string', 'min:3', 'max:20', 'required'],
             'apellidos' => ['string', 'min:3', 'max:50'],
-            'email' => ['email'],
-            'username' => ['string', 'min:3', 'max:20']
-        ]);*/
+            'email' => ['email', 'required'],
+            'username' => ['string', 'min:3', 'max:20'],
+            'password' => ['string', 'required'],
+            'password1' => ['string', 'required']
+        ]);
 
+        if($request->password != $request->password1){
+            return redirect()->back()->with('message', 'Las password no coinciden');
+        }
         $user = User::where('id', $request->input('id'))->first();
         $user->name = $request->input('name');
         $user->apellidos = $request->input('apellidos');
         $user->username = $request->input('username');
         $user->email = $request->input('email');
-        $user->password = $request->input('password');
+        $user->password = bcrypt($request->input('password'));
 
         if ($request->hasFile('imagen')){
 
@@ -194,9 +200,13 @@ class UserController extends Controller
             copy('perfiles/cara.jpg', 'perfiles/' . $user->id);
         }*/
 
-        $user->save();
-        return view('exito_elemento',['slot'=> "Se ha modificado el Usuario: " .$user->id  ] );
+        $exito = $user->save();
 
+        if($exito){
+            return redirect()->back()->with("message", "Se ha modificado el usuario correctamente")->with('exito', 'eliminado');
+        }else{
+             return redirect()->back()->with("message", "Error al modificar el usuario, compruebe que todos los datos son correctos");
+        }
     }
 
     public function delete($id){

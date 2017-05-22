@@ -4,11 +4,21 @@ namespace App\ServiceLayer;
 
 use App\Http\Controllers\ProyectosController;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Input;
+use App\Proyecto;
+use App\Sprint;
+use DateTime;
+use DateTimeZone;
+use DateInterval;
 use App\ProyectoUser;
-use App\Rol;
+use App\Requisito;
 use App\User;
+use App\Rol;
 use Auth;
+use Log;
 use App\Permiso;
+use App\ServiceLayer\ProyectoServices;
 
 class ProyectoServices {
 
@@ -17,9 +27,9 @@ class ProyectoServices {
         $obj->validate($request, [
             'nombre' => ['string', 'min:3', 'max:20'],
             'descripcion' => ['string', 'min:3', 'max:65535'],
-            'repositorio' => 'url | nullable',
-            'fecha_inicio'=> 'date | required',
-            'fecha_fin_estimada'=> 'date | required'
+            'repositorio' => ['string'],
+            'fecha_inicio'=> ['required'],
+            'fecha_fin_estimada'=> ['required']
         ]);
 
         $fecha_inicio_comprobar = DateTime::createFromFormat('d/m/Y', $request->input('fecha_inicio'));
@@ -28,7 +38,7 @@ class ProyectoServices {
         if( $fecha_fin_estimada_comprobar < $fecha_inicio_comprobar ){
             return redirect()->back();
         }
-
+        
         $proyecto = new Proyecto();
         $proyecto->nombre = $request->input('nombre');
         $proyecto->descripcion = $request->input('descripcion');
