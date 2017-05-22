@@ -160,7 +160,7 @@
                            <div class="col-md-12">
                               <div class="col-md-6">
                                  <div class="form-group">
-                                    <label>Estado</label>
+                                    <label>@lang('messages.estado')</label>
                                     <select class="form-control" onchange="cambiarColor(this.value);">
                                        <option value="columna1">@lang('messages.por hacer')</option>
                                        <option value="columna2">@lang('messages.en tramite')</option>

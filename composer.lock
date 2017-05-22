@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "acacha/admin-lte-template-laravel",
-            "version": "4.1.10",
+            "version": "4.1.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/acacha/adminlte-laravel.git",
-                "reference": "e747377dec46644baf434fa37c74034bcb9de436"
+                "reference": "614bcf039b01e3891a89d4cf8ed724d76db9e474"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/acacha/adminlte-laravel/zipball/e747377dec46644baf434fa37c74034bcb9de436",
-                "reference": "e747377dec46644baf434fa37c74034bcb9de436",
+                "url": "https://api.github.com/repos/acacha/adminlte-laravel/zipball/614bcf039b01e3891a89d4cf8ed724d76db9e474",
+                "reference": "614bcf039b01e3891a89d4cf8ed724d76db9e474",
                 "shasum": ""
             },
             "require": {
@@ -70,7 +70,7 @@
                 "template",
                 "theme"
             ],
-            "time": "2017-04-16T13:42:20+00:00"
+            "time": "2017-05-20T07:47:43+00:00"
         },
         {
             "name": "acacha/filesystem",

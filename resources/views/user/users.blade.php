@@ -39,7 +39,7 @@
         <h1>@lang('messages.gestionar proyecto')</h1>
         <ol class="breadcrumb">
             @if ($crear_sprint)
-            <button type="button" data-toggle="modal" data-target="#CrearSprint" class="btn btn-block btn-success btn-xs">Crear Sprint</button>
+            <button type="button" data-toggle="modal" data-target="#CrearSprint" class="btn btn-block btn-success btn-xs">@lang('messages.crear sprint')</button>
             @endif
         </ol>
     </section>
@@ -110,7 +110,7 @@
         @if ($invitar_usuarios)
       <div class="box box-default">
         <div class="box-header with-border">
-          <h3 class="box-title">Añadir usuario</h3>
+          <h3 class="box-title">@lang('messages.añadir usuario')</h3>
 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -124,7 +124,7 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <input id="autocompleteUser" type="text" class="form-control modal-title" name="user_name" placeholder="Nombre">
+                <input id="autocompleteUser" type="text" class="form-control modal-title" name="user_name" placeholder="@lang('messages.nombre')">
               </div>
             </div>
             <!-- /.col -->
@@ -142,7 +142,7 @@
             <!-- /.col -->
             <div class="col-md-2">
               <div class="form-group">
-                <input class="btn btn-primary" type="submit" value="Invitar">
+                <input class="btn btn-primary" type="submit" value="@lang('messages.proyecto')">
               </div>
               <!-- /.form-group -->
             </div>
@@ -232,7 +232,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-md-6  has-feedback">
-                                        <label for="message-text" class="control-label">Fecha estimada fin:</label>
+                                        <label for="message-text" class="control-label">@lang('messages.fecha estimada de fin'):</label>
                                         <div class="form-group  has-feedback ">
                                             <div class='input-group date  has-feedback'>
                                                 <input id="fecha_fin_estimada_sprint_input" type='text' readonly class="form-control" name="fecha_fin_estimada" value="" style="background-color: #fff;"/> 
@@ -247,7 +247,7 @@
                             
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">@lang('messages.cerrar')</button>
-                                <button type="submit" class="btn btn-primary">Crear</button>
+                                <button type="submit" class="btn btn-primary">@lang('messages.crear')</button>
                         </div>
                         
                     </form>
@@ -293,7 +293,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-md-4  has-feedback">
-                                        <label for="message-text" class="control-label">Fecha estimada fin:</label>
+                                        <label for="message-text" class="control-label">@lang('messages.fecha estimada de fin'):</label>
 
                                         <div class="form-group  has-feedback">
                                             <div class='input-group date  has-feedback' >

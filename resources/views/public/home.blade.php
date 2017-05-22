@@ -58,7 +58,7 @@
         <img src="images/metodologiaRecortada.png"  alt="Image">
         <div class="carousel-caption">
           <h3>@lang('messages.trabaja en equipo')</h3>
-          <p>Organiza tus proyectos de forma sencilla.</p>
+          <p>@lang('messages.organiza').</p>
         </div>      
       </div>
 
@@ -66,7 +66,7 @@
         <img src="images/estadisticas.jpg"  alt="Image">
         <div class="carousel-caption">
           <h3>@lang('messages.estadisticas').</h3>
-          <p>Comprueba el estado de tu proyecto en todo momento</p>
+          <p>@lang('messages.comprueba').</p>
         </div>      
       </div>
     </div>
@@ -87,21 +87,21 @@
   <div class="row">
     <div class="col-sm-4">
       <img src="images/reunion.jpg" class="img-responsive" style="width:100%" alt="Image">
-      <p>Organiza tus sprints</p>
+      <p>@lang('messages.organiza tus sprints')</p>
     </div>
     <div class="col-sm-4"> 
       <img src="images/tareas.jpg" class="img-responsive" style="width:100%" alt="Image">
-      <p>Crea tareas</p>    
+      <p>@lang('messages.crea tareas')</p>    
     </div>
     <div class="col-sm-4"> 
       <img src="images/programar.jpg" class="img-responsive" style="width:100%" alt="Image">
-      <p>Comienza a trabajar</p>    
+      <p>@lang('messages.comienza a trabajar')</p>    
     </div>
   </div>
   <div class="row">
-      El desarrollo ágil de software envuelve un enfoque para la toma de decisiones en los proyectos de software, que se refiere a métodos de ingeniería del software basados en el desarrollo iterativo e incremental, donde los requisitos y soluciones evolucionan con el tiempo según la necesidad del proyecto. Así el trabajo es realizado mediante la colaboración de equipos auto-organizados y multidisciplinarios, inmersos en un proceso compartido de toma de decisiones a corto plazo.
+      @lang('messages.el desarrollo')
       <br/><br/>
-      Cada iteración del ciclo de vida incluye: planificación, análisis de requisitos, diseño, codificación, pruebas y documentación. Teniendo gran importancia el concepto de "Finalizado" (Done), ya que el objetivo de cada iteración no es agregar toda la funcionalidad para justificar el lanzamiento del producto al mercado, sino incrementar el valor por medio de "software que funciona" (sin errores).
+      @lang('messages.cada iteracion')   
   </div>
 </div><br>
 

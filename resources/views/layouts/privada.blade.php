@@ -179,7 +179,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
         
         <ul class="sidebar-menu">
-          <li class="header">Menú</li>
+          <li class="header">@lang('messages.menu')</li>
             <li @if ($current_view == 'user') {!! 'class="active"' !!} @endif>
               <a href="/user/proyectosusers">
                 <i class="fa fa-edit"></i><span>@lang('messages.proyectos')</span>
@@ -235,8 +235,8 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="/graficos/burndown/sprints"><i class="fa fa-circle-o"></i>Burndown sprints</a></li>
-                <li><a href="/graficos/frecuenciadia"><i class="fa fa-circle-o"></i>Frecuencia diaria</a></li>
-                <li><a href="/graficos/frecuenciahora"><i class="fa fa-circle-o"></i>Frecuencia horaria</a></li>
+                <li><a href="/graficos/frecuenciadia"><i class="fa fa-circle-o"></i>@lang('messages.frecuencia diaria')</a></li>
+                <li><a href="/graficos/frecuenciahora"><i class="fa fa-circle-o"></i>@lang('messages.frecuencia horaria')</a></li>
                 <li><a href="/graficos/requisitos"><i class="fa fa-circle-o"></i>@lang('messages.requisitos')</a></li>
                 <li><a href="/graficos/commits"><i class="fa fa-circle-o"></i>Commits</a></li>
                 <!--<li class="active"><a href="timeline.html"><i class="fa fa-circle-o"></i>@lang('messages.actividad')</a></li>-->
@@ -253,7 +253,7 @@
             <li @if ($current_view == 'userspublic') {!! 'class="active"' !!} @endif>    
               <a href="/userspublic">
                 <i class="fa fa-pie-chart"></i>
-                <span>Configuración</span>
+                <span>@lang('messages.configuracion')</span>
                 <span class="pull-right-container">
                   <small class="label pull-right bg-green">@lang('messages.nuevo')</small>
                 </span>
