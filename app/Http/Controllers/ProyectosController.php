@@ -202,7 +202,7 @@ class ProyectosController extends Controller
     }
 
     public function create(Request $request){
-
+        
         ProyectoServices::create($request, $this);
 
         return redirect('user/proyectosusers');
