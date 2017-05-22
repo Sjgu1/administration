@@ -3,7 +3,7 @@
 @section('content')
 
     <section class="content-header">
-      <h1>@lang('messages.perfil')<small>{{ $user->name }}</small></h1>
+      <h1>@lang('messages.perfil')<small>{{ $usuario->name }}</small></h1>
     </section>
 
     <!-- Main content -->
@@ -37,11 +37,11 @@
                     </div>
                     <div class="form-group has-feedback">
                         <label for="username" class="control-label">@lang('messages.contrasenya'):</label>
-                        <input type="text" id="password1" name="password1" value="" class="form-control" data-minlength="3" maxlength="20" required>
+                        <input type="password" id="password1" name="password1" value="" class="form-control" data-minlength="3" maxlength="20" required>
                     </div>
                     <div class="form-group has-feedback">
                         <label for="username" class="control-label">@lang('messages.repetir contrasenya'):</label>
-                        <input type="text" id="password2" name="password1" value="" class="form-control" data-minlength="3" maxlength="20" required>
+                        <input type="password" id="password2" name="password1" value="" class="form-control" data-minlength="3" maxlength="20" required>
                     </div>
                     <div class="form-group has-feedback">
                         <label for="username" class="control-label">@lang('messages.imagen de perfil'):</label>

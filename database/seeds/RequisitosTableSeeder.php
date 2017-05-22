@@ -16,42 +16,45 @@ class RequisitosTableSeeder extends Seeder
 
         DB::table('requisitos')->delete();
 
+        // Requisito finalizado con retraso
         $requisito = new Requisito(['nombre' => 'Crear Tablas', 
-        'descripcion' => 'Realizacion de las tablas para la base de datos',
-        'fecha_inicio' => '03/03/2014',
-        'fecha_fin_estimada' => '03/03/2018',
-        'estado' => 'Por hacer']);
+            'descripcion' => 'Realizacion de las tablas para la base de datos',
+            'fecha_inicio' => '19/05/2017',
+            'fecha_fin_estimada' => '20/05/2017',
+            'fecha_fin' => '21/05/2017',
+            'estado' => 'Hecho']);
         $sprint = Sprint::where('id', '1')->first();
         $requisito->sprint()->associate($sprint);
         $requisito->save();
 
+        // Requisito finalizado sin retraso
         $requisito = new Requisito(['nombre' => 'Integridad referencial',
-        'descripcion' => 'Testear la integridad referencial de la base de datos', 
-        'fecha_inicio' => '04/03/2014',
-        'fecha_fin_estimada' => '03/03/2018',
-        'fecha_fin' => '04/04/2018',
-        'estado' => 'Hecho']);
+            'descripcion' => 'Testear la integridad referencial de la base de datos', 
+            'fecha_inicio' => '19/05/2017',
+            'fecha_fin_estimada' => '20/05/2017',
+            'fecha_fin' => '20/05/2017',
+            'estado' => 'Hecho']);
         $sprint = Sprint::where('id', '1')->first();
         $requisito->sprint()->associate($sprint);
         $requisito->save();
 
+        // Requisito no finalizado con retraso
         $requisito = new Requisito(['nombre' => 'Layout', 
-        'descripcion' => 'Crear layout para las vistas', 
-        'fecha_inicio' => '05/03/2014',
-        'fecha_fin_estimada' => '03/03/2018',
-        'estado' => 'Por hacer']);
-
+            'descripcion' => 'Crear layout para las vistas', 
+            'fecha_inicio' => '20/05/2017',
+            'fecha_fin_estimada' => '21/05/2017',
+            'estado' => 'Por hacer']);
         $sprint = Sprint::where('id', '1')->first();
         $requisito->sprint()->associate($sprint);
         $requisito->save();
 
+        // Requisito no finalizado sin retraso
         $requisito = new Requisito(['nombre' => 'Vista tablon', 
         'descripcion' => 'Crear y modelar una vista para el tablon', 
-        'fecha_inicio' => '01/12/2012',
-        'fecha_fin_estimada' => '03/03/2018',
-        'estado' => 'Por hacer']);
-
-        $sprint = Sprint::where('id', '2')->first();
+        'fecha_inicio' => '20/05/2017',
+        'fecha_fin_estimada' => '30/05/2017',
+        'estado' => 'En trámite']);
+        $sprint = Sprint::where('id', '1')->first();
         $requisito->sprint()->associate($sprint);
         $requisito->save();
 

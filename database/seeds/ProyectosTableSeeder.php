@@ -20,8 +20,8 @@ class ProyectosTableSeeder extends Seeder
             'nombre' => 'GIMP',
             'descripcion' => 'Proyecto de la comunidad GNU para el desarrollo de la aplicación GIMP',
             'repositorio' => 'https://www.github.com/gimp',
-            'fecha_inicio' => '19/09/2015',
-            'fecha_fin_estimada' => '20/12/2017'
+            'fecha_inicio' => '19/05/2017',
+            'fecha_fin_estimada' => '19/05/2018'
         ]);
         $proyecto->save();
 
@@ -38,8 +38,8 @@ class ProyectosTableSeeder extends Seeder
             'nombre' => 'Ionic JS',
             'descripcion' => 'Proyecto dedicado al desarrollo del framework Ionic JS para el desarrollo de aplicaciones multiplataforma',
             'repositorio' => 'https://www.github.com/ionicjs',
-            'fecha_inicio' => '20/12/2015',
-            'fecha_fin_estimada' => '20/12/2017'
+            'fecha_inicio' => '19/05/2017',
+            'fecha_fin_estimada' => '19/05/2018'
         ]);
         $proyecto->save();
 
@@ -47,8 +47,8 @@ class ProyectosTableSeeder extends Seeder
             'nombre' => 'Bootstrap',
             'descripcion' => 'Proyecto de desarrollo por parte de Twitter para el framework Bootstrap. Diseño web.',
             'repositorio' => 'https://www.bootstrap.com',
-            'fecha_inicio' => '12/05/2014',
-            'fecha_fin_estimada' => '20/12/2017'
+            'fecha_inicio' => '19/05/2017',
+            'fecha_fin_estimada' => '19/05/2018'
         ]);
         $proyecto->save();
 

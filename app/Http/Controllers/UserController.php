@@ -156,9 +156,9 @@ class UserController extends Controller
 
      public function details2($id = null){
 
-        $user = User::where('id', 1)->first();
+        $usuario = User::where('id', Auth::user()->id)->first();
 
-        return view('user.perfil', ['user' => $user]);
+        return view('user.perfil', ['usuario' => $usuario]);
      }
 
     public function modify(Request $request){
