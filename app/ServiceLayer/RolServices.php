@@ -19,6 +19,7 @@ class RolServices {
 
             return redirect()->back()->with('message', 'Ningún proyecto seleccionado');
         }
+
         $proyecto_users = ProyectoUser::where('proyecto_id', session()->get('selected_project')->id)->with('user')->with('rol')->get();
         $users_to_exclude = array();
 

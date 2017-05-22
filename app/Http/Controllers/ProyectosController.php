@@ -212,16 +212,43 @@ class ProyectosController extends Controller
         return view('user.proyectonew');
     }
 
-    public function getCommits(){
+    public function getFromGithub($url, &$return_code, &$output){
+
+        $proyecto = session()->get('selected_project');
+        //PRUEBA
+        //$proyecto->repositorio = 'https://google.com/jph12/crisantema';
+        //FN PRUEBA
+        $repository = explode('/', $proyecto->repositorio);
+
+        if (count($repository) != 5){ $return_code = 'repositorio_invalido'; return; }
+
+        $url_aux = 'https://api.github.com/repos/' . $repository[3] . '/' . $repository[4];
+
+        if ($url == 'commits'){ $url_aux = $url_aux . '/commits'; }
+        else if ($url == 'contributors'){ $url_aux = $url_aux . '/stats/contributors'; }
+        else if ($url == 'frecuencia_dia'){ $url_aux = $url_aux . '/stats/commit_activity'; }
+        else if ($url == 'frecuencia_hora'){ $url_aux = $url_aux . '/stats/punch_card'; }
 
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'https://api.github.com/repos/jph11/crisantemo/commits');
+        curl_setopt($ch, CURLOPT_URL, $url_aux);
         curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_USERPWD, 'jph11:Passwordprueba123');
 
-        $output = json_decode(curl_exec($ch), true);
+        $ch = curl_exec($ch);
 
+        $output = json_decode($ch, true);
+
+        if (array_key_exists('message', $output)){ $output = array(); $return_code = 'repositorio_invalido'; return; }
+    }
+
+    public function getCommits(){
+
+        $url = 'commits';
+        $return_code = null;
+        $output = array();
+
+        $this->getFromGithub($url, $return_code, $output);
         //print_r($output);
 
         $commits = array();
@@ -257,7 +284,7 @@ class ProyectosController extends Controller
             array_push($commits, $datos);
         }
 
-        curl_close($ch);
+        //curl_close($ch);
 
         return $commits;
     }
@@ -529,28 +556,20 @@ class ProyectosController extends Controller
 
     public function graficos_commits($id = null){
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'https://api.github.com/repos/jph11/crisantemo/stats/contributors');
-        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_USERPWD, 'jph11:Passwordprueba123');
+        $url = 'contributors';
+        $return_code = null;
+        $output = array();
 
-        $output = json_decode(curl_exec($ch), true);
+        $this->getFromGithub($url, $return_code, $output);
+
         $contributors = array();
 
         foreach ($output as $contributor){
 
             $contributors[$contributor['author']['login']] = $contributor['total'];
         }
-
-        //var_dump($contributors);
-        //var_dump(json_decode($output, true));
-
-        curl_close($ch);
-
-        //var_dump($contributors);
         
-        return view('user.graficos_commits', ['contributors' => $contributors]);
+        return view('user.graficos_commits', ['contributors' => $contributors, 'return_code' => $return_code]);
     }
 
     public function burndown_sprints($id = null){
@@ -666,14 +685,12 @@ class ProyectosController extends Controller
 
     public function graficos_frecuencia_hora($id = null){
 
-        // Extracción de las horas con sus commits
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'https://api.github.com/repos/jph11/crisantemo/stats/punch_card');
-        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_USERPWD, 'jph11:Passwordprueba123');
+        $url = 'frecuencia_hora';
+        $return_code = null;
+        $output = array();
 
-        $output = json_decode(curl_exec($ch), true);
+        $this->getFromGithub($url, $return_code, $output);
+
         $horas = array();
 
         for ($i = 0; $i < 24; $i++){
@@ -685,24 +702,19 @@ class ProyectosController extends Controller
 
             $horas[$commit['1']] += $commit['2'];
         }
-
-        curl_close($ch);
         
         $dias = array();
-        return view('user.graficos_frecuencia_hora', ['horas' => $horas, 'dias' => $dias]);
+        return view('user.graficos_frecuencia_hora', ['horas' => $horas, 'dias' => $dias, 'return_code' => $return_code]);
 
     }
 
     public function graficos_frecuencia_dia($id = null){
 
-        // Extracción de los días con sus commits
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'https://api.github.com/repos/jph11/crisantemo/stats/commit_activity');
-        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_USERPWD, 'jph11:Passwordprueba123');
+        $url = 'frecuencia_dia';
+        $return_code = null;
+        $output = array();
 
-        $output = json_decode(curl_exec($ch), true);
+        $this->getFromGithub($url, $return_code, $output);
         $dias = array();
 
         for ($i = 0; $i < 7; $i++){
@@ -722,10 +734,8 @@ class ProyectosController extends Controller
         unset($dias[0]);
         array_push($dias, $aux);
 
-        curl_close($ch);
-
         $horas = array();
-        return view('user.graficos_frecuencia_dia', ['dias' => $dias, 'horas' => $horas]);
+        return view('user.graficos_frecuencia_dia', ['dias' => $dias, 'horas' => $horas, 'return_code' => $return_code]);
     }
 
 }
