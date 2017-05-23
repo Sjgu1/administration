@@ -32,6 +32,8 @@ class ProyectoServices {
             'fecha_fin_estimada'=> ['required']
         ]);
 
+        DB::beginTransaction();
+
         $fecha_inicio_comprobar = DateTime::createFromFormat('d/m/Y', $request->input('fecha_inicio'));
         $fecha_fin_estimada_comprobar = DateTime::createFromFormat('d/m/Y', $request->input('fecha_fin_estimada'));
 
@@ -58,6 +60,9 @@ class ProyectoServices {
         $proyectoUser->proyecto()->associate($proyecto->id);
         $proyectoUser->rol()->associate($rol->id);
         $proyectoUser->save();
+
+        DB::commit();
+        
         if($exito){
             return redirect('user.proyectosusers')->with('message', 'Se ha creado el proyecto '. $proyecto->nombre)->with('exito', 'exito');
         }else{
