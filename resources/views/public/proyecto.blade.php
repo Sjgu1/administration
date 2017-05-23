@@ -32,7 +32,7 @@
             <h2 class="featurette-heading">@lang('messages.crear un proyecto').
                 <span class="text-muted">@lang('messages.agrega a tus compañeros de equipo')</span>
             </h2>
-            <p class="lead">Empieza creando un proyecto. Si quieres, puedes agregar compañeros a este proyecto y asignarle los niveles de moficiación que tienen sobre el mismo. Puedes gestionar tus proyectos desde el menú de entrada</p>
+            <p class="lead">@lang('messages.empieza')</p>
         </div>
 
         <hr class="featurette-divider">
@@ -41,9 +41,9 @@
         <div class="featurette" id="services">
             <img class="featurette-image img-circle img-responsive pull-left" src="images/estadisticas2.png">
             <h2 class="featurette-heading">@lang('messages.graficos').
-                <span class="text-muted">Todo lo que quieres saber.</span>
+                <span class="text-muted">@lang('messages.todo').</span>
             </h2>
-            <p class="lead">Realiza un seguimiento de tus proyectos. Analiza la colaboración de cada participante, observa el progreso y lo que falta para terminar, obtén feedback para mejorar futuros proyetos.</p>
+            <p class="lead">@lang('messages.realiza').</p>
         </div>
 
         <hr class="featurette-divider">
@@ -51,10 +51,10 @@
         <!-- Third Featurette -->
         <div class="featurette" id="contact">
             <img class="featurette-image img-circle img-responsive pull-right" src="images/easybutton.jpg">
-            <h2 class="featurette-heading">Sencillez.
-                <span class="text-muted">Fácil manejo.</span>
+            <h2 class="featurette-heading">@lang('messages.sencillez').
+                <span class="text-muted">@lang('messages.facil manejo').</span>
             </h2>
-            <p class="lead">Entra en las metodologías ágiles de una forma sencilla, aprende a manejar tus incidencias y a trabajar en grupo sin necesidad de horas de aprendizaje.</p>
+            <p class="lead">@lang('messages.ebtra').</p>
         </div>
 
         <hr class="featurette-divider">

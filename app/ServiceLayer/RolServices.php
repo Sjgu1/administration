@@ -20,6 +20,8 @@ class RolServices {
             return redirect()->back()->with('message', 'Ningún proyecto seleccionado');
         }
 
+        DB::beginTransaction();
+
         $proyecto_users = ProyectoUser::where('proyecto_id', session()->get('selected_project')->id)->with('user')->with('rol')->get();
         $users_to_exclude = array();
 
@@ -62,5 +64,6 @@ class RolServices {
         $invitar_usuarios = ProyectosController::permisoChecker('invitar_usuarios');
         // /Permisos
         
+        DB::commit();
     }
 }
