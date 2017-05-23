@@ -36,6 +36,17 @@ $(document).ready(function() {
 	var profileImage = $('.profileImage').text(intials);
 	});*/
 </script>
+<style>
+	.shadow{
+		box-shadow: 10px 10px 5px #888888;
+		
+	}
+	.shadow:hover{
+		box-shadow: 5px 5px 5px #888888;
+		cursor: pointer;
+		cursor:hand;
+	}
+</style>
 
 	<section class="content-header">
         <h1> @lang('messages.proyectos')</h1>
@@ -49,8 +60,8 @@ $(document).ready(function() {
 		<section class="content connectedSortable">
 			@foreach($proyectosusers as $proyectouser)
 				<div class="col-md-3 col-sm-6 col-xs-12">
-					<div class="info-box bg-aqua" onclick="sesionProyecto({{$proyectouser->proyecto}})">
-						<span class="info-box-icon btn" ><div class="profileImage{{$proyectouser->proyecto->id}} "></div></span>
+					<div class="info-box bg-aqua shadow" onclick="sesionProyecto({{$proyectouser->proyecto}})">
+						<span class="info-box-icon" ><div class="profileImage{{$proyectouser->proyecto->id}} "></div></span>
 						<div class="info-box-content">
 							<span class="info-box-text firstName{{$proyectouser->proyecto->id}}">{{ $proyectouser->proyecto->nombre }}</span>
 							
@@ -63,7 +74,7 @@ $(document).ready(function() {
 				@endforeach
 				<a href="{{ url('user/proyecto/new') }}">
 				<div class="col-md-3 col-sm-6 col-xs-12">
-						<div class="info-box bg-aqua">
+						<div class="info-box bg-aqua shadow">
 							<span class="info-box-icon"><div>+</div></span>
 							<div class="info-box-content">
 								<span class="info-box-text">@lang('messages.nuevo proyecto')</span>
