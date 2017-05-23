@@ -371,13 +371,13 @@
             $("#deleteButton{{ $proyecto_user->user_id }}").click(function() {
 
                 swal({
-                    title: "¿Estás seguro?",
-                    text: "Vas a desvincular a {{ $proyecto_user->user->name . ' ' . $proyecto_user->user->apellidos }} del proyecto",
+                    title: "@lang('messages.estas seguro?')",
+                    text: "@lang('messages.vas a desvincular') {{ $proyecto_user->user->name . ' ' . $proyecto_user->user->apellidos }} del proyecto",
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "Sí, adelante",
-                    cancelButtonText: "Cancelar",
+                    confirmButtonText: "@lang('messages.si adelante)",
+                    cancelButtonText: "@lang('messages.cancelar')",
                     closeOnConfirm: false,
                     allowOutsideClick: true
                 },
