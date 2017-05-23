@@ -133,5 +133,10 @@ return [
     'menu'          => 'Menú',
     'el repositorio es invalido' => 'El repositorio es inválido o existe un error de conexión',
     'estas seguro'  => '¿Estás seguro?',
-
+    'realiza'       => 'Realiza un seguimiento de tus proyectos. Analiza la colaboración de cada participante, observa el progreso y lo que falta para terminar, obtén feedback para mejorar futuros proyetos',
+    'sencillez'     => 'Sencillez' ,
+    'facil manejo'  => 'Fácil manejo',
+    'entra'         => 'Entra en las metodologías ágiles de una forma sencilla, aprende a manejar tus incidencias y a trabajar en grupo sin necesidad de horas de aprendizaje',
+    'empieza'       => 'Empieza creando un proyecto. Si quieres, puedes agregar compañeros a este proyecto y asignarle los niveles de moficiación que tienen sobre el mismo. Puedes gestionar tus proyectos desde el menú de entrada.',
+    'todo'          => 'Todo lo que quieras saber',
 ];
