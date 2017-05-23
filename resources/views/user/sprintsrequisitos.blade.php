@@ -456,13 +456,13 @@
     $("#eliminar_sprint{{ $sprint->id }}").click(function() {
 
         swal({
-            title: "¿Estás seguro?",
-            text: "Vas a borrar el sprint {{ $sprint->nombre }}",
+            title: "@lang('messages.estas seguro?')",
+            text: "@lang('messages.vas a eliminar') {{ $sprint->nombre }}",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
-            cancelButtonText: "Cancelar",
-            confirmButtonText: "Sí, adelante",
+            cancelButtonText: "@lang('messages.cancelar')",
+            confirmButtonText: "@lang('messages.si adelante')",
             closeOnConfirm: false,
             allowOutsideClick: true
         },

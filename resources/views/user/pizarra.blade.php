@@ -546,13 +546,13 @@
    $("#confirmacion{{ $requisito->id }}").click(function() {
    
        swal({
-           title: "¿Estás seguro?",
-           text: "Vas a eliminar {{ $requisito->nombre}}.",
+            title: "@lang('messages.estas seguro?'),
+           text: "@lang('messages.vas a eliminar'){{ $requisito->nombre}}.",
            type: "warning",
            showCancelButton: true,
            confirmButtonColor: "#DD6B55",
-           confirmButtonText: "Sí, adelante",
-           cancelButtonText: "Cancelar",
+           confirmButtonText: "@lang('messages.si adelante?')",
+           cancelButtonText: "@lang('messages.cancelar')",
            closeOnConfirm: false,
            allowOutsideClick: true
        },
