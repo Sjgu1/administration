@@ -1,12 +1,12 @@
 @extends('layouts.privada')
 
-	@section('content')
+@section('content')
 @section('cabecera')
 @if(session()->has('message'))
     @if(session()->has('exito'))
     <div class="alert alert-success alert-dismissible" id="event-modal">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-       <h4><i class="icon fa fa-check"></i> Éxito!</h4>
+   <h4><i class="icon fa fa-check"></i> Éxito!</h4>
       <p>{{ session()->get('message') }}</p>
     </div>
     @else

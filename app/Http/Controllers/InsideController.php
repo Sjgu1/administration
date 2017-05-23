@@ -39,8 +39,7 @@ class InsideController extends Controller
         $this->validate($request, [
             'nombre' => ['string', 'min:3', 'max:20'],
             'descripcion' => ['string', 'min:3', 'max:65535'],
-            'repositorio' => 'url | nullable',
-            'fecha_inicio'=> ' required',
+            'fecha_inicio'=> 'required',
             'fecha_fin_estimada'=> 'required'
         ]);
 
@@ -48,7 +47,7 @@ class InsideController extends Controller
         $fecha_fin_estimada_comprobar = DateTime::createFromFormat('d/m/Y', $request->input('fecha_fin_estimada'));
 
         if( $fecha_fin_estimada_comprobar < $fecha_inicio_comprobar ){
-            return redirect()->back();
+            return redirect()->back()->with('message', "Error al guardar el proyecto, compruebe las fechas");
         }
 
         $proyecto = new Proyecto();
@@ -60,8 +59,13 @@ class InsideController extends Controller
 
 
 
-        $proyecto->save();
-        return redirect('user.proyectosusers');
+        $exito= $proyecto->save();
+        if($exito){
+            return redirect('user.proyectosusers')->with('message', 'Se ha creado el proyecto ');
+        }else{
+            return redirect()->back()->with('message', 'Error al guardar el proyecto, compruebe todos los datos.');
+        }
+        
     }
 
     public function searchRequisito(){

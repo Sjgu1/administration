@@ -24,10 +24,10 @@ class ProyectoServices {
 
     public static function create(&$request, &$obj){
 
-        $obj->validate($request, [
+       $obj->validate($request, [
             'nombre' => ['string', 'min:3', 'max:20'],
             'descripcion' => ['string', 'min:3', 'max:65535'],
-            'repositorio' => ['string'],
+            'repositorio' => ['string', 'nullable'],
             'fecha_inicio'=> ['required'],
             'fecha_fin_estimada'=> ['required']
         ]);
@@ -36,9 +36,12 @@ class ProyectoServices {
         $fecha_fin_estimada_comprobar = DateTime::createFromFormat('d/m/Y', $request->input('fecha_fin_estimada'));
 
         if( $fecha_fin_estimada_comprobar < $fecha_inicio_comprobar ){
-            return redirect()->back();
+            return redirect()->back()->with('message', "Error al guardar el proyecto, compruebe las fechas");
         }
-        
+        if ($request->input('repositorio') != null && filter_var($request->input('repositorio'), FILTER_VALIDATE_URL) === FALSE) {
+            return redirect()->back()->with('message', "Error al guardar el proyecto, URL no válida");
+        }
+
         $proyecto = new Proyecto();
         $proyecto->nombre = $request->input('nombre');
         $proyecto->descripcion = $request->input('descripcion');
@@ -46,8 +49,7 @@ class ProyectoServices {
         $proyecto->fecha_inicio = $request->input('fecha_inicio');
         $proyecto->fecha_fin_estimada = $request->input('fecha_fin_estimada');
 
-        $proyecto->save();
-
+        $exito= $proyecto->save();
         $proyectoUser = new ProyectoUser();
         $user = User::where('id', Auth::id())->first();
         $rol = Rol::where('id', '1')->first();
@@ -56,6 +58,11 @@ class ProyectoServices {
         $proyectoUser->proyecto()->associate($proyecto->id);
         $proyectoUser->rol()->associate($rol->id);
         $proyectoUser->save();
+        if($exito){
+            return redirect('user.proyectosusers')->with('message', 'Se ha creado el proyecto '. $proyecto->nombre)->with('exito', 'exito');
+        }else{
+            return redirect()->back()->with('message', 'Error al guardar el proyecto, compruebe todos los datos.');
+        }
 
     } 
 }
