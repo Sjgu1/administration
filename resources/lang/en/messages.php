@@ -134,7 +134,7 @@ return [
     'el repositorio es invalido' => 'The repository is invalid and there is a connection error',
     'estas seguro' => 'Are you sure?',
     'realiza'      => 'Keep track of your projects. Analyze the collaboration of each participant, observe the progress and what is left to finish, get the feedback to improve future projects',
-    'sencillez'    => 'Simplicity,',
+    'sencillez'    => 'Simplicity',
     'facil manejo' => 'Easy operation',
     'entra'        => 'Enter the agile methodologies in a simple way, learn to handle your incidents and work in groups without needing hours of learning',
     'empieza'      => 'Start by creating a project. If you want, you can add companions to this project and assign the levels of motivation they have on it. You can manage your projects from the input menu. ',
