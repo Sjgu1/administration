@@ -376,7 +376,7 @@
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "@lang('messages.si adelante)",
+                    confirmButtonText: "@lang('messages.si adelante')",
                     cancelButtonText: "@lang('messages.cancelar')",
                     closeOnConfirm: false,
                     allowOutsideClick: true
