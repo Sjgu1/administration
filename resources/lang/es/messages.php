@@ -61,6 +61,7 @@ return [
     'guardar'      => 'Guardar',
     'crear'        => 'Crear',
     'eliminar'     => 'Eliminar',
+    'cancelar'     => 'Cancelar',
     'miembro desde' => 'Miembro desde',
     'por favor introduzca su nombre' => 'Por favor, introduzca su nombre',
     'por favor introduzca sus apellidos' => 'Por favor, introduzca sus apellidos',
@@ -103,7 +104,7 @@ return [
     'descripcion'  => 'Descripción',
     'P-S'          => 'Proyecto - Sprint',
     'fecha de inicio' => 'Fecha de inicio',
-    'fecha estimada de fin' => 'Fecha estimada de finalización',
+    'fecha estimada de fin' => 'Fecha estimada de fin',
     'fecha estimada de inicio' => 'Fecha estimada de inicio',
     'fecha fin'    => 'Fecha fin',
     'duracion'     => 'Duración',
@@ -130,4 +131,7 @@ return [
     'configuracion' => 'Configuración',
     'estado'        => 'Estado',
     'menu'          => 'Menú',
+    'el repositorio es invalido' => 'El repositorio es inválido o existe un error de conexión',
+    'estas seguro'  => '¿Estás seguro?',
+
 ];

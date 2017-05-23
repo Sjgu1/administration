@@ -225,7 +225,7 @@
                                 @if ($borrar_sprint)
                                 <button id="eliminar_sprint{{ $sprint->id }}" type="button" class="btn btn-danger pull-left">@lang('messages.eliminar')</button>
                                 @endif
-                                <button class="btn btn-default" data-dismiss="modal" aria-label="Close">@lang('messages.proyectos')</button>
+                                <button class="btn btn-default" data-dismiss="modal" aria-label="Close">@lang('messages.cancelar')</button>
                                 @if ($modificar_sprint)
                                 <button type="submit" class="btn btn-success">@lang('messages.modificar')</button>
                                 @endif
@@ -315,7 +315,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="col-md-6" style="padding-left: 0%">
-                                    <label for="message-text" class="control-label">Usuario asignado:</label>
+                                    <label for="message-text" class="control-label">@lang('messages.usuarios asignados ahora'):</label>
                                     <select name="input_user" class="form-control">
                                         <option value="null">@lang('messages.selecciona nuevos usuarios')</option>
                                         @if (count($requisito->users) > 0)
@@ -349,7 +349,7 @@
                         @if ($borrar_requisito)
                         <button id="eliminar{{ $requisito->id }}" type="button" class="btn btn-danger pull-left">@lang('messages.eliminar')</button>
                         @endif
-                        <button class="btn btn-default" data-dismiss="modal" aria-label="Close">@lang('messages.proyectos')</button>
+                        <button class="btn btn-default" data-dismiss="modal" aria-label="Close">@lang('messages.cancelar')</button>
                         @if ($modificar_requisito)
                         <button type="submit" class="btn btn-success">@lang('messages.modificar')</button>
                         @endif

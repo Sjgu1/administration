@@ -44,7 +44,7 @@
           <!-- LINE CHART -->
           <div class="box box-info">
           <div class="box-header with-border">
-              <h3 class="box-title">El repositorio es inválido o existe un error de conexión</h3>
+              <h3 class="box-title">@lang('messages.el repositorio es invalido')</h3>
             </div>
             <div class="box-body">
               <div class="chart">

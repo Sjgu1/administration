@@ -146,7 +146,7 @@
             <!-- /.col -->
             <div class="col-md-2">
               <div class="form-group">
-                <input class="btn btn-primary" type="submit" value="@lang('messages.proyecto')">
+                <input class="btn btn-primary" type="submit" value="@lang('messages.invitar')">
               </div>
               <!-- /.form-group -->
             </div>
@@ -325,7 +325,7 @@
                                 @if ($borrar_proyecto)
                                     <button id="eliminar_proyecto{{ $proyecto->id }}" type="button" class="btn btn-danger pull-left">@lang('messages.eliminar')</button>
                                 @endif
-                                <button class="btn btn-default" data-dismiss="modal" aria-label="Close">@lang('messages.proyectos')</button>
+                                <button class="btn btn-default" data-dismiss="modal" aria-label="Close">@lang('messages.cancelar')</button>
                                 @if ($modificar_proyecto)
                                     <button type="submit" class="btn btn-success">@lang('messages.modificar')</button>
                                 @endif

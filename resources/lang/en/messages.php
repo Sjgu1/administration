@@ -61,6 +61,7 @@ return [
     'guardar'      => 'Save',
     'crear'        => 'Create',
     'eliminar'     => 'Delete',
+    'cancelar'     => 'Cancel',
     'miembro desde' => 'Member since ',
     'por favor introduzca su nombre' => 'Please enter your name',
     'por favor introduzca sus apellidos' => 'Please enter your surname',
@@ -130,6 +131,7 @@ return [
     'configuracion' => 'Configuration',
     'estado'       => 'Status',
     'menu'         => 'Menu',
-
+    'el repositorio es invalido' => 'The repository is invalid and there is a connection error',
+    'estas seguro' => 'Are you sure?',
 
 ];

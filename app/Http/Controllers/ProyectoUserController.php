@@ -78,6 +78,12 @@ class ProyectoUserController extends Controller
         $proyecto_user->user()->dissociate();
         $proyecto_user->delete();
 
+        if ($user_id == Auth::user()->id){
+
+            session()->forget('selected_project');
+            return redirect('/user/proyectosusers')->with('message', 'Te has desvinculado del proyecto correctamente')->with('exito', 'eliminado');
+        }
+
         return redirect()->route('userspublic');
     }
 

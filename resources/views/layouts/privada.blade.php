@@ -93,6 +93,7 @@
       </a>
 
      <div style=" position: fixed;
+     top: 1%;
   left: 50%;
   margin-left: -100px;" >
       @yield('cabecera')
