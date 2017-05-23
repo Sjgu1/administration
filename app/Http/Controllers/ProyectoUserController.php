@@ -93,7 +93,6 @@ class ProyectoUserController extends Controller
         $all_users = User::get();
         $user_id = 1;
         $this->validate($request, [
-            'rol_id' => ['integer'],
             'user_name' => ['string', 'min:3']
         ]);
 

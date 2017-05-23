@@ -122,13 +122,13 @@
           </div>
         </div>
         <!-- /.box-header -->
-        <div class="box-body">
+        <div class="box-body ">
             <form id="requisito_form_modificar" action="{{ url('proyectousercrear') }}" method="POST" role="form" data-toggle="validator">
-            <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
+            <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
           <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <input id="autocompleteUser" type="text" class="form-control modal-title" name="user_name" placeholder="@lang('messages.nombre')">
+            <div class="col-md-6 has-feedback">
+              <div class="form-group has-feedback">
+                <input id="autocompleteUser" data-minlength="3" type="text" class="form-control modal-title" name="user_name" placeholder="@lang('messages.nombre')">
               </div>
             </div>
             <!-- /.col -->
