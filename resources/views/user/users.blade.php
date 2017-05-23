@@ -439,13 +439,13 @@
     $("#eliminar_proyecto{{ $proyecto->id }}").click(function() {
 
         swal({
-            title: "¿Estás seguro?",
-            text: "Vas a borrar el proyecto {{ $proyecto->nombre }}",
+            title: "@lang('messages.estas seguro?')",
+            text: "@lang('messages.vas a eliminar') {{ $proyecto->nombre }}",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
-            cancelButtonText: "Cancelar",
-            confirmButtonText: "Sí, adelante",
+            cancelButtonText: "@lang('messages.cancelar')",
+            confirmButtonText: "@lang('messages.si adelante')",
             closeOnConfirm: false,
             allowOutsideClick: true
         },
