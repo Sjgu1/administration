@@ -369,7 +369,7 @@
 
         swal({
             title: "@lang('messages.estas seguro?')",
-            text: "Vas a borrar el requisito {{ $requisito->nombre }}",
+            text: "@lang('messages.vas a eliminar'){{ $requisito->nombre }}",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",

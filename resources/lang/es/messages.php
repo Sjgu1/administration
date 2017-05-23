@@ -133,6 +133,8 @@ return [
     'menu'          => 'Menú',
     'el repositorio es invalido' => 'El repositorio es inválido o existe un error de conexión',
     'estas seguro'  => '¿Estás seguro?',
+    'vas a eliminar'=> 'Vas a eliminar',
+    'si adelante'   => 'Sí, adelante',
     'realiza'       => 'Realiza un seguimiento de tus proyectos. Analiza la colaboración de cada participante, observa el progreso y lo que falta para terminar, obtén feedback para mejorar futuros proyetos',
     'sencillez'     => 'Sencillez' ,
     'facil manejo'  => 'Fácil manejo',

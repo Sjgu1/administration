@@ -133,6 +133,8 @@ return [
     'menu'         => 'Menu',
     'el repositorio es invalido' => 'The repository is invalid and there is a connection error',
     'estas seguro' => 'Are you sure?',
+    'vas a eliminar' => 'You are going to delete',
+    'si adelante'  => 'Yes, go on',
     'realiza'      => 'Keep track of your projects. Analyze the collaboration of each participant, observe the progress and what is left to finish, get the feedback to improve future projects',
     'sencillez'    => 'Simplicity',
     'facil manejo' => 'Easy operation',
