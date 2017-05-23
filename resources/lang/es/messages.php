@@ -135,6 +135,7 @@ return [
     'estas seguro'  => '¿Estás seguro?',
     'vas a eliminar'=> 'Vas a eliminar',
     'si adelante'   => 'Sí, adelante',
+    'vas a desvincular' => 'Vas a desvincular',
     'realiza'       => 'Realiza un seguimiento de tus proyectos. Analiza la colaboración de cada participante, observa el progreso y lo que falta para terminar, obtén feedback para mejorar futuros proyetos',
     'sencillez'     => 'Sencillez' ,
     'facil manejo'  => 'Fácil manejo',
