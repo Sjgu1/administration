@@ -5,7 +5,7 @@
   @section('seleccion')
 <ul class="nav navbar-nav">
   <li><a href="{{ url('/home') }}">@lang('messages.inicio')</a></li>
-  <li  class="active"><a href="{{ url('/proyecto') }}">@lang('messages.proyecto')</a></li>
+  <li class="active"><a href="{{ url('/proyecto') }}">@lang('messages.proyecto')</a></li>
   <li><a href="{{ url('/contacto') }}">@lang('messages.contacto')</a></li>
 </ul>
 <body>
