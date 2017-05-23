@@ -57,7 +57,7 @@
                     </div>
                     <div class="form-group has-feedback">
                         <label for="username" class="control-label">@lang('messages.repetir contrasenya'):</label>
-                        <input type="password" id="password2" name="password" value="" class="form-control" data-minlength="3" maxlength="20" required>
+                        <input type="password" id="password2" name="password1" value="" class="form-control" data-minlength="3" maxlength="20" required>
                     </div>
                     <div class="form-group has-feedback">
                         <label for="username" class="control-label">@lang('messages.imagen de perfil'):</label>

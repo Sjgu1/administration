@@ -174,11 +174,15 @@ class UserController extends Controller
             'password1' => ['string', 'required']
         ]);
 
+        $user = User::where('id', $request->input('id'))->first();
         if($request->password != $request->password1){
             return redirect()->back()->with('message', 'Las password no coinciden');
         }
 
-        $user = User::where('id', $request->input('id'))->first();
+        if (User::where('email', '=', $request->input('email'))->exists() && $user->email!=$request->input('email')) {
+            return redirect()->back()->with('message', 'La dirección email ya está registrada.');
+        }       
+        
         $user->name = $request->input('name');
         $user->apellidos = $request->input('apellidos');
         $user->username = $request->input('username');
@@ -188,13 +192,18 @@ class UserController extends Controller
         if ($request->hasFile('imagen')){
 
             if ($request->file('imagen')->isValid()){
-
+                $str = $request->file('imagen')->getClientOriginalExtension();
+               // if($str!='jpg')
+                if(glob( 'perfiles/' . $user->id  . '.*')) {
+                    array_map('unlink', glob("perfiles/". $user->id  ."*"));
+                } 
+                $request->file('imagen')->move('perfiles/', $user->id . '.' . $request->file('imagen')->getClientOriginalExtension());
+                 $user->imagen =  $user->id . '.' .$str;
                 /*if ( ! file_exists(base_path('perfiles'))){
 
                     mkdir(base_path('perfiles'));
                 }*/
 
-                $request->file('imagen')->move('perfiles/', $user->id . '.' . $request->file('imagen')->getClientOriginalExtension());
             }
         }
         /*else {

@@ -44,7 +44,7 @@ class ProyectoUserController extends Controller
     public function modify(Request $request){
 
         // ESTE PUTO MÉTODO NO ESTÁ FUNCIONANDO Y NO ENTIENDO EL MOTIVO
-
+        
         //var_dump($request);
         $proyecto_id = session()->get('selected_project')->id;
         $user = User::where('id',$request->input('user_id'))->first();
@@ -70,6 +70,7 @@ class ProyectoUserController extends Controller
 
         //$proyecto_id = $request->input('proyecto_id');
         //$user_id = $request->input('user_id');
+        
 
         $proyecto_user = ProyectoUser::where('proyecto_id', $proyecto_id)->where('user_id', $user_id)->first();
         $proyecto_user->rol()->dissociate();
@@ -85,6 +86,10 @@ class ProyectoUserController extends Controller
         $proyecto_id = session()->get('selected_project')->id;
         $all_users = User::get();
         $user_id = 1;
+        $this->validate($request, [
+            'rol_id' => ['integer'],
+            'user_name' => ['string', 'min:3']
+        ]);
 
         foreach ($all_users as $aux_user){
 
@@ -99,18 +104,28 @@ class ProyectoUserController extends Controller
         $user = User::where('id', $user_id)->first();
         $user_id = $user->id;
         $rol_id = $request->input('rol_id');
+        if($rol_id ==null){
+            return redirect()->back()->with('message', 'No se ha seleccionado rol');
+        }
 
         $proyecto_user = new ProyectoUser();
         $proyecto_user->proyecto()->associate($proyecto_id);
         $proyecto_user->user()->associate($user_id);
         $proyecto_user->rol()->associate($rol_id);
 
-        $proyecto_user->save();
+        $exito= $proyecto_user->save();
+        if($exito){
+                return redirect()->back()->with('message', 'Se ha agregado un usuario')->with('exito', 'exito');
+        }else{
+                return redirect()->back()->with('message', 'No se ha podido agregar al usuario, compruebe la información');
+        }
 
         return redirect()->route('userspublic');
     }
 
     public function invitation($id = null){
+
+        
 
         $proyecto = $request->input('proyecto');
         $anfitrion_nombre = $request->input('anfitrion_nombre');
