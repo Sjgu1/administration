@@ -54,7 +54,7 @@
             <h2 class="featurette-heading">@lang('messages.sencillez').
                 <span class="text-muted">@lang('messages.facil manejo').</span>
             </h2>
-            <p class="lead">@lang('messages.ebtra').</p>
+            <p class="lead">@lang('messages.entra').</p>
         </div>
 
         <hr class="featurette-divider">
