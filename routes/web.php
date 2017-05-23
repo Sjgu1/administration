@@ -60,7 +60,7 @@ Route::group(['middleware' => ['web', 'auth']], function(){
     //Parte administrador
     Route::get('index/{field?}', 'RequisitosController@search');//Devuelve lista de requisitos
 
-    Route::get('user/proyectosusers', 'InsideController@searchProyecto');
+    Route::get('user/proyectosusers', 'InsideController@searchProyecto')->name('userproyectosusers');
     Route::get('user/proyecto/new', 'ProyectosController@vistaCreate');
     Route::post('user/proyecto/create', 'InsideController@createProyecto');
     Route::get('user/requisito/new', function(){ return view('user.requisitonew'); });
