@@ -351,7 +351,11 @@
         ],
 
         getValue: "name",
-
+        list: {
+            match: {
+                enabled: true
+            }
+        },
         template: {
             type: "description",
             fields: {
@@ -360,7 +364,7 @@
         }
 
         };
-
+        console.log(options);
         $("#autocompleteUser").easyAutocomplete(options);
 
     </script>

@@ -8,7 +8,9 @@ use App\Rol;
 use App\User;
 use Auth;
 use App\Permiso;
+use App\Proyecto;
 use App\ServiceLayer\RolServices;
+use Mail;
 
 class ProyectoUserController extends Controller
 {
@@ -119,6 +121,18 @@ class ProyectoUserController extends Controller
         $proyecto_user->rol()->associate($rol_id);
 
         $exito= $proyecto_user->save();
+
+        $proyecto = Proyecto::where('id', $proyecto_id)->first();
+        
+
+        $user2 = User::where('id', $user_id)->first();
+
+        $data = "Mensaje de Crisantemo. Has sido invitado al proyecto: " .
+        "Nombre: ". $proyecto->nombre ;
+
+       Mail::raw($data, function ($message) {
+            $message->to('crisantemo.dss.2017@gmail.com', 'Crisantemo');
+        });
         if($exito){
                 return redirect()->back()->with('message', 'Se ha agregado un usuario')->with('exito', 'exito');
         }else{
