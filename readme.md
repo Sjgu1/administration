@@ -1,4 +1,4 @@
-<p align="center"><img src="/cliente/assets/img/logo_redondeado.png" width="400"></img></p>
+<p align="center"></p>
 
 # Crisantemo &nbsp;
 Crisantemo es un programa realizado con el framework Laravel. Se trata de un sistema de gestión de proyectos del ámbito informático. Permiten la creación de proyectos, sprints e incidencias, con herramientas visuales para conocer el estado de desarrollo, el historial de eventos, gráficos ilustrativos y responsables de tareas.
@@ -7,7 +7,7 @@ Crisantemo es un programa realizado con el framework Laravel. Se trata de un sis
 
 Siga estas instrucciones para obtener una copia de este proyecto funcionando correctamente en tu sistema operativo.
 
-### Prerrequisitos <img align="right" width="200" src="/cliente/assets/img/golang_gintonico.png"></img> 
+### Prerrequisitos 
 Para poder utilizar este proyecto es necesario tener instaladas ciertas herramientas, como son composer y php.
 
 Con estas herramientas son necesarios ejecutar ciertos comandos con el fin de llenar de ejemplos el programa y lanzar un servidor para su ejecución.
