@@ -35,7 +35,7 @@ $ php artisan serve
 
 Una vez lanzado se puede acceder a través del navegador con la siguiente dirección
 
-> Windows:   ``` http://127.0.0.1:8000>```
+> ``` http://127.0.0.1:8000>```
 
 A continuación se muestran algunos ejemplos del programa.
 
