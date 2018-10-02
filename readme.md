@@ -1,40 +1,49 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+<p align="center"><img src="/cliente/assets/img/logo_redondeado.png" width="400"></img></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+# Crisantemo &nbsp;
+Crisantemo es un programa realizado con el framework Laravel. Se trata de un sistema de gestión de proyectos del ámbito informático. Permiten la creación de proyectos, sprints e incidencias, con herramientas visuales para conocer el estado de desarrollo, el historial de eventos, gráficos ilustrativos y responsables de tareas.
 
-## About Laravel
+## Guía de instalación
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+Siga estas instrucciones para obtener una copia de este proyecto funcionando correctamente en tu sistema operativo.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Prerrequisitos <img align="right" width="200" src="/cliente/assets/img/golang_gintonico.png"></img> 
+Para poder utilizar este proyecto es necesario tener instaladas ciertas herramientas, como son composer y php.
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
+Con estas herramientas son necesarios ejecutar ciertos comandos con el fin de llenar de ejemplos el programa y lanzar un servidor para su ejecución.
 
-## Learning Laravel
+> *Ejecutar estos comandos en la carpeta del proyecto.
+```
+$ composer update
+$ touch database/database.sqlite
+$ cp .env.example .env
+$ php artisan migrate --seed
+$ php artisan key:generate
+```
 
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
+### Instalando y ejecutando Gintónico
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+Para compilar el proyecto Gintónico necesitamos ejecutar el comando:
+> *Ejecutar este comando para lanzar la aplicación*.
+```
+$ php artisan serve
+```
 
-## Contributing
+Una vez lanzado se puede acceder a través del navegador con la siguiente dirección
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+> Windows:   ``` http://127.0.0.1:8000>```
 
-## Security Vulnerabilities
+A continuación se muestran algunos ejemplos del programa.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+Inicio:
+<p align="center"><img src="1.gif" width="450"></img></p>
+Panel principal y proyectos:
+<p align="center"><img src="2.gif" width="450"></img></p>
+Gestión de usuarios y roles:
+<p align="center"><img src="3.gif" width="450"></img></p>
+Tablón de incidencias:
+<p align="center"><img src="4.gif" width="450"></img></p>
 
-## License
+## Licencia
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+Este proyecto está bajo la licencia GNU GPL v3 - revisa [LICENSE](LICENSE) para ver más detalles.
