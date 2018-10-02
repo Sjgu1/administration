@@ -17,6 +17,10 @@ Con estas herramientas son necesarios ejecutar ciertos comandos con el fin de ll
 $ composer update
 $ touch database/database.sqlite
 $ cp .env.example .env
+```
+> *Modificar el archivo *.env*. Poner la conexión de la base de datos a: *DB_CONNECTION=sqlite*.
+
+```
 $ php artisan migrate --seed
 $ php artisan key:generate
 ```
