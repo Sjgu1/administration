@@ -27,7 +27,7 @@ $ php artisan key:generate
 
 ### Instalando y ejecutando Gintónico
 
-Para compilar el proyecto Gintónico necesitamos ejecutar el comando:
+Para compilar el proyecto necesitamos ejecutar el comando:
 > *Ejecutar este comando para lanzar la aplicación*.
 ```
 $ php artisan serve
